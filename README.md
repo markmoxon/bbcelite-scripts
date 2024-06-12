@@ -36,7 +36,7 @@ The following steps will enable you to run the scripts and see them generate the
 
 ### 1. Clone the Elite repositories
 
-Create a parent folder to hold the various repositories and websites that we are going to generate, and set the current directory to this folder. I will refer to this path as `/path/to/generated/content` in the following documentation; you should change this to a folder path of your choosing:
+Create a parent folder to hold the various repositories and websites that we are going to generate, and set the current directory to this folder. I will refer to this path as `/path/to/generated/content` in the following documentation; you should change this to the actual path of the folder that you create:
 
 ```
 mkdir /path/to/generated/content
@@ -98,7 +98,7 @@ git clone https://github.com/markmoxon/archimedes-lander
 
 We now set the environment variables that are needed by the generation scripts.
 
-To do this, create a file called `env.sh` containing the following, with `/path/to/generated/content` set to the correct path for the parent folder:
+To do this, create a file called `env.sh` containing the following, making sure you change `/path/to/generated/content` to the correct path for the parent folder you created in step 1:
 
 ```
 export BBCELITE_SCRIPTS=/path/to/generated/content/bbcelite-scripts
@@ -120,27 +120,25 @@ export LANDER_WEBSITE=/path/to/generated/content/lander.bbcelite.com
 export LANDER_WEBSITE_REPOSITORY=/path/to/generated/content/staging.lander.bbcelite.com
 ```
 
-Execute this with the following, to set the environment variables:
+Execute this with the following command, to set the environment variables:
 
 ```
 source env.sh
 ```
 
-You will need to do this each time you open a new terminal; [see below](#environment-variables) for a different approach that automates this step.
-
-Also [see below](#environment-variables) for more details on these environment variables, and for details on how to set up a different folder structure to the all-in-one approach used in this example setup.
+[See below](#environment-variables) for details on these environment variables, advice on automating this step, and information on how to set up a different folder structure to the all-in-one approach used in this example.
 
 ### 4. Run the scripts for Elite
 
 Now let's generate the Elite source repositories and website.
 
-First, cd into the `bbcelite-scripts` repository as follows:
+First, switch to the `bbcelite-scripts` repository folder:
 
 ```
 cd $BBCELITE_SCRIPTS
 ```
 
-Now generate the repositories and website by running this script:
+Now generate the repositories and website by running this script (this will take quite a while to run):
 
 ```
 ./generate-elite.sh
@@ -191,6 +189,8 @@ will generate the [lander.bbcelite.com](https://lander.bbcelite.com) site and st
 ### 6. Merge the generated web content into the static website
 
 The final step is to merge the generated website content with the static website content, such as the deep dives, homepage, images, CSS, JavaScript and so on. I have not yet released the static content to a public repository, but I plan to, at which point you will be able to generate the websites in their entirety.
+
+The websites also use various PHP includes, so at this stage you can't get the websites working locally. The static repository will fix this, allowing you to generate the entire bbcelite.com website and host it locally.
 
 ## Environment variables
 
