@@ -20,5 +20,8 @@ rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/revs/
 echo "Syncing generated source to website"
 rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/revs/source/ $REVS_WEBSITE/source/
 
+echo "Copying navigation to website repository"
+rsync -a $BBCELITE_SCRIPTS/disassembly-website-generator/websites/revs/templates_local/ $REVS_WEBSITE_REPOSITORY/templates_local/
+
 echo "Copying navigation to website"
-cp $BBCELITE_SCRIPTS/disassembly-website-generator/websites/revs/templates_local/navigation_* $REVS_WEBSITE/templates_local/
+rsync -a $BBCELITE_SCRIPTS/disassembly-website-generator/websites/revs/templates_local/ $REVS_WEBSITE/templates_local/

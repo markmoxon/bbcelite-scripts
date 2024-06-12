@@ -196,5 +196,6 @@ fi
 
 echo "Copying navigation to website repository"
 rsync -a $BBCELITE_SCRIPTS/disassembly-website-generator/websites/elite/templates_local/ $ELITE_WEBSITE_REPOSITORY/templates_local/
+
 echo "Copying navigation to website"
 rsync -a $BBCELITE_SCRIPTS/disassembly-website-generator/websites/elite/templates_local/ $ELITE_WEBSITE/templates_local/

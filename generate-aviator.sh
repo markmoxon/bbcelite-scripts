@@ -20,5 +20,8 @@ rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/aviat
 echo "Syncing generated source to website"
 rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/aviator/source/ $AVIATOR_WEBSITE/source/
 
+echo "Copying navigation to website repository"
+rsync -a $BBCELITE_SCRIPTS/disassembly-website-generator/websites/aviator/templates_local/ $AVIATOR_WEBSITE_REPOSITORY/templates_local/
+
 echo "Copying navigation to website"
-cp $BBCELITE_SCRIPTS/disassembly-website-generator/websites/aviator/templates_local/navigation_* $AVIATOR_WEBSITE/templates_local/
+rsync -a $BBCELITE_SCRIPTS/disassembly-website-generator/websites/aviator/templates_local/ $AVIATOR_WEBSITE/templates_local/

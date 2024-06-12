@@ -20,5 +20,8 @@ rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/lande
 echo "Syncing generated source to website"
 rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/lander/source/ $LANDER_WEBSITE/source/
 
+echo "Copying navigation to website repository"
+rsync -a $BBCELITE_SCRIPTS/disassembly-website-generator/websites/lander/templates_local/ $LANDER_WEBSITE_REPOSITORY/templates_local/
+
 echo "Copying navigation to website"
-cp $BBCELITE_SCRIPTS/disassembly-website-generator/websites/lander/templates_local/navigation_* $LANDER_WEBSITE/templates_local/
+rsync -a $BBCELITE_SCRIPTS/disassembly-website-generator/websites/lander/templates_local/ $LANDER_WEBSITE/templates_local/
