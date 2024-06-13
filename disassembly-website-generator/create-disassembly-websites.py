@@ -741,26 +741,34 @@ else:
 
 # HTML fragments
 html_header1 = '''<?php
-include_once("../../../script_support/config/templates.php");
-include_once("../../../script_support/libraries/template_functions.php");
+include_once("../../templates/template_functions.php");
 '''
 html_header2 = '''?>
 '''
 html_footer = '''
+\t\t\t</article>
+
 <?php
-page_footer("../");
+include_once("../../templates_local/navigation.php");
 ?>
+\t\t</div>
+\t</body>
+</html>
 '''
 html_code_header1 = '''<?php
-include_once("../../../../script_support/config/templates.php");
-include_once("../../../../script_support/libraries/template_functions.php");
+include_once("../../../templates/template_functions.php");
 '''
 html_code_header2 = '''?>
 '''
 html_code_footer = '''
+\t\t\t</article>
+
 <?php
-page_footer("../../");
+include_once("../../../templates_local/navigation.php");
 ?>
+\t\t</div>
+\t</body>
+</html>
 '''
 html_menu = '\t\t\t\t\t\t\t<li><a id="{}{}{}_{}" href="/{}"><span class="menuTitle">{}</span> <span class="menuSummary">{}</span></a></li>\n'
 menu_item_open = '''\t\t\t\t\t<li id="{}{}"><span class="menuTitle">{}</span> <span class="menuSummary menuSummarySubmenu">{}</span>
