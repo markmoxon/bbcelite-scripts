@@ -13,7 +13,7 @@ print("Extracting platform: {}".format(args.platform), end="", flush=True)
 
 # Environment variables
 elite_repositories = os.environ['ELITE_CODE_REPOSITORIES']
-library_repository = elite_repositories + "/library-elite-beebasm/"
+library_repository = os.environ['ELITE_LIBRARY_REPOSITORY']
 aviator_repository = os.environ['AVIATOR_CODE_REPOSITORY']
 revs_repository = os.environ['REVS_CODE_REPOSITORY']
 lander_repository = os.environ['LANDER_CODE_REPOSITORY']
@@ -3368,7 +3368,7 @@ macro_data_count = {
 # Config for comparison tool
 sites_to_compare = [
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/cassette/1-source-files/main-sources/",
         "source_files": ["elite-loader.asm", "elite-source.asm", "elite-bcfs.asm"],
         "do_not_expand_all_includes": ["elite-header.h.asm"],
@@ -3379,7 +3379,7 @@ sites_to_compare = [
         "version_key": "CASSETTE"
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/disc/1-source-files/main-sources/",
         "source_files": ["elite-text-tokens.asm", "elite-missile.asm", "elite-loader1.asm", "elite-loader2.asm", "elite-loader3.asm", "elite-loader-sideways-ram.asm", "elite-source-flight.asm", "elite-ships-a.asm", "elite-ships-b.asm", "elite-ships-c.asm", "elite-ships-d.asm", "elite-ships-e.asm", "elite-ships-f.asm", "elite-ships-g.asm", "elite-ships-h.asm", "elite-ships-i.asm", "elite-ships-j.asm", "elite-ships-k.asm", "elite-ships-l.asm", "elite-ships-m.asm", "elite-ships-n.asm", "elite-ships-o.asm", "elite-ships-p.asm"],
         "do_not_expand_all_includes": ["elite-header.h.asm"],
@@ -3391,7 +3391,7 @@ sites_to_compare = [
         "version_key": "DISC_FLIGHT"
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/disc/1-source-files/main-sources/",
         "source_files": ["elite-source-docked.asm"],
         "do_not_expand_all_includes": ["elite-header.h.asm"],
@@ -3403,7 +3403,7 @@ sites_to_compare = [
         "version_key": "DISC_DOCKED"
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/6502sp/1-source-files/main-sources/",
         "source_files": ["elite-loader1.asm", "elite-loader2.asm", "elite-source.asm", "elite-bcfs.asm", "elite-z.asm", "elite-checksum.asm"],
         "do_not_expand_all_includes": ["elite-header.h.asm"],
@@ -3414,7 +3414,7 @@ sites_to_compare = [
         "version_key": "6502SP"
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/master/1-source-files/main-sources/",
         "source_files": ["elite-loader.asm", "elite-source.asm", "elite-data.asm"],
         "do_not_expand_all_includes": ["elite-header.h.asm"],
@@ -3425,7 +3425,7 @@ sites_to_compare = [
         "version_key": "MASTER"
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/electron/1-source-files/main-sources/",
         "source_files": ["elite-loader.asm", "elite-source.asm", "elite-bcfs.asm"],
         "do_not_expand_all_includes": ["elite-header.h.asm"],

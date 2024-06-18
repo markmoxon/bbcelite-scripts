@@ -4,12 +4,12 @@ import ntpath
 
 
 # Environment variables
-library_repository = os.environ['ELITE_CODE_REPOSITORIES'] + "/library-elite-beebasm/"
+library_repository = os.environ['ELITE_LIBRARY_REPOSITORY']
 
 # Config
 sites = [
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/cassette/1-source-files/main-sources/",
         "source_files": ["elite-loader.asm", "elite-source.asm", "elite-bcfs.asm", "elite-disc.asm", "elite-readme.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -25,7 +25,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/cassette/2-build-files/",
         "source_files": ["elite-checksum.py", "crc32.py"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -38,7 +38,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/cassette/",
         "source_files": ["Makefile"],
         "do_not_expand_includes": [],
@@ -56,7 +56,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/disc/1-source-files/main-sources/",
         "source_files": ["elite-text-tokens.asm", "elite-missile.asm", "elite-loader1.asm", "elite-loader2.asm", "elite-loader3.asm", "elite-loader-sideways-ram.asm", "elite-source-flight.asm", "elite-ships-a.asm", "elite-ships-b.asm", "elite-ships-c.asm", "elite-ships-d.asm", "elite-ships-e.asm", "elite-ships-f.asm", "elite-ships-g.asm", "elite-ships-h.asm", "elite-ships-i.asm", "elite-ships-j.asm", "elite-ships-k.asm", "elite-ships-l.asm", "elite-ships-m.asm", "elite-ships-n.asm", "elite-ships-o.asm", "elite-ships-p.asm", "elite-disc.asm", "elite-readme.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -73,7 +73,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/disc/2-build-files/",
         "source_files": ["elite-checksum.py", "crc32.py"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -87,7 +87,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/disc/1-source-files/main-sources/",
         "source_files": ["elite-source-docked.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -104,7 +104,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/disc/",
         "source_files": ["Makefile"],
         "do_not_expand_includes": [],
@@ -123,7 +123,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/6502sp/1-source-files/main-sources/",
         "source_files": ["elite-loader1.asm", "elite-loader2.asm", "elite-source.asm", "elite-bcfs.asm", "elite-z.asm", "elite-disc.asm", "elite-readme.asm", "elite-checksum.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -139,7 +139,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/6502sp/2-build-files/",
         "source_files": ["elite-checksum.py", "crc32.py"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -152,7 +152,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/6502sp/",
         "source_files": ["Makefile"],
         "do_not_expand_includes": [],
@@ -170,7 +170,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/master/1-source-files/main-sources/",
         "source_files": ["elite-loader.asm", "elite-data.asm", "elite-source.asm", "elite-disc.asm", "elite-readme.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -186,7 +186,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/master/2-build-files/",
         "source_files": ["elite-checksum.py", "crc32.py"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -199,7 +199,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/master/",
         "source_files": ["Makefile"],
         "do_not_expand_includes": [],
@@ -217,7 +217,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/electron/1-source-files/main-sources/",
         "source_files": ["elite-loader.asm", "elite-source.asm", "elite-bcfs.asm", "elite-disc.asm", "elite-readme.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -233,7 +233,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/electron/2-build-files/",
         "source_files": ["elite-checksum.py", "crc32.py"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -246,7 +246,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/electron/",
         "source_files": ["Makefile"],
         "do_not_expand_includes": [],
@@ -263,7 +263,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/elite-a/1-source-files/main-sources/",
         "source_files": ["elite-text-tokens.asm", "elite-missile.asm", "elite-source-flight.asm", "elite-ships-a.asm", "elite-ships-b.asm", "elite-ships-c.asm", "elite-ships-d.asm", "elite-ships-e.asm", "elite-ships-f.asm", "elite-ships-g.asm", "elite-ships-h.asm", "elite-ships-i.asm", "elite-ships-j.asm", "elite-ships-k.asm", "elite-ships-l.asm", "elite-ships-m.asm", "elite-ships-n.asm", "elite-ships-o.asm", "elite-ships-p.asm", "elite-ships-q.asm", "elite-loader.asm", "elite-disc.asm", "elite-readme.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -288,7 +288,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/elite-a/2-build-files/",
         "source_files": ["elite-checksum.py", "crc32.py"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -310,7 +310,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/elite-a/1-source-files/main-sources/",
         "source_files": ["elite-ships-r.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -332,7 +332,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/elite-a/1-source-files/main-sources/",
         "source_files": ["elite-ships-s.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -354,7 +354,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/elite-a/1-source-files/main-sources/",
         "source_files": ["elite-ships-t.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -376,7 +376,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/elite-a/1-source-files/main-sources/",
         "source_files": ["elite-ships-u.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -398,7 +398,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/elite-a/1-source-files/main-sources/",
         "source_files": ["elite-ships-v.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -420,7 +420,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/elite-a/1-source-files/main-sources/",
         "source_files": ["elite-ships-w.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -442,7 +442,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/elite-a/1-source-files/main-sources/",
         "source_files": ["elite-source-docked.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -463,7 +463,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/elite-a/1-source-files/main-sources/",
         "source_files": ["elite-source-encyclopedia.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -487,7 +487,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/elite-a/1-source-files/main-sources/",
         "source_files": ["elite-6502sp-io-processor.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -504,7 +504,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/elite-a/1-source-files/main-sources/",
         "source_files": ["elite-6502sp-parasite.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -521,7 +521,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/elite-a/",
         "source_files": ["Makefile"],
         "do_not_expand_includes": [],
@@ -539,7 +539,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/nes/1-source-files/main-sources/",
         "source_files": ["elite-source-bank-0.asm", "elite-source-bank-1.asm", "elite-source-bank-2.asm", "elite-source-bank-3.asm", "elite-source-bank-4.asm", "elite-source-bank-5.asm", "elite-source-bank-6.asm", "elite-source-bank-7.asm", "elite-source-header.asm", "elite-source-common.asm"],
         "do_not_expand_includes": ["elite-build-options.asm", "elite-source-common.asm", "elite-source-bank-0.asm", "elite-source-bank-1.asm", "elite-source-bank-2.asm", "elite-source-bank-3.asm", "elite-source-bank-4.asm", "elite-source-bank-5.asm", "elite-source-bank-6.asm", "elite-source-bank-7.asm", "elite-source-bank-7.asm"],
@@ -566,7 +566,7 @@ sites = [
         "code_style": "6502"
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/nes/2-build-files/",
         "source_files": ["crc32.py"],
         "do_not_expand_includes": ["elite-build-options.asm"],
@@ -579,7 +579,7 @@ sites = [
         ]
     },
     {
-        "source_folder": library_repository,
+        "source_folder": library_repository + "/",
         "section_folder": "versions/nes/",
         "source_files": ["Makefile"],
         "do_not_expand_includes": [],
