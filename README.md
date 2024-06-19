@@ -258,6 +258,9 @@ The main requirements are:
 * Perl (though this is only required for the `random.cgi` script)
 * Symlinks need to be followed
 * `.html` files need to be interpreted using PHP
+* URLs in the form `/css/yyyymmdd/` and `/javascript/yyyymmdd/` resolve to `/css/ `and `/javascript` (where `yyyymmdd` is a date like `20240607`)
+
+The latter enables us to bypass the browser cache when assets are updated, by simply updating the date. The date of the last assets update is set in various places in the static content.
 
 There is a `.htaccess` in each site that sets all of this up, which should be easy to tailor to your own particular web server, should you want to experiment. This file also contains various redirects that reflect the various site reorganisations over the years, and it also allows JSBeeb and Archimedes Live to run games in the browser. There's nothing particularly complicated going on; this is a relatively simple site to serve.
 
