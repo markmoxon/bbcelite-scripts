@@ -34,7 +34,7 @@ This approach works for all my disassembly sites, for Elite, Aviator, Revs and L
 
 ## Running the scripts
 
-If you want to see this automatic generation working, then the following steps will enable you to set up and run the scripts, which you can then use to generate all the source code repositories and bbcelite.com websites listed above.
+If you want to see this automatic generation working, then the following steps will enable you to set up the process on your own machine. You can then generate all the source code repositories and websites listed above, using the exact same process that I use to maintain my sites.
 
 Note that I have only tested this build process on a Mac. In theory these scripts should also work in Linux, and they might also work on Windows using Git Bash or Windows Subsystem for Linux, but I haven't tried anything other than a Mac-based build.
 
@@ -42,7 +42,7 @@ Python 3 is required.
 
 ### 1. Clone the source repositories
 
-First, we need to create a parent folder to hold the various repositories and websites that we are going to generate (the process will only create files within this folder, so you can clean up afterwards by simply deleting the folder).
+First, we need to create a parent folder to hold the various repositories and websites that we are going to generate. The generation process will only create files within this folder, so you can clean up afterwards by simply deleting the folder and its contents.
 
 I will refer to this path as `/path/to/websites` in the following documentation; you should change this to the actual path of the folder that you create.
 
@@ -67,7 +67,9 @@ Then clone the static website content into the parent folder:
 git clone https://github.com/markmoxon/bbcelite-websites
 ```
 
-Finally clone the other source repositories into the `source-repositories` folder:
+This will create a folder called `bbcelite-websites` that contains the static content for each of the websites. As we generate our web content, it will be copied into the relevant site folders in `bbcelite-websites` to form the finished sites.
+
+Finally clone this repository (which contains the generation scripts) and the source code repositories into the `source-repositories` folder:
 
 ```
 cd source-repositories
@@ -101,13 +103,14 @@ Next, create folders for the staging website repositories in the `generated-webs
 
 ```
 cd ../generated-websites
+
 mkdir staging.elite.bbcelite.com
 mkdir staging.aviator.bbcelite.com
 mkdir staging.revs.bbcelite.com
 mkdir staging.lander.bbcelite.com
 ```
 
-The idea behind the staging repositories is that they will only contain generated content, so we can track changes to generated content as we develop the scripts (so this lets us check the results of changing the scripts). The complete websites will also contain this generated content, but there it's combined with the static content, so having a separate staging repository helps us manage the generated content separately from the static content.
+The idea behind the staging repositories is that they will only ever contain generated content, so we can track changes to that content easily. We want to do this when updating the generation scripts, so we can make sure our changes look correct. The complete websites will also contain this generated content, but there it's combined with the static content, so having a separate staging repository helps us keep an eye on the generated content separately, without the distraction of the static content.
 
 ### 3. Set the environment variables
 
@@ -163,7 +166,7 @@ Now let's generate the Elite source repositories in `generated-repositories`:
 * [elite-a-beebasm](https://github.com/markmoxon/elite-a-beebasm)
 * [nes-elite-beebasm](https://github.com/markmoxon/nes-elite-beebasm)
 
-and the Elite source code website in `bbcelite-websites`:
+and the Elite source code website in `bbcelite-websites/elite.bbcelite.com`:
 
 * [elite.bbcelite.com](https://elite.bbcelite.com)
 
@@ -173,15 +176,21 @@ First, switch to the `bbcelite-scripts` repository folder:
 cd $BBCELITE_SCRIPTS
 ```
 
-Next, generate the repositories and website by running this script (this will take quite a while to run):
+Next, generate the repositories and website by running this script:
 
 ```
 ./generate-elite.sh
 ```
 
-This will generate the source code repositories in each of the empty folders in `generated-repositories`, using the content from the Elite library repository as the source.
+Note that this will take quite a while to run, but progress is shown throughout.
 
-The script also generates the code pages for the Elite source code website from the contents of those newly generated source code repositories. It copies the results into both the `staging.elite.bbcelite.com` folder (where it can be tracked), and into the `elite.bbcelite.com` folder in the `bbcelite-websites` repository. Because the latter already contains the static content for the website, the end result is a complete copy of the Elite source code website, here:
+This script does two things:
+
+* It generates the source code repositories in each of the empty folders in `generated-repositories`, using the content from the Elite library repository as the source.
+
+* It generates the code pages for the Elite source code website from the contents of those newly generated source code repositories.
+
+The script copies the generated content into both the `staging.elite.bbcelite.com` folder (where it can be tracked), and into the `elite.bbcelite.com` folder in the `bbcelite-websites` repository. Because the latter already contains the static content for the website, the end result is a complete copy of the Elite source code website, here:
 
 `/path/to/websites/bbcelite-websites/elite.bbcelite.com`
 
@@ -189,7 +198,7 @@ Changing the Elite library content and re-running the generation script will aut
 
 ### 5. Run the generation scripts for Aviator, Revs and Lander
 
-Next, let's generate the other websites by running the relevant generate scripts.
+Next, let's generate the other websites by running the relevant generate scripts. This process is a lot quicker than for Elite, as there's only one version of each game and there's no code comparision in the websites.
 
 This command:
 
@@ -225,7 +234,19 @@ The [bbcelite-websites](https://github.com/markmoxon/bbcelite-websites) reposito
 
 `/path/to/websites/bbcelite-websites/bbcelite.com`
 
-so we now have all our websites fully generated, ready to serve from a web server.
+as this top-level parent domain is entirely static.
+
+We now have all our websites fully generated, so they are ready to serve from a web server from these locations:
+
+```
+/path/to/websites/bbcelite-websites/www.bbcelite.com
+/path/to/websites/bbcelite-websites/elite.bbcelite.com
+/path/to/websites/bbcelite-websites/aviator.bbcelite.com
+/path/to/websites/bbcelite-websites/revs.bbcelite.com
+/path/to/websites/bbcelite-websites/lander.bbcelite.com
+```
+
+Let's look at how we can do that.
 
 ### 6. Serve the completed websites
 
@@ -234,13 +255,13 @@ The websites are designed to be served from an Apache server, but they are prett
 The main requirements are:
 
 * PHP 8
-* Perl (though this is only required for the randomiser script)
+* Perl (though this is only required for the `random.cgi` script)
 * Symlinks need to be followed
 * `.html` files need to be interpreted using PHP
 
-There is a `.htaccess` in each site that sets all of this up, which should be easy to tailor to your own particular web server, should you want to experiment.
+There is a `.htaccess` in each site that sets all of this up, which should be easy to tailor to your own particular web server, should you want to experiment. This file also contains various redirects that reflect the various site reorganisations over the years, and it also allows JSBeeb and Archimedes Live to run games in the browser. There's nothing particularly complicated going on; this is a relatively simple site to serve.
 
-As all the subdomains (e.g. [elite.bbcelite.com](https://elite.bbcelite.com)) reuse the assets from the parent [www.bbcelite.com](https://www.bbcelite.com) site, you will need to add symlinks as follows:
+As all the subdomains (such as [elite.bbcelite.com](https://elite.bbcelite.com)) reuse the assets from the parent  site (i.e. [www.bbcelite.com](https://www.bbcelite.com)), you will need to add symlinks as follows:
 
 ```
 cd $ELITE_WEBSITE
