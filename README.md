@@ -127,6 +127,7 @@ Open the `env.sh` file in your preferred text editor and paste in the following 
 
 ```
 export BBCELITE_SCRIPTS=/path/to/websites/source-repositories/bbcelite-scripts
+export BBCELITE_WEBSITE=/path/to/websites/bbcelite-websites/bbcelite.com
 
 export ELITE_LIBRARY_REPOSITORY=/path/to/websites/source-repositories/library-elite-beebasm
 export ELITE_CODE_REPOSITORIES=/path/to/websites/generated-repositories
@@ -264,7 +265,7 @@ The latter enables us to bypass the browser cache when assets are updated, by si
 
 There is a `.htaccess` in each site that sets all of this up, which should be easy to tailor to your own particular web server, should you want to experiment. This file also contains various redirects that reflect the various site reorganisations over the years, and it also allows JSBeeb and Archimedes Live to run games in the browser. There's nothing particularly complicated going on; this is a relatively simple site to serve.
 
-As all the subdomains (such as [elite.bbcelite.com](https://elite.bbcelite.com)) reuse the assets from the parent  site (i.e. [www.bbcelite.com](https://www.bbcelite.com)), you will need to add symlinks as follows:
+As all the subdomains (such as [elite.bbcelite.com](https://elite.bbcelite.com)) reuse the assets from the parent site (i.e. [www.bbcelite.com](https://www.bbcelite.com)), you will need to add symlinks as follows:
 
 ```
 cd $ELITE_WEBSITE
@@ -286,7 +287,12 @@ cd $LANDER_WEBSITE
 ln -s ../bbcelite.com/css css
 ln -s ../bbcelite.com/javascript javascript
 ln -s ../bbcelite.com/templates templates
+
+cd $BBCELITE_WEBSITE
+ln -s ../elite.bbcelite.com/versions versions
 ```
+
+The last one allows third-party sites like JSBeeb and XR Beeb to continue to load Elite disc images from the www.bbcelite.com domain, as CORS doesn't work over a redirect. (The Elite site used to live on the www.bbcelite.com domain, but was moved to elite.bbcelite.com.)
 
 You should now be able to serve each of the websites from their root folders in the `bbcelite-websites` folder.
 
@@ -297,6 +303,10 @@ The following environment variables need to be set up for the scripts to work. T
 ### All sites
 
 `$BBCELITE_SCRIPTS` = the path of this repository (i.e. `bbcelite-scripts`)
+
+### Software archaeology site
+
+`$BBCELITE_WEBSITE` = the root folder of the software archaeology website we want to generate
 
 ### Elite
 
