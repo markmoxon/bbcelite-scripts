@@ -1128,7 +1128,7 @@ html_compare_category_index = '''\t\t\t\t\t\t\t<li><a id="compare_shared_shared_
 '''
 html_compare_category_index_subheader = '''\t\t\t\t\t\t\t<li class="menuItemHeader">Compare other versions</li>
 '''
-html_compare_indexes2 = '''\t\t\t\t\t\t\t<li><a id="compare_shared_shared_code_other_variations" href="/compare/indexes/shared_code_other_variations.html"><span class="menuTitle">Minor differences between versions</span> <span class="menuSummary">Smaller differences between the versions that don't have a noticeable effect in-game</span></a></li>
+html_compare_indexes2 = '''\t\t\t\t\t\t\t<li><a id="compare_shared_shared_code_other_variations" href="/compare/indexes/shared_code_other_variations.html"><span class="menuTitle">Minor variations between versions</span> <span class="menuSummary">Smaller differences between the versions that don't have a noticeable effect in-game</span></a></li>
 \t\t\t\t\t\t</ul>
 \t\t\t\t\t</li>
 \t\t\t\t\t<li class="menuItemHeader showForMobile">All code variations by category</li>
@@ -3728,21 +3728,21 @@ def routine_extra_data(name, type, mentions, compare_url, context_text, context_
         fetch_references = True
 
     if fetch_references and name in mentions:
-        name_no_prefix = remove_prefix(name)
+        name_no_stage = remove_stage(name)
         if type == "Subroutine":
             suffix = ' calls '
         else:
             suffix = ' uses '
-        suffix += '<a href="#{}">{}</a></span>\n'.format(make_id(name_no_prefix), name_no_prefix)
-        mention_list += fetch_cross_references(name, '             <span class="headerEntry">* <a href="/{}">{}</a>' + suffix, include_prefix=False)[0]
+        suffix += '<a href="#{}">{}</a></span>\n'.format(make_id(name_no_stage), name_no_stage)
+        mention_list += fetch_cross_references(name, '             <span class="headerEntry">* <a href="/{}">{}</a>' + suffix, include_stage=False)[0]
 
     # Entry points
     for key in references_library:
         if "entry_point" in references_library[key] and "parent_name" in references_library[key] and references_library[key]["parent_name"] == full_name:
-            name_no_prefix = remove_prefix(key)
-            entry_point_anchor = make_id_for_entry_point(name_no_prefix)
-            suffix = ' calls via <a href="#{}">{}</a></span></span>\n'.format(entry_point_anchor, name_no_prefix)
-            entry_refs = fetch_cross_references(key, '             <span class="headerEntry">* <a href="/{}">{}</a>' + suffix, include_prefix=False)[0]
+            name_no_stage = remove_stage(key)
+            entry_point_anchor = make_id_for_entry_point(name_no_stage)
+            suffix = ' calls via <a href="#{}">{}</a></span></span>\n'.format(entry_point_anchor, name_no_stage)
+            entry_refs = fetch_cross_references(key, '             <span class="headerEntry">* <a href="/{}">{}</a>' + suffix, include_stage=False)[0]
             if entry_refs:
                 mention_list += entry_refs
 
@@ -3829,7 +3829,7 @@ def tidy_source_header_line(line, context_link, context_link_length):
     return line
 
 
-def tidy_code(line, prefix, name, refs_only, statistics):
+def tidy_code(line, stage, name, refs_only, statistics):
     global references, in_macro, in_loop, loop_count_stack, instruction_count, data_byte_count, add_popup_links_to_code, workspace_variable_extra_data_html
 
     comment = ""
@@ -3924,7 +3924,7 @@ def tidy_code(line, prefix, name, refs_only, statistics):
         if m:
             anchor = html_anchor.format(make_id(m.group(2)))
             if in_workspace:
-                mention_list = fetch_cross_references(add_prefix(m.group(2), prefix), html_workspace_reference_link, include_prefix=False)[0]
+                mention_list = fetch_cross_references(add_stage(m.group(2), stage), html_workspace_reference_link, include_stage=False)[0]
                 if mention_list:
                     workspace_variable_extra_data_html = mention_list
             code = re.sub(re_label, r'<span class="label">\1\2</span>' + anchor, code)
@@ -4146,7 +4146,7 @@ def markup_operand(operand, instruction, constant, refs_only, name, indirect):
         if re.match(r"(BC.|BEQ|BMI|BNE|BPL|BV.|JMP|JSR|B(EQ|NE|VS|VC|MI|PL|AL|NV|LO|CC|LS|HI|HS|CS|GE|LT|GT|LE)|BL(EQ|NE|VS|VC|MI|PL|AL|NV|LO|CC|LS|HI|HS|CS|GE|LT|GT|LE))", instruction):
             destination_name = m.group(1) + m.group(2) + m.group(3)
             references.add(destination_name)
-            if refs_only or destination_name in references_library or find_reference_with_prefix(destination_name):
+            if refs_only or destination_name in references_library or find_reference_with_stage(destination_name):
                 if add_popup_links_to_code:
                     if indirect:
                         return '<a class="popup variable">' + destination_name + '</a>'
@@ -4161,7 +4161,7 @@ def markup_operand(operand, instruction, constant, refs_only, name, indirect):
                 if (not refs_only) and name and (not indirect):
                     matched_entry_point = False
                     for ref in references_library:
-                        if "parent_name" in references_library[ref] and references_library[ref]["parent_name"] == name and "name_no_prefix" in references_library[ref] and references_library[ref]["name_no_prefix"] == m.group(1):
+                        if "parent_name" in references_library[ref] and references_library[ref]["parent_name"] == name and "name_no_stage" in references_library[ref] and references_library[ref]["name_no_stage"] == m.group(1):
                             matched_entry_point = True
                             break
                     if not matched_entry_point:
@@ -4222,21 +4222,21 @@ def markup_operand(operand, instruction, constant, refs_only, name, indirect):
                 if (not refs_only) and name and (not indirect):
                     matched_entry_point = False
                     for ref in references_library:
-                        if "type" in references_library[ref] and (references_library[ref]["type"] == "Subroutine" or references_library[ref]["type"] == "Entry point") and "name_no_prefix" in references_library[ref] and references_library[ref]["name_no_prefix"] == variable_name:
+                        if "type" in references_library[ref] and (references_library[ref]["type"] == "Subroutine" or references_library[ref]["type"] == "Entry point") and "name_no_stage" in references_library[ref] and references_library[ref]["name_no_stage"] == variable_name:
                             matched_entry_point = True
                             break
-                        if "type" in references_library[ref] and references_library[ref]["type"] == "Label" and "name_no_prefix" in references_library[ref] and references_library[ref]["name_no_prefix"] == variable_name and "parent_name" in references_library[ref]:
+                        if "type" in references_library[ref] and references_library[ref]["type"] == "Label" and "name_no_stage" in references_library[ref] and references_library[ref]["name_no_stage"] == variable_name and "parent_name" in references_library[ref]:
                             parent_ref = references_library[ref]["parent_name"]
-                            if parent_ref in references_library and remove_part_and_prefix(references_library[parent_ref]["name_no_prefix"]) == remove_part_and_prefix(name):
+                            if parent_ref in references_library and remove_part_and_stage(references_library[parent_ref]["name_no_stage"]) == remove_part_and_stage(name):
                                 matched_entry_point = True
                                 break
-                        if "parent_name" in references_library[ref] and references_library[ref]["parent_name"] == name and "name_no_prefix" in references_library[ref] and references_library[ref]["name_no_prefix"] == variable_name:
+                        if "parent_name" in references_library[ref] and references_library[ref]["parent_name"] == name and "name_no_stage" in references_library[ref] and references_library[ref]["name_no_stage"] == variable_name:
                             matched_entry_point = True
                             break
-                        if "type" in references_library[ref] and references_library[ref]["type"] == "Configuration variable" and references_library[ref]["name_no_prefix"] == variable_name:
+                        if "type" in references_library[ref] and references_library[ref]["type"] == "Configuration variable" and references_library[ref]["name_no_stage"] == variable_name:
                             matched_entry_point = True
                             break
-                        if remove_prefix(name) == "Unused duplicate of MULTU":
+                        if remove_stage(name) == "Unused duplicate of MULTU":
                             matched_entry_point = True
                             break
                         if args.platform == "disc" and variable_name == "KYTB":
@@ -4280,36 +4280,36 @@ def markup_operand(operand, instruction, constant, refs_only, name, indirect):
     return operand
 
 
-def add_prefix(string, prefix):
-    if prefix and not string.endswith(" (" + prefix + ")"):
-        return string + " (" + prefix + ")"
+def add_stage(string, stage):
+    if stage and not string.endswith(" (" + stage + ")"):
+        return string + " (" + stage + ")"
     else:
         return string
 
 
-def remove_prefix(string):
+def remove_stage(string):
     if re.search(r" \(Part \d+ of \d+\)$", string):
         return string
     return re.sub(r" \([^)]+\)$", "", string)
 
 
-def remove_part_and_prefix(string):
+def remove_part_and_stage(string):
     string = re.sub(r" \(Part \d+ of \d+\)", "", string)
-    return remove_prefix(string)
+    return remove_stage(string)
 
 
 def escape_comment(string):
     return re.sub(r"<", "&lt;", string)
 
 
-def add_to_references_library(name, item, prefix):
+def add_to_references_library(name, item, stage):
     global references_library
 
     if name in no_popups:
         return
 
-    name = add_prefix(name, prefix)
-    item["name"] = add_prefix(item["name"], prefix)
+    name = add_stage(name, stage)
+    item["name"] = add_stage(item["name"], stage)
 
     if name in references_library:
         existing = references_library[name]
@@ -4327,26 +4327,26 @@ def add_to_references_library(name, item, prefix):
         references_library[name] = item
 
 
-def extract_entry_point(source, j, line, parent_name, prefix, parent_category, parent_url_category, parent_url_name, parent_filename, local_entry_points):
+def extract_entry_point(source, j, line, parent_name, stage, parent_category, parent_url_category, parent_url_name, parent_filename, local_entry_points):
     # Entry point
     m = re_argument_entry1.match(line)
     if m:
         this_item = {}
         name = m.group(1)
-        name_with_prefix = add_prefix(name, prefix)
+        name_with_stage = add_stage(name, stage)
         summary = m.group(4) + fetch_header_comments(source, j)
-        this_item["name"] = name_with_prefix
-        this_item["name_no_prefix"] = name
+        this_item["name"] = name_with_stage
+        this_item["name_no_stage"] = name
         this_item["parent_name"] = parent_name
         this_item["type"] = "Entry point"
         this_item["summary"] = summary
         this_item["entry_point"] = True
-        add_to_references_library(name, this_item, prefix)
-        add_article(entry_points, "Details of the " + name + " entry point", parent_url_category, parent_url_name, parent_filename, name_with_prefix, summary, parent_category, prefix)
+        add_to_references_library(name, this_item, stage)
+        add_article(entry_points, "Details of the " + name + " entry point", parent_url_category, parent_url_name, parent_filename, name_with_stage, summary, parent_category, stage)
         local_entry_points.append(name)
 
 
-def extract_labels(source, j, references_library, parent_name, prefix, parent_name_no_prefix, local_labels):
+def extract_labels(source, j, references_library, parent_name, stage, parent_name_no_stage, local_labels):
     # Remove initial comment (but not from commented instructions)
     code = re.sub(r"^" + re_comment_delimiter + r"\n", "", source[j])
     code = re.sub(r"^" + re_comment_delimiter + r" ", "", code)
@@ -4354,7 +4354,7 @@ def extract_labels(source, j, references_library, parent_name, prefix, parent_na
 
     # Include commented-out labels in removed routines in Elite-A only
     elite_a_removed_label = False
-    if parent_name_no_prefix.endswith(", Removed") and args.platform == "elite-a":
+    if parent_name_no_stage.endswith(", Removed") and args.platform == "elite-a":
         code = re.sub(r"^" + re_comment_delimiter + r"\.", ".", code)
         elite_a_removed_label = True
 
@@ -4364,11 +4364,11 @@ def extract_labels(source, j, references_library, parent_name, prefix, parent_na
         this_item = {}
         name = m.group(2)
         this_item["name"] = name
-        this_item["name_no_prefix"] = name
+        this_item["name_no_stage"] = name
         this_item["parent_name"] = parent_name
         summary = fetch_comments(source, j, r"(ALIGN|SKIP|EQU.)(?! &2(C|4))", 2)
         this_item["summary"] = summary
-        if name == re.sub(r" \(Part \d+ of \d+\)", "", parent_name_no_prefix):
+        if name == re.sub(r" \(Part \d+ of \d+\)", "", parent_name_no_stage):
             this_item["type"] = "Subroutine"
         elif summary:
             this_item["type"] = "Variable"
@@ -4376,7 +4376,7 @@ def extract_labels(source, j, references_library, parent_name, prefix, parent_na
         else:
             this_item["type"] = "Label"
         if not elite_a_removed_label:
-            add_to_references_library(name, this_item, prefix)
+            add_to_references_library(name, this_item, stage)
         local_labels.append(name)
 
 
@@ -4483,20 +4483,20 @@ def end_html(handle):
     handle.write(html_footer)
 
 
-def start_code_html(handle, section, url_name, seo_title, title, description, prefix):
+def start_code_html(handle, section, url_name, seo_title, title, description, stage):
     handle.write(html_code_header1)
     title = title.replace('"', "'")
     if platform_short_name:
-        if prefix:
-            subtitle = "[" + version(platform_name) + ", " + prefix + "]"
+        if stage:
+            subtitle = "[" + version(platform_name) + ", " + stage + "]"
         else:
             subtitle = "[" + version(platform_name) + "]"
     else:
         subtitle = ""
-    if prefix:
-        menu_prefix = make_id(prefix) + "_"
+    if stage:
+        menu_stage = make_id(stage) + "_"
     else:
-        menu_prefix = ""
+        menu_stage = ""
     handle.write('page_header("{}", "{}.html", "{}", "{}", "{}", "{}-code", "{}{}", "{}", "{}");\n'.format(
         section.replace('"', "'"),
         url_name.replace('"', "'"),
@@ -4506,7 +4506,7 @@ def start_code_html(handle, section, url_name, seo_title, title, description, pr
         game_id,
         platform_id,
         section.replace('"', "'"),
-        menu_prefix + url_name.replace('"', "'").replace(".html", ""),
+        menu_stage + url_name.replace('"', "'").replace(".html", ""),
         subtitle
     ))
     handle.write(html_code_header2)
@@ -4516,11 +4516,11 @@ def end_code_html(handle):
     handle.write(html_code_footer)
 
 
-def add_article(array, description, section, url_name, filename, name, summary, category, prefix):
+def add_article(array, description, section, url_name, filename, name, summary, category, stage):
     if section in array:
-        array[section].append({"description": description, "url_name": url_name, "filename": filename, "name": name, "summary": summary, "category": category, "prefix": prefix.lower()})
+        array[section].append({"description": description, "url_name": url_name, "filename": filename, "name": name, "summary": summary, "category": category, "stage": stage.lower()})
     else:
-        array[section] = [{"description": description, "url_name": url_name, "filename": filename, "name": name, "summary": summary, "category": category, "prefix": prefix.lower()}]
+        array[section] = [{"description": description, "url_name": url_name, "filename": filename, "name": name, "summary": summary, "category": category, "stage": stage.lower()}]
 
 
 def output_next_prev(next_prev, page_file):
@@ -4687,7 +4687,7 @@ def output_source_code_cross_references():
         page_file.write('\t\t\t\t\t\t\t<tr class="codeSummaryHeader"><th>Name</th><th>Type</th><th>Referenced by</th></tr>\n')
 
         for ref in sorted(mentions, key=sort_reference_names):
-            (mention_list, mention_link, letter, ref_type) = fetch_cross_references(ref, html_summary_reference_link, include_prefix=True)
+            (mention_list, mention_link, letter, ref_type) = fetch_cross_references(ref, html_summary_reference_link, include_stage=True)
 
             if letter:
                 if previous_letter != letter:
@@ -4711,7 +4711,7 @@ def output_source_code_cross_references():
         end_html(page_file)
 
 
-def fetch_cross_references(ref, list_format, include_prefix=True):
+def fetch_cross_references(ref, list_format, include_stage=True):
     global references_library
 
     mention_list = None
@@ -4723,7 +4723,7 @@ def fetch_cross_references(ref, list_format, include_prefix=True):
 
         ref_filename = ""
         ref_type = ""
-        ref_no_prefix = ref
+        ref_no_stage = ref
         parent_filename = ""
         parent_name = ""
 
@@ -4738,35 +4738,35 @@ def fetch_cross_references(ref, list_format, include_prefix=True):
             if parent_name in references_library and 'filename' in references_library[parent_name]:
                 parent_filename = references_library[parent_name]['filename']
 
-        if "name_no_prefix" in references_library[ref]:
-            ref_no_prefix = references_library[ref]["name_no_prefix"]
+        if "name_no_stage" in references_library[ref]:
+            ref_no_stage = references_library[ref]["name_no_stage"]
 
-        if ref_no_prefix == "dontdolinefeedontheprinternow":
-            ref_no_prefix = "dontdolinefeed ontheprinternow"
+        if ref_no_stage == "dontdolinefeedontheprinternow":
+            ref_no_stage = "dontdolinefeed ontheprinternow"
 
         if ref_filename:
-            mention_link = '<a href="/{}">{}</a>'.format(ref_filename, ref_no_prefix)
+            mention_link = '<a href="/{}">{}</a>'.format(ref_filename, ref_no_stage)
         elif parent_name:
-            parent_filename_with_anchor = parent_filename + "#" + make_id(ref_no_prefix)
-            mention_link = '<a href="/{}">{}</a>'.format(parent_filename_with_anchor, ref_no_prefix)
+            parent_filename_with_anchor = parent_filename + "#" + make_id(ref_no_stage)
+            mention_link = '<a href="/{}">{}</a>'.format(parent_filename_with_anchor, ref_no_stage)
         elif ref_type == "Configuration variable" and "source_filename" in references_library[ref]:
             parent_filename_with_anchor = references_library[ref]["source_filename"]
-            mention_link = '<a href="/{}">{}</a>'.format(parent_filename_with_anchor, ref_no_prefix)
+            mention_link = '<a href="/{}">{}</a>'.format(parent_filename_with_anchor, ref_no_stage)
         else:
-            mention_link = ref_no_prefix
+            mention_link = ref_no_stage
 
         mention_list = ""
         if ref in mentions:
             for label in sorted(mentions[ref], key=sort_reference_names):
                 href = references_library[label]["filename"]
-                if include_prefix:
+                if include_stage:
                     mention_list += list_format.format(href, label)
                 else:
                     # If this is a reference within a header block, don't show refs to itself
                     if label != parent_name:
-                        mention_list += list_format.format(href, remove_prefix(label))
+                        mention_list += list_format.format(href, remove_stage(label))
 
-        letter = ref_no_prefix[:1].lower()
+        letter = ref_no_stage[:1].lower()
 
     return (mention_list, mention_link, letter, ref_type)
 
@@ -4782,14 +4782,14 @@ def padding(number, max):
     return "{}".format(number).ljust(width, "\u00A0")
 
 
-def extract_popup_data(source, prefix, source_file, source_name):
+def extract_popup_data(source, stage, source_file, source_name):
     global i, references_library, configuration_variables
 
     i = 0
 
-    if prefix == "Docked" or prefix == "Flight" or prefix == "Encyclopedia" or prefix == "Parasite":
-        append_file = "_" + prefix.lower()
-        append_name = " (" + prefix + ")"
+    if stage == "Docked" or stage == "Flight" or stage == "Encyclopedia" or stage == "Parasite":
+        append_file = "_" + stage.lower()
+        append_name = " (" + stage + ")"
         source_file = "workspaces" + append_file
         source_name = "Workspaces" + append_name
 
@@ -4948,7 +4948,7 @@ def extract_popup_data(source, prefix, source_file, source_name):
                 source_file = "bank_7_4"
                 source_name = "Bank 7 (Part 4 of 4)"
 
-        elif prefix == "":
+        elif stage == "":
             if line.endswith("ELITE RECURSIVE TEXT TOKEN FILE\n"):
                 source_file = "text_tokens"
                 source_name = "Text tokens"
@@ -4995,7 +4995,7 @@ def extract_popup_data(source, prefix, source_file, source_name):
                 source_file = "elite_data"
                 source_name = "Game data"
 
-        elif prefix == "Docked" or prefix == "Flight" or prefix == "Encyclopedia" or prefix == "Parasite":
+        elif stage == "Docked" or stage == "Flight" or stage == "Encyclopedia" or stage == "Parasite":
             if line.endswith("ELITE A FILE\n"):
                 source_file = "elite_a" + append_file
                 source_name = "Elite A" + append_name
@@ -5038,7 +5038,7 @@ def extract_popup_data(source, prefix, source_file, source_name):
             elif line.endswith("ELITE SHIP HANGAR BLUEPRINTS FILE\n"):
                 source_file = "elite_ships_docked"
                 source_name = "Ship hangar blueprints"
-            elif line.endswith("ELITE SHIP BLUEPRINTS FILE\n") and prefix == "Parasite":
+            elif line.endswith("ELITE SHIP BLUEPRINTS FILE\n") and stage == "Parasite":
                 source_file = "elite_ships_parasite"
                 source_name = "Ship blueprints (Parasite)"
             elif line.endswith("ELITE SHIP BLUEPRINTS FILE\n"):
@@ -5051,13 +5051,13 @@ def extract_popup_data(source, prefix, source_file, source_name):
             var_value = v.group(4)
             item = {}
             item["name"] = var_name
-            item["name_no_prefix"] = var_name
+            item["name_no_stage"] = var_name
             item["source_file"] = source_file
             item["source_filename"] = content_folder + "all/" + source_file + ".html#" + make_id(var_name)
             item["type"] = "Configuration variable"
             item["value"] = var_value
             item["summary"] = fetch_comments(source, i, r"(=)", 0)
-            add_to_references_library(var_name, item, prefix)
+            add_to_references_library(var_name, item, stage)
             if var_value.isnumeric():
                 configuration_variables[var_name.replace("%", "_per_cent")] = int(var_value)
 
@@ -5094,7 +5094,7 @@ def extract_popup_data(source, prefix, source_file, source_name):
             if not (type and category and summary):
                 print("\nERROR! Missing a header entry in routine {} ({})\n".format(name, source_file))
 
-            parse_header(source, name, type, category, summary, prefix, source_file, source_name)
+            parse_header(source, name, type, category, summary, stage, source_file, source_name)
 
         i += 1
 
@@ -5111,7 +5111,7 @@ def move_data_to_end(block_name):
     all_headers = other_data + bank_7_data
 
 
-def output_individual_code_pages(source, prefix):
+def output_individual_code_pages(source, stage):
     global i
 
     i = 0
@@ -5150,12 +5150,12 @@ def output_individual_code_pages(source, prefix):
 
                 j += 1
 
-            build_individual_code_page(source, name, type, category, summary, prefix)
+            build_individual_code_page(source, name, type, category, summary, stage)
 
         i += 1
 
 
-def output_large_source_code_page(source, prefix, name, source_file_name, start_line, end_line):
+def output_large_source_code_page(source, stage, name, source_file_name, start_line, end_line):
     global i, references
 
     start_html(all_file, "all_source", source_file_name, name, name, "The " + name + " file in " + versionise("{}", platform_name))
@@ -5175,19 +5175,19 @@ def output_large_source_code_page(source, prefix, name, source_file_name, start_
 
     if type(start_line) is list:
         for line_number in range(len(start_line)):
-            large_source_code_page_contents(source, prefix, name, source_file_name, start_line[line_number], end_line[line_number])
+            large_source_code_page_contents(source, stage, name, source_file_name, start_line[line_number], end_line[line_number])
     else:
-        large_source_code_page_contents(source, prefix, name, source_file_name, start_line, end_line)
+        large_source_code_page_contents(source, stage, name, source_file_name, start_line, end_line)
 
     all_file.write('</pre></div>')
 
     output_next_prev(next_prev, all_file)
 
-    add_reference_popups(references, prefix, all_file, name, True)
+    add_reference_popups(references, stage, all_file, name, True)
     end_html(all_file)
 
 
-def large_source_code_page_contents(source, prefix, name, source_file_name, start_line, end_line):
+def large_source_code_page_contents(source, stage, name, source_file_name, start_line, end_line):
     global i, references, in_macro
 
     i = 0
@@ -5270,7 +5270,7 @@ def large_source_code_page_contents(source, prefix, name, source_file_name, star
 
                 j += 1
 
-            build_large_source_code_page(source, name, type, category, summary, prefix)
+            build_large_source_code_page(source, name, type, category, summary, stage)
 
         elif re_comment.match(line):
             if in_other_header and i < len(source) - 1 and re_empty_line.match(source[i + 1]):
@@ -5305,7 +5305,7 @@ def large_source_code_page_contents(source, prefix, name, source_file_name, star
             if c.group(6):
                 output += c.group(5) + '<span class="comment">' + escape_comment(c.group(6)) + '</span>'
             all_file.write(output + '\n')
-            mention_list = fetch_cross_references(add_prefix(c.group(2), prefix), html_workspace_reference_link, include_prefix=False)[0]
+            mention_list = fetch_cross_references(add_stage(c.group(2), stage), html_workspace_reference_link, include_stage=False)[0]
             if mention_list:
                 configuration_variable_extra_data_html = mention_list
 
@@ -5322,11 +5322,11 @@ def large_source_code_page_contents(source, prefix, name, source_file_name, star
 
         elif "SKIP" in line or "ALIGN" in line or "EQU" in line:
             # Catch code that is outside a routine
-            all_file.write(tidy_code(line, prefix, name, refs_only=False, statistics=True))
+            all_file.write(tidy_code(line, stage, name, refs_only=False, statistics=True))
 
         elif "   " + comment_delimiter in line:
             # Catch indented comments in files like BCFS
-            all_file.write(tidy_code(line, prefix, name, refs_only=False, statistics=True))
+            all_file.write(tidy_code(line, stage, name, refs_only=False, statistics=True))
 
         else:
             # Catches lines outside of routines - i.e. ELITE A header, etc.
@@ -5335,7 +5335,7 @@ def large_source_code_page_contents(source, prefix, name, source_file_name, star
             elif line == comment_delimiter + "\n":
                 line = "\n"
             else:
-                line = tidy_code(line, prefix, name, refs_only=False, statistics=True)
+                line = tidy_code(line, stage, name, refs_only=False, statistics=True)
 
             for file_url in elite_source_urls:
                 if file_url in line:
@@ -5354,7 +5354,7 @@ def large_source_code_page_contents(source, prefix, name, source_file_name, star
         i += 1
 
 
-def parse_header(source, name, type, category, summary, prefix, source_file, source_name):
+def parse_header(source, name, type, category, summary, stage, source_file, source_name):
     global i, references, references_library, all_headers
 
     this_item = {}
@@ -5363,32 +5363,32 @@ def parse_header(source, name, type, category, summary, prefix, source_file, sou
     # print("{}: {} ({})".format(type, name, category))
     print(".", end="", flush=True)
 
-    name_no_prefix = name
-    name = add_prefix(name, prefix)
+    name_no_stage = name
+    name = add_stage(name, stage)
 
     url_category = add_category(category)
-    url_name = make_url_name(type) + "_" + make_url_name(name_no_prefix)
-    prefix_name = add_prefix_folder(prefix, type)
-    filename = content_folder + prefix_name + "/" + make_url_name(type) + "/" + make_url_name(name_no_prefix) + ".html"
+    url_name = make_url_name(type) + "_" + make_url_name(name_no_stage)
+    stage_name = add_stage_folder(stage, type)
+    filename = content_folder + stage_name + "/" + make_url_name(type) + "/" + make_url_name(name_no_stage) + ".html"
 
     this_item["name"] = name
-    this_item["name_no_prefix"] = name_no_prefix
+    this_item["name_no_stage"] = name_no_stage
     this_item["type"] = type
     this_item["category"] = category
     this_item["summary"] = summary
     this_item["filename"] = filename
     this_item["source_file"] = source_file
     this_item["source_name"] = source_name
-    this_item["source_filename"] = content_folder + "all/" + source_file + ".html#header-" + make_id(name_no_prefix)
+    this_item["source_filename"] = content_folder + "all/" + source_file + ".html#header-" + make_id(name_no_stage)
     this_item["url_category"] = url_category
     this_item["url_name"] = url_name
 
-    add_to_references_library(name, this_item, prefix)
+    add_to_references_library(name, this_item, stage)
 
     all_headers.append(this_item)
 
     if this_item["type"] == "Macro":
-        macro_names.append(this_item["name_no_prefix"])
+        macro_names.append(this_item["name_no_stage"])
 
     analysing = True
     analysing_body = False
@@ -5405,12 +5405,12 @@ def parse_header(source, name, type, category, summary, prefix, source_file, sou
         if v:
             item = {}
             item["name"] = v.group(2)
-            item["name_no_prefix"] = v.group(2)
+            item["name_no_stage"] = v.group(2)
             item["parent_name"] = name
             item["type"] = "Configuration variable"
             item["value"] = v.group(4)
             item["summary"] = fetch_comments(source, i, r"(=)", 0)
-            add_to_references_library(v.group(2), item, prefix)
+            add_to_references_library(v.group(2), item, stage)
 
         elif re_empty_line.match(line):
             if i < len(source) - 1 and not re_comment.match(source[i + 1]) and not re_comment2.match(source[i + 1]):
@@ -5426,7 +5426,7 @@ def parse_header(source, name, type, category, summary, prefix, source_file, sou
                 analysing_body = True
 
         elif analysing_entry_points and re_argument_entry1.match(line):
-            extract_entry_point(source, i, line, name, prefix, category, url_category, url_name, filename, local_entry_points)
+            extract_entry_point(source, i, line, name, stage, category, url_category, url_name, filename, local_entry_points)
 
         elif re_entry_points.match(line):
             analysing_entry_points = True
@@ -5444,14 +5444,14 @@ def parse_header(source, name, type, category, summary, prefix, source_file, sou
             pass
 
         elif analysing and analysing_body:
-            extract_labels(source, i, references_library, name, prefix, name_no_prefix, local_labels)
-            tidy_code(line, prefix, name, refs_only=True, statistics=True)
+            extract_labels(source, i, references_library, name, stage, name_no_stage, local_labels)
+            tidy_code(line, stage, name, refs_only=True, statistics=True)
 
         i += 1
 
     i -= 1
 
-    add_mentions(references, prefix, name)
+    add_mentions(references, stage, name)
 
     for local_entry_point in local_entry_points:
         local_entry_point_label = re.sub(r"[-+]\d+$", "", local_entry_point)
@@ -5459,7 +5459,7 @@ def parse_header(source, name, type, category, summary, prefix, source_file, sou
             print("\nERROR! Entry point header entry {} has no matching local label in {}".format(local_entry_point, source_file))
 
 
-def build_individual_code_page(source, name, type, category, summary, prefix):
+def build_individual_code_page(source, name, type, category, summary, stage):
     global i, references, references_library, analysing_arguments, instruction_count, data_byte_count, in_if_to_remove, in_else_to_remove, in_workspace, workspace_variable_extra_data_html
 
     references = set()
@@ -5470,13 +5470,13 @@ def build_individual_code_page(source, name, type, category, summary, prefix):
     # print("{}: {} ({})".format(type, name, category))
     print(".", end="", flush=True)
 
-    name_no_prefix = name
-    name = add_prefix(name, prefix)
+    name_no_stage = name
+    name = add_stage(name, stage)
 
     url_category = add_category(category)
-    url_name = make_url_name(type) + "_" + make_url_name(name_no_prefix)
-    prefix_name = add_prefix_folder(prefix, type)
-    filename = content_folder + prefix_name + "/" + make_url_name(type) + "/" + make_url_name(name_no_prefix) + ".html"
+    url_name = make_url_name(type) + "_" + make_url_name(name_no_stage)
+    stage_name = add_stage_folder(stage, type)
+    filename = content_folder + stage_name + "/" + make_url_name(type) + "/" + make_url_name(name_no_stage) + ".html"
 
     if type == "Variable":
         array = variables
@@ -5487,14 +5487,14 @@ def build_individual_code_page(source, name, type, category, summary, prefix):
     else:
         array = subroutines
 
-    add_article(array, "Details of the " + name + " " + type, url_category, url_name, filename, name, summary, category, prefix)
+    add_article(array, "Details of the " + name + " " + type, url_category, url_name, filename, name, summary, category, stage)
 
     if os.path.exists(dest_folder + filename):
         print("\nERROR! File for individual code file already exists: {}\n".format(dest_folder + filename))
 
     with open(dest_folder + filename, "w") as page_file:
 
-        start_code_html(page_file, url_category, url_name, "The " + name + " " + type.lower(), category + ": " + name_no_prefix, "Annotated code for the " + name + " " + type.lower() + " in " + game_name, prefix)
+        start_code_html(page_file, url_category, url_name, "The " + name + " " + type.lower(), category + ": " + name_no_stage, "Annotated code for the " + name + " " + type.lower() + " in " + game_name, stage)
 
         next_prev = fetch_next_prev(name, all_headers, type)
         output_next_prev(next_prev, page_file)
@@ -5509,7 +5509,7 @@ def build_individual_code_page(source, name, type, category, summary, prefix):
         context_link_length = len(context_text) + 3
         context_link = ' <span class="routineLink">[<a class="extraDataLink" href="#">{}</a>]</span>'.format(context_text)
 
-        compare_url = get_compare_url(platform_key, prefix_name, name_no_prefix)
+        compare_url = get_compare_url(platform_key, stage_name, name_no_stage)
         context_url = references_library[name]["source_filename"]
 
         routine_extra_data_html = routine_extra_data(name, type, mentions, compare_url, "in context in the source code", context_url)
@@ -5561,7 +5561,7 @@ def build_individual_code_page(source, name, type, category, summary, prefix):
                 page_file.write(tidy_source_header_line(line, context_link, context_link_length))
 
             elif analysing and analysing_body:
-                page_file.write(tidy_code(line, prefix, name, refs_only=False, statistics=True))
+                page_file.write(tidy_code(line, stage, name, refs_only=False, statistics=True))
                 if workspace_variable_extra_data_html and re_line_with_comment.search(line) and (i == len(source) - 1 or (i < len(source) - 1 and re_empty_line.match(source[i + 1]))):
                     extra_indent = ' ' * (line.find('\\') - html_workspace_reference_link.find('\\'))
                     page_file.write(html_workspace_reference_start.format(extra_indent) + workspace_variable_extra_data_html + html_workspace_reference_end)
@@ -5573,21 +5573,21 @@ def build_individual_code_page(source, name, type, category, summary, prefix):
 
         page_file.write('</pre></div>')
 
-        add_reference_popups(references, prefix, page_file, name, False)
+        add_reference_popups(references, stage, page_file, name, False)
 
         output_next_prev(next_prev, page_file)
         end_code_html(page_file)
         i -= 1
 
 
-def get_compare_url(platform_name, prefix_name, routine_name):
+def get_compare_url(platform_name, stage_name, routine_name):
     if platform_name == "elite-a" or args.platform == "nes" or args.platform == "aviator" or args.platform == "lander" or args.platform == "revs":
         return ""
 
     if platform_name == "disc":
-        if prefix_name == "docked" or prefix_name == "flight":
-            platform_name = prefix_name
-        elif "ship_blueprints_" in prefix_name or prefix_name == "text_tokens":
+        if stage_name == "docked" or stage_name == "flight":
+            platform_name = stage_name
+        elif "ship_blueprints_" in stage_name or stage_name == "text_tokens":
             platform_name = "flight"
         else:
             return ""
@@ -5596,16 +5596,16 @@ def get_compare_url(platform_name, prefix_name, routine_name):
     include = [i for i in includes_in_versions[platform_name] if routine_asm in i]
 
     if len(include) > 1:
-        if prefix_name == "docked" or prefix_name == "flight":
-            prefix = "main"
+        if stage_name == "docked" or stage_name == "flight":
+            stage = "main"
         else:
-            prefix = re.sub(r'_\d+', '', prefix_name)
-        include = [i for i in include if prefix in i]
+            stage = re.sub(r'_\d+', '', stage_name)
+        include = [i for i in include if stage in i]
         if len(include) > 1:
             print("\nERROR! Multiple files found for variable: {}".format(routine_asm))
 
     if len(include) > 0:
-        if (prefix_name == "docked" or prefix_name == "flight" or "ship_blueprints_" in prefix_name) and "/e_per_cent.asm" in include[0]:
+        if (stage_name == "docked" or stage_name == "flight" or "ship_blueprints_" in stage_name) and "/e_per_cent.asm" in include[0]:
             return ""
         elif not is_shared_routine(include[0]):
             return ""
@@ -5667,23 +5667,23 @@ def add_source_code_stats(url_name, type, category, instruction_count, data_byte
         source_code_stats["categories"][category]["macro_count"] += 1
 
 
-def add_mentions(references, prefix, name):
+def add_mentions(references, stage, name):
     for ref in sorted(references):
         if args.platform in exported_routines and ref in exported_routines[args.platform]:
-            ref = add_prefix(ref, exported_routines[args.platform][ref])
+            ref = add_stage(ref, exported_routines[args.platform][ref])
         else:
             if args.platform == "nes":
-                check_common = add_prefix(ref, "Common")
+                check_common = add_stage(ref, "Common")
                 if check_common in references_library:
                     ref = check_common
                 else:
-                    check_bank_7 = add_prefix(ref, "Bank 7")
+                    check_bank_7 = add_stage(ref, "Bank 7")
                     if check_bank_7 in references_library:
                         ref = check_bank_7
                     else:
-                        ref = add_prefix(ref, prefix)
+                        ref = add_stage(ref, stage)
             else:
-                ref = add_prefix(ref, prefix)
+                ref = add_stage(ref, stage)
         if ref != name:
             if ref not in mentions:
                 mentions[ref] = []
@@ -5692,21 +5692,21 @@ def add_mentions(references, prefix, name):
         mentions[name] = []
 
 
-def add_reference_popups(references, prefix, page_file, name, is_all_file):
+def add_reference_popups(references, stage, page_file, name, is_all_file):
     for ref in sorted(references):
         page_file.write('\n\t\t\t\t<div class="codeBlockWrapper popupWrapper" id="popup-{}"><div class="codeBlock"><div class="close">[X]</div><div class="content">'.format(make_id(ref)))
 
-        ref_no_prefix = ref
-        ref = add_prefix(ref, prefix)
+        ref_no_stage = ref
+        ref = add_stage(ref, stage)
 
         if ("(Bank " in ref or "(Common)" in ref) and ref not in references_library:
             for i in range(0, 8):
-                try_this_bank = ref_no_prefix + " (Bank " + str(i) + ")"
+                try_this_bank = ref_no_stage + " (Bank " + str(i) + ")"
                 if try_this_bank in references_library:
                     ref = try_this_bank
                     break
-            if ref_no_prefix + " (Common)" in references_library:
-                ref = ref_no_prefix + " (Common)"
+            if ref_no_stage + " (Common)" in references_library:
+                ref = ref_no_stage + " (Common)"
 
         if ref in references_library:
             ref_filename = ""
@@ -5715,22 +5715,22 @@ def add_reference_popups(references, prefix, page_file, name, is_all_file):
             ref_summary = ""
             ref_entry_point = ""
             parent_name = ""
-            parent_name_no_prefix = ""
+            parent_name_no_stage = ""
             parent_type = "section"
             parent_filename = ""
             name_label = "Name"
 
-            if (references_library[ref]["type"] == "Label" or references_library[ref]["type"] == "Subroutine") and "parent_name" in references_library[ref] and references_library[ref]["parent_name"].startswith(ref_no_prefix + " (Part "):
+            if (references_library[ref]["type"] == "Label" or references_library[ref]["type"] == "Subroutine") and "parent_name" in references_library[ref] and references_library[ref]["parent_name"].startswith(ref_no_stage + " (Part "):
                 ref = references_library[ref]["parent_name"]
 
             # Fetch popup data
             if "filename" in references_library[ref]:
                 ref_filename = references_library[ref]["filename"]
 
-            if "name_no_prefix" in references_library[ref]:
-                ref_name_no_prefix = references_library[ref]["name_no_prefix"]
+            if "name_no_stage" in references_library[ref]:
+                ref_name_no_stage = references_library[ref]["name_no_stage"]
             else:
-                ref_name_no_prefix = ref
+                ref_name_no_stage = ref
 
             if "type" in references_library[ref]:
                 ref_type = references_library[ref]["type"]
@@ -5747,10 +5747,10 @@ def add_reference_popups(references, prefix, page_file, name, is_all_file):
                     parent_type = references_library[parent_name]['type'].lower()
                 if parent_name in references_library and 'filename' in references_library[parent_name]:
                     parent_filename = references_library[parent_name]['filename']
-                if "name_no_prefix" in references_library[parent_name]:
-                    parent_name_no_prefix = references_library[parent_name]["name_no_prefix"]
+                if "name_no_stage" in references_library[parent_name]:
+                    parent_name_no_stage = references_library[parent_name]["name_no_stage"]
                 else:
-                    parent_name_no_prefix = parent_name
+                    parent_name_no_stage = parent_name
 
             if "summary" in references_library[ref] and references_library[ref]["summary"]:
                 ref_summary = references_library[ref]["summary"].lstrip().rstrip(":")
@@ -5766,9 +5766,9 @@ def add_reference_popups(references, prefix, page_file, name, is_all_file):
                     ref_filename = references_library[ref]["source_filename"]
                 if parent_name in references_library and 'source_filename' in references_library[parent_name]:
                     parent_filename = references_library[parent_name]['source_filename']
-                parent_filename_with_anchor = parent_filename.split('#')[0] + "#" + make_id_for_entry_point(ref_no_prefix)
+                parent_filename_with_anchor = parent_filename.split('#')[0] + "#" + make_id_for_entry_point(ref_no_stage)
             else:
-                parent_filename_with_anchor = parent_filename + "#" + make_id_for_entry_point(ref_no_prefix)
+                parent_filename_with_anchor = parent_filename + "#" + make_id_for_entry_point(ref_no_stage)
 
             # Compose popup
             if ref_type:
@@ -5777,45 +5777,45 @@ def add_reference_popups(references, prefix, page_file, name, is_all_file):
             if ref_entry_point:
                 page_file.write('<div class="name">{} <a href="/{}">{}</a> in {} <a href="/{}">{}</a>'.format(name_label,
                                 parent_filename_with_anchor,
-                                ref_name_no_prefix,
+                                ref_name_no_stage,
                                 parent_type,
                                 parent_filename,
-                                parent_name_no_prefix)
+                                parent_name_no_stage)
                                 )
             else:
                 if ref_filename:
-                    page_file.write('<div class="link">{} <a href="/{}">{}</a>'.format(name_label, ref_filename, ref_name_no_prefix))
+                    page_file.write('<div class="link">{} <a href="/{}">{}</a>'.format(name_label, ref_filename, ref_name_no_stage))
                     if parent_name:
                         if parent_filename:
-                            page_file.write(' in {} <a href="/{}">{}</a>'.format(parent_type, parent_filename_with_anchor, parent_name_no_prefix))
+                            page_file.write(' in {} <a href="/{}">{}</a>'.format(parent_type, parent_filename_with_anchor, parent_name_no_stage))
                         else:
-                            page_file.write(' in {} {}'.format(parent_type, parent_name_no_prefix))
+                            page_file.write(' in {} {}'.format(parent_type, parent_name_no_stage))
                 elif name_label == "Configuration variable":
                     if parent_name == name:
-                        page_file.write('<div class="name">{} <a href="/{}">{}</a>'.format(name_label, parent_filename_with_anchor, ref_name_no_prefix))
+                        page_file.write('<div class="name">{} <a href="/{}">{}</a>'.format(name_label, parent_filename_with_anchor, ref_name_no_stage))
                         page_file.write(' is local to this routine')
                     elif parent_filename:
-                        page_file.write('<div class="name">{} <a href="/{}">{}</a>'.format(name_label, parent_filename_with_anchor, ref_name_no_prefix))
-                        page_file.write(' in {} <a href="/{}">{}</a>'.format(parent_type, parent_filename, parent_name_no_prefix))
+                        page_file.write('<div class="name">{} <a href="/{}">{}</a>'.format(name_label, parent_filename_with_anchor, ref_name_no_stage))
+                        page_file.write(' in {} <a href="/{}">{}</a>'.format(parent_type, parent_filename, parent_name_no_stage))
                     else:
                         parent_filename_with_anchor = references_library[ref]["source_filename"]
-                        page_file.write('<div class="name">{} <a href="/{}">{}</a>'.format(name_label, parent_filename_with_anchor, ref_name_no_prefix))
+                        page_file.write('<div class="name">{} <a href="/{}">{}</a>'.format(name_label, parent_filename_with_anchor, ref_name_no_stage))
                         page_file.write(' = {}'.format(ref_value))
                 elif parent_name:
                     if parent_name == name:
-                        page_file.write('<div class="name">{} <a href="/{}">{}</a>'.format(name_label, parent_filename_with_anchor, ref_name_no_prefix))
+                        page_file.write('<div class="name">{} <a href="/{}">{}</a>'.format(name_label, parent_filename_with_anchor, ref_name_no_stage))
                         page_file.write(' is local to this routine')
                     elif parent_filename:
-                        page_file.write('<div class="name">{} <a href="/{}">{}</a>'.format(name_label, parent_filename_with_anchor, ref_name_no_prefix))
-                        page_file.write(' in {} <a href="/{}">{}</a>'.format(parent_type, parent_filename, parent_name_no_prefix))
+                        page_file.write('<div class="name">{} <a href="/{}">{}</a>'.format(name_label, parent_filename_with_anchor, ref_name_no_stage))
+                        page_file.write(' in {} <a href="/{}">{}</a>'.format(parent_type, parent_filename, parent_name_no_stage))
                     else:
-                        page_file.write('<div class="name">{} {}'.format(name_label, ref_name_no_prefix))
-                        page_file.write(' in {} {}'.format(parent_type, parent_name_no_prefix))
+                        page_file.write('<div class="name">{} {}'.format(name_label, ref_name_no_stage))
+                        page_file.write(' in {} {}'.format(parent_type, parent_name_no_stage))
                 else:
                     if ref_value:
-                        page_file.write('<div class="name">{}: {} = {}'.format(name_label, ref_name_no_prefix, ref_value))
+                        page_file.write('<div class="name">{}: {} = {}'.format(name_label, ref_name_no_stage, ref_value))
                     else:
-                        page_file.write('<div class="name">{}: {}'.format(name_label, ref_name_no_prefix))
+                        page_file.write('<div class="name">{}: {}'.format(name_label, ref_name_no_stage))
 
             if ref_category:
                 page_file.write(' (category: {})'.format(ref_category))
@@ -5833,29 +5833,29 @@ def add_reference_popups(references, prefix, page_file, name, is_all_file):
         page_file.write('</div></div></div>\n')
 
 
-def build_large_source_code_page(source, name, type, category, summary, prefix):
+def build_large_source_code_page(source, name, type, category, summary, stage):
     global i, references, references_library, analysing_arguments, in_if_to_remove, in_else_to_remove, in_workspace, workspace_variable_extra_data_html
 
     print(".", end="", flush=True)
 
     in_workspace = (type == "Workspace")
 
-    name_no_prefix = name
-    name = add_prefix(name, prefix)
+    name_no_stage = name
+    name = add_stage(name, stage)
 
     analysing = True
     analysing_body = False
     analysing_header = True
     analysing_arguments = False
     all_file.write('<div class="headerBlockWrapper"><div class="headerBlock">')
-    all_file.write(html_anchor.format("header-" + make_id(name_no_prefix)))
+    all_file.write(html_anchor.format("header-" + make_id(name_no_stage)))
 
     context_text = "Show more"
     context_link_length = len(context_text) + 3
     context_link = ' <span class="routineLink">[<a class="extraDataLink" href="#">{}</a>]</span>'.format(context_text)
 
-    prefix_name = "main" if prefix == "" else make_url_name(prefix)
-    compare_url = get_compare_url(platform_key, prefix_name, name_no_prefix)
+    stage_name = "main" if stage == "" else make_url_name(stage)
+    compare_url = get_compare_url(platform_key, stage_name, name_no_stage)
     context_url = references_library[name]["filename"]
 
     routine_extra_data_html = routine_extra_data(name, type, mentions, compare_url, "on its own page", context_url)
@@ -5908,7 +5908,7 @@ def build_large_source_code_page(source, name, type, category, summary, prefix):
             all_file.write(tidy_source_header_line(line, context_link, context_link_length))
 
         elif analysing and analysing_body:
-            all_file.write(tidy_code(line, prefix, name, refs_only=False, statistics=True))
+            all_file.write(tidy_code(line, stage, name, refs_only=False, statistics=True))
             if workspace_variable_extra_data_html and re_line_with_comment.search(line) and (i == len(source) - 1 or (i < len(source) - 1 and re_empty_line.match(source[i + 1]))):
                 extra_indent = ' ' * (line.find('\\') - html_workspace_reference_link.find('\\'))
                 all_file.write(html_workspace_reference_start.format(extra_indent) + workspace_variable_extra_data_html + html_workspace_reference_end)
@@ -5942,10 +5942,10 @@ def add_category(category):
     return section
 
 
-def add_prefix_folder(prefix, type):
-    if prefix == "":
-        prefix = "main"
-    section = make_url_name(prefix)
+def add_stage_folder(stage, type):
+    if stage == "":
+        stage = "main"
+    section = make_url_name(stage)
     subsection = make_url_name(type)
     create_folder(content_folder + section)
     create_folder(content_folder + section + "/" + subsection)
@@ -5994,45 +5994,45 @@ def output_menus(file):
             file.write('\t\t\t\t\t\t\t<li class="menuItemHeader">Subroutines</li>\n')
             articles = sorted(subroutines[category], key=sort_nav_items)
             for article in articles:
-                important = " *" if remove_prefix(article["name"]) in important_routines else ""
-                if article["prefix"]:
-                    prefix_id = "_" + make_id(article["prefix"])
+                important = " *" if remove_stage(article["name"]) in important_routines else ""
+                if article["stage"]:
+                    stage_id = "_" + make_id(article["stage"])
                 else:
-                    prefix_id = ""
-                file.write(html_menu.format(platform_id, category, prefix_id, article["url_name"], article["filename"], article["name"] + important, article["summary"]))
+                    stage_id = ""
+                file.write(html_menu.format(platform_id, category, stage_id, article["url_name"], article["filename"], article["name"] + important, article["summary"]))
 
         if category in workspaces:
             file.write('\t\t\t\t\t\t\t<li class="menuItemHeader">Workspaces</li>\n')
             articles = sorted(workspaces[category], key=sort_nav_items)
             for article in articles:
-                important = " *" if remove_prefix(article["name"]) in important_routines else ""
-                if article["prefix"]:
-                    prefix_id = "_" + make_id(article["prefix"])
+                important = " *" if remove_stage(article["name"]) in important_routines else ""
+                if article["stage"]:
+                    stage_id = "_" + make_id(article["stage"])
                 else:
-                    prefix_id = ""
-                file.write(html_menu.format(platform_id, category, prefix_id, article["url_name"], article["filename"], article["name"] + important, article["summary"]))
+                    stage_id = ""
+                file.write(html_menu.format(platform_id, category, stage_id, article["url_name"], article["filename"], article["name"] + important, article["summary"]))
 
         if category in variables:
             file.write('\t\t\t\t\t\t\t<li class="menuItemHeader">Variables</li>\n')
             articles = sorted(variables[category], key=sort_nav_items)
             for article in articles:
-                important = " *" if remove_prefix(article["name"]) in important_routines else ""
-                if article["prefix"]:
-                    prefix_id = "_" + make_id(article["prefix"])
+                important = " *" if remove_stage(article["name"]) in important_routines else ""
+                if article["stage"]:
+                    stage_id = "_" + make_id(article["stage"])
                 else:
-                    prefix_id = ""
-                file.write(html_menu.format(platform_id, category, prefix_id, article["url_name"], article["filename"], article["name"] + important, article["summary"]))
+                    stage_id = ""
+                file.write(html_menu.format(platform_id, category, stage_id, article["url_name"], article["filename"], article["name"] + important, article["summary"]))
 
         if category in macros:
             file.write('\t\t\t\t\t\t\t<li class="menuItemHeader">Macros</li>\n')
             articles = sorted(macros[category], key=sort_nav_items)
             for article in articles:
-                important = " *" if remove_prefix(article["name"]) in important_routines else ""
-                if article["prefix"]:
-                    prefix_id = "_" + make_id(article["prefix"])
+                important = " *" if remove_stage(article["name"]) in important_routines else ""
+                if article["stage"]:
+                    stage_id = "_" + make_id(article["stage"])
                 else:
-                    prefix_id = ""
-                file.write(html_menu.format(platform_id, category, prefix_id, article["url_name"], article["filename"], article["name"] + important, article["summary"]))
+                    stage_id = ""
+                file.write(html_menu.format(platform_id, category, stage_id, article["url_name"], article["filename"], article["name"] + important, article["summary"]))
 
     file.write(menu_item_close)
 
@@ -6144,9 +6144,9 @@ def output_a_z_index(file, subroutines, variables, macros, workspaces, intro, se
     end_html(file)
 
 
-def find_reference_with_prefix(name):
+def find_reference_with_stage(name):
     for key in references_library.keys():
-        if remove_prefix(key) == name:
+        if remove_stage(key) == name:
             return references_library[key]
     return None
 
@@ -6158,10 +6158,10 @@ def add_workspace_variables_to_indexes():
             if parent_name in references_library:
                 parent = references_library[parent_name]
                 if "type" in parent and parent["type"] == "Workspace":
-                    ref_no_prefix = ref
-                    if "name_no_prefix" in references_library[ref]:
-                        ref_no_prefix = references_library[ref]["name_no_prefix"]
-                    workspace_variables.append({"filename": parent["filename"] + "#" + make_id(ref_no_prefix), "name": ref, "summary": value["summary"]})
+                    ref_no_stage = ref
+                    if "name_no_stage" in references_library[ref]:
+                        ref_no_stage = references_library[ref]["name_no_stage"]
+                    workspace_variables.append({"filename": parent["filename"] + "#" + make_id(ref_no_stage), "name": ref, "summary": value["summary"]})
 
     categories["workspace_variables"] = "Workspace variables"
     variables["workspace_variables"] = workspace_variables
@@ -6263,11 +6263,6 @@ def count_tag(include, tag, comment):
             all_includes[include]["tag_comments"][tag] = [comment]
 
 
-def set_tags_as_counted(include):
-    if include != "":
-        all_includes[include]["tags_counted"] = True
-
-
 def extract_workspace(filename):
     if "io_variables.asm" in filename:
         return "i_o_variables"
@@ -6344,7 +6339,8 @@ def process_compare_file(input_file, source_file, include, workspace):
                 include_this = True
         elif include_this:
             process_compare_line(input_file, line, source_file, workspace)
-    set_tags_as_counted(include)
+    if include != "":
+        all_includes[include]["tags_counted"] = True
 
 
 def file_contains_version_ifs(input_file):
@@ -7087,18 +7083,18 @@ def tag_comments_for_single_platform_variation(comments, category, url):
 def get_url_for_code_page(include):
     urls = {}
     if "-" in all_includes[include]["filename"]:
-        url_cassette_prefix = get_stage("CASSETTE", include) + "/" + all_includes[include]["type"] + "/"
-        url_6502sp_prefix = get_stage("6502SP", include) + "/" + all_includes[include]["type"] + "/"
-        url_docked_prefix = get_stage("DISC_DOCKED", include) + "/" + all_includes[include]["type"] + "/"
-        url_flight_prefix = get_stage("DISC_FLIGHT", include) + "/" + all_includes[include]["type"] + "/"
-        url_master_prefix = get_stage("MASTER", include) + "/" + all_includes[include]["type"] + "/"
-        url_electron_prefix = get_stage("ELECTRON", include) + "/" + all_includes[include]["type"] + "/"
-        urls["CASSETTE"] = fix_code_link(url_cassette_prefix, all_includes[include]["filename"], "cassette")
-        urls["6502SP"] = fix_code_link(url_6502sp_prefix, all_includes[include]["filename"], "6502sp")
-        urls["DISC_DOCKED"] = fix_code_link(url_docked_prefix, all_includes[include]["filename"], "disc")
-        urls["DISC_FLIGHT"] = fix_code_link(url_flight_prefix, all_includes[include]["filename"], "disc")
-        urls["MASTER"] = fix_code_link(url_master_prefix, all_includes[include]["filename"], "master")
-        urls["ELECTRON"] = fix_code_link(url_electron_prefix, all_includes[include]["filename"], "electron")
+        url_cassette_stage = get_stage("CASSETTE", include) + "/" + all_includes[include]["type"] + "/"
+        url_6502sp_stage = get_stage("6502SP", include) + "/" + all_includes[include]["type"] + "/"
+        url_docked_stage = get_stage("DISC_DOCKED", include) + "/" + all_includes[include]["type"] + "/"
+        url_flight_stage = get_stage("DISC_FLIGHT", include) + "/" + all_includes[include]["type"] + "/"
+        url_master_stage = get_stage("MASTER", include) + "/" + all_includes[include]["type"] + "/"
+        url_electron_stage = get_stage("ELECTRON", include) + "/" + all_includes[include]["type"] + "/"
+        urls["CASSETTE"] = fix_code_link(url_cassette_stage, all_includes[include]["filename"], "cassette")
+        urls["6502SP"] = fix_code_link(url_6502sp_stage, all_includes[include]["filename"], "6502sp")
+        urls["DISC_DOCKED"] = fix_code_link(url_docked_stage, all_includes[include]["filename"], "disc")
+        urls["DISC_FLIGHT"] = fix_code_link(url_flight_stage, all_includes[include]["filename"], "disc")
+        urls["MASTER"] = fix_code_link(url_master_stage, all_includes[include]["filename"], "master")
+        urls["ELECTRON"] = fix_code_link(url_electron_stage, all_includes[include]["filename"], "electron")
     else:
         if all_includes[include]["type"] == "variable" and len(all_includes[include]["workspace"]):
             if "CASSETTE" in all_includes[include]["workspace"]:
@@ -7170,12 +7166,12 @@ def get_stage(platform_key, include):
     return stage
 
 
-def fix_code_link(url_prefix, name, platform):
+def fix_code_link(url_stage, name, platform):
     options = name.split("-")
-    if os.path.isfile(dest_folder + platform + "/" + url_prefix + options[0] + ".html"):
-        return url_prefix + options[0] + ".html"
-    if os.path.isfile(dest_folder + platform + "/" + url_prefix + options[1] + ".html"):
-        return url_prefix + options[1] + ".html"
+    if os.path.isfile(dest_folder + platform + "/" + url_stage + options[0] + ".html"):
+        return url_stage + options[0] + ".html"
+    if os.path.isfile(dest_folder + platform + "/" + url_stage + options[1] + ".html"):
+        return url_stage + options[1] + ".html"
     return ""
 
 
