@@ -3605,7 +3605,6 @@ workspace_variables = []
 configuration_variables = {}
 all_headers = []
 macro_names = []
-deep_dives = {}
 references = set()
 instruction_count = 0
 data_byte_count = 0
@@ -5972,13 +5971,6 @@ def sort_nav_items(k):
 
 def output_menus(file):
     firstPass = True
-
-    for category in sorted(categories.keys()):
-        if category in deep_dives:
-            file.write('\t\t\t\t\t\t\t<li class="menuItemHeader">{}</li>\n'.format(categories[category]))
-            articles = sorted(deep_dives[category], key=lambda k: k["name"].lower())
-            for article in articles:
-                file.write(html_menu.format("articles", article["url_name"], article["filename"], article["name"], article["summary"]))
 
     file.write(html_indexes.format(explore_folder, content_folder, platform_name_capitalised, platform_id))
 
