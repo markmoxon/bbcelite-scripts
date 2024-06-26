@@ -65,6 +65,35 @@ cd extract-text-deep-dives
 
 For the script to work, you will need Perl installed.
 
+## Word count: Code and comments
+
+The [word-count-code-comments](word-count-code-comments) folder contains a Perl script to count the number of words in the code and in the code comments from all the source code repositories. The results are saved into two text files that can then be pasted into the Excel spreadsheet to show the results.
+
+To run the script, change directory into `word-count-code-comments` and run the script like this:
+
+```
+cd word-count-code-comments
+./code-comments-word-count.sh
+```
+
+The script creates two text files, linecount.txt and wordcount.txt. Paste these into the relevant tabs in the Code-comments-word-counts.xlsx Excel spreadsheet to see the word and line counts for the entire codebase and the commentary.
+
+For the script to work, you will need Perl installed.
+
+## Word count: Deep dives
+
+The [word-count-deep-dives](word-count-deep-dives) folder contains a Perl script to count the number of words in the deep dives for each project. The results are saved into a text file that can then be pasted into the Excel spreadsheet to show the results.
+
+To run the script, change directory into `word-count-deep-dives` and run the script like this:
+
+```
+cd word-count-deep-dives
+./deep-dives-word-count.sh
+```
+
+The script creates a text file called wordcount.txt. Paste this into the relevant tab in the Deep-dives-word-counts.xlsx Excel spreadsheet to see the word counts for the deep dives.
+
+For the script to work, you will need Perl installed.
 
 ---
 
