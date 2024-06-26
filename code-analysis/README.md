@@ -104,6 +104,7 @@ To run the script, change directory into `validate-version-ifs` and run the scri
 ```
 cd validate-version-ifs
 ./validate-version-ifs.sh
+```
 
 For the script to work, you will need Python 3.
 
