@@ -13,6 +13,7 @@ while (my $line = <$file>) {
         $line =~ s#</a>#</a> #g;
         $line =~ s#<a class="next"# <a class="next"#g;
         $line =~ s#&nbsp;# #g;
+        $line =~ s#&amp;#&#g;
         $line =~ s#<br/># #g;
         $line =~ s#<br /># #g;
         $line =~ s#</td><td#</td> <td#g;
