@@ -1,5 +1,7 @@
 # Scripts for generating the bbcelite.com website and associated repositories
 
+**Scripts for generating bbcelite.com** | [Static content for bbcelite.com](https://github.com/markmoxon/bbcelite-websites) | [Elite source code library](https://github.com/markmoxon/library-elite-beebasm)
+
 This repository contains scripts that use the following hand-crafted repositories:
 
 * [Elite source code library](https://github.com/markmoxon/library-elite-beebasm)
@@ -26,11 +28,7 @@ and the following websites:
 * [Revs on the BBC Micro](https://revs.bbcelite.com)
 * [Lander on the Acorn Archimedes](https://lander.bbcelite.com)
 
-As an example, let's say I need to update some of the commentary in the Elite source code documentation. The Elite website contains about 7500 cross-referenced code pages split across seven versions of the game, so doing this by hand would be a real pain. 
-
-With the scripts in this repository, I can make my changes in just one place: the [Elite source code library](https://github.com/markmoxon/library-elite-beebasm). I can then run a single script, and this will update all of the relevant Elite source code repositories, as well as all of the instances of that comment in the Elite source code website.
-
-This approach works for all my disassembly sites, for Elite, Aviator, Revs and Lander.
+For details of how the site and source code repositories are built, see the [bbcelite.com website](https://www.bbcelite.com/disassembly_websites/).
 
 ## Running the scripts
 
