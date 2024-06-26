@@ -136,7 +136,11 @@ generate_image(source_files, image_name)
 image_name = "revs.png"
 source_files = [
     revs_repository + "/3-assembled-output/Revs2.bin",
-    revs_repository + "/3-assembled-output/Silverstone.bin"
+    revs_repository + "/3-assembled-output/Silverstone.bin",
+    revs_repository + "/3-assembled-output/BrandsHatch.bin",
+    revs_repository + "/3-assembled-output/DoningtonPark.bin",
+    revs_repository + "/3-assembled-output/OultonPark.bin",
+    revs_repository + "/3-assembled-output/Snetterton.bin"
 ]
 generate_image(source_files, image_name)
 
