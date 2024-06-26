@@ -2,8 +2,6 @@
 
 **Scripts for generating bbcelite.com** | [Static content for bbcelite.com](https://github.com/markmoxon/bbcelite-websites) | [Elite source code library](https://github.com/markmoxon/library-elite-beebasm)
 
----
-
 This repository contains scripts that use the following hand-crafted repositories:
 
 * [Elite source code library](https://github.com/markmoxon/library-elite-beebasm)
