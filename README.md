@@ -30,7 +30,15 @@ and the following websites:
 
 For details of how the site and source code repositories are built, see the [bbcelite.com website](https://www.bbcelite.com/disassembly_websites/).
 
-## Running the scripts
+## Scripts in this repository
+
+This repository contains a number of scripts that are used to manage my source code projects. They are:
+
+* [disassembly-website-generator](disassembly-website-generator) generates the bbcelite.com website (see below)
+* [elite-repository-generator](elite-repository-generator) generates the Elite source code repositories (see below)
+* [code-analysis/code-images] creates graphical representations of machine code binaries
+
+## Running the site generation scripts
 
 If you want to see this automatic generation working, then the following steps will enable you to set up the process on your own machine. You can then generate all the source code repositories and websites listed above, using the exact same process that I use to maintain my sites.
 
