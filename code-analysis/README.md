@@ -37,7 +37,7 @@ cd extract-text-about-site
 ./about-site.sh
 ```
 
-For the script to work, you will need Perl installed.
+For the script to work, you will need Perl.
 
 ## Text extractor: Code comments
 
@@ -50,7 +50,7 @@ cd extract-text-code-comments
 ./code-comments.sh
 ```
 
-For the script to work, you will need Perl installed.
+For the script to work, you will need Perl.
 
 ## Text extractor: Deep dives
 
@@ -63,7 +63,7 @@ cd extract-text-deep-dives
 ./deep-dives.sh
 ```
 
-For the script to work, you will need Perl installed.
+For the script to work, you will need Perl.
 
 ## Word count: Code and comments
 
@@ -78,7 +78,7 @@ cd word-count-code-comments
 
 The script creates two text files, linecount.txt and wordcount.txt. Paste these into the relevant tabs in the Code-comments-word-counts.xlsx Excel spreadsheet to see the word and line counts for the entire codebase and the commentary.
 
-For the script to work, you will need Perl installed.
+For the script to work, you will need Perl.
 
 ## Word count: Deep dives
 
@@ -93,7 +93,19 @@ cd word-count-deep-dives
 
 The script creates a text file called wordcount.txt. Paste this into the relevant tab in the Deep-dives-word-counts.xlsx Excel spreadsheet to see the word counts for the deep dives.
 
-For the script to work, you will need Perl installed.
+For the script to work, you will need Perl.
+
+## Validate version-ifs
+
+The [validate-version-ifs](validate-version-ifs) folder contains a Python script to analyse version-based IF logic in the Elite source code repositories, to check for _VERSION variables that are never used. For example, if we include `_CASSETTE_VERSION` in code that doesn't appear in the cassette version, then this script will flag this.
+
+To run the script, change directory into `validate-version-ifs` and run the script like this:
+
+```
+cd validate-version-ifs
+./validate-version-ifs.sh
+
+For the script to work, you will need Python 3.
 
 ---
 
