@@ -36,7 +36,7 @@ This repository contains a number of scripts that are used to manage my source c
 
 * [disassembly-website-generator](disassembly-website-generator) generates the bbcelite.com website (see below)
 * [elite-repository-generator](elite-repository-generator) generates the Elite source code repositories (see below)
-* [code-analysis] includes a number of scripts for analysing the content in my source code projects
+* [code-analysis](code-analysis) includes a number of scripts for analysing the content in my source code projects
 
 ## Running the site generation scripts
 
