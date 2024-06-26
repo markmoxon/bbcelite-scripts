@@ -542,7 +542,7 @@ sites = [
         "source_folder": library_repository + "/",
         "section_folder": "versions/nes/1-source-files/main-sources/",
         "source_files": ["elite-source-bank-0.asm", "elite-source-bank-1.asm", "elite-source-bank-2.asm", "elite-source-bank-3.asm", "elite-source-bank-4.asm", "elite-source-bank-5.asm", "elite-source-bank-6.asm", "elite-source-bank-7.asm", "elite-source-header.asm", "elite-source-common.asm"],
-        "do_not_expand_includes": ["elite-build-options.asm", "elite-source-common.asm", "elite-source-bank-0.asm", "elite-source-bank-1.asm", "elite-source-bank-2.asm", "elite-source-bank-3.asm", "elite-source-bank-4.asm", "elite-source-bank-5.asm", "elite-source-bank-6.asm", "elite-source-bank-7.asm", "elite-source-bank-7.asm"],
+        "do_not_expand_includes": ["elite-build-options.asm", "elite-source-common.asm", "elite-source-bank-0.asm", "elite-source-bank-1.asm", "elite-source-bank-2.asm", "elite-source-bank-3.asm", "elite-source-bank-4.asm", "elite-source-bank-5.asm", "elite-source-bank-6.asm", "elite-source-bank-7.asm"],
         "dest_folder": "repos/nes/1-source-files/",
         "this_version": [
             "_NES_VERSION"
