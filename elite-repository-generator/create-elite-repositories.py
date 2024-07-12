@@ -698,6 +698,8 @@ def comment_out_line(line):
     #     return "\\\n"
     # else:
     #     return "\\ " + line.replace(" \\", "\\", 1)
+    if line[0] == ' ':
+        return "\\" + line[1:]
     if " \\" in line:
         return "\\" + line.replace(" \\", "\\", 1)
     else:
