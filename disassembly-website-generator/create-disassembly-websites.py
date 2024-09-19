@@ -846,12 +846,12 @@ else:
 '''
 
 if args.platform == "cassette" or args.platform == "electron":
-    html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loader" href="/{1}all/loader.html"><span class="menuTitle">Loader source</span> <span class="menuSummary">The loading screen, copy protection and set-up for the main game</span></a></li>
+    html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loader" href="/{1}all/loader.html"><span class="menuTitle">Loader source</span> <span class="menuSummary">The loading screen, copy protection and setup for the main game</span></a></li>
 '''
 
 elif args.platform == "disc":
     html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loader1" href="/{1}all/loader1.html"><span class="menuTitle">Loader 1 source</span> <span class="menuSummary">Initial setup and disc copy protection</span></a></li>
-\t\t\t\t\t\t\t<li><a id="{3}all_source_loader2" href="/{1}all/loader2.html"><span class="menuTitle">Loader 2 source</span> <span class="menuSummary">The mode 7 screen set-up for the main game</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_loader2" href="/{1}all/loader2.html"><span class="menuTitle">Loader 2 source</span> <span class="menuSummary">The mode 7 screen setup for the main game</span></a></li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_text_tokens" href="/{1}all/text_tokens.html"><span class="menuTitle">Text tokens</span> <span class="menuSummary">Elite's tokenised game text</span></a></li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_ship_missile" href="/{1}all/ship_missile.html"><span class="menuTitle">Missile ship blueprint</span> <span class="menuSummary">The ship blueprint for the missile</span></a></li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_loader3" href="/{1}all/loader3.html"><span class="menuTitle">Loader 3 source</span> <span class="menuSummary">The Saturn loading screen and main game loader</span></a></li>
@@ -859,12 +859,12 @@ elif args.platform == "disc":
 '''
 
 elif args.platform == "6502sp":
-    html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loader1" href="/{1}all/loader1.html"><span class="menuTitle">Loader 1 source</span> <span class="menuSummary">The Saturn loading screen, copy protection and set-up for the main game</span></a></li>
+    html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loader1" href="/{1}all/loader1.html"><span class="menuTitle">Loader 1 source</span> <span class="menuSummary">The Saturn loading screen, copy protection and setup for the main game</span></a></li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_loader2" href="/{1}all/loader2.html"><span class="menuTitle">Loader 2 source</span> <span class="menuSummary">The rest of the loading screen and main game loader</span></a></li>
 '''
 
 elif args.platform == "master":
-    html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loader" href="/{1}all/loader.html"><span class="menuTitle">Loader source</span> <span class="menuSummary">The loading screen and set-up for the main game</span></a></li>
+    html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loader" href="/{1}all/loader.html"><span class="menuTitle">Loader source</span> <span class="menuSummary">The loading screen and setup for the main game</span></a></li>
 '''
 
 elif args.platform == "nes":
@@ -872,7 +872,7 @@ elif args.platform == "nes":
 '''
 
 elif args.platform == "elite-a":
-    html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loader" href="/{1}all/loader.html"><span class="menuTitle">Loader source</span> <span class="menuSummary">The loading screen, copy protection and set-up for the main game</span></a></li>
+    html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loader" href="/{1}all/loader.html"><span class="menuTitle">Loader source</span> <span class="menuSummary">The loading screen, copy protection and setup for the main game</span></a></li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_text_tokens" href="/{1}all/text_tokens.html"><span class="menuTitle">Text tokens</span> <span class="menuSummary">Elite's tokenised game text</span></a></li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_ship_missile" href="/{1}all/ship_missile.html"><span class="menuTitle">Missile ship blueprint</span> <span class="menuSummary">The ship blueprint for the missile</span></a></li>
 '''
