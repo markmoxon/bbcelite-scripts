@@ -19,65 +19,65 @@ fi
 
 if [[ "$platform" == "cassette" || "$platform" == "stop" || -z "$platform" ]]; then
     echo "Syncing to cassette repository"
-    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/cassette/ $ELITE_CODE_REPOSITORIES/cassette-elite-beebasm/
-    cp -R repos/cassette/1-source-files/* $ELITE_CODE_REPOSITORIES/cassette-elite-beebasm/1-source-files/main-sources
-    cp -R repos/cassette/2-build-files/* $ELITE_CODE_REPOSITORIES/cassette-elite-beebasm/2-build-files
-    cp repos/cassette/Makefile $ELITE_CODE_REPOSITORIES/cassette-elite-beebasm/Makefile
-    sed -i "" "s/Saving file 'versions\/cassette\//Saving file '/g" $ELITE_CODE_REPOSITORIES/cassette-elite-beebasm/3-assembled-output/compile.txt
+    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/cassette/ $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-cassette/
+    cp -R repos/cassette/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-cassette/1-source-files/main-sources
+    cp -R repos/cassette/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-cassette/2-build-files
+    cp repos/cassette/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-cassette/Makefile
+    sed -i "" "s/Saving file 'versions\/cassette\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-cassette/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "disc" || "$platform" == "stop" || -z "$platform" ]]; then
     echo "Syncing to disc repository"
-    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/disc/ $ELITE_CODE_REPOSITORIES/disc-elite-beebasm/
-    cp -R repos/disc/1-source-files/* $ELITE_CODE_REPOSITORIES/disc-elite-beebasm/1-source-files/main-sources
-    cp -R repos/disc/2-build-files/* $ELITE_CODE_REPOSITORIES/disc-elite-beebasm/2-build-files
-    cp repos/disc/Makefile $ELITE_CODE_REPOSITORIES/disc-elite-beebasm/Makefile
-    sed -i "" "s/Saving file 'versions\/disc\//Saving file '/g" $ELITE_CODE_REPOSITORIES/disc-elite-beebasm/3-assembled-output/compile.txt
+    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/disc/ $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-disc/
+    cp -R repos/disc/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-disc/1-source-files/main-sources
+    cp -R repos/disc/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-disc/2-build-files
+    cp repos/disc/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-disc/Makefile
+    sed -i "" "s/Saving file 'versions\/disc\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-disc/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "6502sp" || "$platform" == "stop" || -z "$platform" ]]; then
     echo "Syncing to 6502sp repository"
-    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/6502sp/ $ELITE_CODE_REPOSITORIES/6502sp-elite-beebasm/
-    cp -R repos/6502sp/1-source-files/* $ELITE_CODE_REPOSITORIES/6502sp-elite-beebasm/1-source-files/main-sources
-    cp -R repos/6502sp/2-build-files/* $ELITE_CODE_REPOSITORIES/6502sp-elite-beebasm/2-build-files
-    cp repos/6502sp/Makefile $ELITE_CODE_REPOSITORIES/6502sp-elite-beebasm/Makefile
-    sed -i "" "s/Saving file 'versions\/6502sp\//Saving file '/g" $ELITE_CODE_REPOSITORIES/6502sp-elite-beebasm/3-assembled-output/compile.txt
+    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/6502sp/ $ELITE_CODE_REPOSITORIES/elite-source-code-6502-second-processor/
+    cp -R repos/6502sp/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-6502-second-processor/1-source-files/main-sources
+    cp -R repos/6502sp/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-6502-second-processor/2-build-files
+    cp repos/6502sp/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-6502-second-processor/Makefile
+    sed -i "" "s/Saving file 'versions\/6502sp\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-6502-second-processor/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "master" || "$platform" == "stop" || -z "$platform" ]]; then
     echo "Syncing to master repository"
-    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/master/ $ELITE_CODE_REPOSITORIES/master-elite-beebasm/
-    cp -R repos/master/1-source-files/* $ELITE_CODE_REPOSITORIES/master-elite-beebasm/1-source-files/main-sources
-    cp -R repos/master/2-build-files/* $ELITE_CODE_REPOSITORIES/master-elite-beebasm/2-build-files
-    cp repos/master/Makefile $ELITE_CODE_REPOSITORIES/master-elite-beebasm/Makefile
-    sed -i "" "s/Saving file 'versions\/master\//Saving file '/g" $ELITE_CODE_REPOSITORIES/master-elite-beebasm/3-assembled-output/compile.txt
+    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/master/ $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-master/
+    cp -R repos/master/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-master/1-source-files/main-sources
+    cp -R repos/master/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-master/2-build-files
+    cp repos/master/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-master/Makefile
+    sed -i "" "s/Saving file 'versions\/master\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-master/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "electron" || "$platform" == "stop" || -z "$platform" ]]; then
     echo "Syncing to electron repository"
-    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/electron/ $ELITE_CODE_REPOSITORIES/electron-elite-beebasm/
-    cp -R repos/electron/1-source-files/* $ELITE_CODE_REPOSITORIES/electron-elite-beebasm/1-source-files/main-sources
-    cp -R repos/electron/2-build-files/* $ELITE_CODE_REPOSITORIES/electron-elite-beebasm/2-build-files
-    cp repos/electron/Makefile $ELITE_CODE_REPOSITORIES/electron-elite-beebasm/Makefile
-    sed -i "" "s/Saving file 'versions\/electron\//Saving file '/g" $ELITE_CODE_REPOSITORIES/electron-elite-beebasm/3-assembled-output/compile.txt
+    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/electron/ $ELITE_CODE_REPOSITORIES/elite-source-code-acorn-electron/
+    cp -R repos/electron/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-acorn-electron/1-source-files/main-sources
+    cp -R repos/electron/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-acorn-electron/2-build-files
+    cp repos/electron/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-acorn-electron/Makefile
+    sed -i "" "s/Saving file 'versions\/electron\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-acorn-electron/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "elite-a" || "$platform" == "stop" || -z "$platform" ]]; then
     echo "Syncing to elite-a repository"
-    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/elite-a/ $ELITE_CODE_REPOSITORIES/elite-a-beebasm/
-    cp -R repos/elite-a/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-a-beebasm/1-source-files/main-sources
-    cp -R repos/elite-a/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-a-beebasm/2-build-files
-    cp repos/elite-a/Makefile $ELITE_CODE_REPOSITORIES/elite-a-beebasm/Makefile
-    sed -i "" "s/Saving file 'versions\/elite-a\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-a-beebasm/3-assembled-output/compile.txt
+    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/elite-a/ $ELITE_CODE_REPOSITORIES/elite-a-source-code-bbc-micro/
+    cp -R repos/elite-a/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-a-source-code-bbc-micro/1-source-files/main-sources
+    cp -R repos/elite-a/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-a-source-code-bbc-micro/2-build-files
+    cp repos/elite-a/Makefile $ELITE_CODE_REPOSITORIES/elite-a-source-code-bbc-micro/Makefile
+    sed -i "" "s/Saving file 'versions\/elite-a\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-a-source-code-bbc-micro/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "nes" || "$platform" == "stop" || -z "$platform" ]]; then
     echo "Syncing to nes repository"
-    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/nes/ $ELITE_CODE_REPOSITORIES/nes-elite-beebasm/
-    cp -R repos/nes/1-source-files/* $ELITE_CODE_REPOSITORIES/nes-elite-beebasm/1-source-files/main-sources
-    cp -R repos/nes/2-build-files/* $ELITE_CODE_REPOSITORIES/nes-elite-beebasm/2-build-files
-    cp repos/nes/Makefile $ELITE_CODE_REPOSITORIES/nes-elite-beebasm/Makefile
-    sed -i "" "s/Saving file 'versions\/nes\//Saving file '/g" $ELITE_CODE_REPOSITORIES/nes-elite-beebasm/3-assembled-output/compile.txt
+    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/nes/ $ELITE_CODE_REPOSITORIES/elite-source-code-nes/
+    cp -R repos/nes/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-nes/1-source-files/main-sources
+    cp -R repos/nes/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-nes/2-build-files
+    cp repos/nes/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-nes/Makefile
+    sed -i "" "s/Saving file 'versions\/nes\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-nes/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "stop" ]]; then

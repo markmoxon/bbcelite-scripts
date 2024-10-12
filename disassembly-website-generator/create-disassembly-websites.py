@@ -20,7 +20,7 @@ lander_repository = os.environ['LANDER_CODE_REPOSITORY']
 
 # Config
 if args.platform == "cassette":
-    source_folder = elite_repositories + "/cassette-elite-beebasm/1-source-files/main-sources/"
+    source_folder = elite_repositories + "/elite-source-code-bbc-micro-cassette/1-source-files/main-sources/"
     elite_loader = source_folder + "elite-loader.asm"
     elite_source = source_folder + "elite-source.asm"
     elite_bcfs = source_folder + "elite-bcfs.asm"
@@ -37,7 +37,7 @@ if args.platform == "cassette":
     re_hex_prefix = r'&'
 
 elif args.platform == "disc":
-    source_folder = elite_repositories + "/disc-elite-beebasm/1-source-files/main-sources/"
+    source_folder = elite_repositories + "/elite-source-code-bbc-micro-disc/1-source-files/main-sources/"
     elite_text_tokens = source_folder + "elite-text-tokens.asm"
     elite_ship_missile = source_folder + "elite-missile.asm"
     elite_loader1 = source_folder + "elite-loader1.asm"
@@ -75,7 +75,7 @@ elif args.platform == "disc":
     re_hex_prefix = r'&'
 
 elif args.platform == "6502sp":
-    source_folder = elite_repositories + "/6502sp-elite-beebasm/1-source-files/main-sources/"
+    source_folder = elite_repositories + "/elite-source-code-6502-second-processor/1-source-files/main-sources/"
     elite_loader = source_folder + "elite-loader1.asm"
     elite_loader2 = source_folder + "elite-loader2.asm"
     elite_source = source_folder + "elite-source.asm"
@@ -94,7 +94,7 @@ elif args.platform == "6502sp":
     re_hex_prefix = r'&'
 
 elif args.platform == "master":
-    source_folder = elite_repositories + "/master-elite-beebasm/1-source-files/main-sources/"
+    source_folder = elite_repositories + "/elite-source-code-bbc-master/1-source-files/main-sources/"
     elite_loader = source_folder + "elite-loader.asm"
     elite_source = source_folder + "elite-source.asm"
     elite_data = source_folder + "elite-data.asm"
@@ -111,7 +111,7 @@ elif args.platform == "master":
     re_hex_prefix = r'&'
 
 elif args.platform == "electron":
-    source_folder = elite_repositories + "/electron-elite-beebasm/1-source-files/main-sources/"
+    source_folder = elite_repositories + "/elite-source-code-acorn-electron/1-source-files/main-sources/"
     elite_loader = source_folder + "elite-loader.asm"
     elite_source = source_folder + "elite-source.asm"
     elite_bcfs = source_folder + "elite-bcfs.asm"
@@ -128,7 +128,7 @@ elif args.platform == "electron":
     re_hex_prefix = r'&'
 
 elif args.platform == "elite-a":
-    source_folder = elite_repositories + "/elite-a-beebasm/1-source-files/main-sources/"
+    source_folder = elite_repositories + "/elite-a-source-code-bbc-micro/1-source-files/main-sources/"
     elite_text_tokens = source_folder + "elite-text-tokens.asm"
     elite_ship_missile = source_folder + "elite-missile.asm"
     elite_loader = source_folder + "elite-loader.asm"
@@ -173,7 +173,7 @@ elif args.platform == "elite-a":
     re_hex_prefix = r'&'
 
 elif args.platform == "nes":
-    source_folder = elite_repositories + "/nes-elite-beebasm/1-source-files/main-sources/"
+    source_folder = elite_repositories + "/elite-source-code-nes/1-source-files/main-sources/"
     elite_source_common = source_folder + "elite-source-common.asm"
     elite_source_bank_0 = source_folder + "elite-source-bank-0.asm"
     elite_source_bank_1 = source_folder + "elite-source-bank-1.asm"

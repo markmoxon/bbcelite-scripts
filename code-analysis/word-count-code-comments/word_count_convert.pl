@@ -13,7 +13,7 @@ while (my $line = <$file>) {
 	$line =~ s#/1-source-files/main-sources/#\t#g;
 	$line =~ s#^ +##g;
 	$line =~ s# +#\t#g;
-	$line =~ s#elite-a-beebasm\telite-6502sp#elite-a-6502sp-beebasm\telite-6502sp#g;
+	$line =~ s#elite-a-source-code-bbc-micro\telite-6502sp#elite-source-code-6502-second-processor\telite-6502sp#g;
 	print $line;
 }
 

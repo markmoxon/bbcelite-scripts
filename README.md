@@ -1,24 +1,24 @@
 # Scripts for generating the bbcelite.com website and associated repositories
 
-**Scripts for generating bbcelite.com** | [Static content for bbcelite.com](https://github.com/markmoxon/bbcelite-websites) | [Elite source code library](https://github.com/markmoxon/library-elite-beebasm)
+**Scripts for generating bbcelite.com** | [Static content for bbcelite.com](https://github.com/markmoxon/bbcelite-websites) | [Elite source code library](https://github.com/markmoxon/elite-source-code-library)
 
 This repository contains scripts that use the following hand-crafted repositories:
 
-* [Elite source code library](https://github.com/markmoxon/library-elite-beebasm)
-* [Aviator source code](https://github.com/markmoxon/aviator-beebasm)
-* [Revs source code](https://github.com/markmoxon/revs-beebasm)
+* [Elite source code library](https://github.com/markmoxon/elite-source-code-library)
+* [Aviator source code](https://github.com/markmoxon/aviator-source-code-bbc-micro)
+* [Revs source code](https://github.com/markmoxon/revs-source-code-bbc-micro)
 * [Lander source code](https://github.com/markmoxon/archimedes-lander)
 * [Static content for bbcelite.com](https://github.com/markmoxon/bbcelite-websites)
 
 to generate the following source code repositories:
 
-* [BBC Micro (cassette) Elite source code](https://github.com/markmoxon/cassette-elite-beebasm)
-* [BBC Micro (disc) Elite source code](https://github.com/markmoxon/disc-elite-beebasm)
-* [6502 Second Processor Elite source code](https://github.com/markmoxon/6502sp-elite-beebasm)
-* [BBC Master Elite source code](https://github.com/markmoxon/master-elite-beebasm)
-* [Acorn Electron Elite source code](https://github.com/markmoxon/electron-elite-beebasm)
-* [Elite-A source code](https://github.com/markmoxon/elite-a-beebasm)
-* [NES Elite source code](https://github.com/markmoxon/nes-elite-beebasm)
+* [BBC Micro (cassette) Elite source code](https://github.com/markmoxon/elite-source-code-bbc-micro-cassette)
+* [BBC Micro (disc) Elite source code](https://github.com/markmoxon/elite-source-code-bbc-micro-disc)
+* [6502 Second Processor Elite source code](https://github.com/markmoxon/elite-source-code-6502-second-processor)
+* [BBC Master Elite source code](https://github.com/markmoxon/elite-source-code-bbc-master)
+* [Acorn Electron Elite source code](https://github.com/markmoxon/elite-source-code-acorn-electron)
+* [Elite-A source code](https://github.com/markmoxon/elite-a-source-code-bbc-micro)
+* [NES Elite source code](https://github.com/markmoxon/elite-source-code-nes)
 
 and the following websites:
 
@@ -81,9 +81,9 @@ Finally clone this repository (which contains the generation scripts) and the so
 cd source-repositories
 
 git clone https://github.com/markmoxon/bbcelite-scripts
-git clone https://github.com/markmoxon/library-elite-beebasm
-git clone https://github.com/markmoxon/aviator-beebasm
-git clone https://github.com/markmoxon/revs-beebasm
+git clone https://github.com/markmoxon/elite-source-code-library
+git clone https://github.com/markmoxon/aviator-source-code-bbc-micro
+git clone https://github.com/markmoxon/revs-source-code-bbc-micro
 git clone https://github.com/markmoxon/archimedes-lander
 ```
 
@@ -96,13 +96,13 @@ Start by creating empty folders in `generated-repositories` that will hold the g
 ```
 cd ../generated-repositories
 
-mkdir cassette-elite-beebasm
-mkdir disc-elite-beebasm
-mkdir 6502sp-elite-beebasm
-mkdir master-elite-beebasm
-mkdir electron-elite-beebasm
-mkdir elite-a-beebasm
-mkdir nes-elite-beebasm
+mkdir elite-source-code-bbc-micro-cassette
+mkdir elite-source-code-bbc-micro-disc
+mkdir elite-source-code-6502-second-processor
+mkdir elite-source-code-bbc-master
+mkdir elite-source-code-acorn-electron
+mkdir elite-a-source-code-bbc-micro
+mkdir elite-source-code-nes
 ```
 
 Next, create folders for the staging website repositories in the `generated-websites` folder:
@@ -135,16 +135,16 @@ Open the `env.sh` file in your preferred text editor and paste in the following 
 export BBCELITE_SCRIPTS=/path/to/websites/source-repositories/bbcelite-scripts
 export BBCELITE_WEBSITE=/path/to/websites/bbcelite-websites/bbcelite.com
 
-export ELITE_LIBRARY_REPOSITORY=/path/to/websites/source-repositories/library-elite-beebasm
+export ELITE_LIBRARY_REPOSITORY=/path/to/websites/source-repositories/elite-source-code-library
 export ELITE_CODE_REPOSITORIES=/path/to/websites/generated-repositories
 export ELITE_WEBSITE=/path/to/websites/bbcelite-websites/elite.bbcelite.com
 export ELITE_WEBSITE_REPOSITORY=/path/to/websites/generated-websites/staging.elite.bbcelite.com
 
-export AVIATOR_CODE_REPOSITORY=/path/to/websites/source-repositories/aviator-beebasm
+export AVIATOR_CODE_REPOSITORY=/path/to/websites/source-repositories/aviator-source-code-bbc-micro
 export AVIATOR_WEBSITE=/path/to/websites/bbcelite-websites/aviator.bbcelite.com
 export AVIATOR_WEBSITE_REPOSITORY=/path/to/websites/generated-websites/staging.aviator.bbcelite.com
 
-export REVS_CODE_REPOSITORY=/path/to/websites/source-repositories/revs-beebasm
+export REVS_CODE_REPOSITORY=/path/to/websites/source-repositories/revs-source-code-bbc-micro
 export REVS_WEBSITE=/path/to/websites/bbcelite-websites/revs.bbcelite.com
 export REVS_WEBSITE_REPOSITORY=/path/to/websites/generated-websites/staging.revs.bbcelite.com
 
@@ -165,13 +165,13 @@ source env.sh
 
 Now let's generate the Elite source repositories in `generated-repositories`:
 
-* [cassette-elite-beebasm](https://github.com/markmoxon/cassette-elite-beebasm)
-* [disc-elite-beebasm](https://github.com/markmoxon/disc-elite-beebasm)
-* [6502sp-elite-beebasm](https://github.com/markmoxon/6502sp-elite-beebasm)
-* [master-elite-beebasm](https://github.com/markmoxon/master-elite-beebasm)
-* [electron-elite-beebasm](https://github.com/markmoxon/electron-elite-beebasm)
-* [elite-a-beebasm](https://github.com/markmoxon/elite-a-beebasm)
-* [nes-elite-beebasm](https://github.com/markmoxon/nes-elite-beebasm)
+* [elite-source-code-bbc-micro-cassette](https://github.com/markmoxon/elite-source-code-bbc-micro-cassette)
+* [elite-source-code-bbc-micro-disc](https://github.com/markmoxon/elite-source-code-bbc-micro-disc)
+* [elite-source-code-6502-second-processor](https://github.com/markmoxon/elite-source-code-6502-second-processor)
+* [elite-source-code-bbc-master](https://github.com/markmoxon/elite-source-code-bbc-master)
+* [elite-source-code-acorn-electron](https://github.com/markmoxon/elite-source-code-acorn-electron)
+* [elite-a-source-code-bbc-micro](https://github.com/markmoxon/elite-a-source-code-bbc-micro)
+* [elite-source-code-nes](https://github.com/markmoxon/elite-source-code-nes)
 
 and the Elite source code website in `bbcelite-websites/elite.bbcelite.com`:
 
@@ -213,7 +213,7 @@ This command:
 ./generate-aviator.sh
 ```
 
-will generate the [aviator.bbcelite.com](https://aviator.bbcelite.com) site and the corresponding staging repository, taking the source code from the [aviator-beebasm](https://github.com/markmoxon/aviator-beebasm) source code repository and creating a complete site here:
+will generate the [aviator.bbcelite.com](https://aviator.bbcelite.com) site and the corresponding staging repository, taking the source code from the [aviator-source-code-bbc-micro](https://github.com/markmoxon/aviator-source-code-bbc-micro) source code repository and creating a complete site here:
 
 `/path/to/websites/bbcelite-websites/aviator.bbcelite.com`
 
@@ -223,7 +223,7 @@ Similarly, this command:
 ./generate-revs.sh
 ```
 
-will generate the [revs.bbcelite.com](https://revs.bbcelite.com) site and the corresponding staging repository, taking the source code from the [revs-beebasm](https://github.com/markmoxon/revs-beebasm) source code repository and creating a complete site here:
+will generate the [revs.bbcelite.com](https://revs.bbcelite.com) site and the corresponding staging repository, taking the source code from the [revs-source-code-bbc-micro](https://github.com/markmoxon/revs-source-code-bbc-micro) source code repository and creating a complete site here:
 
 `/path/to/websites/bbcelite-websites/revs.bbcelite.com`
 
@@ -316,9 +316,9 @@ The following environment variables need to be set up for the scripts to work. T
 
 ### Elite
 
-`$ELITE_LIBRARY_REPOSITORY` = the path of the `library-elite-beebasm` repository
+`$ELITE_LIBRARY_REPOSITORY` = the path of the `elite-source-code-library` repository
 
-`$ELITE_CODE_REPOSITORIES` = the folder containing the `*-elite-beebasm` folders that will contain the generated source code for all the different versions of Elite
+`$ELITE_CODE_REPOSITORIES` = the folder containing the `elite-source-code-*` folders that will contain the generated source code for all the different versions of Elite
 
 `$ELITE_WEBSITE` = the root folder of the Elite website we want to generate
 
@@ -326,7 +326,7 @@ The following environment variables need to be set up for the scripts to work. T
 
 ### Aviator
 
-`$AVIATOR_CODE_REPOSITORY` = the path of the `aviator-beebasm` repository that we cloned above
+`$AVIATOR_CODE_REPOSITORY` = the path of the `aviator-source-code-bbc-micro` repository that we cloned above
 
 `$AVIATOR_WEBSITE` = the root folder of the Aviator website we want to generate
 
@@ -334,7 +334,7 @@ The following environment variables need to be set up for the scripts to work. T
 
 ### Revs
 
-`$REVS_CODE_REPOSITORY` = the path of the `revs-beebasm` repository that we cloned above
+`$REVS_CODE_REPOSITORY` = the path of the `revs-source-code-bbc-micro` repository that we cloned above
 
 `$REVS_WEBSITE` = the root folder of the Revs website we want to generate
 
