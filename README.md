@@ -17,8 +17,8 @@ to generate the following source code repositories:
 * [6502 Second Processor Elite source code](https://github.com/markmoxon/elite-source-code-6502-second-processor)
 * [BBC Master Elite source code](https://github.com/markmoxon/elite-source-code-bbc-master)
 * [Acorn Electron Elite source code](https://github.com/markmoxon/elite-source-code-acorn-electron)
-* [Elite-A source code](https://github.com/markmoxon/elite-a-source-code-bbc-micro)
 * [NES Elite source code](https://github.com/markmoxon/elite-source-code-nes)
+* [Elite-A source code](https://github.com/markmoxon/elite-a-source-code-bbc-micro)
 
 and the following websites:
 
@@ -101,8 +101,8 @@ mkdir elite-source-code-bbc-micro-disc
 mkdir elite-source-code-6502-second-processor
 mkdir elite-source-code-bbc-master
 mkdir elite-source-code-acorn-electron
-mkdir elite-a-source-code-bbc-micro
 mkdir elite-source-code-nes
+mkdir elite-a-source-code-bbc-micro
 ```
 
 Next, create folders for the staging website repositories in the `generated-websites` folder:
@@ -170,8 +170,8 @@ Now let's generate the Elite source repositories in `generated-repositories`:
 * [elite-source-code-6502-second-processor](https://github.com/markmoxon/elite-source-code-6502-second-processor)
 * [elite-source-code-bbc-master](https://github.com/markmoxon/elite-source-code-bbc-master)
 * [elite-source-code-acorn-electron](https://github.com/markmoxon/elite-source-code-acorn-electron)
-* [elite-a-source-code-bbc-micro](https://github.com/markmoxon/elite-a-source-code-bbc-micro)
 * [elite-source-code-nes](https://github.com/markmoxon/elite-source-code-nes)
+* [elite-a-source-code-bbc-micro](https://github.com/markmoxon/elite-a-source-code-bbc-micro)
 
 and the Elite source code website in `bbcelite-websites/elite.bbcelite.com`:
 
