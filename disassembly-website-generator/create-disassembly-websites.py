@@ -272,7 +272,7 @@ else:
     game_name = "BBC Micro Elite"
 
 # Regexes
-omit_from_compare = "ELITE_A|NES"
+omit_from_compare = "ELITE_A|NES|C64|APPLE"
 
 re_name = re.compile(r'^' + re_comment_delimiter + r'(       Name): (.+)$')
 re_type = re.compile(r'^' + re_comment_delimiter + r'(       Type): (.+)$')
@@ -323,7 +323,7 @@ re_deep_dive_link = re.compile(r'deep dives? on')
 
 # Regexes for comparison tool
 re_include_directive = re.compile(r'^ *INCLUDE "(.+)"$')
-re_version_if = re.compile(r'(IF|OR) _(CASSETTE_VERSION|ELECTRON_VERSION|6502SP_VERSION|DISC_VERSION|DISC_FLIGHT|DISC_DOCKED|MASTER_VERSION|C64_VERSION|APPLE_VERSION)')
+re_version_if = re.compile(r'(IF|OR) _(CASSETTE_VERSION|ELECTRON_VERSION|6502SP_VERSION|DISC_VERSION|DISC_FLIGHT|DISC_DOCKED|MASTER_VERSION)')
 re_version_endif = re.compile(r'^ENDIF.*$')
 re_version_if_elite_a = re.compile(r'IF (NOT\()?_(' + omit_from_compare + r')_\w+( OR _(' + omit_from_compare + r')_\w+)*\)?')
 re_compare_group = re.compile(r'^Group ([A-Z]): (.*)$')
