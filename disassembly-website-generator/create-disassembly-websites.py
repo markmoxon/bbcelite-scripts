@@ -172,6 +172,46 @@ elif args.platform == "elite-a":
     re_comment_delimiter = r'\\'
     re_hex_prefix = r'&'
 
+elif args.platform == "c64":
+    source_folder = elite_repositories + "/elite-source-code-commodore-64/1-source-files/main-sources/"
+    elite_firebird = source_folder + "elite-firebird.asm"
+    elite_gma1 = source_folder + "elite-gma1.asm"
+    elite_gma2 = source_folder + "elite-gma1.asm"
+    elite_gma3 = source_folder + "elite-gma1.asm"
+    elite_loader = source_folder + "elite-loader.asm"
+    elite_source = source_folder + "elite-source.asm"
+    elite_data = source_folder + "elite-data.asm"
+    dest_folder = "websites/elite/"
+    content_folder = "c64/"
+    explore_folder = "explore/"
+    platform_name_capitalised = "Commodore 64"
+    platform_name = "Commodore 64"
+    platform_short_name = "C64"
+    platform_id = "c64_"
+    platform_key = "c64"
+    comment_delimiter = ";"
+    re_comment_delimiter = r';'
+    re_hex_prefix = r'\$'
+
+elif args.platform == "apple":
+    source_folder = elite_repositories + "/elite-source-code-apple-ii/1-source-files/main-sources/"
+    elite_bcfs = source_folder + "elite-bcfs.asm"
+    elite_mover = source_folder + "elite-mover.asm"
+    elite_loader = source_folder + "elite-loader.asm"
+    elite_source = source_folder + "elite-source.asm"
+    elite_data = source_folder + "elite-data.asm"
+    dest_folder = "websites/elite/"
+    content_folder = "apple/"
+    explore_folder = "explore/"
+    platform_name_capitalised = "Apple II"
+    platform_name = "Apple II"
+    platform_short_name = "Apple"
+    platform_id = "apple_"
+    platform_key = "apple"
+    comment_delimiter = ";"
+    re_comment_delimiter = r';'
+    re_hex_prefix = r'\$'
+
 elif args.platform == "nes":
     source_folder = elite_repositories + "/elite-source-code-nes/1-source-files/main-sources/"
     elite_source_common = source_folder + "elite-source-common.asm"
@@ -7424,6 +7464,34 @@ if args.platform != "compare":
             source_parasite = file.readlines()
         source = source1 + source_text_tokens + source_ship_missile + source_docked + source_flight + source_encyclopedia + source_ships_a + source_ships_b + source_ships_c + source_ships_d + source_ships_e + source_ships_f + source_ships_g + source_ships_h + source_ships_i + source_ships_j + source_ships_k + source_ships_l + source_ships_m + source_ships_n + source_ships_o + source_ships_p + source_ships_q + source_ships_r + source_ships_s + source_ships_t + source_ships_u + source_ships_v + source_ships_w + source_io + source_parasite
 
+    elif args.platform == "c64":
+        with open(elite_firebird, "r") as file:
+            source_loader1 = file.readlines()
+        with open(elite_gma1, "r") as file:
+            source_loader2 = file.readlines()
+        with open(elite_gma2, "r") as file:
+            source_loader3 = file.readlines()
+        with open(elite_gma3, "r") as file:
+            source_loader4 = file.readlines()
+        with open(elite_loader, "r") as file:
+            source_loader = file.readlines()
+        with open(elite_source, "r") as file:
+            source1 = file.readlines()
+        with open(elite_data, "r") as file:
+            source2 = file.readlines()
+        source = source_loader1 + source_loader2 + source_loader3 + source_loader4 + source_loader + source1 + source2
+
+    elif args.platform == "apple":
+        with open(elite_bcfs, "r") as file:
+            source_bcfs = file.readlines()
+        with open(elite_mover, "r") as file:
+            source_mover = file.readlines()
+        with open(elite_source, "r") as file:
+            source1 = file.readlines()
+        with open(elite_data, "r") as file:
+            source2 = file.readlines()
+        source = source_bcfs + source_mover + source1 + source2
+
     elif args.platform == "nes":
         with open(elite_source_common, "r") as file:
             source_common = file.readlines()
@@ -7557,6 +7625,21 @@ if args.platform != "compare":
         extract_popup_data(source_io, "I/O processor", "i_o_processor", "I/O processor")
         extract_popup_data(source_parasite, "Parasite", "parasite", "Parasite")
 
+    elif args.platform == "c64":
+        extract_popup_data(source_loader1, "Disk loader 1", "loader1", "Disk loader 1")
+        extract_popup_data(source_loader2, "Disk loader 2", "loader2", "Disk loader 2")
+        extract_popup_data(source_loader3, "Disk loader 3", "loader3", "Disk loader 3")
+        extract_popup_data(source_loader4, "Disk loader 4", "loader4", "Disk loader 4")
+        extract_popup_data(source_loader, "Game loader", "loader", "Game loader")
+        extract_popup_data(source1, "", "workspaces", "Workspaces")
+        extract_popup_data(source2, "Game data", "elite_data", "Game data")
+
+    elif args.platform == "apple":
+        extract_popup_data(source_bcfs, "Big Code file", "bcfs", "Big Code file")
+        extract_popup_data(source_mover, "Mover", "mover", "Mover")
+        extract_popup_data(source1, "", "workspaces", "Workspaces")
+        extract_popup_data(source2, "Game data", "elite_data", "Game data")
+
     elif args.platform == "nes":
         extract_popup_data(source_common, "Common", "common", "Common")
         extract_popup_data(source_header, "iNES header", "header", "iNES header")
@@ -7673,6 +7756,21 @@ if args.platform != "compare":
         output_individual_code_pages(source_ships_w, "Ship blueprints W")
         output_individual_code_pages(source_io, "I/O processor")
         output_individual_code_pages(source_parasite, "Parasite")
+
+    elif args.platform == "c64":
+        output_individual_code_pages(source_loader1, "Disk loader 1")
+        output_individual_code_pages(source_loader2, "Disk loader 2")
+        output_individual_code_pages(source_loader3, "Disk loader 3")
+        output_individual_code_pages(source_loader4, "Disk loader 4")
+        output_individual_code_pages(source_loader, "Game loader")
+        output_individual_code_pages(source1, "")
+        output_individual_code_pages(source2, "Game data")
+
+    elif args.platform == "apple":
+        output_individual_code_pages(source_bcfs, "Big code file")
+        output_individual_code_pages(source_mover, "Mover")
+        output_individual_code_pages(source1, "")
+        output_individual_code_pages(source2, "Game data")
 
     elif args.platform == "nes":
         output_individual_code_pages(source_common, "Common")
@@ -7956,6 +8054,80 @@ if args.platform != "compare":
                 output_large_source_code_page(source_parasite, "Parasite", "Elite M parasite source", "elite_m_parasite", "ELITE M FILE", "ELITE SHIP BLUEPRINTS FILE")
             with open(dest_folder + content_folder + "all/elite_ships_parasite.html", "w") as all_file:
                 output_large_source_code_page(source_parasite, "Parasite", "Ship blueprints parasite source", "elite_ships_parasite", "ELITE SHIP BLUEPRINTS FILE", "")
+
+        if args.platform == "c64":
+            with open(dest_folder + content_folder + "all/loader1.html", "w") as all_file:
+                output_large_source_code_page(source_loader1, "Disk loader 1", "Disk loader 1 source", "loader1", "", "")
+            with open(dest_folder + content_folder + "all/loader2.html", "w") as all_file:
+                output_large_source_code_page(source_loader2, "Disk loader 2", "Disk loader 2 source", "loader2", "", "")
+            with open(dest_folder + content_folder + "all/loader2.html", "w") as all_file:
+                output_large_source_code_page(source_loader3, "Disk loader 3", "Disk loader 3 source", "loader3", "", "")
+            with open(dest_folder + content_folder + "all/loader2.html", "w") as all_file:
+                output_large_source_code_page(source_loader4, "Disk loader 4", "Disk loader 4 source", "loader4", "", "")
+            with open(dest_folder + content_folder + "all/loader2.html", "w") as all_file:
+                output_large_source_code_page(source_loader, "Game loader", "Game loader source", "loader", "", "")
+            with open(dest_folder + content_folder + "all/workspaces.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Workspaces and configuration", "workspaces", "", "ELITE A FILE")
+            with open(dest_folder + content_folder + "all/elite_a.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Elite A source", "elite_a", "ELITE A FILE", "ELITE B FILE")
+            with open(dest_folder + content_folder + "all/elite_b.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Elite B source", "elite_b", "ELITE B FILE", "ELITE C FILE")
+            with open(dest_folder + content_folder + "all/elite_c.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Elite C source", "elite_c", "ELITE C FILE", "ELITE D FILE")
+            with open(dest_folder + content_folder + "all/elite_d.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Elite D source", "elite_d", "ELITE D FILE", "ELITE E FILE")
+            with open(dest_folder + content_folder + "all/elite_e.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Elite E source", "elite_e", "ELITE E FILE", "ELITE F FILE")
+            with open(dest_folder + content_folder + "all/elite_f.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Elite F source", "elite_f", "ELITE F FILE", "ELITE G FILE")
+            with open(dest_folder + content_folder + "all/elite_g.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Elite G source", "elite_g", "ELITE G FILE", "ELITE H FILE")
+            with open(dest_folder + content_folder + "all/elite_h.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Elite H source", "elite_h", "ELITE H FILE", "ELITE I FILE")
+            with open(dest_folder + content_folder + "all/elite_i.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Elite I source", "elite_i", "ELITE I FILE", "ELITE J FILE")
+            with open(dest_folder + content_folder + "all/elite_j.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Elite J source", "elite_j", "ELITE J FILE", "ELITE K FILE")
+            with open(dest_folder + content_folder + "all/elite_k.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Elite K source", "elite_k", "ELITE K FILE", "ELITE SHIP BLUEPRINTS FILE")
+            with open(dest_folder + content_folder + "all/elite_ships.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Ship blueprints", "elite_ships", "ELITE SHIP BLUEPRINTS FILE", "")
+            with open(dest_folder + content_folder + "all/text_tokens.html", "w") as all_file:
+                output_large_source_code_page(source2, "Game data", "Text tokens", "text_tokens", "ELITE RECURSIVE TEXT TOKEN FILE", "ELITE EXTENDED TEXT TOKEN FILE")
+            with open(dest_folder + content_folder + "all/extended_text_tokens.html", "w") as all_file:
+                output_large_source_code_page(source2, "Game data", "Extended text tokens", "text_tokens", "ELITE EXTENDED TEXT TOKEN FILE", "")
+
+        if args.platform == "apple":
+            with open(dest_folder + content_folder + "all/workspaces.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Workspaces and configuration", "workspaces", "", "ELITE A FILE")
+            with open(dest_folder + content_folder + "all/elite_a.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite A source", "elite_a", "ELITE A FILE", "ELITE B FILE")
+            with open(dest_folder + content_folder + "all/elite_b.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite B source", "elite_b", "ELITE B FILE", "ELITE C FILE")
+            with open(dest_folder + content_folder + "all/elite_c.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite C source", "elite_c", "ELITE C FILE", "ELITE D FILE")
+            with open(dest_folder + content_folder + "all/elite_d.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite D source", "elite_d", "ELITE D FILE", "ELITE E FILE")
+            with open(dest_folder + content_folder + "all/elite_e.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite E source", "elite_e", "ELITE E FILE", "ELITE F FILE")
+            with open(dest_folder + content_folder + "all/elite_f.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite F source", "elite_f", "ELITE F FILE", "ELITE G FILE")
+            with open(dest_folder + content_folder + "all/elite_g.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite G source", "elite_g", "ELITE G FILE", "ELITE H FILE")
+            with open(dest_folder + content_folder + "all/elite_h.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Elite H source", "elite_h", "ELITE H FILE", "ELITE I FILE")
+            with open(dest_folder + content_folder + "all/elite_i.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Elite I source", "elite_i", "ELITE I FILE", "ELITE J FILE")
+            with open(dest_folder + content_folder + "all/elite_j.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Elite J source", "elite_j", "ELITE J FILE", "ELITE K FILE")
+            with open(dest_folder + content_folder + "all/elite_k.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Elite K source", "elite_k", "ELITE K FILE", "ELITE SHIP BLUEPRINTS FILE")
+            with open(dest_folder + content_folder + "all/elite_ships.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Ship blueprints", "elite_ships", "ELITE SHIP BLUEPRINTS FILE", "")
+            with open(dest_folder + content_folder + "all/text_tokens.html", "w") as all_file:
+                output_large_source_code_page(source2, "Game data", "Text tokens", "text_tokens", "ELITE RECURSIVE TEXT TOKEN FILE", "ELITE EXTENDED TEXT TOKEN FILE")
+            with open(dest_folder + content_folder + "all/extended_text_tokens.html", "w") as all_file:
+                output_large_source_code_page(source2, "Game data", "Extended text tokens", "text_tokens", "ELITE EXTENDED TEXT TOKEN FILE", "")
 
         if args.platform == "nes":
             with open(dest_folder + content_folder + "all/common.html", "w") as all_file:
