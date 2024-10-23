@@ -626,6 +626,7 @@ sites = [
         ],
         "replacements": [
             ('versions/apple/', ''),
+            ('versions\\apple\\', ''),
             ('_apple', ''),
             ('variant-apple', 'variant'),
             ('apple:', 'all:'),
