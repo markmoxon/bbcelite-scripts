@@ -71,6 +71,24 @@ if [[ "$platform" == "elite-a" || "$platform" == "stop" || -z "$platform" ]]; th
     sed -i "" "s/Saving file 'versions\/elite-a\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-a-source-code-bbc-micro/3-assembled-output/compile.txt
 fi
 
+if [[ "$platform" == "c64" || "$platform" == "stop" || -z "$platform" ]]; then
+    echo "Syncing to c64 repository"
+    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/c64/ $ELITE_CODE_REPOSITORIES/elite-source-code-commodore-64/
+    cp -R repos/c64/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-commodore-64/1-source-files/main-sources
+    cp -R repos/c64/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-commodore-64/2-build-files
+    cp repos/c64/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-commodore-64/Makefile
+    sed -i "" "s/Saving file 'versions\/c64\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-commodore-64/3-assembled-output/compile.txt
+fi
+
+if [[ "$platform" == "apple" || "$platform" == "stop" || -z "$platform" ]]; then
+    echo "Syncing to apple repository"
+    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/apple/ $ELITE_CODE_REPOSITORIES/elite-source-code-apple-ii/
+    cp -R repos/apple/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-apple-ii/1-source-files/main-sources
+    cp -R repos/apple/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-apple-ii/2-build-files
+    cp repos/apple/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-apple-ii/Makefile
+    sed -i "" "s/Saving file 'versions\/apple\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-apple-ii/3-assembled-output/compile.txt
+fi
+
 if [[ "$platform" == "nes" || "$platform" == "stop" || -z "$platform" ]]; then
     echo "Syncing to nes repository"
     rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/nes/ $ELITE_CODE_REPOSITORIES/elite-source-code-nes/

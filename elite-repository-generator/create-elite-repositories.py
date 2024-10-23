@@ -540,6 +540,100 @@ sites = [
     },
     {
         "source_folder": library_repository + "/",
+        "section_folder": "versions/c64/1-source-files/main-sources/",
+        "source_files": ["elite-firebird.asm", "elite-gma1.asm", "elite-gma2.asm", "elite-gma3.asm", "elite-loader.asm", "elite-data.asm", "elite-source.asm", "elite-readme.asm", "elite-checksum.asm"],
+        "do_not_expand_includes": ["elite-build-options.asm"],
+        "dest_folder": "repos/c64/1-source-files/",
+        "this_version": [
+            "_C64_VERSION"
+        ],
+        "replacements": [
+            ('SAVE "versions/c64/', 'SAVE "'),
+            ('INCBIN "versions/c64/', 'INCBIN "'),
+            ('INCLUDE "versions/c64/1-source-files/main-sources/elite-build-options.asm"', 'INCLUDE "1-source-files/main-sources/elite-build-options.asm"'),
+            ('PUTFILE "versions/c64/', 'PUTFILE "')
+        ],
+        "code_style": "6502"
+    },
+    {
+        "source_folder": library_repository + "/",
+        "section_folder": "versions/c64/2-build-files/",
+        "source_files": ["elite-checksum.py", "crc32.py"],
+        "do_not_expand_includes": ["elite-build-options.asm"],
+        "dest_folder": "repos/c64/2-build-files/",
+        "this_version": [
+            "_C64_VERSION"
+        ],
+        "replacements": [
+            ('open("versions/c64/', 'open("')
+        ]
+    },
+    {
+        "source_folder": library_repository + "/",
+        "section_folder": "versions/c64/",
+        "source_files": ["Makefile"],
+        "do_not_expand_includes": [],
+        "dest_folder": "repos/c64/",
+        "this_version": [
+            "_C64_VERSION"
+        ],
+        "replacements": [
+            ('versions/c64/', ''),
+            ('_c64', ''),
+            ('variant-c64', 'variant'),
+            ('c64:', 'all:'),
+            (':c64', ':all')
+        ]
+    },
+    {
+        "source_folder": library_repository + "/",
+        "section_folder": "versions/apple/1-source-files/main-sources/",
+        "source_files": ["elite-bcfs.asm", "elite-mover.asm", "elite-data.asm", "elite-source.asm", "elite-transfer.asm", "elite-readme.asm", "elite-checksum.asm"],
+        "do_not_expand_includes": ["elite-build-options.asm"],
+        "dest_folder": "repos/apple/1-source-files/",
+        "this_version": [
+            "_APPLE_VERSION"
+        ],
+        "replacements": [
+            ('SAVE "versions/apple/', 'SAVE "'),
+            ('INCBIN "versions/apple/', 'INCBIN "'),
+            ('INCLUDE "versions/apple/1-source-files/main-sources/elite-build-options.asm"', 'INCLUDE "1-source-files/main-sources/elite-build-options.asm"'),
+            ('PUTFILE "versions/apple/', 'PUTFILE "')
+        ],
+        "code_style": "6502"
+    },
+    {
+        "source_folder": library_repository + "/",
+        "section_folder": "versions/apple/2-build-files/",
+        "source_files": ["elite-checksum.py", "crc32.py"],
+        "do_not_expand_includes": ["elite-build-options.asm"],
+        "dest_folder": "repos/apple/2-build-files/",
+        "this_version": [
+            "_APPLE_VERSION"
+        ],
+        "replacements": [
+            ('open("versions/apple/', 'open("')
+        ]
+    },
+    {
+        "source_folder": library_repository + "/",
+        "section_folder": "versions/apple/",
+        "source_files": ["Makefile"],
+        "do_not_expand_includes": [],
+        "dest_folder": "repos/apple/",
+        "this_version": [
+            "_APPLE_VERSION"
+        ],
+        "replacements": [
+            ('versions/apple/', ''),
+            ('_apple', ''),
+            ('variant-apple', 'variant'),
+            ('apple:', 'all:'),
+            (':apple', ':all')
+        ]
+    },
+    {
+        "source_folder": library_repository + "/",
         "section_folder": "versions/nes/1-source-files/main-sources/",
         "source_files": ["elite-source-bank-0.asm", "elite-source-bank-1.asm", "elite-source-bank-2.asm", "elite-source-bank-3.asm", "elite-source-bank-4.asm", "elite-source-bank-5.asm", "elite-source-bank-6.asm", "elite-source-bank-7.asm", "elite-source-header.asm", "elite-source-common.asm"],
         "do_not_expand_includes": ["elite-build-options.asm", "elite-source-common.asm", "elite-source-bank-0.asm", "elite-source-bank-1.asm", "elite-source-bank-2.asm", "elite-source-bank-3.asm", "elite-source-bank-4.asm", "elite-source-bank-5.asm", "elite-source-bank-6.asm", "elite-source-bank-7.asm"],
@@ -1135,6 +1229,8 @@ create_folder("repos/6502sp")
 create_folder("repos/master")
 create_folder("repos/electron")
 create_folder("repos/elite-a")
+create_folder("repos/c64")
+create_folder("repos/apple")
 create_folder("repos/nes")
 
 create_folder("repos/cassette/1-source-files")
@@ -1143,6 +1239,8 @@ create_folder("repos/6502sp/1-source-files")
 create_folder("repos/master/1-source-files")
 create_folder("repos/electron/1-source-files")
 create_folder("repos/elite-a/1-source-files")
+create_folder("repos/c64/1-source-files")
+create_folder("repos/apple/1-source-files")
 create_folder("repos/nes/1-source-files")
 
 create_folder("repos/cassette/2-build-files")
@@ -1151,6 +1249,8 @@ create_folder("repos/6502sp/2-build-files")
 create_folder("repos/master/2-build-files")
 create_folder("repos/electron/2-build-files")
 create_folder("repos/elite-a/2-build-files")
+create_folder("repos/c64/2-build-files")
+create_folder("repos/apple/2-build-files")
 create_folder("repos/nes/2-build-files")
 
 print("Generating source files: ", end="", flush=True)
