@@ -541,7 +541,7 @@ sites = [
     {
         "source_folder": library_repository + "/",
         "section_folder": "versions/c64/1-source-files/main-sources/",
-        "source_files": ["elite-firebird.asm", "elite-gma1.asm", "elite-gma2.asm", "elite-gma3.asm", "elite-loader.asm", "elite-data.asm", "elite-source.asm", "elite-readme.asm", "elite-checksum.asm"],
+        "source_files": ["elite-firebird.asm", "elite-gma1.asm", "elite-gma2.asm", "elite-gma3.asm", "elite-loader.asm", "elite-data.asm", "elite-sprite.asm", "elite-source.asm", "elite-readme.asm", "elite-checksum.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
         "dest_folder": "repos/c64/1-source-files/",
         "this_version": [
