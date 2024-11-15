@@ -50,6 +50,7 @@ sites = [
             ('versions/cassette/', ''),
             ('_cassette', ''),
             ('b2-cassette', 'b2'),
+            ('uef-cassette', 'uef'),
             ('variant-cassette', 'variant'),
             ('cassette:', 'all:'),
             (':cassette', ':all')
@@ -257,6 +258,7 @@ sites = [
         "replacements": [
             ('versions/electron/', ''),
             ('_electron', ''),
+            ('uef-electron', 'uef'),
             ('variant-electron', 'variant'),
             ('electron:', 'all:'),
             (':electron', ':all')
