@@ -50,7 +50,8 @@ sites = [
             ('versions/cassette/', ''),
             ('_cassette', ''),
             ('b2-cassette', 'b2'),
-            ('uef-cassette', 'uef'),
+            ('PHONY:uef-cassette', 'PHONY:uef'),
+            ('uef-cassette: cassette', 'uef: all'),
             ('variant-cassette', 'variant'),
             ('cassette:', 'all:'),
             (':cassette', ':all')
@@ -258,7 +259,8 @@ sites = [
         "replacements": [
             ('versions/electron/', ''),
             ('_electron', ''),
-            ('uef-electron', 'uef'),
+            ('PHONY:uef-cassette', 'PHONY:uef'),
+            ('uef-electron: electron', 'uef: all'),
             ('variant-electron', 'variant'),
             ('electron:', 'all:'),
             (':electron', ':all')
