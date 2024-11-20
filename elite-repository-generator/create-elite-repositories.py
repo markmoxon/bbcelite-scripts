@@ -1219,7 +1219,7 @@ def move_lines_out_of_top(i, buffer_delete, buffer_add, before, output):
 
 
 def code_style_6502(line):
-    line = re.sub(r"&([0-9A-Fx]{1,4})\b", r"$\1", line)
+    line = re.sub(r"&([0-9A-Fx]+)\b", r"$\1", line)
     line = re.sub(r"^\\", ";", line)
     line = re.sub(r"^([^\\]+ )\\", r"\1;", line)
     line = re.sub(r"^([^\\]+'\\'[^\\]+ )\\", r"\1;", line)
