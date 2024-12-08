@@ -14,16 +14,18 @@ to generate the following source code repositories:
 
 * [BBC Micro (cassette) Elite source code](https://github.com/markmoxon/elite-source-code-bbc-micro-cassette)
 * [BBC Micro (disc) Elite source code](https://github.com/markmoxon/elite-source-code-bbc-micro-disc)
-* [6502 Second Processor Elite source code](https://github.com/markmoxon/elite-source-code-6502-second-processor)
-* [BBC Master Elite source code](https://github.com/markmoxon/elite-source-code-bbc-master)
 * [Acorn Electron Elite source code](https://github.com/markmoxon/elite-source-code-acorn-electron)
+* [6502 Second Processor Elite source code](https://github.com/markmoxon/elite-source-code-6502-second-processor)
+* [Commodore 64 Elite source code](https://github.com/markmoxon/elite-source-code-commodore-64)
+* [Apple II Elite source code](https://github.com/markmoxon/elite-source-code-apple-ii)
+* [BBC Master Elite source code](https://github.com/markmoxon/elite-source-code-bbc-master)
 * [NES Elite source code](https://github.com/markmoxon/elite-source-code-nes)
 * [Elite-A source code](https://github.com/markmoxon/elite-a-source-code-bbc-micro)
 
 and the following websites:
 
 * [Mark Moxon's Software Archaeology](https://www.bbcelite.com)
-* [Elite on the BBC Micro and NES](https://elite.bbcelite.com)
+* [Elite on the 6502](https://elite.bbcelite.com)
 * [Aviator on the BBC Micro](https://aviator.bbcelite.com)
 * [Revs on the BBC Micro](https://revs.bbcelite.com)
 * [Lander on the Acorn Archimedes](https://lander.bbcelite.com)
@@ -98,9 +100,11 @@ cd ../generated-repositories
 
 mkdir elite-source-code-bbc-micro-cassette
 mkdir elite-source-code-bbc-micro-disc
-mkdir elite-source-code-6502-second-processor
-mkdir elite-source-code-bbc-master
 mkdir elite-source-code-acorn-electron
+mkdir elite-source-code-6502-second-processor
+mkdir elite-source-code-commodore-64
+mkdir elite-source-code-apple-ii
+mkdir elite-source-code-bbc-master
 mkdir elite-source-code-nes
 mkdir elite-a-source-code-bbc-micro
 ```
@@ -167,9 +171,11 @@ Now let's generate the Elite source repositories in `generated-repositories`:
 
 * [elite-source-code-bbc-micro-cassette](https://github.com/markmoxon/elite-source-code-bbc-micro-cassette)
 * [elite-source-code-bbc-micro-disc](https://github.com/markmoxon/elite-source-code-bbc-micro-disc)
-* [elite-source-code-6502-second-processor](https://github.com/markmoxon/elite-source-code-6502-second-processor)
-* [elite-source-code-bbc-master](https://github.com/markmoxon/elite-source-code-bbc-master)
 * [elite-source-code-acorn-electron](https://github.com/markmoxon/elite-source-code-acorn-electron)
+* [elite-source-code-6502-second-processor](https://github.com/markmoxon/elite-source-code-6502-second-processor)
+* [elite-source-code-commodore-64](https://github.com/markmoxon/elite-source-code-commodore-64)
+* [elite-source-code-apple-ii](https://github.com/markmoxon/elite-source-code-apple-ii)
+* [elite-source-code-bbc-master](https://github.com/markmoxon/elite-source-code-bbc-master)
 * [elite-source-code-nes](https://github.com/markmoxon/elite-source-code-nes)
 * [elite-a-source-code-bbc-micro](https://github.com/markmoxon/elite-a-source-code-bbc-micro)
 

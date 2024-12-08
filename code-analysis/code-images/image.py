@@ -85,6 +85,14 @@ source_files = [
 ]
 generate_image(source_files, image_name)
 
+image_name = "c64.png"
+source_files = [
+    elite_repositories + "/elite-source-code-commodore-64/3-assembled-output/COMLOD.bin",
+    elite_repositories + "/elite-source-code-commodore-64/3-assembled-output/LOCODE.bin",
+    elite_repositories + "/elite-source-code-commodore-64/3-assembled-output/HICODE.bin"
+]
+generate_image(source_files, image_name)
+
 image_name = "master.png"
 source_files = [
     elite_repositories + "/elite-source-code-bbc-master/3-assembled-output/M128Elt.bin",

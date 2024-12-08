@@ -93,6 +93,26 @@ elif args.platform == "6502sp":
     re_comment_delimiter = r'\\'
     re_hex_prefix = r'&'
 
+elif args.platform == "c64":
+    source_folder = elite_repositories + "/elite-source-code-commodore-64/1-source-files/main-sources/"
+    elite_loader1 = source_folder + "elite-firebird.asm"
+    elite_loader2 = source_folder + "elite-gma1.asm"
+    elite_loader = source_folder + "elite-loader.asm"
+    elite_source = source_folder + "elite-source.asm"
+    elite_data = source_folder + "elite-data.asm"
+    elite_sprites = source_folder + "elite-sprites.asm"
+    dest_folder = "websites/elite/"
+    content_folder = "c64/"
+    explore_folder = "explore/"
+    platform_name_capitalised = "Commodore 64"
+    platform_name = "Commodore 64"
+    platform_short_name = "C64"
+    platform_id = "c64_"
+    platform_key = "c64"
+    comment_delimiter = ";"
+    re_comment_delimiter = r';'
+    re_hex_prefix = r'\$'
+
 elif args.platform == "master":
     source_folder = elite_repositories + "/elite-source-code-bbc-master/1-source-files/main-sources/"
     elite_loader = source_folder + "elite-loader.asm"
@@ -445,6 +465,7 @@ else:
     category_summary["Combat demo"] = "Scroll text and training for first-time players"
     category_summary["Controllers"] = "Routines for scanning both NES controllers"
     category_summary["Drawing sprites"] = "Drawing and hiding sprites"
+    category_summary["Sprites"] = "Sprites for Trumbles, laser sights and explosions"
     if args.platform == "nes":
         category_summary["Drawing the screen"] = "Drawing and configuring views and the NMI handler"
     elif args.platform == "electron":
@@ -455,16 +476,16 @@ else:
     category_summary["PPU"] = "Sending data to the Picture Processing Unit (PPU)"
 
 # Tag categories and summaries
-tag_categories_with_comments = ["Standard", "Enhanced", "Advanced", "Disc", "6502SP", "Master", "Electron", "Other"]
+tag_categories_with_comments = ["Standard", "Enhanced", "Advanced", "Disc", "Electron", "6502SP", "Master", "Other"]
 
 tag_title = {}
 tag_title["Standard"] = "Compare code for features of standard Elite"
 tag_title["Enhanced"] = "Compare code for features of enhanced Elite"
 tag_title["Advanced"] = "Compare code for features of advanced Elite"
 tag_title["Disc"] = "Compare code for features of BBC Micro disc Elite"
-tag_title["6502SP"] = "Compare code for features of 6502SP Elite"
-tag_title["Master"] = "Compare code for features of Master Elite"
-tag_title["Electron"] = "Compare code for features of Electron Elite"
+tag_title["6502SP"] = "Compare code for features of 6502 Second Processor Elite"
+tag_title["Master"] = "Compare code for features of BBC Master Elite"
+tag_title["Electron"] = "Compare code for features of Acorn Electron Elite"
 tag_title["Other"] = "Compare code in other interesting areas"
 
 tag_summary = {}
@@ -835,6 +856,15 @@ elif args.platform == "nes":
 \t\t\t\t\t\t<ul id="submenu_{3}all_source">
 \t\t\t\t\t\t\t<li class="menuItemHeader">Common code</li>
 '''
+elif args.platform == "c64":
+    html_indexes = '''
+\t\t\t\t\t<li class="menuItemHeader showForMobile">{2} source code by file</li>
+\t\t\t\t\t<li><a id="{3}sources_map_of_the_source_code" href="/{1}articles/map_of_the_source_code.html"><span class="menuTitle">Map of the source code</span> <span class="menuSummary">An overview of how the source code for Elite is structured</span></a></li>
+\t\t\t\t\t<li id="{3}all_source"><span class="menuTitle">Annotated original source files</span>
+\t\t\t\t\t\t<span class="menuSummary menuSummarySubmenu">The source files in their original structure</span>
+\t\t\t\t\t\t<ul id="submenu_{3}all_source">
+\t\t\t\t\t\t\t<li class="menuItemHeader">Disk loader</li>
+'''
 else:
     html_indexes = '''
 \t\t\t\t\t<li class="menuItemHeader showForMobile">{2} source code by file</li>
@@ -863,6 +893,12 @@ elif args.platform == "6502sp":
 \t\t\t\t\t\t\t<li><a id="{3}all_source_loader2" href="/{1}all/loader2.html"><span class="menuTitle">Loader 2 source</span> <span class="menuSummary">The rest of the loading screen and main game loader</span></a></li>
 '''
 
+elif args.platform == "c64":
+    html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loader1" href="/{1}all/loader1.html"><span class="menuTitle">Disk loader 1 source</span> <span class="menuSummary">BASIC bootstrap for auto-running the disk loader</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_loader2" href="/{1}all/loader2.html"><span class="menuTitle">Disk loader 2 source</span> <span class="menuSummary">Loads the game loader and game binaries</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_loader" href="/{1}all/loader.html"><span class="menuTitle">Game loader source</span> <span class="menuSummary">Loads and decrypts the game data</span></a></li>
+'''
+
 elif args.platform == "master":
     html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loader" href="/{1}all/loader.html"><span class="menuTitle">Loader source</span> <span class="menuSummary">The loading screen and setup for the main game</span></a></li>
 '''
@@ -888,6 +924,22 @@ if args.platform == "cassette" or args.platform == "electron" or args.platform =
 \t\t\t\t\t\t\t<li><a id="{3}all_source_elite_e" href="/{1}all/elite_e.html"><span class="menuTitle">Elite E source</span> <span class="menuSummary">Part 5 of the main game code</span></a></li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_elite_f" href="/{1}all/elite_f.html"><span class="menuTitle">Elite F source</span> <span class="menuSummary">Part 6 of the main game code</span></a></li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_elite_g" href="/{1}all/elite_g.html"><span class="menuTitle">Elite G source</span> <span class="menuSummary">Part 7 of the main game code</span></a></li>
+'''
+
+elif args.platform == "c64":
+    html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li class="menuItemHeader">Main game</li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_workspaces" href="/{1}all/workspaces.html"><span class="menuTitle">Workspaces and configuration</span> <span class="menuSummary">The main variable workspaces used in Elite</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_a" href="/{1}all/elite_a.html"><span class="menuTitle">Elite A source</span> <span class="menuSummary">Part 1 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_b" href="/{1}all/elite_b.html"><span class="menuTitle">Elite B source</span> <span class="menuSummary">Part 2 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_c" href="/{1}all/elite_c.html"><span class="menuTitle">Elite C source</span> <span class="menuSummary">Part 3 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_d" href="/{1}all/elite_d.html"><span class="menuTitle">Elite D source</span> <span class="menuSummary">Part 4 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_e" href="/{1}all/elite_e.html"><span class="menuTitle">Elite E source</span> <span class="menuSummary">Part 5 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_f" href="/{1}all/elite_f.html"><span class="menuTitle">Elite F source</span> <span class="menuSummary">Part 6 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_g" href="/{1}all/elite_g.html"><span class="menuTitle">Elite G source</span> <span class="menuSummary">Part 7 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_h" href="/{1}all/elite_h.html"><span class="menuTitle">Elite H source</span> <span class="menuSummary">Part 8 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_i" href="/{1}all/elite_i.html"><span class="menuTitle">Elite I source</span> <span class="menuSummary">Part 9 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_j" href="/{1}all/elite_j.html"><span class="menuTitle">Elite J source</span> <span class="menuSummary">Part 10 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_k" href="/{1}all/elite_k.html"><span class="menuTitle">Elite K source</span> <span class="menuSummary">Part 11 of the main game code</span></a></li>
 '''
 
 elif args.platform == "master":
@@ -1040,6 +1092,14 @@ elif args.platform == "6502sp":
 \t\t\t\t\t\t\t<li><a id="{3}all_source_bcfs" href="/{1}all/bcfs.html"><span class="menuTitle">Big Code File source</span> <span class="menuSummary">Concatenates the individual source code parts into one big game file</span></a></li>
 '''
 
+elif args.platform == "c64":
+    html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li class="menuItemHeader">Game data</li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_data" href="/{1}all/elite_data.html"><span class="menuTitle">Game data source</span> <span class="menuSummary">The game data file, which contains the ship blueprints and text tokens</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_ships" href="/{1}all/elite_ships.html"><span class="menuTitle">Ship blueprints</span> <span class="menuSummary">Data for the 33 different ship designs</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_text_tokens" href="/{1}all/text_tokens.html"><span class="menuTitle">Text tokens</span> <span class="menuSummary">Elite's tokenised game text</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_sprites" href="/{1}all/elite_sprites.html"><span class="menuTitle">Sprites</span> <span class="menuSummary">Sprite definitions for the laser sights, explosions and Trumbles</span></a></li>
+'''
+
 elif args.platform == "master":
     html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li class="menuItemHeader">Game data</li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_elite_data" href="/{1}all/elite_data.html"><span class="menuTitle">Game data source</span> <span class="menuSummary">The game data file, which contains the dashboard image, ship blueprints and text tokens</span></a></li>
@@ -1115,11 +1175,11 @@ html_indexes = html_indexes + '''\t\t\t\t\t\t</ul>
 '''
 
 html_compare_indexes = '''\t\t\t\t\t<li class="menuItemHeader">Versions and variants</li>
-\t\t\t\t\t<li><a id="compare_sources_versions_of_elite" href="/compare/versions_of_elite.html"><span class="menuTitle">Versions of Acornsoft Elite</span> <span class="menuSummary">From the humble BBC Micro cassette to the 6502 Second Processor and beyond</span></a></li>
-\t\t\t\t\t<li><a id="compare_sources_feature_comparison" href="/compare/feature_comparison.html"><span class="menuTitle">Feature comparison table</span> <span class="menuSummary">A comprehensive table comparing features of the different versions of Acornsoft Elite</span></a></li>
+\t\t\t\t\t<li><a id="compare_sources_versions_of_elite" href="/compare/versions_of_elite.html"><span class="menuTitle">Versions of Elite on the 6502</span> <span class="menuSummary">From the humble BBC Micro cassette to the 6502 Second Processor and beyond</span></a></li>
+\t\t\t\t\t<li><a id="compare_sources_feature_comparison" href="/compare/feature_comparison.html"><span class="menuTitle">Feature comparison table</span> <span class="menuSummary">A comprehensive table comparing features of the different versions of Elite on the 6502</span></a></li>
 \t\t\t\t\t<li><a id="compare_sources_releases" href="/compare/releases.html"><span class="menuTitle">Different variants of each version</span> <span class="menuSummary">Bug fixes, unofficial versions and extra platforms</span></a></li>
-\t\t\t\t\t<li class="menuItemHeader">Explore all the code variations</li>
-\t\t\t\t\t<li><a id="compare_sources_how_to_compare" href="/compare/how_to_compare.html"><span class="menuTitle">How to compare different versions of Elite</span> <span class="menuSummary">A quick guide to using this section to compare the different versions of Acornsoft Elite</span></a></li>
+\t\t\t\t\t<li class="menuItemHeader">Explore all the code variations in Acornsoft Elite</li>
+\t\t\t\t\t<li><a id="compare_sources_how_to_compare" href="/compare/how_to_compare.html"><span class="menuTitle">How to compare the Acornsoft versions of Elite</span> <span class="menuSummary">A quick guide to using this section to compare the different versions of Acornsoft Elite</span></a></li>
 \t\t\t\t\t<li id="compare_shared"><span class="menuTitle">Code comparisons of different versions</span> <span class="menuSummary menuSummarySubmenu">Code-level comparisons of features that occur in multiple versions of Acornsoft Elite</span>
 \t\t\t\t\t\t<ul id="submenu_compare_shared">
 \t\t\t\t\t\t\t<li class="menuItemHeader">Compare the main versions</li>
@@ -1193,6 +1253,19 @@ elif args.platform == "6502sp":
 <li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-text-tokens">Text tokens</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a>, <a href="#header-elite-h">Elite H</a>, <a href="#header-elite-i">Elite I</a>, <a href="#header-elite-j">Elite J</a> and <a href="#header-ship-blueprints">Ship blueprints</a></li>
 <li>The <a href="#header-i-o-processor">I/O processor</a> source, which runs on the BBC Micro and handles the screen, keyboard etc.</li>
 <li>The Big Code File, which concatenates the files produced by the above (but which doesn't contain any code, so there is no entry below)</li>
+</ul>
+
+<p>You can click on the links above to jump to the relevant part of the map.</p>
+
+'''
+elif args.platform == "c64":
+    html_large_source_code_page_links = '''<p>This page contains a map of all the routines, variables and macros in the Commodore 64 version of Elite. The source files are structured like this:</p>
+<ul>
+<li>The two disk loader sources, <a href="#header-disk-loader-1">Disk Loader 1</a> and <a href="#header-disk-loader-2">Disk Loader 2</a>, which boot the disk and load the game loader and game binaries</li>
+<li>The <a href="#header-game-loader">Game Loader</a>, which loads and decrypts the game data</li>
+<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a>, <a href="#header-elite-h">Elite H</a>, <a href="#header-elite-i">Elite I</a>, <a href="#header-elite-j">Elite J</a> and <a href="#header-elite-k">Elite K</a></li>
+<li>The <a href="#header-game-data">Game data</a> source, which contains game images, ship blueprints and text tokens</li>
+<li>The <a href="#header-sprites">Sprites</a> source, which contains sprite definitions for the laser sights, explosions and Trumbles</li>
 </ul>
 
 <p>You can click on the links above to jump to the relevant part of the map.</p>
@@ -1710,6 +1783,89 @@ elif args.platform == "6502sp":
         },
         "bcfs": {
             "prev": {"filename": content_folder + "all/i_o_processor.html", "name": "I/O processor source"},
+            "next": None
+        }
+    }
+elif args.platform == "c64":
+    next_prev_all = {
+        "map_of_the_source_code": {
+            "prev": {"filename": content_folder + "releases.html", "name": "Different variants of the Commodore 64 version"},
+            "next": {"filename": content_folder + "all/loader1.html", "name": "Disk Loader 1 source"}
+        },
+        "loader1": {
+            "prev": {"filename": content_folder + "articles/map_of_the_source_code.html", "name": "Map of the source code"},
+            "next": {"filename": content_folder + "all/loader2.html", "name": "Disk Loader 2 source"}
+        },
+        "loader2": {
+            "prev": {"filename": content_folder + "all/loader1.html", "name": "Disk Loader 1 source"},
+            "next": {"filename": content_folder + "all/loader.html", "name": "Game Loader source"}
+        },
+        "loader": {
+            "prev": {"filename": content_folder + "all/loader2.html", "name": "Disk Loader 2 source"},
+            "next": {"filename": content_folder + "all/workspaces.html", "name": "Workspaces and configuration"}
+        },
+        "workspaces": {
+            "prev": {"filename": content_folder + "all/loader.html", "name": "Game Loader source"},
+            "next": {"filename": content_folder + "all/elite_a.html", "name": "Elite A source"}
+        },
+        "elite_a": {
+            "prev": {"filename": content_folder + "all/workspaces.html", "name": "Workspaces and configuration"},
+            "next": {"filename": content_folder + "all/elite_b.html", "name": "Elite B source"}
+        },
+        "elite_b": {
+            "prev": {"filename": content_folder + "all/elite_a.html", "name": "Elite A source"},
+            "next": {"filename": content_folder + "all/elite_c.html", "name": "Elite C source"}
+        },
+        "elite_c": {
+            "prev": {"filename": content_folder + "all/elite_b.html", "name": "Elite B source"},
+            "next": {"filename": content_folder + "all/elite_d.html", "name": "Elite D source"}
+        },
+        "elite_d": {
+            "prev": {"filename": content_folder + "all/elite_c.html", "name": "Elite C source"},
+            "next": {"filename": content_folder + "all/elite_e.html", "name": "Elite E source"}
+        },
+        "elite_e": {
+            "prev": {"filename": content_folder + "all/elite_d.html", "name": "Elite D source"},
+            "next": {"filename": content_folder + "all/elite_f.html", "name": "Elite F source"}
+        },
+        "elite_f": {
+            "prev": {"filename": content_folder + "all/elite_e.html", "name": "Elite E source"},
+            "next": {"filename": content_folder + "all/elite_g.html", "name": "Elite G source"}
+        },
+        "elite_g": {
+            "prev": {"filename": content_folder + "all/elite_f.html", "name": "Elite F source"},
+            "next": {"filename": content_folder + "all/elite_h.html", "name": "Elite H source"}
+        },
+        "elite_h": {
+            "prev": {"filename": content_folder + "all/elite_g.html", "name": "Elite G source"},
+            "next": {"filename": content_folder + "all/elite_i.html", "name": "Elite I source"}
+        },
+        "elite_i": {
+            "prev": {"filename": content_folder + "all/elite_h.html", "name": "Elite H source"},
+            "next": {"filename": content_folder + "all/elite_j.html", "name": "Elite J source"}
+        },
+        "elite_j": {
+            "prev": {"filename": content_folder + "all/elite_i.html", "name": "Elite I source"},
+            "next": {"filename": content_folder + "all/elite_k.html", "name": "Elite K source"}
+        },
+        "elite_k": {
+            "prev": {"filename": content_folder + "all/elite_j.html", "name": "Elite J source"},
+            "next": {"filename": content_folder + "all/elite_data.html", "name": "Game data"}
+        },
+        "elite_data": {
+            "prev": {"filename": content_folder + "all/elite_k.html", "name": "Elite K source"},
+            "next": {"filename": content_folder + "all/elite_ships.html", "name": "Ship blueprints"}
+        },
+        "elite_ships": {
+            "prev": {"filename": content_folder + "all/elite_data.html", "name": "Game data"},
+            "next": {"filename": content_folder + "all/text_tokens.html", "name": "Text tokens"}
+        },
+        "text_tokens": {
+            "prev": {"filename": content_folder + "all/elite_ships.html", "name": "Ship blueprints"},
+            "next": {"filename": content_folder + "all/elite_sprites.html", "name": "Sprites"}
+        },
+        "elite_sprites": {
+            "prev": {"filename": content_folder + "all/text_tokens.html", "name": "Text tokens"},
             "next": None
         }
     }
@@ -2319,22 +2475,22 @@ next_prev_compare_categories = {
     },
     "disc": {
         "prev": {"filename": content_folder + "indexes/shared_code_advanced.html", "name": "Variations in advanced Elite"},
+        "next": {"filename": content_folder + "indexes/shared_code_electron.html", "name": "Variations in the Electron version"}
+    },
+    "electron": {
+        "prev": {"filename": content_folder + "indexes/shared_code_disc.html", "name": "Variations in disc Elite"},
         "next": {"filename": content_folder + "indexes/shared_code_6502sp.html", "name": "Variations in 6502SP Elite"}
     },
     "6502sp": {
-        "prev": {"filename": content_folder + "indexes/shared_code_disc.html", "name": "Variations in disc Elite"},
+        "prev": {"filename": content_folder + "indexes/shared_code_electron.html", "name": "Variations in the Electron version"},
         "next": {"filename": content_folder + "indexes/shared_code_master.html", "name": "Variations in the Master version"}
     },
     "master": {
         "prev": {"filename": content_folder + "indexes/shared_code_6502sp.html", "name": "Variations in 6502SP Elite"},
-        "next": {"filename": content_folder + "indexes/shared_code_electron.html", "name": "Variations in the Electron version"},
-    },
-    "electron": {
-        "prev": {"filename": content_folder + "indexes/shared_code_master.html", "name": "Variations in the Master version"},
         "next": {"filename": content_folder + "indexes/shared_code_other.html", "name": "Other interesting variations"}
     },
     "other": {
-        "prev": {"filename": content_folder + "indexes/shared_code_electron.html", "name": "Variations in the Electron version"},
+        "prev": {"filename": content_folder + "indexes/shared_code_master.html", "name": "Variations in the Master version"},
         "next": {"filename": content_folder + "indexes/shared_code_other_variations.html", "name": "Minor variations"}
     },
     "other_categories": {
@@ -2460,23 +2616,27 @@ next_prev_statistics = {
         "next": {"filename": "disc/articles/source_code_statistics.html", "name": "Statistics for the BBC Micro disc version"}
     },
     "disc": {
-        "prev": {"filename": "cassette/articles/source_code_statistics.html", "name": "Statistics for the BBC Micro cassette version"},
-        "next": {"filename": "6502sp/articles/source_code_statistics.html", "name": "Statistics for the 6502SP version"}
-    },
-    "6502sp": {
-        "prev": {"filename": "disc/articles/source_code_statistics.html", "name": "Statistics for the BBC Micro disc version"},
-        "next": {"filename": "master/articles/source_code_statistics.html", "name": "Statistics for the BBC Master version"}
-    },
-    "master": {
-        "prev": {"filename": "6502sp/articles/source_code_statistics.html", "name": "Statistics for the 6502SP version"},
+        "prev": {"filename": "cassette/articles/source_code_statistics.html", "name": "Statistics for the cassette version"},
         "next": {"filename": "electron/articles/source_code_statistics.html", "name": "Statistics for the Electron version"}
     },
     "electron": {
-        "prev": {"filename": "master/articles/source_code_statistics.html", "name": "Statistics for the BBC Master version"},
+        "prev": {"filename": "disc/articles/source_code_statistics.html", "name": "Statistics for the disc version"},
+        "next": {"filename": "6502sp/articles/source_code_statistics.html", "name": "Statistics for the 6502SP version"}
+    },
+    "6502sp": {
+        "prev": {"filename": "electron/articles/source_code_statistics.html", "name": "Statistics for the Electron version"},
+        "next": {"filename": "c64/articles/source_code_statistics.html", "name": "Statistics for the C64 version"}
+    },
+    "c64": {
+        "prev": {"filename": "6502sp/articles/source_code_statistics.html", "name": "Statistics for the 6502SP version"},
+        "next": {"filename": "master/articles/source_code_statistics.html", "name": "Statistics for the Master version"}
+    },
+    "master": {
+        "prev": {"filename": "c64/articles/source_code_statistics.html", "name": "Statistics for the Commodore 64 version"},
         "next": {"filename": "nes/articles/source_code_statistics.html", "name": "Statistics for the NES version"}
     },
     "nes": {
-        "prev": {"filename": "electron/articles/source_code_statistics.html", "name": "Statistics for the Electron version"},
+        "prev": {"filename": "master/articles/source_code_statistics.html", "name": "Statistics for the Master version"},
         "next": {"filename": "elite-a/articles/source_code_statistics.html", "name": "Statistics for Elite-A"}
     },
     "elite-a": {
@@ -3381,7 +3541,7 @@ sites_to_compare = [
     {
         "source_folder": library_repository + "/",
         "section_folder": "versions/disc/1-source-files/main-sources/",
-        "source_files": ["elite-text-tokens.asm", "elite-missile.asm", "elite-loader1.asm", "elite-loader2.asm", "elite-loader3.asm", "elite-loader-sideways-ram.asm", "elite-source-flight.asm", "elite-ships-a.asm", "elite-ships-b.asm", "elite-ships-c.asm", "elite-ships-d.asm", "elite-ships-e.asm", "elite-ships-f.asm", "elite-ships-g.asm", "elite-ships-h.asm", "elite-ships-i.asm", "elite-ships-j.asm", "elite-ships-k.asm", "elite-ships-l.asm", "elite-ships-m.asm", "elite-ships-n.asm", "elite-ships-o.asm", "elite-ships-p.asm"],
+        "source_files": ["elite-text-tokens.asm", "elite-missile.asm", "elite-loader1.asm", "elite-loader2.asm", "elite-loader3.asm", "elite-source-flight.asm", "elite-ships-a.asm", "elite-ships-b.asm", "elite-ships-c.asm", "elite-ships-d.asm", "elite-ships-e.asm", "elite-ships-f.asm", "elite-ships-g.asm", "elite-ships-h.asm", "elite-ships-i.asm", "elite-ships-j.asm", "elite-ships-k.asm", "elite-ships-l.asm", "elite-ships-m.asm", "elite-ships-n.asm", "elite-ships-o.asm", "elite-ships-p.asm"],
         "do_not_expand_all_includes": ["elite-header.h.asm"],
         "dest_folder": content_folder + "disc/",
         "this_version": [
@@ -4984,6 +5144,9 @@ def extract_popup_data(source, stage, source_file, source_name):
             elif line.endswith("ELITE J FILE\n"):
                 source_file = "elite_j"
                 source_name = "Elite J"
+            elif line.endswith("ELITE K FILE\n"):
+                source_file = "elite_k"
+                source_name = "Elite K"
             elif line.endswith("ELITE SHIP BLUEPRINTS FILE\n"):
                 source_file = "elite_ships"
                 source_name = "Ship blueprints"
@@ -5346,7 +5509,7 @@ def large_source_code_page_contents(source, stage, name, source_file_name, start
             all_file.write(line)
 
         if configuration_variable_extra_data_html and re_line_with_comment.search(line) and (i == len(source) - 1 or (i < len(source) - 1 and re_empty_line.match(source[i + 1]))):
-            extra_indent = ' ' * (line.find('\\') - html_workspace_reference_link.find('\\'))
+            extra_indent = ' ' * (line.find(comment_delimiter) - html_workspace_reference_link.find(comment_delimiter))
             all_file.write(html_workspace_reference_start.format(extra_indent) + configuration_variable_extra_data_html + html_workspace_reference_end)
             configuration_variable_extra_data_html = ""
 
@@ -5580,7 +5743,7 @@ def build_individual_code_page(source, name, type, category, summary, stage):
 
 
 def get_compare_url(platform_name, stage_name, routine_name):
-    if platform_name == "elite-a" or args.platform == "nes" or args.platform == "aviator" or args.platform == "lander" or args.platform == "revs":
+    if platform_name == "elite-a" or args.platform == "c64" or args.platform == "nes" or args.platform == "aviator" or args.platform == "lander" or args.platform == "revs":
         return ""
 
     if platform_name == "disc":
@@ -7350,6 +7513,21 @@ if args.platform != "compare":
             source4 = file.readlines()
         source = source1a + source1b + source2 + source3 + source4
 
+    elif args.platform == "c64":
+        with open(elite_loader1, "r") as file:
+            source1a = file.readlines()
+        with open(elite_loader2, "r") as file:
+            source1b = file.readlines()
+        with open(elite_loader, "r") as file:
+            source2 = file.readlines()
+        with open(elite_source, "r") as file:
+            source3 = file.readlines()
+        with open(elite_data, "r") as file:
+            source4 = file.readlines()
+        with open(elite_sprites, "r") as file:
+            source5 = file.readlines()
+        source = source1a + source1b + source2 + source3 + source4 + source5
+
     elif args.platform == "master":
         with open(elite_loader, "r") as file:
             source1 = file.readlines()
@@ -7519,6 +7697,14 @@ if args.platform != "compare":
         extract_popup_data(source3, "Big Code file", "bcfs", "Big Code file")
         extract_popup_data(source4, "I/O processor", "i_o_processor", "I/O processor")
 
+    elif args.platform == "c64":
+        extract_popup_data(source1a, "Disk Loader 1", "loader1", "Disk Loader 1")
+        extract_popup_data(source1b, "Disk Loader 2", "loader2", "Disk Loader 2")
+        extract_popup_data(source2, "Game Loader", "loader", "Game Loader")
+        extract_popup_data(source3, "", "workspaces", "Workspaces")
+        extract_popup_data(source4, "Game data", "elite_data", "Game data")
+        extract_popup_data(source5, "Sprites", "elite_sprites", "Sprites")
+
     elif args.platform == "master":
         extract_popup_data(source1, "Loader", "loader", "Loader")
         extract_popup_data(source2, "", "workspaces", "Workspaces")
@@ -7551,7 +7737,7 @@ if args.platform != "compare":
         extract_popup_data(source_ships_r, "Ship blueprints R", "elite_ships_r", "Ship blueprints R")
         extract_popup_data(source_ships_s, "Ship blueprints S", "elite_ships_s", "Ship blueprints S")
         extract_popup_data(source_ships_t, "Ship blueprints T", "elite_ships_t", "Ship blueprints T")
-        extract_popup_data(source_ships_u, "Ship blueprints U", "elite_ships_y", "Ship blueprints U")
+        extract_popup_data(source_ships_u, "Ship blueprints U", "elite_ships_u", "Ship blueprints U")
         extract_popup_data(source_ships_v, "Ship blueprints V", "elite_ships_v", "Ship blueprints V")
         extract_popup_data(source_ships_w, "Ship blueprints W", "elite_ships_w", "Ship blueprints W")
         extract_popup_data(source_io, "I/O processor", "i_o_processor", "I/O processor")
@@ -7635,6 +7821,14 @@ if args.platform != "compare":
         output_individual_code_pages(source2, "")
         output_individual_code_pages(source3, "Big Code file")
         output_individual_code_pages(source4, "I/O processor")
+
+    elif args.platform == "c64":
+        output_individual_code_pages(source1a, "Disk Loader 1")
+        output_individual_code_pages(source1b, "Disk Loader 2")
+        output_individual_code_pages(source2, "Game Loader")
+        output_individual_code_pages(source3, "")
+        output_individual_code_pages(source4, "Game data")
+        output_individual_code_pages(source5, "Sprites")
 
     elif args.platform == "master":
         output_individual_code_pages(source1, "Loader")
@@ -7740,6 +7934,13 @@ if args.platform != "compare":
                 output_large_source_code_page(source1a, "Loader 1", "Loader 1 source", "loader1", "", "")
             with open(dest_folder + content_folder + "all/loader2.html", "w") as all_file:
                 output_large_source_code_page(source1b, "Loader 2", "Loader 2 source", "loader2", "", "")
+        elif args.platform == "c64":
+            with open(dest_folder + content_folder + "all/loader1.html", "w") as all_file:
+                output_large_source_code_page(source1a, "Disk Loader 1", "Disk Loader 1 source", "loader1", "", "")
+            with open(dest_folder + content_folder + "all/loader2.html", "w") as all_file:
+                output_large_source_code_page(source1b, "Disk Loader 2", "Disk Loader 2 source", "loader2", "", "")
+            with open(dest_folder + content_folder + "all/loader.html", "w") as all_file:
+                output_large_source_code_page(source2, "Game Loader", "Game Loader source", "loader", "", "")
         elif args.platform == "elite-a":
             with open(dest_folder + content_folder + "all/loader.html", "w") as all_file:
                 output_large_source_code_page(source1, "Loader", "Loader source", "loader", "", "")
@@ -7896,6 +8097,40 @@ if args.platform != "compare":
         if args.platform == "6502sp":
             with open(dest_folder + content_folder + "all/i_o_processor.html", "w") as all_file:
                 output_large_source_code_page(source4, "I/O processor", "I/O processor source", "i_o_processor", "", "")
+
+        if args.platform == "c64":
+            with open(dest_folder + content_folder + "all/workspaces.html", "w") as all_file:
+                output_large_source_code_page(source3, "", "Workspaces and configuration", "workspaces", "", "ELITE A FILE")
+            with open(dest_folder + content_folder + "all/elite_a.html", "w") as all_file:
+                output_large_source_code_page(source3, "", "Elite A source", "elite_a", "ELITE A FILE", "ELITE B FILE")
+            with open(dest_folder + content_folder + "all/elite_b.html", "w") as all_file:
+                output_large_source_code_page(source3, "", "Elite B source", "elite_b", "ELITE B FILE", "ELITE C FILE")
+            with open(dest_folder + content_folder + "all/elite_c.html", "w") as all_file:
+                output_large_source_code_page(source3, "", "Elite C source", "elite_c", "ELITE C FILE", "ELITE D FILE")
+            with open(dest_folder + content_folder + "all/elite_d.html", "w") as all_file:
+                output_large_source_code_page(source3, "", "Elite D source", "elite_d", "ELITE D FILE", "ELITE E FILE")
+            with open(dest_folder + content_folder + "all/elite_e.html", "w") as all_file:
+                output_large_source_code_page(source3, "", "Elite E source", "elite_e", "ELITE E FILE", "ELITE F FILE")
+            with open(dest_folder + content_folder + "all/elite_f.html", "w") as all_file:
+                output_large_source_code_page(source3, "", "Elite F source", "elite_f", "ELITE F FILE", "ELITE G FILE")
+            with open(dest_folder + content_folder + "all/elite_g.html", "w") as all_file:
+                output_large_source_code_page(source3, "", "Elite G source", "elite_g", "ELITE G FILE", "ELITE H FILE")
+            with open(dest_folder + content_folder + "all/elite_h.html", "w") as all_file:
+                output_large_source_code_page(source3, "", "Elite H source", "elite_h", "ELITE H FILE", "ELITE I FILE")
+            with open(dest_folder + content_folder + "all/elite_i.html", "w") as all_file:
+                output_large_source_code_page(source3, "", "Elite I source", "elite_i", "ELITE I FILE", "ELITE J FILE")
+            with open(dest_folder + content_folder + "all/elite_j.html", "w") as all_file:
+                output_large_source_code_page(source3, "", "Elite J source", "elite_j", "ELITE J FILE", "ELITE K FILE")
+            with open(dest_folder + content_folder + "all/elite_k.html", "w") as all_file:
+                output_large_source_code_page(source3, "", "Elite K source", "elite_k", "ELITE K FILE", "")
+            with open(dest_folder + content_folder + "all/elite_data.html", "w") as all_file:
+                output_large_source_code_page(source4, "Game data", "Game data", "elite_data", "", "ELITE SHIP BLUEPRINTS FILE")
+            with open(dest_folder + content_folder + "all/elite_ships.html", "w") as all_file:
+                output_large_source_code_page(source4, "Game data", "Ship blueprints", "elite_ships", "ELITE SHIP BLUEPRINTS FILE", "ELITE RECURSIVE TEXT TOKEN FILE")
+            with open(dest_folder + content_folder + "all/text_tokens.html", "w") as all_file:
+                output_large_source_code_page(source4, "Game data", "Text tokens", "text_tokens", "ELITE RECURSIVE TEXT TOKEN FILE", "")
+            with open(dest_folder + content_folder + "all/elite_sprites.html", "w") as all_file:
+                output_large_source_code_page(source5, "Sprites", "Sprites", "elite_sprites", "ELITE SPRITES", "")
 
         if args.platform == "master":
             with open(dest_folder + content_folder + "all/workspaces.html", "w") as all_file:

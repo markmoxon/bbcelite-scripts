@@ -140,6 +140,11 @@ if [[ "$platform" == "elite-a" || -z "$platform" ]]; then
     python3 create-disassembly-websites.py elite-a
 fi
 
+if [[ "$platform" == "c64" || -z "$platform" ]]; then
+    echo "Generating c64 website"
+    python3 create-disassembly-websites.py c64
+fi
+
 if [[ "$platform" == "nes" || -z "$platform" ]]; then
     echo "Generating nes website"
     python3 create-disassembly-websites.py nes
@@ -203,6 +208,13 @@ if [[ -z "$platform" ]]; then
     rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/elite/compare/ $ELITE_WEBSITE_REPOSITORY/compare/
     echo "Syncing compare to website"
     rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/elite/compare/ $ELITE_WEBSITE/compare/
+fi
+
+if [[ "$platform" == "c64" || -z "$platform" ]]; then
+    echo "Syncing c64 to website repository"
+    rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/elite/c64/ $ELITE_WEBSITE_REPOSITORY/c64/
+    echo "Syncing c64 to website"
+    rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/elite/c64/ $ELITE_WEBSITE/c64/
 fi
 
 if [[ "$platform" == "nes" || -z "$platform" ]]; then
