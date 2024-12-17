@@ -3114,6 +3114,10 @@ else:
             "name": "Bresenham's line algorithm"
         },
         {
+            "filename": "deep_dives/building_commodore_64_elite_from_the_source_disk.html",
+            "name": "Building Commodore 64 Elite from the source disk"
+        },
+        {
             "filename": "deep_dives/elite-a_buying_and_flying_ships.html",
             "name": "Buying and flying ships in Elite-A"
         },
@@ -3126,12 +3130,20 @@ else:
             "name": "Calculating vertex coordinates"
         },
         {
+            "filename": "deep_dives/colouring_the_bitmap_using_screen_and_colour_ram.html",
+            "name": "Colouring the bitmap using screen and colour RAM"
+        },
+        {
             "filename": "deep_dives/combat_rank.html",
             "name": "Combat rank"
         },
         {
             "filename": "deep_dives/commander_save_files.html",
             "name": "Commander save files"
+        },
+        {
+            "filename": "deep_dives/the_elite_memory_map_commodore_64.html",
+            "name": "Commodore 64 Elite memory map"
         },
         {
             "filename": "deep_dives/comparing_nes_elite_with_the_other_versions.html",
@@ -3152,6 +3164,10 @@ else:
         {
             "filename": "deep_dives/elite-a_delta_14b_joystick_support.html",
             "name": "Delta 14B joystick support"
+        },
+        {
+            "filename": "deep_dives/developing_commodore_64_elite_on_a_bbc_micro.html",
+            "name": "Developing Commodore 64 Elite on a BBC Micro"
         },
         {
             "filename": "deep_dives/displaying_two-layer_images.html",
@@ -3346,6 +3362,10 @@ else:
             "name": "Multiplication and division using logarithms"
         },
         {
+            "filename": "deep_dives/music_in_commodore_64_elite.html",
+            "name": "Music in Commodore 64 Elite"
+        },
+        {
             "filename": "deep_dives/music_in_nes_elite.html",
             "name": "Music in NES Elite"
         },
@@ -3426,6 +3446,10 @@ else:
             "name": "The sine, cosine and arctan tables"
         },
         {
+            "filename": "deep_dives/sound_effects_in_commodore_64_elite.html",
+            "name": "Sound effects in Commodore 64 Elite"
+        },
+        {
             "filename": "deep_dives/sound_effects_in_nes_elite.html",
             "name": "Sound effects in NES Elite"
         },
@@ -3442,6 +3466,10 @@ else:
             "name": "The split-screen mode in BBC Micro Elite"
         },
         {
+            "filename": "deep_dives/the_split-screen_mode_commodore_64.html",
+            "name": "The split-screen mode in Commodore 64 Elite"
+        },
+        {
             "filename": "deep_dives/the_split-screen_mode_nes.html",
             "name": "The split-screen mode in NES Elite"
         },
@@ -3454,6 +3482,10 @@ else:
             "name": "Splitting the main loop in the NES version"
         },
         {
+            "filename": "deep_dives/sprite_usage_in_commodore_64_elite.html",
+            "name": "Sprite usage in Commodore 64 Elite"
+        },
+        {
             "filename": "deep_dives/sprite_usage_in_nes_elite.html",
             "name": "Sprite usage in NES Elite"
         },
@@ -3464,6 +3496,10 @@ else:
         {
             "filename": "deep_dives/stardust_in_the_side_views.html",
             "name": "Stardust in the side views"
+        },
+        {
+            "filename": "deep_dives/reading_the_commodore_64_keyboard_matrix.html",
+            "name": "Reading the Commodore 64 keyboard matrix"
         },
         {
             "filename": "deep_dives/rotating_the_universe.html",
