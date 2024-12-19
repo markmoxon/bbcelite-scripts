@@ -3130,8 +3130,8 @@ else:
             "name": "Calculating vertex coordinates"
         },
         {
-            "filename": "deep_dives/colouring_the_bitmap_using_screen_and_colour_ram.html",
-            "name": "Colouring the bitmap using screen and colour RAM"
+            "filename": "deep_dives/colouring_the_commodore_64_bitmap_screen.html",
+            "name": "Colouring the Commodore 64 bitmap screen"
         },
         {
             "filename": "deep_dives/combat_rank.html",
