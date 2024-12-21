@@ -3214,6 +3214,10 @@ else:
             "name": "Drawing monochrome pixels on the BBC Micro"
         },
         {
+            "filename": "deep_dives/drawing_pixels_in_the_commodore_64_version.html",
+            "name": "Drawing pixels in the Commodore 64 version"
+        },
+        {
             "filename": "deep_dives/drawing_pixels_in_the_electron_version.html",
             "name": "Drawing pixels in the Electron version"
         },
