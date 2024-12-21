@@ -3187,7 +3187,7 @@ else:
         },
         {
             "filename": "deep_dives/drawing_colour_pixels_in_mode_5.html",
-            "name": "Drawing colour pixels in mode 5"
+            "name": "Drawing colour pixels on the BBC Micro"
         },
         {
             "filename": "deep_dives/drawing_craters.html",
@@ -3211,7 +3211,7 @@ else:
         },
         {
             "filename": "deep_dives/drawing_monochrome_pixels_in_mode_4.html",
-            "name": "Drawing monochrome pixels in mode 4"
+            "name": "Drawing monochrome pixels on the BBC Micro"
         },
         {
             "filename": "deep_dives/drawing_pixels_in_the_electron_version.html",
@@ -3427,7 +3427,7 @@ else:
         },
         {
             "filename": "deep_dives/ship_blueprints_in_the_disc_version.html",
-            "name": "Ship blueprints in the disc version"
+            "name": "Ship blueprints in the BBC Micro disc version"
         },
         {
             "filename": "deep_dives/elite-a_ship_blueprints.html",
