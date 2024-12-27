@@ -7463,12 +7463,11 @@ if not os.path.isdir("debug"):
 
 create_folder("")
 create_folder(content_folder)
+create_folder("templates_local")
 
 if args.platform != "compare":
 
     # Create folders
-    create_folder("templates_local")
-
     create_folder(content_folder + "all")
     create_folder(content_folder + "articles")
     create_folder(content_folder + "indexes")

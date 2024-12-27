@@ -105,10 +105,15 @@ fi
 
 # Generate websites code and sync to dev sites and staging repositories
 
-echo "Clearing down website folder"
-
 cd $BBCELITE_SCRIPTS/disassembly-website-generator
-rm -fr websites/elite
+
+if [[ "$platform" == "compare" ||  -z "$platform" ]]; then
+    echo "Clearing down compare folder"
+    rm -fr websites/elite/compare
+else
+    echo "Clearing down website folder"
+    rm -fr websites/elite
+fi
 
 if [[ "$platform" == "cassette" || -z "$platform" ]]; then
     echo "Generating cassette website"
@@ -150,7 +155,7 @@ if [[ "$platform" == "nes" || -z "$platform" ]]; then
     python3 create-disassembly-websites.py nes
 fi
 
-if [[ -z "$platform" ]]; then
+if [[ "$platform" == "compare" ||  -z "$platform" ]]; then
     echo "Generating compare website"
     python3 create-disassembly-websites.py compare
 fi
@@ -203,7 +208,7 @@ if [[ "$platform" == "elite-a" || -z "$platform" ]]; then
     rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/elite/elite-a/ $ELITE_WEBSITE/elite-a/
 fi
 
-if [[ -z "$platform" ]]; then
+if [[ "$platform" == "compare" || -z "$platform" ]]; then
     echo "Syncing compare to website repository"
     rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/elite/compare/ $ELITE_WEBSITE_REPOSITORY/compare/
     echo "Syncing compare to website"
