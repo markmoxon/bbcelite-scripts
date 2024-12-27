@@ -7370,10 +7370,6 @@ def fix_code_link(url_stage, name, platform):
     return ""
 
 
-def get_code_page_url():
-    pass
-
-
 def char_range(c1, c2):
     for c in range(ord(c1), ord(c2) + 1):
         yield chr(c)
