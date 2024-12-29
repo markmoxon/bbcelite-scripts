@@ -3150,6 +3150,10 @@ else:
             "name": "Comparing NES Elite with the other versions"
         },
         {
+            "filename": "deep_dives/comparing_ship_specifications.html",
+            "name": "Comparing ship specifications"
+        },
+        {
             "filename": "deep_dives/the_competition_code.html",
             "name": "The competition code"
         },
