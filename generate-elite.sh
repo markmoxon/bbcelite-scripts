@@ -107,7 +107,7 @@ fi
 
 cd $BBCELITE_SCRIPTS/disassembly-website-generator
 
-if [[ "$platform" == "compare" ||  -z "$platform" ]]; then
+if [[ "$platform" == "compare" ]]; then
     echo "Clearing down compare folder"
     rm -fr websites/elite/compare
 else
