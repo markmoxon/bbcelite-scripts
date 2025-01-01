@@ -3481,6 +3481,10 @@ else:
             "name": "Secrets of the Executive version"
         },
         {
+            "filename": "deep_dives/a_sense_of_scale.html",
+            "name": "A sense of scale"
+        },
+        {
             "filename": "deep_dives/shift-and-add_multiplication.html",
             "name": "Shift-and-add multiplication"
         },
