@@ -1485,10 +1485,65 @@ html_shared_other_variations_intro = '''<div class="codeBlockWrapper"><div class
 \t<table class="spacedTableBorder codeSummary middle"><tbody>
 \t\t<tr class="codeSummaryHeader"><th class="codeSummaryLabel">Name</th>'''
 
-if args.platform == "cassette" or args.platform == "electron":
+if args.platform == "cassette":
     next_prev_all = {
         "map_of_the_source_code": {
             "prev": {"filename": content_folder + "releases.html", "name": "Different variants of the BBC Micro cassette version"},
+            "next": {"filename": content_folder + "all/loader.html", "name": "Loader source"}
+        },
+        "loader": {
+            "prev": {"filename": content_folder + "articles/map_of_the_source_code.html", "name": "Map of the source code"},
+            "next": {"filename": content_folder + "all/workspaces.html", "name": "Workspaces and configuration"}
+        },
+        "workspaces": {
+            "prev": {"filename": content_folder + "all/loader.html", "name": "Loader source"},
+            "next": {"filename": content_folder + "all/text_tokens.html", "name": "Text tokens"}
+        },
+        "text_tokens": {
+            "prev": {"filename": content_folder + "all/workspaces.html", "name": "Workspaces and configuration"},
+            "next": {"filename": content_folder + "all/elite_a.html", "name": "Elite A source"}
+        },
+        "elite_a": {
+            "prev": {"filename": content_folder + "all/text_tokens.html", "name": "Text tokens"},
+            "next": {"filename": content_folder + "all/elite_b.html", "name": "Elite B source"}
+        },
+        "elite_b": {
+            "prev": {"filename": content_folder + "all/elite_a.html", "name": "Elite A source"},
+            "next": {"filename": content_folder + "all/elite_c.html", "name": "Elite C source"}
+        },
+        "elite_c": {
+            "prev": {"filename": content_folder + "all/elite_b.html", "name": "Elite B source"},
+            "next": {"filename": content_folder + "all/elite_d.html", "name": "Elite D source"}
+        },
+        "elite_d": {
+            "prev": {"filename": content_folder + "all/elite_c.html", "name": "Elite C source"},
+            "next": {"filename": content_folder + "all/elite_e.html", "name": "Elite E source"}
+        },
+        "elite_e": {
+            "prev": {"filename": content_folder + "all/elite_d.html", "name": "Elite D source"},
+            "next": {"filename": content_folder + "all/elite_f.html", "name": "Elite F source"}
+        },
+        "elite_f": {
+            "prev": {"filename": content_folder + "all/elite_e.html", "name": "Elite E source"},
+            "next": {"filename": content_folder + "all/elite_g.html", "name": "Elite G source"}
+        },
+        "elite_g": {
+            "prev": {"filename": content_folder + "all/elite_f.html", "name": "Elite F source"},
+            "next": {"filename": content_folder + "all/elite_ships.html", "name": "Ship blueprints"}
+        },
+        "elite_ships": {
+            "prev": {"filename": content_folder + "all/elite_g.html", "name": "Elite G source"},
+            "next": {"filename": content_folder + "all/bcfs.html", "name": "Big Code File source"}
+        },
+        "bcfs": {
+            "prev": {"filename": content_folder + "all/elite_ships.html", "name": "Ship blueprints"},
+            "next": None
+        }
+    }
+elif args.platform == "electron":
+    next_prev_all = {
+        "map_of_the_source_code": {
+            "prev": {"filename": content_folder + "releases.html", "name": "Different variants of the Acorn Electron version"},
             "next": {"filename": content_folder + "all/loader.html", "name": "Loader source"}
         },
         "loader": {
