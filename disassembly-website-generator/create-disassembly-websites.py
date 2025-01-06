@@ -3565,6 +3565,10 @@ else:
             "name": "Stardust in the side views"
         },
         {
+            "filename": "deep_dives/docked_and_flight_code.html",
+            "name": "Swapping between the docked and flight code"
+        },
+        {
             "filename": "deep_dives/reading_the_commodore_64_keyboard_matrix.html",
             "name": "Reading the Commodore 64 keyboard matrix"
         },
