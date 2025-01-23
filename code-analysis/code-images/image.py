@@ -93,6 +93,15 @@ source_files = [
 ]
 generate_image(source_files, image_name)
 
+image_name = "apple.png"
+source_files = [
+    elite_repositories + "/elite-source-code-apple-ii/3-assembled-output/MOVER.bin",
+    elite_repositories + "/elite-source-code-apple-ii/3-assembled-output/DATA.bin",
+    elite_repositories + "/elite-source-code-apple-ii/3-assembled-output/CODE1.bin",
+    elite_repositories + "/elite-source-code-apple-ii/3-assembled-output/CODE2.bin"
+]
+generate_image(source_files, image_name)
+
 image_name = "master.png"
 source_files = [
     elite_repositories + "/elite-source-code-bbc-master/3-assembled-output/M128Elt.bin",
