@@ -592,7 +592,7 @@ sites = [
     {
         "source_folder": library_repository + "/",
         "section_folder": "versions/apple/1-source-files/main-sources/",
-        "source_files": ["elite-bcfs.asm", "elite-mover.asm", "elite-data.asm", "elite-source.asm", "elite-transfer.asm", "elite-readme.asm", "elite-checksum.asm"],
+        "source_files": ["elite-bcfs.asm", "elite-mover.asm", "elite-loader.asm", "elite-data.asm", "elite-source.asm", "elite-transfer.asm", "elite-readme.asm", "elite-checksum.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
         "dest_folder": "repos/apple/1-source-files/",
         "this_version": [
