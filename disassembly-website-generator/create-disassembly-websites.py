@@ -113,6 +113,25 @@ elif args.platform == "c64":
     re_comment_delimiter = r';'
     re_hex_prefix = r'\$'
 
+elif args.platform == "apple":
+    source_folder = elite_repositories + "/elite-source-code-apple-ii/1-source-files/main-sources/"
+    elite_loader = source_folder + "elite-loader.asm"
+    elite_source = source_folder + "elite-source.asm"
+    elite_data = source_folder + "elite-data.asm"
+    elite_bcfs = source_folder + "elite-bcfs.asm"
+    elite_transfer = source_folder + "elite-transfer.asm"
+    dest_folder = "websites/elite/"
+    content_folder = "apple/"
+    explore_folder = "explore/"
+    platform_name_capitalised = "Apple II"
+    platform_name = "Apple II"
+    platform_short_name = "Apple"
+    platform_id = "apple_"
+    platform_key = "apple"
+    comment_delimiter = ";"
+    re_comment_delimiter = r';'
+    re_hex_prefix = r'\$'
+
 elif args.platform == "master":
     source_folder = elite_repositories + "/elite-source-code-bbc-master/1-source-files/main-sources/"
     elite_loader = source_folder + "elite-loader.asm"
@@ -899,7 +918,7 @@ elif args.platform == "c64":
 \t\t\t\t\t\t\t<li><a id="{3}all_source_loader" href="/{1}all/loader.html"><span class="menuTitle">Game loader source</span> <span class="menuSummary">Loads and decrypts the game data</span></a></li>
 '''
 
-elif args.platform == "master":
+elif args.platform == "master" or args.platform == "apple":
     html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loader" href="/{1}all/loader.html"><span class="menuTitle">Loader source</span> <span class="menuSummary">The loading screen and setup for the main game</span></a></li>
 '''
 
@@ -926,7 +945,7 @@ if args.platform == "cassette" or args.platform == "electron" or args.platform =
 \t\t\t\t\t\t\t<li><a id="{3}all_source_elite_g" href="/{1}all/elite_g.html"><span class="menuTitle">Elite G source</span> <span class="menuSummary">Part 7 of the main game code</span></a></li>
 '''
 
-elif args.platform == "c64":
+elif args.platform == "c64" or args.platform == "apple":
     html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li class="menuItemHeader">Main game</li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_workspaces" href="/{1}all/workspaces.html"><span class="menuTitle">Workspaces and configuration</span> <span class="menuSummary">The main variable workspaces used in Elite</span></a></li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_elite_a" href="/{1}all/elite_a.html"><span class="menuTitle">Elite A source</span> <span class="menuSummary">Part 1 of the main game code</span></a></li>
@@ -1100,6 +1119,17 @@ elif args.platform == "c64":
 \t\t\t\t\t\t\t<li><a id="{3}all_source_sprites" href="/{1}all/elite_sprites.html"><span class="menuTitle">Sprites</span> <span class="menuSummary">Sprite definitions for the laser sights, explosions and Trumbles</span></a></li>
 '''
 
+elif args.platform == "apple":
+    html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li class="menuItemHeader">Game data</li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_data" href="/{1}all/elite_data.html"><span class="menuTitle">Game data source</span> <span class="menuSummary">The game data file, which contains the ship blueprints and text tokens</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_ships" href="/{1}all/elite_ships.html"><span class="menuTitle">Ship blueprints</span> <span class="menuSummary">Data for the 33 different ship designs</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_text_tokens" href="/{1}all/text_tokens.html"><span class="menuTitle">Text tokens</span> <span class="menuSummary">Elite's tokenised game text</span></a></li>
+'''
+    html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li class="menuItemHeader">Big Code File</li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_bcfs" href="/{1}all/bcfs.html"><span class="menuTitle">Big Code File source</span> <span class="menuSummary">Concatenates the individual source code parts into one big game file</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_transfer" href="/{1}all/transfer_program.html"><span class="menuTitle">Transfer program</span> <span class="menuSummary">Wraps the game binaries for serial transfer or disk loading</span></a></li>
+'''
+
 elif args.platform == "master":
     html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li class="menuItemHeader">Game data</li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_elite_data" href="/{1}all/elite_data.html"><span class="menuTitle">Game data source</span> <span class="menuSummary">The game data file, which contains the dashboard image, ship blueprints and text tokens</span></a></li>
@@ -1266,6 +1296,19 @@ elif args.platform == "c64":
 <li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a>, <a href="#header-elite-h">Elite H</a>, <a href="#header-elite-i">Elite I</a>, <a href="#header-elite-j">Elite J</a> and <a href="#header-elite-k">Elite K</a></li>
 <li>The <a href="#header-game-data">Game data</a> source, which contains game images, ship blueprints and text tokens</li>
 <li>The <a href="#header-sprites">Sprites</a> source, which contains sprite definitions for the laser sights, explosions and Trumbles</li>
+</ul>
+
+<p>You can click on the links above to jump to the relevant part of the map.</p>
+
+'''
+elif args.platform == "apple":
+    html_large_source_code_page_links = '''<p>This page contains a map of all the routines, variables and macros in the Apple II version of Elite. The source files are structured like this:</p>
+<ul>
+<li>The <a href="#header-loader">Loader</a>, which loads the game data, game binaries and loading screen</li>
+<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a>, <a href="#header-elite-h">Elite H</a>, <a href="#header-elite-i">Elite I</a>, <a href="#header-elite-j">Elite J</a> and <a href="#header-elite-k">Elite K</a></li>
+<li>The <a href="#header-game-data">Game data</a> source, which contains game images, ship blueprints and text tokens</li>
+<li>The Big Code File, which concatenates the files produced by the above (but which doesn't contain any code, so there is no entry below)</li>
+<li>The <a href="#header-transfer-program">Transfer program</a>, which wraps the game binaries up for serial transfer to an Apple II or loading from disk</li>
 </ul>
 
 <p>You can click on the links above to jump to the relevant part of the map.</p>
@@ -1921,6 +1964,85 @@ elif args.platform == "c64":
         },
         "elite_sprites": {
             "prev": {"filename": content_folder + "all/text_tokens.html", "name": "Text tokens"},
+            "next": None
+        }
+    }
+elif args.platform == "apple":
+    next_prev_all = {
+        "map_of_the_source_code": {
+            "prev": {"filename": content_folder + "releases.html", "name": "Different variants of the Apple II version"},
+            "next": {"filename": content_folder + "all/loader.html", "name": "Game Loader source"}
+        },
+        "loader": {
+            "prev": {"filename": content_folder + "articles/map_of_the_source_code.html", "name": "Map of the source code"},
+            "next": {"filename": content_folder + "all/workspaces.html", "name": "Workspaces and configuration"}
+        },
+        "workspaces": {
+            "prev": {"filename": content_folder + "all/loader.html", "name": "Game Loader source"},
+            "next": {"filename": content_folder + "all/elite_a.html", "name": "Elite A source"}
+        },
+        "elite_a": {
+            "prev": {"filename": content_folder + "all/workspaces.html", "name": "Workspaces and configuration"},
+            "next": {"filename": content_folder + "all/elite_b.html", "name": "Elite B source"}
+        },
+        "elite_b": {
+            "prev": {"filename": content_folder + "all/elite_a.html", "name": "Elite A source"},
+            "next": {"filename": content_folder + "all/elite_c.html", "name": "Elite C source"}
+        },
+        "elite_c": {
+            "prev": {"filename": content_folder + "all/elite_b.html", "name": "Elite B source"},
+            "next": {"filename": content_folder + "all/elite_d.html", "name": "Elite D source"}
+        },
+        "elite_d": {
+            "prev": {"filename": content_folder + "all/elite_c.html", "name": "Elite C source"},
+            "next": {"filename": content_folder + "all/elite_e.html", "name": "Elite E source"}
+        },
+        "elite_e": {
+            "prev": {"filename": content_folder + "all/elite_d.html", "name": "Elite D source"},
+            "next": {"filename": content_folder + "all/elite_f.html", "name": "Elite F source"}
+        },
+        "elite_f": {
+            "prev": {"filename": content_folder + "all/elite_e.html", "name": "Elite E source"},
+            "next": {"filename": content_folder + "all/elite_g.html", "name": "Elite G source"}
+        },
+        "elite_g": {
+            "prev": {"filename": content_folder + "all/elite_f.html", "name": "Elite F source"},
+            "next": {"filename": content_folder + "all/elite_h.html", "name": "Elite H source"}
+        },
+        "elite_h": {
+            "prev": {"filename": content_folder + "all/elite_g.html", "name": "Elite G source"},
+            "next": {"filename": content_folder + "all/elite_i.html", "name": "Elite I source"}
+        },
+        "elite_i": {
+            "prev": {"filename": content_folder + "all/elite_h.html", "name": "Elite H source"},
+            "next": {"filename": content_folder + "all/elite_j.html", "name": "Elite J source"}
+        },
+        "elite_j": {
+            "prev": {"filename": content_folder + "all/elite_i.html", "name": "Elite I source"},
+            "next": {"filename": content_folder + "all/elite_k.html", "name": "Elite K source"}
+        },
+        "elite_k": {
+            "prev": {"filename": content_folder + "all/elite_j.html", "name": "Elite J source"},
+            "next": {"filename": content_folder + "all/elite_data.html", "name": "Game data"}
+        },
+        "elite_data": {
+            "prev": {"filename": content_folder + "all/elite_k.html", "name": "Elite K source"},
+            "next": {"filename": content_folder + "all/elite_ships.html", "name": "Ship blueprints"}
+        },
+        "elite_ships": {
+            "prev": {"filename": content_folder + "all/elite_data.html", "name": "Game data"},
+            "next": {"filename": content_folder + "all/text_tokens.html", "name": "Text tokens"}
+        },
+        "text_tokens": {
+            "prev": {"filename": content_folder + "all/elite_ships.html", "name": "Ship blueprints"},
+            "next": {"filename": content_folder + "all/bcfs.html", "name": "Big Code File source"}
+        },
+        "bcfs": {
+            "prev": {"filename": content_folder + "all/text_tokens.html", "name": "Text tokens"},
+            "next": {"filename": content_folder + "all/transfer_program.html", "name": "Transfer program source"}
+        },
+        "transfer_program": {
+            "prev": {"filename": content_folder + "all/bcfs.html", "name": "Big Code File source"},
             "next": None
         }
     }
@@ -2684,10 +2806,14 @@ next_prev_statistics = {
     },
     "c64": {
         "prev": {"filename": "6502sp/articles/source_code_statistics.html", "name": "Statistics for the 6502SP version"},
+        "next": {"filename": "apple/articles/source_code_statistics.html", "name": "Statistics for the Apple II version"}
+    },
+    "apple": {
+        "prev": {"filename": "c64/articles/source_code_statistics.html", "name": "Statistics for the Commodore 64 version"},
         "next": {"filename": "master/articles/source_code_statistics.html", "name": "Statistics for the Master version"}
     },
     "master": {
-        "prev": {"filename": "c64/articles/source_code_statistics.html", "name": "Statistics for the Commodore 64 version"},
+        "prev": {"filename": "apple/articles/source_code_statistics.html", "name": "Statistics for the Apple II version"},
         "next": {"filename": "nes/articles/source_code_statistics.html", "name": "Statistics for the NES version"}
     },
     "nes": {
@@ -5850,7 +5976,7 @@ def build_individual_code_page(source, name, type, category, summary, stage):
 
 
 def get_compare_url(platform_name, stage_name, routine_name):
-    if platform_name == "elite-a" or args.platform == "c64" or args.platform == "nes" or args.platform == "aviator" or args.platform == "lander" or args.platform == "revs":
+    if platform_name == "elite-a" or args.platform == "c64" or args.platform == "apple" or args.platform == "nes" or args.platform == "aviator" or args.platform == "lander" or args.platform == "revs":
         return ""
 
     if platform_name == "disc":
@@ -7630,6 +7756,19 @@ if args.platform != "compare":
             source5 = file.readlines()
         source = source1a + source1b + source2 + source3 + source4 + source5
 
+    elif args.platform == "apple":
+        with open(elite_loader, "r") as file:
+            source1 = file.readlines()
+        with open(elite_source, "r") as file:
+            source2 = file.readlines()
+        with open(elite_data, "r") as file:
+            source3 = file.readlines()
+        with open(elite_bcfs, "r") as file:
+            source4 = file.readlines()
+        with open(elite_transfer, "r") as file:
+            source5 = file.readlines()
+        source = source1 + source2 + source3 + source4 + source5
+
     elif args.platform == "master":
         with open(elite_loader, "r") as file:
             source1 = file.readlines()
@@ -7807,6 +7946,13 @@ if args.platform != "compare":
         extract_popup_data(source4, "Game data", "elite_data", "Game data")
         extract_popup_data(source5, "Sprites", "elite_sprites", "Sprites")
 
+    elif args.platform == "apple":
+        extract_popup_data(source1, "Loader", "loader", "Loader")
+        extract_popup_data(source2, "", "workspaces", "Workspaces")
+        extract_popup_data(source3, "Game data", "elite_data", "Game data")
+        extract_popup_data(source4, "Big Code file", "bcfs", "Big Code file")
+        extract_popup_data(source5, "Transfer program", "transfer_program", "Transfer program")
+
     elif args.platform == "master":
         extract_popup_data(source1, "Loader", "loader", "Loader")
         extract_popup_data(source2, "", "workspaces", "Workspaces")
@@ -7932,6 +8078,13 @@ if args.platform != "compare":
         output_individual_code_pages(source4, "Game data")
         output_individual_code_pages(source5, "Sprites")
 
+    elif args.platform == "apple":
+        output_individual_code_pages(source1, "Loader")
+        output_individual_code_pages(source2, "")
+        output_individual_code_pages(source3, "Game data")
+        output_individual_code_pages(source4, "Big Code file")
+        output_individual_code_pages(source5, "Transfer program")
+
     elif args.platform == "master":
         output_individual_code_pages(source1, "Loader")
         output_individual_code_pages(source2, "")
@@ -8015,7 +8168,7 @@ if args.platform != "compare":
 
     with open("debug/output_all.txt", "w") as debug_file:
 
-        if args.platform == "cassette" or args.platform == "electron" or args.platform == "master":
+        if args.platform == "cassette" or args.platform == "electron" or args.platform == "apple" or args.platform == "master":
             with open(dest_folder + content_folder + "all/loader.html", "w") as all_file:
                 output_large_source_code_page(source1, "Loader", "Loader source", "loader", "", "")
         elif args.platform == "disc":
@@ -8233,6 +8386,42 @@ if args.platform != "compare":
                 output_large_source_code_page(source4, "Game data", "Text tokens", "text_tokens", "ELITE RECURSIVE TEXT TOKEN FILE", "")
             with open(dest_folder + content_folder + "all/elite_sprites.html", "w") as all_file:
                 output_large_source_code_page(source5, "Sprites", "Sprites", "elite_sprites", "ELITE SPRITES", "")
+
+        if args.platform == "apple":
+            with open(dest_folder + content_folder + "all/workspaces.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Workspaces and configuration", "workspaces", "", "ELITE A FILE")
+            with open(dest_folder + content_folder + "all/elite_a.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite A source", "elite_a", "ELITE A FILE", "ELITE B FILE")
+            with open(dest_folder + content_folder + "all/elite_b.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite B source", "elite_b", "ELITE B FILE", "ELITE C FILE")
+            with open(dest_folder + content_folder + "all/elite_c.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite C source", "elite_c", "ELITE C FILE", "ELITE D FILE")
+            with open(dest_folder + content_folder + "all/elite_d.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite D source", "elite_d", "ELITE D FILE", "ELITE E FILE")
+            with open(dest_folder + content_folder + "all/elite_e.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite E source", "elite_e", "ELITE E FILE", "ELITE F FILE")
+            with open(dest_folder + content_folder + "all/elite_f.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite F source", "elite_f", "ELITE F FILE", "ELITE G FILE")
+            with open(dest_folder + content_folder + "all/elite_g.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite G source", "elite_g", "ELITE G FILE", "ELITE H FILE")
+            with open(dest_folder + content_folder + "all/elite_h.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite H source", "elite_h", "ELITE H FILE", "ELITE I FILE")
+            with open(dest_folder + content_folder + "all/elite_i.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite I source", "elite_i", "ELITE I FILE", "ELITE J FILE")
+            with open(dest_folder + content_folder + "all/elite_j.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite J source", "elite_j", "ELITE J FILE", "ELITE K FILE")
+            with open(dest_folder + content_folder + "all/elite_k.html", "w") as all_file:
+                output_large_source_code_page(source2, "", "Elite K source", "elite_k", "ELITE K FILE", "")
+            with open(dest_folder + content_folder + "all/elite_data.html", "w") as all_file:
+                output_large_source_code_page(source3, "Game data", "Game data", "elite_data", "", "ELITE SHIP BLUEPRINTS FILE")
+            with open(dest_folder + content_folder + "all/elite_ships.html", "w") as all_file:
+                output_large_source_code_page(source3, "Game data", "Ship blueprints", "elite_ships", "ELITE SHIP BLUEPRINTS FILE", "ELITE RECURSIVE TEXT TOKEN FILE")
+            with open(dest_folder + content_folder + "all/text_tokens.html", "w") as all_file:
+                output_large_source_code_page(source3, "Game data", "Text tokens", "text_tokens", "ELITE RECURSIVE TEXT TOKEN FILE", "")
+            with open(dest_folder + content_folder + "all/bcfs.html", "w") as all_file:
+                output_large_source_code_page(source4, "Big Code file", "Big Code File source", "bcfs", "", "")
+            with open(dest_folder + content_folder + "all/transfer_program.html", "w") as all_file:
+                output_large_source_code_page(source5, "Transfer program", "Transfer program source", "transfer_program", "", "")
 
         if args.platform == "master":
             with open(dest_folder + content_folder + "all/workspaces.html", "w") as all_file:
