@@ -4751,7 +4751,7 @@ def extract_labels(source, j, references_library, parent_name, stage, parent_nam
         elite_a_removed_label = True
 
     # Label
-    m = re.match(re_label_no_comment, code)
+    m = re.match(re_label, code)
     if m:
         this_item = {}
         name = m.group(2)
