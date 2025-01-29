@@ -552,6 +552,7 @@ elite_source_urls = {
     "elite-loader2.asm": "/{}all/loader2.html".format(content_folder),
     "elite-loader3.asm": "/{}all/loader3.html".format(content_folder),
     "elite-loader-sideways-ram.asm": "/{}all/loader_sideways_ram.html".format(content_folder),
+    "elite-transfer.asm": "/{}all/transfer.html".format(content_folder),
     "elite-z.asm": "/{}all/i_o_processor.html".format(content_folder),
     "aviator-source.asm": "/{}all/workspaces.html".format(content_folder),
     "revs-source.asm": "/{}all/workspaces.html".format(content_folder),
@@ -1401,6 +1402,18 @@ elif args.platform == "revs":
 <li>Each part of a multi-part subroutine counts as an individual subroutine.</li>
 <li>The statistics are produced by a relatively simple static analysis of the source code. They are not 100% accurate, though they are pretty close.</li>
 <li>The totals cover all code in the main game, including all of the track data files.</li>
+</ul>
+'''
+elif args.platform == "c64" or args.platform == "apple" or args.platform == "nes":
+    html_source_code_stats_intro = '''<p>Here's a statistical breakdown of the source code for {}. Click on the table headers to sort by that statistic. For more information, see the notes after the table.</p>
+'''
+    html_source_code_stats_footer = '''<p>Some notes on the above:</p>
+<ul>
+<li>The instruction count does not include EQUB, EQUW, EQUD, EQUS or SKIP operatives; these are counted as data even when they are buried in code (so EQUB $2C "BIT skip" instructions are counted as data, for example).</li>
+<li>INCBIN files are not included in the counts, so the data count doesn't include bytes from binary source files.</li>
+<li>Each part of a multi-part subroutine counts as an individual subroutine.</li>
+<li>The statistics are produced by a relatively simple static analysis of the source code. They are not 100% accurate, though they are pretty close.</li>
+<li>The totals cover all code in the project, including loaders and ship data files.</li>
 </ul>
 '''
 else:
