@@ -552,7 +552,7 @@ elite_source_urls = {
     "elite-loader2.asm": "/{}all/loader2.html".format(content_folder),
     "elite-loader3.asm": "/{}all/loader3.html".format(content_folder),
     "elite-loader-sideways-ram.asm": "/{}all/loader_sideways_ram.html".format(content_folder),
-    "elite-transfer.asm": "/{}all/transfer.html".format(content_folder),
+    "elite-transfer.asm": "/{}all/transfer_program.html".format(content_folder),
     "elite-z.asm": "/{}all/i_o_processor.html".format(content_folder),
     "aviator-source.asm": "/{}all/workspaces.html".format(content_folder),
     "revs-source.asm": "/{}all/workspaces.html".format(content_folder),
