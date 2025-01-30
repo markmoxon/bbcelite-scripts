@@ -5,3 +5,4 @@ repos/
 websites/
 debug/
 code-analysis/**/*.txt
+create-deep-dive-links/*.html
