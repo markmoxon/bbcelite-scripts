@@ -4231,9 +4231,10 @@ def tidy_source_header_line(line, context_link, context_link_length):
         line = re.sub(r"^" + re_comment_delimiter, "", line) + cr
     if re_url.search(line):
         line = re_url.sub(r'<a href="\1">\1</a>', line)
-    for file_url in elite_source_urls:
-        if file_url in line:
-            line = line.replace(file_url, '<a href="{}">{}</a>'.format(elite_source_urls[file_url], file_url))
+    if args.platform != "compare":
+        for file_url in elite_source_urls:
+            if file_url in line:
+                line = line.replace(file_url, '<a href="{}">{}</a>'.format(elite_source_urls[file_url], file_url))
     return line
 
 
