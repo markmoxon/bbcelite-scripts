@@ -3308,6 +3308,10 @@ else:
             "name": "Bresenham's line algorithm"
         },
         {
+            "filename": "deep_dives/building_apple_ii_elite_from_the_source_disk.html",
+            "name": "Building Apple II Elite from the source disk"
+        },
+        {
             "filename": "deep_dives/building_commodore_64_elite_from_the_source_disk.html",
             "name": "Building Commodore 64 Elite from the source disk"
         },
@@ -3364,6 +3368,10 @@ else:
             "name": "Delta 14B joystick support"
         },
         {
+            "filename": "deep_dives/developing_apple_ii_elite_on_a_bbc_micro.html",
+            "name": "Developing Apple II Elite on a BBC Micro"
+        },
+        {
             "filename": "deep_dives/developing_commodore_64_elite_on_a_bbc_micro.html",
             "name": "Developing Commodore 64 Elite on a BBC Micro"
         },
@@ -3408,6 +3416,10 @@ else:
             "name": "Drawing meridians and equators"
         },
         {
+            "filename": "deep_dives/drawing_pixels_in_the_apple_ii_version.html",
+            "name": "Drawing pixels in the Apple II version"
+        },
+        {
             "filename": "deep_dives/drawing_monochrome_pixels_in_mode_4.html",
             "name": "Drawing monochrome pixels on the BBC Micro"
         },
@@ -3444,6 +3456,10 @@ else:
             "name": "Drawing vector graphics using NES tiles"
         },
         {
+            "filename": "deep_dives/the_elite_source_code_family_tree.html",
+            "name": "The Elite source code family tree"
+        },
+        {
             "filename": "deep_dives/the_elusive_cougar.html",
             "name": "The elusive Cougar"
         },
@@ -3462,6 +3478,10 @@ else:
         {
             "filename": "deep_dives/extended_text_tokens.html",
             "name": "Extended text tokens"
+        },
+        {
+            "filename": "deep_dives/file_operations_with_embedded_apple_dos.html",
+            "name": "File operations with embedded Apple DOS"
         },
         {
             "filename": "deep_dives/elite-a_fixing_ship_positions.html",
@@ -3652,6 +3672,10 @@ else:
             "name": "The sine, cosine and arctan tables"
         },
         {
+            "filename": "deep_dives/sound_effects_in_apple_ii_elite.html",
+            "name": "Sound effects in Apple II Elite"
+        },
+        {
             "filename": "deep_dives/sound_effects_in_commodore_64_elite.html",
             "name": "Sound effects in Commodore 64 Elite"
         },
@@ -3746,6 +3770,10 @@ else:
         {
             "filename": "deep_dives/views_and_view_types_in_nes_elite.html",
             "name": "Views and view types in NES Elite"
+        },
+        {
+            "filename": "deep_dives/working_with_the_apple_ii_keyboard.html",
+            "name": "Working with the Apple II keyboard"
         }
     ]
 
