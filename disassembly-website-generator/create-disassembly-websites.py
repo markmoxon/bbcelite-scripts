@@ -4346,12 +4346,12 @@ def tidy_code(line, stage, name, refs_only, statistics):
     #     return code + comment + "\n"
 
     # Process commented-out directive
-    if re.match(r"^ *" + re_comment_delimiter + r" *(ALIGN|CPU|IF|ELIF|ELSE|ENDIF|PRINT|SAVE|INCLUDE|INCBIN|GUARD|ORG|COPYBLOCK|FOR|NEXT|CLEAR|DIM|OPT|OSCLI)", code):
+    if re.match(r"^ *" + re_comment_delimiter + r" *(ALIGN|ASSERT|CPU|IF|ELIF|ELSE|ENDIF|PRINT|SAVE|INCLUDE|INCBIN|GUARD|ORG|COPYBLOCK|FOR|NEXT|CLEAR|DIM|OPT|OSCLI)", code):
         code = re.sub(r"^(.*)$", r'<span class="comment">\1</span>', code)
         return code + comment + "\n"
 
     # Process directive
-    if re.match(r"^ *(ALIGN|CPU|IF|ELIF|ELSE|ENDIF|PRINT|SAVE|INCLUDE|INCBIN|GUARD|ORG|COPYBLOCK|FOR|NEXT|CLEAR|DIM|OPT|OSCLI)", code):
+    if re.match(r"^ *(ALIGN|ASSERT|CPU|IF|ELIF|ELSE|ENDIF|PRINT|SAVE|INCLUDE|INCBIN|GUARD|ORG|COPYBLOCK|FOR|NEXT|CLEAR|DIM|OPT|OSCLI)", code):
         code = re.sub(r"^(.*)$", r'<span class="directive">\1</span>', code)
         return code + comment + "\n"
 
@@ -5733,7 +5733,7 @@ def large_source_code_page_contents(source, stage, name, source_file_name, start
             anchor = html_anchor.format(make_id(m.group(2)))
             all_file.write(re.sub(re_label, r'<span class="label">\1\2</span>' + anchor, line))
 
-        elif re.match(r"^ *" + re_comment_delimiter + r" *(ALIGN|CPU|IF|ELIF|ELSE|ENDIF|PRINT|SAVE|INCLUDE|INCBIN|GUARD|ORG|COPYBLOCK|FOR|NEXT|CLEAR|DIM|OPT|OSCLI)", line):
+        elif re.match(r"^ *" + re_comment_delimiter + r" *(ALIGN|ASSERT|CPU|IF|ELIF|ELSE|ENDIF|PRINT|SAVE|INCLUDE|INCBIN|GUARD|ORG|COPYBLOCK|FOR|NEXT|CLEAR|DIM|OPT|OSCLI)", line):
             all_file.write(re.sub(r"^(.*)$", r'<span class="comment">\1</span>', line))
 
         # Process configuration variable
@@ -5749,7 +5749,7 @@ def large_source_code_page_contents(source, stage, name, source_file_name, start
             if mention_list:
                 configuration_variable_extra_data_html = mention_list
 
-        elif re.match(r"^ *(ALIGN|CPU|IF|ELIF|ELSE|ENDIF|PRINT|SAVE|INCLUDE|INCBIN|GUARD|ORG|COPYBLOCK|FOR|NEXT|CLEAR|DIM|OPT|OSCLI)", line):
+        elif re.match(r"^ *(ALIGN|ASSERT|CPU|IF|ELIF|ELSE|ENDIF|PRINT|SAVE|INCLUDE|INCBIN|GUARD|ORG|COPYBLOCK|FOR|NEXT|CLEAR|DIM|OPT|OSCLI)", line):
             # Separate trailing comment
             m = re.match(r"^([^" + re_comment_delimiter + r"]*)( *)(" + re_comment_delimiter + r".*)$", line)
             if m:
