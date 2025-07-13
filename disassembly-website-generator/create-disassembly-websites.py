@@ -819,8 +819,7 @@ menu_item_close = '''\t\t\t\t\t\t</ul>
 \t\t\t\t\t</li>
 '''
 html_anchor = '<a id="{0}" name="{0}" class="anchor"></a>'
-html_summary_heading = '''<h2 class="articleSubheader">{}<br />{}</h2>
-'''
+html_summary_heading = '<h2 class="articleSubheader">{}{}<br />{}</h2>'
 html_summary_item = '''<li><a href="/{}">{}</a> - {}</li>
 
 '''
@@ -1236,217 +1235,233 @@ html_next = '''\t\t\t\t<div class="codeBlockWrapper nav">
 \t\t\t\t</div>'''
 
 if args.platform == "cassette":
-    html_large_source_code_page_links = '''<p>This page contains a map of all the routines, variables and macros in the original source files for the BBC Micro cassette version of Elite, in the order in which they appear in the original source. The source files are structured like this:</p>
-<ul>
-<li>The <a href="#header-loader">Loader</a>, which displays the loading screen, implements the copy protection and sets things up for the main game</li>
-<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-text-tokens">Text tokens</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a> and <a href="#header-ship-blueprints">Ship blueprints</a></li>
-<li>The <a href="#header-big-code-file">Big Code File</a>, which concatenates the files produced by the above and adds a bit more copy protection</li>
-</ul>
+    html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines, variables and macros in the original source files for the BBC Micro cassette version of Elite, in the order in which they appear in the original source. The source files are structured like this:</p>
 
-<p>You can click on the links above to jump to the relevant part of the map.</p>
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The <a href="#header-loader">Loader</a>, which displays the loading screen, implements the copy protection and sets things up for the main game</li>
+\t\t\t\t\t\t\t<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-text-tokens">Text tokens</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a> and <a href="#header-ship-blueprints">Ship blueprints</a></li>
+\t\t\t\t\t\t\t<li>The <a href="#header-big-code-file">Big Code File</a>, which concatenates the files produced by the above and adds a bit more copy protection</li>
+\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t<p>You can click on the links above to jump to the relevant part of the map.</p>
 
 '''
 elif args.platform == "electron":
-    html_large_source_code_page_links = '''<p>This page contains a map of all the routines, variables and macros in the original source files for the Electron version of Elite, in the order in which they appear in the original source. The source files are structured like this:</p>
-<ul>
-<li>The <a href="#header-loader">Loader</a>, which displays the loading screen, implements the copy protection and sets things up for the main game</li>
-<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-text-tokens">Text tokens</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a> and <a href="#header-ship-blueprints">Ship blueprints</a></li>
-<li>The Big Code File, which concatenates the files produced by the above (but which doesn't contain any code, so there is no entry below)</li>
-</ul>
+    html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines, variables and macros in the original source files for the Electron version of Elite, in the order in which they appear in the original source. The source files are structured like this:</p>
 
-<p>You can click on the links above to jump to the relevant part of the map.</p>
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The <a href="#header-loader">Loader</a>, which displays the loading screen, implements the copy protection and sets things up for the main game</li>
+\t\t\t\t\t\t\t<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-text-tokens">Text tokens</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a> and <a href="#header-ship-blueprints">Ship blueprints</a></li>
+\t\t\t\t\t\t\t<li>The Big Code File, which concatenates the files produced by the above (but which doesn't contain any code, so there is no entry below)</li>
+\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t<p>You can click on the links above to jump to the relevant part of the map.</p>
 
 '''
 elif args.platform == "disc":
-    html_large_source_code_page_links = '''<p>This page contains a map of all the routines, variables and macros in the BBC Micro disc version of Elite. The source files are structured like this:</p>
-<ul>
-<li>The three loader sources, <a href="#header-loader-1">Loader 1</a>, <a href="#header-loader-2">Loader 2</a> and <a href="#header-loader-3">Loader 3</a>, which display the loading screen, implement the copy protection and set things up for the main game</li>
-<li>The <a href="#header-sideways-ram-loader">sideways RAM loader</a>, which replaces the three original loaders in the sideways RAM variant</li>
-<li>The <a href="#header-text-tokens">Text tokens</a> and <a href="#header-missile-ship-blueprint">Missile ship blueprint</a>, which are bundled as part of Loader 3 and get unpacked during the loading process</li>
-<li>The main game source for when we are docked, which consists of <a href="#header-workspaces-docked">Workspaces</a>, <a href="#header-elite-a-docked">Elite A</a>, <a href="#header-elite-b-docked">Elite B</a>, <a href="#header-elite-c-docked">Elite C</a>, <a href="#header-elite-d-docked">Elite D</a>, <a href="#header-elite-e-docked">Elite E</a>, <a href="#header-elite-f-docked">Elite F</a>, <a href="#header-elite-g-docked">Elite G</a>, <a href="#header-elite-h-docked">Elite H</a> and <a href="#header-ship-hangar-blueprints">Ship hangar blueprints</a></li>
-<li>The main game source for flight, which consists of <a href="#header-workspaces-flight">Workspaces</a>, <a href="#header-elite-a-flight">Elite A</a>, <a href="#header-elite-b-flight">Elite B</a>, <a href="#header-elite-c-flight">Elite C</a>, <a href="#header-elite-d-flight">Elite D</a>, <a href="#header-elite-e-flight">Elite E</a>, <a href="#header-elite-f-flight">Elite F</a>, <a href="#header-elite-g-flight">Elite G</a> and <a href="#header-elite-h-flight">Elite H</a></li>
-<li>The 16 ship blueprint files, one of which gets loaded on launching from the station: <a href="#header-ship-blueprints-a">A</a>, <a href="#header-ship-blueprints-b">B</a>, <a href="#header-ship-blueprints-c">C</a>, <a href="#header-ship-blueprints-d">D</a>, <a href="#header-ship-blueprints-e">E</a>, <a href="#header-ship-blueprints-f">F</a>, <a href="#header-ship-blueprints-g">G</a>, <a href="#header-ship-blueprints-h">H</a>, <a href="#header-ship-blueprints-i">I</a>, <a href="#header-ship-blueprints-j">J</a>, <a href="#header-ship-blueprints-k">K</a>, <a href="#header-ship-blueprints-l">L</a>, <a href="#header-ship-blueprints-m">M</a>, <a href="#header-ship-blueprints-n">N</a>, <a href="#header-ship-blueprints-o">O</a> and <a href="#header-ship-blueprints-p">P</a>.</li>
-</ul>
+    html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines, variables and macros in the BBC Micro disc version of Elite. The source files are structured like this:</p>
 
-<p>You can click on the links above to jump to the relevant part of the map.</p>
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The three loader sources, <a href="#header-loader-1">Loader 1</a>, <a href="#header-loader-2">Loader 2</a> and <a href="#header-loader-3">Loader 3</a>, which display the loading screen, implement the copy protection and set things up for the main game</li>
+\t\t\t\t\t\t\t<li>The <a href="#header-sideways-ram-loader">sideways RAM loader</a>, which replaces the three original loaders in the sideways RAM variant</li>
+\t\t\t\t\t\t\t<li>The <a href="#header-text-tokens">Text tokens</a> and <a href="#header-missile-ship-blueprint">Missile ship blueprint</a>, which are bundled as part of Loader 3 and get unpacked during the loading process</li>
+\t\t\t\t\t\t\t<li>The main game source for when we are docked, which consists of <a href="#header-workspaces-docked">Workspaces</a>, <a href="#header-elite-a-docked">Elite A</a>, <a href="#header-elite-b-docked">Elite B</a>, <a href="#header-elite-c-docked">Elite C</a>, <a href="#header-elite-d-docked">Elite D</a>, <a href="#header-elite-e-docked">Elite E</a>, <a href="#header-elite-f-docked">Elite F</a>, <a href="#header-elite-g-docked">Elite G</a>, <a href="#header-elite-h-docked">Elite H</a> and <a href="#header-ship-hangar-blueprints">Ship hangar blueprints</a></li>
+\t\t\t\t\t\t\t<li>The main game source for flight, which consists of <a href="#header-workspaces-flight">Workspaces</a>, <a href="#header-elite-a-flight">Elite A</a>, <a href="#header-elite-b-flight">Elite B</a>, <a href="#header-elite-c-flight">Elite C</a>, <a href="#header-elite-d-flight">Elite D</a>, <a href="#header-elite-e-flight">Elite E</a>, <a href="#header-elite-f-flight">Elite F</a>, <a href="#header-elite-g-flight">Elite G</a> and <a href="#header-elite-h-flight">Elite H</a></li>
+\t\t\t\t\t\t\t<li>The 16 ship blueprint files, one of which gets loaded on launching from the station: <a href="#header-ship-blueprints-a">A</a>, <a href="#header-ship-blueprints-b">B</a>, <a href="#header-ship-blueprints-c">C</a>, <a href="#header-ship-blueprints-d">D</a>, <a href="#header-ship-blueprints-e">E</a>, <a href="#header-ship-blueprints-f">F</a>, <a href="#header-ship-blueprints-g">G</a>, <a href="#header-ship-blueprints-h">H</a>, <a href="#header-ship-blueprints-i">I</a>, <a href="#header-ship-blueprints-j">J</a>, <a href="#header-ship-blueprints-k">K</a>, <a href="#header-ship-blueprints-l">L</a>, <a href="#header-ship-blueprints-m">M</a>, <a href="#header-ship-blueprints-n">N</a>, <a href="#header-ship-blueprints-o">O</a> and <a href="#header-ship-blueprints-p">P</a>.</li>
+\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t<p>You can click on the links above to jump to the relevant part of the map.</p>
 
 '''
 elif args.platform == "6502sp":
-    html_large_source_code_page_links = '''<p>This page contains a map of all the routines, variables and macros in the original source files for the 6502 Second Processor version of Elite, in the order in which they appear in the original source. The source files are structured like this:</p>
-<ul>
-<li>The two loader sources, <a href="#header-loader-1">Loader 1</a> and <a href="#header-loader-2">Loader 2</a>, which display the loading screen, implement the copy protection and set things up for the main game</li>
-<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-text-tokens">Text tokens</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a>, <a href="#header-elite-h">Elite H</a>, <a href="#header-elite-i">Elite I</a>, <a href="#header-elite-j">Elite J</a> and <a href="#header-ship-blueprints">Ship blueprints</a></li>
-<li>The <a href="#header-i-o-processor">I/O processor</a> source, which runs on the BBC Micro and handles the screen, keyboard etc.</li>
-<li>The Big Code File, which concatenates the files produced by the above (but which doesn't contain any code, so there is no entry below)</li>
-</ul>
+    html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines, variables and macros in the original source files for the 6502 Second Processor version of Elite, in the order in which they appear in the original source. The source files are structured like this:</p>
 
-<p>You can click on the links above to jump to the relevant part of the map.</p>
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The two loader sources, <a href="#header-loader-1">Loader 1</a> and <a href="#header-loader-2">Loader 2</a>, which display the loading screen, implement the copy protection and set things up for the main game</li>
+\t\t\t\t\t\t\t<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-text-tokens">Text tokens</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a>, <a href="#header-elite-h">Elite H</a>, <a href="#header-elite-i">Elite I</a>, <a href="#header-elite-j">Elite J</a> and <a href="#header-ship-blueprints">Ship blueprints</a></li>
+\t\t\t\t\t\t\t<li>The <a href="#header-i-o-processor">I/O processor</a> source, which runs on the BBC Micro and handles the screen, keyboard etc.</li>
+\t\t\t\t\t\t\t<li>The Big Code File, which concatenates the files produced by the above (but which doesn't contain any code, so there is no entry below)</li>
+\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t<p>You can click on the links above to jump to the relevant part of the map.</p>
 
 '''
 elif args.platform == "c64":
-    html_large_source_code_page_links = '''<p>This page contains a map of all the routines, variables and macros in the Commodore 64 version of Elite. The source files are structured like this:</p>
-<ul>
-<li>The two disk loader sources, <a href="#header-disk-loader-1">Disk Loader 1</a> and <a href="#header-disk-loader-2">Disk Loader 2</a>, which boot the disk and load the game loader and game binaries</li>
-<li>The <a href="#header-game-loader">Game Loader</a>, which loads and decrypts the game data</li>
-<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a>, <a href="#header-elite-h">Elite H</a>, <a href="#header-elite-i">Elite I</a>, <a href="#header-elite-j">Elite J</a> and <a href="#header-elite-k">Elite K</a></li>
-<li>The <a href="#header-game-data">Game data</a> source, which contains game images, ship blueprints and text tokens</li>
-<li>The <a href="#header-sprites">Sprites</a> source, which contains sprite definitions for the laser sights, explosions and Trumbles</li>
-</ul>
+    html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines, variables and macros in the Commodore 64 version of Elite. The source files are structured like this:</p>
 
-<p>You can click on the links above to jump to the relevant part of the map.</p>
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The two disk loader sources, <a href="#header-disk-loader-1">Disk Loader 1</a> and <a href="#header-disk-loader-2">Disk Loader 2</a>, which boot the disk and load the game loader and game binaries</li>
+\t\t\t\t\t\t\t<li>The <a href="#header-game-loader">Game Loader</a>, which loads and decrypts the game data</li>
+\t\t\t\t\t\t\t<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a>, <a href="#header-elite-h">Elite H</a>, <a href="#header-elite-i">Elite I</a>, <a href="#header-elite-j">Elite J</a> and <a href="#header-elite-k">Elite K</a></li>
+\t\t\t\t\t\t\t<li>The <a href="#header-game-data">Game data</a> source, which contains game images, ship blueprints and text tokens</li>
+\t\t\t\t\t\t\t<li>The <a href="#header-sprites">Sprites</a> source, which contains sprite definitions for the laser sights, explosions and Trumbles</li>
+\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t<p>You can click on the links above to jump to the relevant part of the map.</p>
 
 '''
 elif args.platform == "apple":
-    html_large_source_code_page_links = '''<p>This page contains a map of all the routines, variables and macros in the Apple II version of Elite. The source files are structured like this:</p>
-<ul>
-<li>The <a href="#header-loader">Loader</a>, which loads the game data, game binaries and loading screen</li>
-<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a>, <a href="#header-elite-h">Elite H</a>, <a href="#header-elite-i">Elite I</a>, <a href="#header-elite-j">Elite J</a> and <a href="#header-elite-k">Elite K</a></li>
-<li>The <a href="#header-game-data">Game data</a> source, which contains game images, ship blueprints and text tokens</li>
-<li>The Big Code File, which concatenates the files produced by the above (but which doesn't contain any code, so there is no entry below)</li>
-<li>The <a href="#header-transfer-program">Transfer program</a>, which wraps the game binaries up for serial transfer to an Apple II or loading from disk</li>
-</ul>
+    html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines, variables and macros in the Apple II version of Elite. The source files are structured like this:</p>
 
-<p>You can click on the links above to jump to the relevant part of the map.</p>
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The <a href="#header-loader">Loader</a>, which loads the game data, game binaries and loading screen</li>
+\t\t\t\t\t\t\t<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a>, <a href="#header-elite-h">Elite H</a>, <a href="#header-elite-i">Elite I</a>, <a href="#header-elite-j">Elite J</a> and <a href="#header-elite-k">Elite K</a></li>
+\t\t\t\t\t\t\t<li>The <a href="#header-game-data">Game data</a> source, which contains game images, ship blueprints and text tokens</li>
+\t\t\t\t\t\t\t<li>The Big Code File, which concatenates the files produced by the above (but which doesn't contain any code, so there is no entry below)</li>
+\t\t\t\t\t\t\t<li>The <a href="#header-transfer-program">Transfer program</a>, which wraps the game binaries up for serial transfer to an Apple II or loading from disk</li>
+\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t<p>You can click on the links above to jump to the relevant part of the map.</p>
 
 '''
 elif args.platform == "master":
-    html_large_source_code_page_links = '''<p>This page contains a map of all the routines, variables and macros in the BBC Master version of Elite. The source files are structured like this:</p>
-<ul>
-<li>The <a href="#header-loader">Loader</a>, which displays the loading screen, implements the copy protection and sets things up for the main game</li>
-<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a> and <a href="#header-elite-h">Elite H</a></li>
-<li>The <a href="#header-game-data">Game data</a> source, which contains game images, ship blueprints and text tokens</li>
-</ul>
+    html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines, variables and macros in the BBC Master version of Elite. The source files are structured like this:</p>
 
-<p>You can click on the links above to jump to the relevant part of the map.</p>
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The <a href="#header-loader">Loader</a>, which displays the loading screen, implements the copy protection and sets things up for the main game</li>
+\t\t\t\t\t\t\t<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a> and <a href="#header-elite-h">Elite H</a></li>
+\t\t\t\t\t\t\t<li>The <a href="#header-game-data">Game data</a> source, which contains game images, ship blueprints and text tokens</li>
+\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t<p>You can click on the links above to jump to the relevant part of the map.</p>
 
 '''
 elif args.platform == "elite-a":
     html_large_source_code_page_links = '''<p>This page contains a map of all the routines, variables and macros in Elite-A, Angus Duggan's modified version of BBC Micro disc Elite. The source files are structured like this:</p>
-<ul>
-<li>The <a href="#header-loader">Loader</a>, which displays the loading screen, checks for Tube and BBC Master hardware, and sets things up for the main game.</li>
-<li>The <a href="#header-text-tokens">Text tokens</a> and <a href="#header-missile-ship-blueprint">Missile ship blueprint</a>, which are bundled as part of the loader and get unpacked during the loading process.</li>
-<li>The main game source for when we are docked, which consists of <a href="#header-workspaces-docked">Workspaces</a>, <a href="#header-elite-a-docked">Elite A</a>, <a href="#header-elite-b-docked">Elite B</a>, <a href="#header-elite-c-docked">Elite C</a>, <a href="#header-elite-d-docked">Elite D</a>, <a href="#header-elite-e-docked">Elite E</a>, <a href="#header-elite-f-docked">Elite F</a>, <a href="#header-elite-g-docked">Elite G</a>, <a href="#header-elite-h-docked">Elite H</a> and <a href="#header-ship-hangar-blueprints">Ship hangar blueprints</a>.</li>
-<li>The main game source for flight, which consists of <a href="#header-workspaces-flight">Workspaces</a>, <a href="#header-elite-a-flight">Elite A</a>, <a href="#header-elite-b-flight">Elite B</a>, <a href="#header-elite-c-flight">Elite C</a>, <a href="#header-elite-d-flight">Elite D</a>, <a href="#header-elite-e-flight">Elite E</a>, <a href="#header-elite-f-flight">Elite F</a>, <a href="#header-elite-g-flight">Elite G</a> and <a href="#header-elite-h-flight">Elite H</a>.</li>
-<li>The main game source for the encyclopedia, which consists of <a href="#header-workspaces-encyclopedia">Workspaces</a>, <a href="#header-elite-a-encyclopedia">Elite A</a>, <a href="#header-elite-b-encyclopedia">Elite B</a>, <a href="#header-elite-c-encyclopedia">Elite C</a>, <a href="#header-elite-d-encyclopedia">Elite D</a>, <a href="#header-elite-e-encyclopedia">Elite E</a>, <a href="#header-elite-f-encyclopedia">Elite F</a>, <a href="#header-elite-g-encyclopedia">Elite G</a> and <a href="#header-elite-h-encyclopedia">Elite H</a>.</li>
-<li>The 23 ship blueprint files, one of which gets loaded on launching from the station: <a href="#header-ship-blueprints-a">A</a>, <a href="#header-ship-blueprints-b">B</a>, <a href="#header-ship-blueprints-c">C</a>, <a href="#header-ship-blueprints-d">D</a>, <a href="#header-ship-blueprints-e">E</a>, <a href="#header-ship-blueprints-f">F</a>, <a href="#header-ship-blueprints-g">G</a>, <a href="#header-ship-blueprints-h">H</a>, <a href="#header-ship-blueprints-i">I</a>, <a href="#header-ship-blueprints-j">J</a>, <a href="#header-ship-blueprints-k">K</a>, <a href="#header-ship-blueprints-l">L</a>, <a href="#header-ship-blueprints-m">M</a>, <a href="#header-ship-blueprints-n">N</a>, <a href="#header-ship-blueprints-o">O</a>, <a href="#header-ship-blueprints-p">P</a>, <a href="#header-ship-blueprints-q">Q</a>, <a href="#header-ship-blueprints-r">R</a>, <a href="#header-ship-blueprints-s">S</a>, <a href="#header-ship-blueprints-t">T</a>, <a href="#header-ship-blueprints-u">U</a>, <a href="#header-ship-blueprints-v">V</a> and <a href="#header-ship-blueprints-w">W</a>.</li>
-<li>The 6502 Second Processor version of the game, which consists of the <a href="#header-i-o-processor">I/O processor</a> source, which runs on the BBC Micro, and the parasite source, which runs on the 6502 Second Processor and consists of <a href="#header-workspaces-parasite">Workspaces</a>, <a href="#header-elite-a-parasite">Elite A</a>, <a href="#header-elite-b-parasite">Elite B</a>, <a href="#header-elite-c-parasite">Elite C</a>, <a href="#header-elite-d-parasite">Elite D</a>, <a href="#header-elite-e-parasite">Elite E</a>, <a href="#header-elite-f-parasite">Elite F</a>, <a href="#header-elite-g-parasite">Elite G</a>, <a href="#header-elite-h-parasite">Elite H</a>, <a href="#header-elite-i-parasite">Elite I</a>, <a href="#header-elite-j-parasite">Elite J</a>, <a href="#header-elite-k-parasite">Elite K</a>, <a href="#header-elite-l-parasite">Elite L</a>, <a href="#header-elite-m-parasite">Elite M</a> and <a href="#header-ship-blueprints-parasite">Ship blueprints</a>.</li>
-</ul>
 
-<p>You can click on the links above to jump to the relevant part of the map.</p>
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The <a href="#header-loader">Loader</a>, which displays the loading screen, checks for Tube and BBC Master hardware, and sets things up for the main game.</li>
+\t\t\t\t\t\t\t<li>The <a href="#header-text-tokens">Text tokens</a> and <a href="#header-missile-ship-blueprint">Missile ship blueprint</a>, which are bundled as part of the loader and get unpacked during the loading process.</li>
+\t\t\t\t\t\t\t<li>The main game source for when we are docked, which consists of <a href="#header-workspaces-docked">Workspaces</a>, <a href="#header-elite-a-docked">Elite A</a>, <a href="#header-elite-b-docked">Elite B</a>, <a href="#header-elite-c-docked">Elite C</a>, <a href="#header-elite-d-docked">Elite D</a>, <a href="#header-elite-e-docked">Elite E</a>, <a href="#header-elite-f-docked">Elite F</a>, <a href="#header-elite-g-docked">Elite G</a>, <a href="#header-elite-h-docked">Elite H</a> and <a href="#header-ship-hangar-blueprints">Ship hangar blueprints</a>.</li>
+\t\t\t\t\t\t\t<li>The main game source for flight, which consists of <a href="#header-workspaces-flight">Workspaces</a>, <a href="#header-elite-a-flight">Elite A</a>, <a href="#header-elite-b-flight">Elite B</a>, <a href="#header-elite-c-flight">Elite C</a>, <a href="#header-elite-d-flight">Elite D</a>, <a href="#header-elite-e-flight">Elite E</a>, <a href="#header-elite-f-flight">Elite F</a>, <a href="#header-elite-g-flight">Elite G</a> and <a href="#header-elite-h-flight">Elite H</a>.</li>
+\t\t\t\t\t\t\t<li>The main game source for the encyclopedia, which consists of <a href="#header-workspaces-encyclopedia">Workspaces</a>, <a href="#header-elite-a-encyclopedia">Elite A</a>, <a href="#header-elite-b-encyclopedia">Elite B</a>, <a href="#header-elite-c-encyclopedia">Elite C</a>, <a href="#header-elite-d-encyclopedia">Elite D</a>, <a href="#header-elite-e-encyclopedia">Elite E</a>, <a href="#header-elite-f-encyclopedia">Elite F</a>, <a href="#header-elite-g-encyclopedia">Elite G</a> and <a href="#header-elite-h-encyclopedia">Elite H</a>.</li>
+\t\t\t\t\t\t\t<li>The 23 ship blueprint files, one of which gets loaded on launching from the station: <a href="#header-ship-blueprints-a">A</a>, <a href="#header-ship-blueprints-b">B</a>, <a href="#header-ship-blueprints-c">C</a>, <a href="#header-ship-blueprints-d">D</a>, <a href="#header-ship-blueprints-e">E</a>, <a href="#header-ship-blueprints-f">F</a>, <a href="#header-ship-blueprints-g">G</a>, <a href="#header-ship-blueprints-h">H</a>, <a href="#header-ship-blueprints-i">I</a>, <a href="#header-ship-blueprints-j">J</a>, <a href="#header-ship-blueprints-k">K</a>, <a href="#header-ship-blueprints-l">L</a>, <a href="#header-ship-blueprints-m">M</a>, <a href="#header-ship-blueprints-n">N</a>, <a href="#header-ship-blueprints-o">O</a>, <a href="#header-ship-blueprints-p">P</a>, <a href="#header-ship-blueprints-q">Q</a>, <a href="#header-ship-blueprints-r">R</a>, <a href="#header-ship-blueprints-s">S</a>, <a href="#header-ship-blueprints-t">T</a>, <a href="#header-ship-blueprints-u">U</a>, <a href="#header-ship-blueprints-v">V</a> and <a href="#header-ship-blueprints-w">W</a>.</li>
+\t\t\t\t\t\t\t<li>The 6502 Second Processor version of the game, which consists of the <a href="#header-i-o-processor">I/O processor</a> source, which runs on the BBC Micro, and the parasite source, which runs on the 6502 Second Processor and consists of <a href="#header-workspaces-parasite">Workspaces</a>, <a href="#header-elite-a-parasite">Elite A</a>, <a href="#header-elite-b-parasite">Elite B</a>, <a href="#header-elite-c-parasite">Elite C</a>, <a href="#header-elite-d-parasite">Elite D</a>, <a href="#header-elite-e-parasite">Elite E</a>, <a href="#header-elite-f-parasite">Elite F</a>, <a href="#header-elite-g-parasite">Elite G</a>, <a href="#header-elite-h-parasite">Elite H</a>, <a href="#header-elite-i-parasite">Elite I</a>, <a href="#header-elite-j-parasite">Elite J</a>, <a href="#header-elite-k-parasite">Elite K</a>, <a href="#header-elite-l-parasite">Elite L</a>, <a href="#header-elite-m-parasite">Elite M</a> and <a href="#header-ship-blueprints-parasite">Ship blueprints</a>.</li>
+\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t<p>You can click on the links above to jump to the relevant part of the map.</p>
 
 '''
 elif args.platform == "nes":
-    html_large_source_code_page_links = '''<p>This page contains a map of all the routines, variables and macros in the NES version of Elite. To make them easier to browse on the web, ROM banks with large source code files have been split into smaller parts, though each bank still produces exactly 16K when assembled. The source files are structured like this:</p>
-<ul>
-<li>The <a href="#header-common">common game code</a>, which contains variable and macro definitions used throughout the code.</li>
-<li>The <a href="#header-ines-header">iNES header</a>, which tells emulators how to configure the ROM cartridge for emulation.</li>
-<li>Bank 7 (part <a href="#header-bank-7-part-1-of-4">1</a>, <a href="#header-bank-7-part-2-of-4">2</a>, <a href="#header-bank-7-part-3-of-4">3</a>, <a href="#header-bank-7-part-4-of-4">4</a>), which is the only ROM bank that remains in memory at all times, swapping banks 0 to 6 in and out of memory as required.</li>
-<li>The seven ROM banks that contain most of the game code, and which are swapped in and out of memory by bank 7: bank 0 (part <a href="#header-bank-0-part-1-of-5">1</a>, <a href="#header-bank-0-part-2-of-5">2</a>, <a href="#header-bank-0-part-3-of-5">3</a>, <a href="#header-bank-0-part-4-of-5">4</a>, <a href="#header-bank-0-part-5-of-5">5</a>), bank 1 (part <a href="#header-bank-1-part-1-of-3">1</a>, <a href="#header-bank-1-part-2-of-3">2</a>, <a href="#header-bank-1-part-3-of-3">3</a>), bank 2 (part <a href="#header-bank-2-part-1-of-4">1</a>, <a href="#header-bank-2-part-2-of-4">2</a>, <a href="#header-bank-2-part-3-of-4">3</a>, <a href="#header-bank-2-part-4-of-4">4</a>), bank 3 (part <a href="#header-bank-3-part-1-of-2">1</a>, <a href="#header-bank-3-part-2-of-2">2</a>), <a href="#header-bank-4">bank 4</a>, <a href="#header-bank-5">bank 5</a> and bank 6 (part <a href="#header-bank-6-part-1-of-3">1</a>, <a href="#header-bank-6-part-2-of-3">2</a>, <a href="#header-bank-6-part-3-of-3">3</a>).</li>
-</ul>
+    html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines, variables and macros in the NES version of Elite. To make them easier to browse on the web, ROM banks with large source code files have been split into smaller parts, though each bank still produces exactly 16K when assembled. The source files are structured like this:</p>
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The <a href="#header-common">common game code</a>, which contains variable and macro definitions used throughout the code.</li>
+\t\t\t\t\t\t\t<li>The <a href="#header-ines-header">iNES header</a>, which tells emulators how to configure the ROM cartridge for emulation.</li>
+\t\t\t\t\t\t\t<li>Bank 7 (part <a href="#header-bank-7-part-1-of-4">1</a>, <a href="#header-bank-7-part-2-of-4">2</a>, <a href="#header-bank-7-part-3-of-4">3</a>, <a href="#header-bank-7-part-4-of-4">4</a>), which is the only ROM bank that remains in memory at all times, swapping banks 0 to 6 in and out of memory as required.</li>
+\t\t\t\t\t\t\t<li>The seven ROM banks that contain most of the game code, and which are swapped in and out of memory by bank 7: bank 0 (part <a href="#header-bank-0-part-1-of-5">1</a>, <a href="#header-bank-0-part-2-of-5">2</a>, <a href="#header-bank-0-part-3-of-5">3</a>, <a href="#header-bank-0-part-4-of-5">4</a>, <a href="#header-bank-0-part-5-of-5">5</a>), bank 1 (part <a href="#header-bank-1-part-1-of-3">1</a>, <a href="#header-bank-1-part-2-of-3">2</a>, <a href="#header-bank-1-part-3-of-3">3</a>), bank 2 (part <a href="#header-bank-2-part-1-of-4">1</a>, <a href="#header-bank-2-part-2-of-4">2</a>, <a href="#header-bank-2-part-3-of-4">3</a>, <a href="#header-bank-2-part-4-of-4">4</a>), bank 3 (part <a href="#header-bank-3-part-1-of-2">1</a>, <a href="#header-bank-3-part-2-of-2">2</a>), <a href="#header-bank-4">bank 4</a>, <a href="#header-bank-5">bank 5</a> and bank 6 (part <a href="#header-bank-6-part-1-of-3">1</a>, <a href="#header-bank-6-part-2-of-3">2</a>, <a href="#header-bank-6-part-3-of-3">3</a>).</li>
+\t\t\t\t\t\t</ul>
 
-<p>You can click on the links above to jump to the relevant part of the map.</p>
+\t\t\t\t\t\t<p>You can click on the links above to jump to the relevant part of the map.</p>
 
 '''
 elif args.platform == "aviator":
-    html_large_source_code_page_links = '''<p>This page contains a map of all the routines and variables in the original version of Aviator, in the order in which they appear in the original source. The source files are structured like this:</p>
-<ul>
-<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-aviator-a">Aviator A</a>, <a href="#header-aviator-b">Aviator B</a>, <a href="#header-aviator-c">Aviator C</a>, <a href="#header-aviator-d">Aviator D</a>, <a href="#header-aviator-e">Aviator E</a> and <a href="#header-aviator-f">Aviator F</a></li>
-</ul>
+    html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines and variables in the original version of Aviator, in the order in which they appear in the original source. The source files are structured like this:</p>
 
-<p>You can click on the links above to jump to the relevant part of the map.</p>
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-aviator-a">Aviator A</a>, <a href="#header-aviator-b">Aviator B</a>, <a href="#header-aviator-c">Aviator C</a>, <a href="#header-aviator-d">Aviator D</a>, <a href="#header-aviator-e">Aviator E</a> and <a href="#header-aviator-f">Aviator F</a></li>
+\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t<p>You can click on the links above to jump to the relevant part of the map.</p>
 
 '''
 elif args.platform == "revs":
-    html_large_source_code_page_links = '''<p>This page contains a map of all the routines and variables in the original version of Revs, in the order in which they appear in the original source. The source files are structured like this:</p>
-<ul>
-<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-revs-a">Revs A</a>, <a href="#header-revs-b">Revs B</a>, <a href="#header-revs-c">Revs C</a>, <a href="#header-revs-d">Revs D</a>, <a href="#header-revs-e">Revs E</a>, <a href="#header-revs-f">Revs F</a>, <a href="#header-revs-g">Revs G</a>, <a href="#header-revs-h">Revs H</a> and <a href="#header-revs-i">Revs I</a></li>
-<li>The track data files for <a href="#header-silverstone-track-data-file">Silverstone</a>, <a href="#header-brands-hatch-track-data-file">Brands Hatch</a>,  <a href="#header-donington-park-track-data-file">Donington Park</a>, <a href="#header-oulton-park-track-data-file">Oulton Park</a>, <a href="#header-snetterton-track-data-file">Snetterton</a> and the <a href="#header-nurburgring-track-data-file">Nürburgring</a></li>
-</ul>
+    html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines and variables in the original version of Revs, in the order in which they appear in the original source. The source files are structured like this:</p>
 
-<p>You can click on the links above to jump to the relevant part of the map.</p>
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-revs-a">Revs A</a>, <a href="#header-revs-b">Revs B</a>, <a href="#header-revs-c">Revs C</a>, <a href="#header-revs-d">Revs D</a>, <a href="#header-revs-e">Revs E</a>, <a href="#header-revs-f">Revs F</a>, <a href="#header-revs-g">Revs G</a>, <a href="#header-revs-h">Revs H</a> and <a href="#header-revs-i">Revs I</a></li>
+\t\t\t\t\t\t\t<li>The track data files for <a href="#header-silverstone-track-data-file">Silverstone</a>, <a href="#header-brands-hatch-track-data-file">Brands Hatch</a>,  <a href="#header-donington-park-track-data-file">Donington Park</a>, <a href="#header-oulton-park-track-data-file">Oulton Park</a>, <a href="#header-snetterton-track-data-file">Snetterton</a> and the <a href="#header-nurburgring-track-data-file">Nürburgring</a></li>
+\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t<p>You can click on the links above to jump to the relevant part of the map.</p>
 
 '''
 elif args.platform == "lander":
-    html_large_source_code_page_links = '''<p>This page contains a map of all the routines and variables in the original version of Lander, in the order in which they appear in the original source. The source files are structured like this:</p>
-<ul>
-<li>The main game source, which consists of <a href="#header-lander-a">Lander A</a>, <a href="#header-lander-b">Lander B</a>, <a href="#header-lander-c">Lander C</a> and <a href="#header-lander-d">Lander D</a></li>
-<li>The <a href="#header-runimage">!RunImage source</a> for the RISC OS version</li>
-</ul>
+    html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines and variables in the original version of Lander, in the order in which they appear in the original source. The source files are structured like this:</p>
 
-<p>You can click on the links above to jump to the relevant part of the map.</p>
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The main game source, which consists of <a href="#header-lander-a">Lander A</a>, <a href="#header-lander-b">Lander B</a>, <a href="#header-lander-c">Lander C</a> and <a href="#header-lander-d">Lander D</a></li>
+\t\t\t\t\t\t\t<li>The <a href="#header-runimage">!RunImage source</a> for the RISC OS version</li>
+\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t<p>You can click on the links above to jump to the relevant part of the map.</p>
 
 '''
 
 if args.platform == "aviator" or args.platform == "lander":
-    html_source_code_stats_intro = '''<p>Here's a statistical breakdown of the source code for {}. Click on the table headers to sort by that statistic. For more information, see the notes after the table.</p>
+    html_source_code_stats_intro = '''\t\t\t\t\t\t<p>Here's a statistical breakdown of the source code for {}. Click on the table headers to sort by that statistic. For more information, see the notes after the table.</p>
 '''
-    html_source_code_stats_footer = '''<p>Some notes on the above:</p>
-<ul>
-<li>The instruction count does not include EQUB, EQUW, EQUD, EQUS or SKIP operatives; these are counted as data.</li>
-<li>Each part of a multi-part subroutine counts as an individual subroutine.</li>
-<li>The statistics are produced by a relatively simple static analysis of the source code. They are not 100% accurate, though they are pretty close.</li>
-</ul>
+    html_source_code_stats_footer = '''\t\t\t\t\t\t<p>Some notes on the above:</p>
+
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The instruction count does not include EQUB, EQUW, EQUD, EQUS or SKIP operatives; these are counted as data.</li>
+\t\t\t\t\t\t\t<li>Each part of a multi-part subroutine counts as an individual subroutine.</li>
+\t\t\t\t\t\t\t<li>The statistics are produced by a relatively simple static analysis of the source code. They are not 100% accurate, though they are pretty close.</li>
+\t\t\t\t\t\t</ul>
 '''
 elif args.platform == "revs":
-    html_source_code_stats_intro = '''<p>Here's a statistical breakdown of the source code for {}. Click on the table headers to sort by that statistic. For more information, see the notes after the table.</p>
+    html_source_code_stats_intro = '''\t\t\t\t\t\t<p>Here's a statistical breakdown of the source code for {}. Click on the table headers to sort by that statistic. For more information, see the notes after the table.</p>
 '''
-    html_source_code_stats_footer = '''<p>Some notes on the above:</p>
-<ul>
-<li>The instruction count does not include EQUB, EQUW, EQUD, EQUS or SKIP operatives; these are counted as data.</li>
-<li>Each part of a multi-part subroutine counts as an individual subroutine.</li>
-<li>The statistics are produced by a relatively simple static analysis of the source code. They are not 100% accurate, though they are pretty close.</li>
-<li>The totals cover all code in the main game, including all of the track data files.</li>
-</ul>
+    html_source_code_stats_footer = '''\t\t\t\t\t\t<p>Some notes on the above:</p>
+
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The instruction count does not include EQUB, EQUW, EQUD, EQUS or SKIP operatives; these are counted as data.</li>
+\t\t\t\t\t\t\t<li>Each part of a multi-part subroutine counts as an individual subroutine.</li>
+\t\t\t\t\t\t\t<li>The statistics are produced by a relatively simple static analysis of the source code. They are not 100% accurate, though they are pretty close.</li>
+\t\t\t\t\t\t\t<li>The totals cover all code in the main game, including all of the track data files.</li>
+\t\t\t\t\t\t</ul>
 '''
 elif args.platform == "c64" or args.platform == "apple" or args.platform == "nes":
-    html_source_code_stats_intro = '''<p>Here's a statistical breakdown of the source code for {}. Click on the table headers to sort by that statistic. For more information, see the notes after the table.</p>
+    html_source_code_stats_intro = '''\t\t\t\t\t\t<p>Here's a statistical breakdown of the source code for {}. Click on the table headers to sort by that statistic. For more information, see the notes after the table.</p>
 '''
-    html_source_code_stats_footer = '''<p>Some notes on the above:</p>
-<ul>
-<li>The instruction count does not include EQUB, EQUW, EQUD, EQUS or SKIP operatives; these are counted as data even when they are buried in code (so EQUB $2C "BIT skip" instructions are counted as data, for example).</li>
-<li>INCBIN files are not included in the counts, so the data count doesn't include bytes from binary source files.</li>
-<li>Each part of a multi-part subroutine counts as an individual subroutine.</li>
-<li>The statistics are produced by a relatively simple static analysis of the source code. They are not 100% accurate, though they are pretty close.</li>
-<li>The totals cover all code in the project, including loaders and ship data files.</li>
-</ul>
+    html_source_code_stats_footer = '''\t\t\t\t\t\t<p>Some notes on the above:</p>
+
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The instruction count does not include EQUB, EQUW, EQUD, EQUS or SKIP operatives; these are counted as data even when they are buried in code (so EQUB $2C "BIT skip" instructions are counted as data, for example).</li>
+\t\t\t\t\t\t\t<li>INCBIN files are not included in the counts, so the data count doesn't include bytes from binary source files.</li>
+\t\t\t\t\t\t\t<li>Each part of a multi-part subroutine counts as an individual subroutine.</li>
+\t\t\t\t\t\t\t<li>The statistics are produced by a relatively simple static analysis of the source code. They are not 100% accurate, though they are pretty close.</li>
+\t\t\t\t\t\t\t<li>The totals cover all code in the project, including loaders and ship data files.</li>
+\t\t\t\t\t\t</ul>
 '''
 else:
-    html_source_code_stats_intro = '''<p>Here's a statistical breakdown of the source code for {}. Click on the table headers to sort by that statistic. For more information, see the notes after the table.</p>
+    html_source_code_stats_intro = '''\t\t\t\t\t\t<p>Here's a statistical breakdown of the source code for {}. Click on the table headers to sort by that statistic. For more information, see the notes after the table.</p>
 '''
-    html_source_code_stats_footer = '''<p>Some notes on the above:</p>
-<ul>
-<li>The instruction count does not include EQUB, EQUW, EQUD, EQUS or SKIP operatives; these are counted as data even when they are buried in code (so EQUB &amp;2C "BIT skip" instructions are counted as data, for example).</li>
-<li>INCBIN files are not included in the counts, so the data count doesn't include bytes from binary source files.</li>
-<li>Each part of a multi-part subroutine counts as an individual subroutine.</li>
-<li>The statistics are produced by a relatively simple static analysis of the source code. They are not 100% accurate, though they are pretty close.</li>
-<li>The totals cover all code in the project, including loaders, docked and flight code, Tube code and ship data files.</li>
-</ul>
+    html_source_code_stats_footer = '''\t\t\t\t\t\t<p>Some notes on the above:</p>
+
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The instruction count does not include EQUB, EQUW, EQUD, EQUS or SKIP operatives; these are counted as data even when they are buried in code (so EQUB &amp;2C "BIT skip" instructions are counted as data, for example).</li>
+\t\t\t\t\t\t\t<li>INCBIN files are not included in the counts, so the data count doesn't include bytes from binary source files.</li>
+\t\t\t\t\t\t\t<li>Each part of a multi-part subroutine counts as an individual subroutine.</li>
+\t\t\t\t\t\t\t<li>The statistics are produced by a relatively simple static analysis of the source code. They are not 100% accurate, though they are pretty close.</li>
+\t\t\t\t\t\t\t<li>The totals cover all code in the project, including loaders, docked and flight code, Tube code and ship data files.</li>
+\t\t\t\t\t\t</ul>
 '''
 
-html_source_code_stats_sorter = '''<script>
-const getCellValue = (tr, idx) => tr.children[idx].children[0].innerText || tr.children[idx].children[0].textContent;
+html_source_code_stats_sorter = '''\n\t\t\t\t\t\t<script>
+\t\t\t\t\t\t\tconst getCellValue = (tr, idx) => tr.children[idx].children[0].innerText || tr.children[idx].children[0].textContent;
 
-const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
-    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v2 - v1 : v1.toString().localeCompare(v2)
-    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+\t\t\t\t\t\t\tconst comparer = (idx, asc) => (a, b) => ((v1, v2) =>
+\t\t\t\t\t\t\t\tv1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v2 - v1 : v1.toString().localeCompare(v2)
+\t\t\t\t\t\t\t\t)(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
 
-document.querySelectorAll('tbody th').forEach(th => th.addEventListener('click', (() => {
-    const table = th.closest('table tbody');
-    const footer = table.querySelectorAll('.footer');
-    footerClone = footer[0].cloneNode(true);
-    footer[0].remove();
-    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
-        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
-        .forEach(tr => table.appendChild(tr)
-    );
-    table.append(footerClone);
-})));
-</script>
+\t\t\t\t\t\t\tdocument.querySelectorAll('tbody th').forEach(th => th.addEventListener('click', (() => {
+\t\t\t\t\t\t\t\tconst table = th.closest('table tbody');
+\t\t\t\t\t\t\t\tconst footer = table.querySelectorAll('.footer');
+\t\t\t\t\t\t\t\tfooterClone = footer[0].cloneNode(true);
+\t\t\t\t\t\t\t\tfooter[0].remove();
+\t\t\t\t\t\t\t\tArray.from(table.querySelectorAll('tr:nth-child(n+2)'))
+\t\t\t\t\t\t\t\t\t.sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+\t\t\t\t\t\t\t\t\t.forEach(tr => table.appendChild(tr)
+\t\t\t\t\t\t\t\t);
+\t\t\t\t\t\t\t\ttable.append(footerClone);
+\t\t\t\t\t\t\t})));
+\t\t\t\t\t\t</script>
+
 '''
-html_az_index_start = '<ul class="indexLinks small">\n'
-html_az_index_link = '\t<li><a href="#{}">{}</a></li>\n'
-html_az_index_end = '</ul>\n'
-html_az_links = '''\t\t\t\t\t\t<ul class="indexLinks">
+html_az_index_start = '\t\t\t\t\t\t<ul class="indexLinks small">\n'
+html_az_index_link = '\t\t\t\t\t\t\t<li><a href="#{}">{}</a></li>\n'
+html_az_index_end = '\t\t\t\t\t\t</ul>\n\n'
+html_az_links = '''\n\t\t\t\t\t\t<ul class="indexLinks">
 \t\t\t\t\t\t\t<li><a href="#a">A</a></li>
 \t\t\t\t\t\t\t<li><a href="#b">B</a></li>
 \t\t\t\t\t\t\t<li><a href="#c">C</a></li>
@@ -1479,13 +1494,13 @@ html_source_code_cross_references_intro = '''\t\t\t\t\t\t<p>Here's a list of eve
 ''' + html_az_links
 
 if args.platform == "aviator":
-    html_az_index_intro = '''<p>This index contains every subroutine, entry point, variable and workspace that appears in the source code for {}, sorted alphabetically.</p>
+    html_az_index_intro = '''\t\t\t\t\t\t<p>This index contains every subroutine, entry point, variable and workspace that appears in the source code for {}, sorted alphabetically.</p>
 ''' + html_az_links
 elif args.platform == "lander":
-    html_az_index_intro = '''<p>This index contains every subroutine, entry point and variable that appears in the source code for {}, sorted alphabetically.</p>
+    html_az_index_intro = '''\t\t\t\t\t\t<p>This index contains every subroutine, entry point and variable that appears in the source code for {}, sorted alphabetically.</p>
 ''' + html_az_links
 else:
-    html_az_index_intro = '''<p>This index contains every subroutine, entry point, variable, workspace and macro that appears in the source code for {}, sorted alphabetically.</p>
+    html_az_index_intro = '''\t\t\t\t\t\t<p>This index contains every subroutine, entry point, variable, workspace and macro that appears in the source code for {}, sorted alphabetically.</p>
 ''' + html_az_links
 
 html_subroutine_index_intro = '''<p>This index contains every subroutine and entry point that appears in the source code for {}, grouped by category. An entry points is a label within a subroutine that is called from outside the subroutine, which typically implements a subset or variation of the functionality of the parent subroutine.</p>
@@ -4976,22 +4991,22 @@ def output_map_of_source_code():
 
         previous_header = all_headers[0]["source_name"]
         underline = "-" * len(previous_header)
-        page_file.write(html_anchor.format("header-" + make_id(previous_header)))
-        page_file.write(html_summary_heading.format(previous_header, underline))
-        page_file.write('<table class="spacedTableBorder codeSummary">')
-        page_file.write('<tr class="codeSummaryHeader"><th class="codeSummaryLabel">Category</th><th>Details</th></tr>')
+        header_anchor = html_anchor.format("header-" + make_id(previous_header))
+        page_file.write('\t\t\t\t\t\t' + html_summary_heading.format(header_anchor, previous_header, underline) + '\n\n')
+        page_file.write('\t\t\t\t\t\t<table class="spacedTableBorder codeSummary">\n')
+        page_file.write('\t\t\t\t\t\t\t<tr class="codeSummaryHeader"><th class="codeSummaryLabel">Category</th><th>Details</th></tr>\n')
 
         for header in all_headers:
             if previous_header != header["source_name"]:
                 previous_header = header["source_name"]
                 underline = "-" * len(previous_header)
-                page_file.write("</table>")
-                page_file.write(html_anchor.format("header-" + make_id(previous_header)))
-                page_file.write(html_summary_heading.format(previous_header, underline))
-                page_file.write('<table class="spacedTableBorder codeSummary">')
-                page_file.write('<tr class="codeSummaryHeader"><th class="codeSummaryLabel">Category</th><th>Details</th></tr>')
+                page_file.write("\t\t\t\t\t\t</table>\n\n")
+                header_anchor = html_anchor.format("header-" + make_id(previous_header))
+                page_file.write('\t\t\t\t\t\t' + html_summary_heading.format(header_anchor, previous_header, underline) + '\n\n')
+                page_file.write('\t\t\t\t\t\t<table class="spacedTableBorder codeSummary">\n')
+                page_file.write('\t\t\t\t\t\t\t<tr class="codeSummaryHeader"><th class="codeSummaryLabel">Category</th><th>Details</th></tr>\n')
 
-            page_file.write('<tr><td class="codeSummaryCategory"><p>{2}</p></td><td><p><a href="/{4}">{1}: {0}</a></p><p class="codeSummarySummary">{3}</p></td></tr>'.format(
+            page_file.write('\t\t\t\t\t\t\t<tr><td class="codeSummaryCategory"><p>{2}</p></td><td><p><a href="/{4}">{1}: {0}</a></p><p class="codeSummarySummary">{3}</p></td></tr>\n'.format(
                 header["name"],
                 header["type"],
                 header["category"],
@@ -5032,10 +5047,11 @@ def output_source_code_stats():
         next_prev = next_prev_statistics[platform_key]
         output_next_prev(next_prev, page_file)
 
-        page_file.write('<div class="codeBlockWrapper"><div class="codeBlock article">')
+        page_file.write('\n\n\t\t\t\t<div class="codeBlockWrapper">\n\t\t\t\t\t<div class="codeBlock article">\n')
         page_file.write(versionise(html_source_code_stats_intro, platform_name))
-        page_file.write('<table class="spacedTableBorder codeSummary codeStatistics">')
-        page_file.write('<tbody><tr class="codeSummaryHeader"><th class="codeSummaryLabel">Category</th><th>Instructions</th><th>Subroutines</th><th>Variables</th><th>Data (bytes)</th><!--<th>Workspaces</th><th>Macros</th>--></tr>')
+        page_file.write('\n\t\t\t\t\t\t<table class="spacedTableBorder codeSummary codeStatistics">\n')
+        page_file.write('\t\t\t\t\t\t\t<tbody>\n')
+        page_file.write('\t\t\t\t\t\t\t\t<tr class="codeSummaryHeader"><th class="codeSummaryLabel">Category</th><th>Instructions</th><th>Subroutines</th><th>Variables</th><th>Data (bytes)</th><!--<th>Workspaces</th><th>Macros</th>--></tr>')
 
         for category in sorted(source_code_stats["categories"]):
             instructions = source_code_stats["categories"][category]["instruction_count"]
@@ -5064,7 +5080,7 @@ def output_source_code_stats():
             variables = source_code_stats["categories"][category]["variable_count"]
             workspaces = source_code_stats["categories"][category]["workspace_count"]
             macros = source_code_stats["categories"][category]["macro_count"]
-            page_file.write('<tr><td class="codeSummaryCategory"><span>{}</span></td><td><span class="yes">{}</span>{}</td><td><span class="yes">{}</span>{}</td><td><span class="yes">{}</span>{}</td><td><span class="yes">{}</span>{}</td><!--<td><span class="yes">{}</span>{}</td><td><span class="yes">{}</span>{}</td>--></tr>'.format(
+            page_file.write('\t\t\t\t\t\t\t\t<tr><td class="codeSummaryCategory"><span>{}</span></td><td><span class="yes">{}</span>{}</td><td><span class="yes">{}</span>{}</td><td><span class="yes">{}</span>{}</td><td><span class="yes">{}</span>{}</td><!--<td><span class="yes">{}</span>{}</td><td><span class="yes">{}</span>{}</td>--></tr>\n'.format(
                 category,
                 padding(instructions, max_instructions),
                 percentage(instructions, total_instructions),
@@ -5080,7 +5096,7 @@ def output_source_code_stats():
                 percentage(macros, total_macros)
             ))
 
-        page_file.write('<tr class="codeSummaryHeader footer"><th>{}</th><th>{}</th><th>{}</th><th>{}</th><th>{}</th><!--<th>{}</th><th>{}</th>--></tr></tbody>'.format(
+        page_file.write('\t\t\t\t\t\t\t\t<tr class="codeSummaryHeader footer"><th>{}</th><th>{}</th><th>{}</th><th>{}</th><th>{}</th><!--<th>{}</th><th>{}</th>--></tr>\n'.format(
             "Totals",
             total_instructions,
             total_subroutines,
@@ -5090,7 +5106,8 @@ def output_source_code_stats():
             total_macros
         ))
 
-        page_file.write("</table>")
+        page_file.write('\t\t\t\t\t\t\t</tbody>\n')
+        page_file.write('\t\t\t\t\t\t</table>\n')
         page_file.write(html_source_code_stats_sorter)
         page_file.write(html_source_code_stats_footer)
         page_file.write('\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n')
@@ -5110,12 +5127,15 @@ def output_source_code_cross_references():
         next_prev = next_prev_indexes["cross-references"]
         output_next_prev(next_prev, page_file)
 
-        page_file.write('\t\t\t\t<div class="codeBlockWrapper">\n')
+        page_file.write('\n\n\t\t\t\t<div class="codeBlockWrapper">\n')
         page_file.write('\t\t\t\t\t<div class="codeBlock article">\n')
         page_file.write(versionise(html_source_code_cross_references_intro, platform_name))
-        page_file.write('\t\t\t\t\t\t<table class="spacedTableBorder codeSummary crossReferences">\n')
-        page_file.write('\t\t\t\t\t\t\t<tr class="blank"><td colspan="3">{}</td></tr>\n'.format(html_anchor.format(previous_letter)))
-        page_file.write('\t\t\t\t\t\t\t<tr class="codeSummaryHeader"><th>Name</th><th>Type</th><th>Referenced by</th></tr>\n')
+        page_file.write('\n\t\t\t\t\t\t<table class="spacedTableBorder codeSummary crossReferences">\n')
+        page_file.write('\t\t\t\t\t\t\t<tbody>\n')
+        page_file.write('\t\t\t\t\t\t\t\t<tr class="blank"><td colspan="3">{}</td></tr>\n'.format(html_anchor.format(previous_letter)))
+        page_file.write('\t\t\t\t\t\t\t</tbody>\n')
+        page_file.write('\t\t\t\t\t\t\t<tbody>\n')
+        page_file.write('\t\t\t\t\t\t\t\t<tr class="codeSummaryHeader"><th>Name</th><th>Type</th><th>Referenced by</th></tr>\n')
 
         for ref in sorted(mentions, key=sort_reference_names):
             (mention_list, mention_link, letter, ref_type) = fetch_cross_references(ref, html_summary_reference_link, include_stage=True)
@@ -5123,17 +5143,18 @@ def output_source_code_cross_references():
             if letter:
                 if previous_letter != letter:
                     previous_letter = letter
-                    page_file.write('\t\t\t\t\t\t\t<tr class="blank"><td colspan="3">{}</td></tr>\n'.format(html_anchor.format(previous_letter)))
+                    page_file.write('\t\t\t\t\t\t\t\t<tr class="blank"><td colspan="3">{}</td></tr>\n'.format(html_anchor.format(previous_letter)))
 
                 if not mention_list:
                     mention_list = "n/a"
 
-                page_file.write('\t\t\t\t\t\t\t<tr><td>{}</td><td>{}</td><td>{}</td></tr>\n'.format(
+                page_file.write('\t\t\t\t\t\t\t\t<tr><td>{}</td><td>{}</td><td>{}</td></tr>\n'.format(
                     mention_link,
                     ref_type,
                     mention_list
                 ))
 
+        page_file.write("\t\t\t\t\t\t\t</tbody>\n")
         page_file.write("\t\t\t\t\t\t</table>\n")
         page_file.write("\t\t\t\t\t</div>\n")
         page_file.write("\t\t\t\t</div>\n\n")
@@ -6468,8 +6489,8 @@ def output_indexes(file, array, intro, section, url_name, seo_title, title, desc
     next_prev = next_prev_indexes[url_name]
     output_next_prev(next_prev, file)
 
-    file.write('<div class="codeBlockWrapper"><div class="codeBlock article">')
-    file.write(intro)
+    file.write(('\n\n\t\t\t\t<div class="codeBlockWrapper">\n\t\t\t\t\t<div class="codeBlock article">\n\t\t\t\t\t\t'))
+    file.write(intro + '\n')
 
     if add_index:
         previous_category = ""
@@ -6480,30 +6501,31 @@ def output_indexes(file, array, intro, section, url_name, seo_title, title, desc
                 file.write(html_az_index_link.format(make_id(previous_category), previous_category))
         file.write(html_az_index_end)
 
-    file.write('<table class="spacedTableBorder codeSummary crossReferences">')
-    file.write('<tbody>')
+    file.write('\t\t\t\t\t\t<table class="spacedTableBorder codeSummary crossReferences">\n')
+    file.write('\t\t\t\t\t\t\t<tbody>\n')
 
     previous_category = ""
     for category in sorted(array):
         if previous_category != categories[category]:
             previous_category = categories[category]
             underline = "-" * len(previous_category)
-            file.write('<tr class="blank"><td colspan="2">{}{}</td></tr>'.format(
+            file.write('\t\t\t\t\t\t\t\t<tr class="blank"><td colspan="2">{}{}</td></tr>\n'.format(
                 html_anchor.format(make_id(previous_category)),
-                html_summary_heading.format(previous_category, underline)
+                html_summary_heading.format("", previous_category, underline)
             ))
 
         articles = sorted(array[category], key=sort_nav_items)
 
         for article in articles:
-            file.write('<tr><td><a href="/{}">{}</a></td><td>{}</td></tr>'.format(
+            file.write('\t\t\t\t\t\t\t\t<tr><td><a href="/{}">{}</a></td><td>{}</td></tr>\n'.format(
                 article["filename"],
                 article["name"],
                 article["summary"]
             ))
 
-    file.write("</table>")
-    file.write('</div></div>')
+    file.write('\t\t\t\t\t\t\t</tbody>\n')
+    file.write("\t\t\t\t\t\t</table>\n")
+    file.write('\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n')
     next_prev = next_prev_indexes[url_name]
     output_next_prev(next_prev, file)
     end_html(file)
@@ -6517,11 +6539,14 @@ def output_a_z_index(file, subroutines, variables, macros, workspaces, intro, se
     next_prev = next_prev_indexes["a-z"]
     output_next_prev(next_prev, file)
 
-    file.write('<div class="codeBlockWrapper"><div class="codeBlock article">')
+    file.write('\n\n\t\t\t\t<div class="codeBlockWrapper">\n\t\t\t\t\t<div class="codeBlock article">\n')
     file.write(intro)
-    file.write('<table class="spacedTableBorder codeSummary crossReferences">')
-    file.write('<tr class="blank"><td colspan="3">{}</td></tr>'.format(html_anchor.format(previous_letter)))
-    file.write('<tbody><tr class="codeSummaryHeader"><th>Name</th><th>Category</th><th>Description</th></tr>')
+    file.write('\n\t\t\t\t\t\t<table class="spacedTableBorder codeSummary crossReferences">\n')
+    file.write('\t\t\t\t\t\t\t<tbody>\n')
+    file.write('\t\t\t\t\t\t\t\t<tr class="blank"><td colspan="3">{}</td></tr>\n'.format(html_anchor.format(previous_letter)))
+    file.write('\t\t\t\t\t\t\t</tbody>\n')
+    file.write('\t\t\t\t\t\t\t<tbody>\n')
+    file.write('\t\t\t\t\t\t\t\t<tr class="codeSummaryHeader"><th>Name</th><th>Category</th><th>Description</th></tr>\n')
 
     for category in subroutines:
         articles = subroutines[category]
@@ -6549,14 +6574,14 @@ def output_a_z_index(file, subroutines, variables, macros, workspaces, intro, se
         letter = article["name"][:1].lower()
         if previous_letter != letter:
             previous_letter = letter
-            file.write('<tr class="blank"><td colspan="3">{}</td></tr>'.format(html_anchor.format(previous_letter)))
+            file.write('\t\t\t\t\t\t\t\t<tr class="blank"><td colspan="3">{}</td></tr>\n'.format(html_anchor.format(previous_letter)))
 
         if "category" in article:
             category = article["category"]
         else:
             category = "Workspace variable"
 
-        file.write('<tr><td><a href="/{}">{}</a></td><td class="codeSummaryCategory">{}</td><td>{}</td></tr>'.format(
+        file.write('\t\t\t\t\t\t\t\t<tr><td><a href="/{}">{}</a></td><td class="codeSummaryCategory">{}</td><td>{}</td></tr>\n'.format(
             article["filename"],
             article["name"],
             category,
