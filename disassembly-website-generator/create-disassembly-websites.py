@@ -1225,21 +1225,15 @@ html_compare_indexes2 = '''\t\t\t\t\t\t\t<li><a id="compare_shared_shared_code_o
 \t\t\t\t\t<li class="menuItemHeader showForMobile">All code variations by category</li>
 '''
 
-html_prev_next = '''
-\t\t\t\t<div class="codeBlockWrapper nav">
+html_prev_next = '''\t\t\t\t<div class="codeBlockWrapper nav">
 \t\t\t\t\t<nav class="codeBlock previousNext"><a class="previous" rel="prev" title="Previous routine" href="/{}">{}</a><a class="next" rel="next" title="Next routine" href="/{}">{}</a></nav>
-\t\t\t\t</div>
-'''
-html_prev = '''
-\t\t\t\t<div class="codeBlockWrapper nav">
+\t\t\t\t</div>'''
+html_prev = '''\t\t\t\t<div class="codeBlockWrapper nav">
 \t\t\t\t\t<nav class="codeBlock previousNext"><a class="previous" rel="prev" title="Previous routine" href="/{}">{}</a></nav>
-\t\t\t\t</div>
-'''
-html_next = '''
-\t\t\t\t<div class="codeBlockWrapper nav">
+\t\t\t\t</div>'''
+html_next = '''\t\t\t\t<div class="codeBlockWrapper nav">
 \t\t\t\t\t<nav class="codeBlock previousNext"><a class="next" rel="next" title="Next routine" href="/{}">{}</a></nav>
-\t\t\t\t</div>
-'''
+\t\t\t\t</div>'''
 
 if args.platform == "cassette":
     html_large_source_code_page_links = '''<p>This page contains a map of all the routines, variables and macros in the original source files for the BBC Micro cassette version of Elite, in the order in which they appear in the original source. The source files are structured like this:</p>
@@ -4977,7 +4971,7 @@ def output_map_of_source_code():
         next_prev = next_prev_all["map_of_the_source_code"]
         output_next_prev(next_prev, page_file)
 
-        page_file.write('<div class="codeBlockWrapper"><div class="codeBlock article">')
+        page_file.write('\n\n\t\t\t\t<div class="codeBlockWrapper">\n\t\t\t\t\t<div class="codeBlock article">\n')
         page_file.write(html_large_source_code_page_links)
 
         previous_header = all_headers[0]["source_name"]
@@ -5005,8 +4999,8 @@ def output_map_of_source_code():
                 header["filename"]
             ))
 
-        page_file.write("</table>")
-        page_file.write('</div></div>')
+        page_file.write("\t\t\t\t\t\t</table>\n")
+        page_file.write('\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n')
         next_prev = next_prev_all["map_of_the_source_code"]
         output_next_prev(next_prev, page_file)
         end_html(page_file)
@@ -5099,7 +5093,7 @@ def output_source_code_stats():
         page_file.write("</table>")
         page_file.write(html_source_code_stats_sorter)
         page_file.write(html_source_code_stats_footer)
-        page_file.write('</div></div>')
+        page_file.write('\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n')
         next_prev = next_prev_statistics[platform_key]
         output_next_prev(next_prev, page_file)
         end_html(page_file)
@@ -5142,7 +5136,7 @@ def output_source_code_cross_references():
 
         page_file.write("\t\t\t\t\t\t</table>\n")
         page_file.write("\t\t\t\t\t</div>\n")
-        page_file.write("\t\t\t\t</div>\n")
+        page_file.write("\t\t\t\t</div>\n\n")
         next_prev = next_prev_indexes["cross-references"]
         output_next_prev(next_prev, page_file)
         end_html(page_file)
@@ -5603,7 +5597,7 @@ def output_large_source_code_page(source, stage, name, source_file_name, start_l
     next_prev = next_prev_all[source_file_name]
     output_next_prev(next_prev, all_file)
 
-    all_file.write('\n\t\t\t\t<div class="codeBlockWrapper">\n<pre class="codeBlock sourceCode initial">')
+    all_file.write('\n\n\t\t\t\t<div class="codeBlockWrapper">\n<pre class="codeBlock sourceCode initial">')
 
     if (args.platform == "aviator" or args.platform == "revs" or args.platform == "lander" or args.platform == "nes") and start_line.startswith("Name:"):
         # There are no A/B/C headers in Aviator, Revs, Lander or NES Elite, so we don't need to open a header block
@@ -5619,10 +5613,11 @@ def output_large_source_code_page(source, stage, name, source_file_name, start_l
     else:
         large_source_code_page_contents(source, stage, name, source_file_name, start_line, end_line)
 
-    all_file.write('</pre>\n\t\t\t\t</div>\n')
+    all_file.write('</pre>\n\t\t\t\t</div>\n\n')
 
     output_next_prev(next_prev, all_file)
 
+    all_file.write('\n')
     add_reference_popups(references, stage, all_file, name, True)
     end_html(all_file)
 
@@ -5939,7 +5934,7 @@ def build_individual_code_page(source, name, type, category, summary, stage):
         analysing_body = False
         analysing_header = True
         analysing_arguments = False
-        page_file.write('\n\t\t\t\t<div class="codeBlockWrapper">\n<pre class="codeBlock sourceCode initial"><div class="headerBlockWrapper"><div class="headerBlock">')
+        page_file.write('\n\n\t\t\t\t<div class="codeBlockWrapper">\n<pre class="codeBlock sourceCode initial"><div class="headerBlockWrapper"><div class="headerBlock">')
 
         context_text = "Show more"
         context_link_length = len(context_text) + 3
@@ -6011,6 +6006,7 @@ def build_individual_code_page(source, name, type, category, summary, stage):
 
         add_reference_popups(references, stage, page_file, name, False)
 
+        page_file.write('\n')
         output_next_prev(next_prev, page_file)
         end_code_html(page_file)
         i -= 1
@@ -6566,8 +6562,9 @@ def output_a_z_index(file, subroutines, variables, macros, workspaces, intro, se
             category,
             article["summary"]
         ))
-    file.write("</table>")
-    file.write('</div></div>')
+    file.write('\t\t\t\t\t\t\t</tbody>\n')
+    file.write('\t\t\t\t\t\t</table>\n')
+    file.write('\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n')
     next_prev = next_prev_indexes["a-z"]
     output_next_prev(next_prev, file)
     end_html(file)
