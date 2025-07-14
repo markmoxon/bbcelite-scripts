@@ -5131,7 +5131,7 @@ def output_source_code_cross_references():
         page_file.write('\t\t\t\t\t\t\t\t<tr class="blank"><td colspan="3">{}</td></tr>\n'.format(html_anchor.format(previous_letter)))
         page_file.write('\t\t\t\t\t\t\t</tbody>\n')
         page_file.write('\t\t\t\t\t\t\t<tbody>\n')
-        page_file.write('\t\t\t\t\t\t\t\t<tr class="codeSummaryHeader"><th>Name</th><th>Type</th><th>Referenced by</th></tr>\n')
+        page_file.write('\t\t\t\t\t\t\t\t<tr class="codeSummaryHeader"><th class="indexLinks">Name</th><th class="indexLinks">Type</th><th class="indexLinks">Referenced by</th></tr>\n')
 
         for ref in sorted(mentions, key=sort_reference_names):
             (mention_list, mention_link, letter, ref_type) = fetch_cross_references(ref, html_summary_reference_link, include_stage=True)
@@ -6542,7 +6542,7 @@ def output_a_z_index(file, subroutines, variables, macros, workspaces, intro, se
     file.write('\t\t\t\t\t\t\t\t<tr class="blank"><td colspan="3">{}</td></tr>\n'.format(html_anchor.format(previous_letter)))
     file.write('\t\t\t\t\t\t\t</tbody>\n')
     file.write('\t\t\t\t\t\t\t<tbody>\n')
-    file.write('\t\t\t\t\t\t\t\t<tr class="codeSummaryHeader"><th>Name</th><th>Category</th><th>Description</th></tr>\n')
+    file.write('\t\t\t\t\t\t\t\t<tr class="codeSummaryHeader"><th class="indexLinks">Name</th><th class="indexLinks">Category</th><th class="indexLinks">Description</th></tr>\n')
 
     for category in subroutines:
         articles = subroutines[category]
