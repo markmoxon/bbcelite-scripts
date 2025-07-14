@@ -5139,12 +5139,15 @@ def output_source_code_cross_references():
             if letter:
                 if previous_letter != letter:
                     previous_letter = letter
-                    page_file.write('\t\t\t\t\t\t\t\t<tr class="blank"><td colspan="3">{}</td></tr>\n'.format(html_anchor.format(previous_letter)))
+                    anchor = html_anchor.format(previous_letter)
+                else:
+                    anchor = ""
 
                 if not mention_list:
                     mention_list = "n/a"
 
-                page_file.write('\t\t\t\t\t\t\t\t<tr><td>{}</td><td>{}</td><td>{}</td></tr>\n'.format(
+                page_file.write('\t\t\t\t\t\t\t\t<tr><td>{}{}</td><td>{}</td><td>{}</td></tr>\n'.format(
+                    anchor,
                     mention_link,
                     ref_type,
                     mention_list
@@ -6570,14 +6573,17 @@ def output_a_z_index(file, subroutines, variables, macros, workspaces, intro, se
         letter = article["name"][:1].lower()
         if previous_letter != letter:
             previous_letter = letter
-            file.write('\t\t\t\t\t\t\t\t<tr class="blank"><td colspan="3">{}</td></tr>\n'.format(html_anchor.format(previous_letter)))
+            anchor = html_anchor.format(previous_letter)
+        else:
+            anchor = ""
 
         if "category" in article:
             category = article["category"]
         else:
             category = "Workspace variable"
 
-        file.write('\t\t\t\t\t\t\t\t<tr><td><a href="/{}">{}</a></td><td class="codeSummaryCategory">{}</td><td>{}</td></tr>\n'.format(
+        file.write('\t\t\t\t\t\t\t\t<tr><td>{}<a href="/{}">{}</a></td><td class="codeSummaryCategory">{}</td><td>{}</td></tr>\n'.format(
+            anchor,
             article["filename"],
             article["name"],
             category,
