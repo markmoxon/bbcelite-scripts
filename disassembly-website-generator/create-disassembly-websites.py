@@ -4847,19 +4847,15 @@ def fetch_comments(source, i, regex, skip):
 
 def fetch_header_comments(source, i):
     summary = ""
-    i = i + 1
-    line = source[i]
-    n = re_header_comment.match(line)
-    while n:
-        summary += " " + n.group(1)
+    while True:
         i += 1
         line = source[i]
+        n = re_header_comment.match(line)
         if re_empty_comment.match(line) or re_empty_line.match(line) \
            or re_empty_line_in_header.match(line) or re_comment.match(line) \
-           or re_comment2.match(line):
+           or re_comment2.match(line) or not n:
             break
-        else:
-            n = re_header_comment.match(line)
+        summary += " " + n.group(1)
     return summary
 
 
@@ -8674,6 +8670,9 @@ if args.platform != "compare":
     if args.platform != "lander":
         add_workspace_variables_to_indexes()
     add_entry_points_to_indexes()
+
+    with open("debug/subroutines.txt", "w") as file:
+        file.write(json.dumps(subroutines, indent=2, sort_keys=True))
 
     with open(dest_folder + content_folder + "indexes/subroutines.html", "w") as file:
         output_indexes(file, subroutines, versionise(html_subroutine_index_intro, platform_name), "indexes", "subroutines", "List of all subroutines", "List of all subroutines", "List of all subroutines in " + versionise("{}", platform_name), True)
