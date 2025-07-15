@@ -1539,16 +1539,28 @@ html_mono_intro = '''<div class="codeBlockWrapper"><div class="codeBlock article
 \t<table class="spacedTableBorder codeSummary middle">
 \t\t<tr class="codeSummaryHeader"><th class="codeSummaryLabel">Name</th><th class="center" colspan="6">Versions that contain this routine</th></tr>
 '''
-html_shared_category_intro = '''<div class="codeBlockWrapper"><div class="codeBlock article">
-\t<p>{}</p>
-\t<p>Click on a name to see all the code differences for that part of the codebase, or click on an individual variation to focus on that particular feature.</p>
-\t<table class="spacedTableBorder codeSummary"><tbody>
-\t\t<tr class="codeSummaryHeader"><th class="codeSummaryLabel">Name</th><th>Comments</th>'''
-html_shared_other_variations_intro = '''<div class="codeBlockWrapper"><div class="codeBlock article">
-\t<p>The following table shows minor code variations that are not covered by the curated lists. The categories are described in the page on <a href="/compare/how_to_compare.html">how to compare versions</a>.</p>
-\t<p>Click on a name to see all the code differences for that part of the codebase.</p>
-\t<table class="spacedTableBorder codeSummary middle"><tbody>
-\t\t<tr class="codeSummaryHeader"><th class="codeSummaryLabel">Name</th>'''
+html_shared_category_intro = '''
+
+\t\t\t\t<div class="codeBlockWrapper">
+\t\t\t\t\t<div class="codeBlock article">
+\t\t\t\t\t\t<p>{}</p>
+
+\t\t\t\t\t\t<p>Click on a name to see all the code differences for that part of the codebase, or click on an individual variation to focus on that particular feature.</p>
+
+\t\t\t\t\t\t<table class="spacedTableBorder codeSummary"><tbody>
+\t\t\t\t\t\t\t<tr class="codeSummaryHeader"><th class="codeSummaryLabel">Name</th><th>Comments</th>
+'''
+html_shared_other_variations_intro = '''
+
+\t\t\t\t<div class="codeBlockWrapper">
+\t\t\t\t\t<div class="codeBlock article">
+
+\t\t\t\t\t\t<p>The following table shows minor code variations that are not covered by the curated lists. The categories are described in the page on <a href="/compare/how_to_compare.html">how to compare versions</a>.</p>
+
+\t\t\t\t\t\t<p>Click on a name to see all the code differences for that part of the codebase.</p>
+
+\t\t\t\t\t\t<table class="spacedTableBorder codeSummary middle"><tbody>
+\t\t\t\t\t\t\t<tr class="codeSummaryHeader"><th class="codeSummaryLabel">Name</th>'''
 
 if args.platform == "cassette":
     next_prev_all = {
@@ -7435,7 +7447,7 @@ def output_compare_other_categories_index(page_file):
 
     for category in sorted(tag_categories_to_show):
         page_file.write('<th class="center">{}</th>'.format(category))
-    page_file.write("</tr>")
+    page_file.write("</tr>\n")
 
     for include in sorted(all_includes, key=lambda k: re.sub("part (.) of", "part 0$1 of", all_includes[k]["name"].lower())):
         count_tags = 0
@@ -7444,7 +7456,7 @@ def output_compare_other_categories_index(page_file):
                 count_tags += all_includes[include]["tag_count"][category]
 
         if count_tags:
-            row = '<tr><td><a href="{}">{}</a><br /><span class="codeSummaryCategory">{}</span></td>'.format(
+            row = '\t\t\t\t\t\t\t<tr><td><a href="{}">{}</a><br /><span class="codeSummaryCategory">{}</span></td>'.format(
                 "/" + content_folder + all_includes[include]["stage"] + "/" + all_includes[include]["type"] + "/" + all_includes[include]["filename"] + ".html",
                 all_includes[include]["name"],
                 all_includes[include]["category"]
@@ -7452,12 +7464,13 @@ def output_compare_other_categories_index(page_file):
             page_file.write(row)
             for category in sorted(tag_categories_to_show):
                 if category in all_includes[include]["tag_count"]:
-                    page_file.write('<td class="center"><span>{}</span</td>'.format(all_includes[include]["tag_count"][category]))
+                    page_file.write('<td class="center"><span>{}</span></td>'.format(all_includes[include]["tag_count"][category]))
                 else:
-                    page_file.write('<td class="center"><span></span</td>')
+                    page_file.write('<td class="center"><span></span></td>')
+            page_file.write('</tr>\n')
 
-    page_file.write("<tbody></table>")
-    page_file.write('</div></div>')
+    page_file.write('\t\t\t\t\t\t</table>\n')
+    page_file.write('\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n')
 
     output_next_prev(next_prev, page_file)
     end_html(page_file)
@@ -7483,7 +7496,7 @@ def output_compare_category_index(page_file, category):
     for include in sorted(includes_with_category, key=lambda k: re.sub("part (.) of", "part 0$1 of", k["name"].lower())):
         if len(include["versions"]) > 1:
             url = "/" + content_folder + include["stage"] + "/" + include["type"] + "/" + include["filename"] + ".html"
-            row = '<tr><td><a href="{}">{}</a><br /><span class="codeSummaryCategory">{}</span></td><td>{}</td>'.format(
+            row = '\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td><a href="{}">{}</a><br /><span class="codeSummaryCategory">{}</span></td>\n\t\t\t\t\t\t\t\t<td>{}\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n'.format(
                 url,
                 include["name"],
                 include["category"],
@@ -7494,7 +7507,7 @@ def output_compare_category_index(page_file, category):
             version = include["versions"][0]
             urls = get_url_for_code_page(include["include_name"])
             url = urls[version]
-            row = '<tr><td><a href="{}">{}</a><br /><span class="codeSummaryCategory">{}</span></td><td>{}</td>'.format(
+            row = '\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td><a href="{}">{}</a><br /><span class="codeSummaryCategory">{}</span></td>\n\t\t\t\t\t\t\t\t<td>{}\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n'.format(
                 url,
                 include["name"],
                 include["category"],
@@ -7502,8 +7515,8 @@ def output_compare_category_index(page_file, category):
             )
         page_file.write(row)
 
-    page_file.write("<tbody></table>")
-    page_file.write('</div></div>')
+    page_file.write('\t\t\t\t\t\t</table>\n')
+    page_file.write('\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n')
 
     output_next_prev(next_prev, page_file)
     end_html(page_file)
@@ -7512,24 +7525,24 @@ def output_compare_category_index(page_file, category):
 def tag_comments_as_ul(comments, category, url):
     html = ''
     if category in comments:
-        html += '<ul>\n'
+        html += '\n\t\t\t\t\t\t\t\t\t<ul>\n'
         anchor = 1
         for comment in comments[category]:
             link_to_compare = '<div class="moreLink"><a href="{}">See the code variation for this feature</a></div>'.format(url + "#compare-" + make_id(category) + "-" + str(anchor))
-            html += '<li>' + add_full_stop(comment) + link_to_compare + '</li>\n'
+            html += '\t\t\t\t\t\t\t\t\t\t<li>' + add_full_stop(comment) + link_to_compare + '</li>\n'
             anchor += 1
-        html += '</ul>\n'
+        html += '\t\t\t\t\t\t\t\t\t</ul>\n'
     return html
 
 
 def tag_comments_for_single_platform_variation(comments, category, url):
     html = ''
     if category in comments:
-        html += '<ul>\n'
+        html += '\n\t\t\t\t\t\t\t\t\t<ul>\n'
         for comment in comments[category]:
             link_to_compare = '<div class="moreLink"><a href="{}">See the code containing this feature</a></div>'.format(url)
-            html += '<li>' + add_full_stop(comment) + link_to_compare + '</li>\n'
-        html += '</ul>\n'
+            html += '\t\t\t\t\t\t\t\t\t\t<li>' + add_full_stop(comment) + link_to_compare + '</li>\n'
+        html += '\t\t\t\t\t\t\t\t\t</ul>\n'
     return html
 
 
