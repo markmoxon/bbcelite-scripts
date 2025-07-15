@@ -5633,12 +5633,12 @@ def output_large_source_code_page(source, stage, name, source_file_name, start_l
     else:
         large_source_code_page_contents(source, stage, name, source_file_name, start_line, end_line)
 
-    all_file.write('</pre>\n\t\t\t\t</div>\n\n')
+    all_file.write('</pre>\n\t\t\t\t</div>\n')
 
-    output_next_prev(next_prev, all_file)
+    add_reference_popups(references, stage, all_file, name, True)
 
     all_file.write('\n')
-    add_reference_popups(references, stage, all_file, name, True)
+    output_next_prev(next_prev, all_file)
     end_html(all_file)
 
 
