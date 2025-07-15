@@ -1513,13 +1513,18 @@ html_macro_index_intro = '''<p>This index contains every macro that appears in t
 '''
 html_deep_dive_index_intro = '''<p>This index contains every deep dive article on this site, grouped by category. If you want to learn how Elite works under the hood, then this is the section for you.</p>
 '''
-html_compare_intro = '''<div class="codeBlockWrapper"><div class="codeBlock article">
-\t<p>This code appears in the following version{} (click to see it in the source code):</p>
-\t<ul class="tightList">
-\t\t<li>{}</li>
-\t</ul>
-\t<p>Code variations between these versions are shown below.</p>
-</div></div>
+html_compare_intro = '''\t\t\t\t<div class="codeBlockWrapper">
+\t\t\t\t\t<div class="codeBlock article">
+\t\t\t\t\t\t<p>This code appears in the following version{} (click to see it in the source code):</p>
+
+\t\t\t\t\t\t<ul class="tightList">
+\t\t\t\t\t\t\t<li>{}</li>
+\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t<p>Code variations between these versions are shown below.</p>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+
 '''
 html_compare_intro_tap_instructions = '''<p>Tap on a block to expand it, and tap it again to revert.</p>
 '''
@@ -6939,12 +6944,12 @@ def output_compare_version_page(source, page_file, include, filename, name, cate
         analysing_header = True
         analysing_body = False
         i = 2
-        page_file.write('<div class="codeBlockWrapper compare">\n<pre class="codeBlock sourceCode initial">')
+        page_file.write('\t\t\t\t<div class="codeBlockWrapper compare">\n<pre class="codeBlock sourceCode initial">')
         page_file.write('<div class="headerBlockWrapper"><div class="headerBlock">')
     else:
         analysing_header = False
         i = 0
-        page_file.write('<div class="codeBlockWrapper compare">\n<pre class="codeBlock sourceCode">')
+        page_file.write('\t\t\t\t<div class="codeBlockWrapper compare">\n<pre class="codeBlock sourceCode">')
 
     while i < len(source) and analysing:
         line = source[i]
@@ -7037,7 +7042,7 @@ def output_compare_version_page(source, page_file, include, filename, name, cate
 
         i += 1
 
-    page_file.write('</div></div>')
+    page_file.write('</pre>\n\t\t\t\t</div>')
     end_code_html(page_file)
 
 
