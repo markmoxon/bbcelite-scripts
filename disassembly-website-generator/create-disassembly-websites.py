@@ -819,7 +819,7 @@ menu_item_close = '''\t\t\t\t\t\t</ul>
 \t\t\t\t\t</li>
 '''
 html_anchor = '<a id="{0}" name="{0}" class="anchor"></a>'
-html_summary_heading = '<h2 class="articleSubheader">{}{}<br />{}</h2>'
+html_summary_heading = '<h2 class="articleSubheader">{}{}<br>{}</h2>'
 html_summary_item = '''<li><a href="/{}">{}</a> - {}</li>
 
 '''
@@ -5758,7 +5758,7 @@ def large_source_code_page_contents(source, stage, name, source_file_name, start
                     i += 1
 
         elif re_comment2.match(line):
-            all_file.write('<hr class="light" />')
+            all_file.write('<hr class="light">')
 
         elif re.match(re_label, line):
             m = re.match(re_label, line)
@@ -6020,7 +6020,7 @@ def build_individual_code_page(source, name, type, category, summary, stage):
                     analysing_body = True
 
             elif re_comment2.match(line):
-                page_file.write('<hr class="light" />')
+                page_file.write('<hr class="light">')
 
             elif analysing and analysing_header:
                 if routine_extra_data_html and re_empty_line_in_header.match(line) and i < len(source) - 1 and (re_comment.match(source[i + 1]) or re_comment2.match(source[i + 1])):
@@ -6368,7 +6368,7 @@ def build_large_source_code_page(source, name, type, category, summary, stage):
                 analysing_body = True
 
         elif re_comment2.match(line):
-            all_file.write('<hr class="light"/>')
+            all_file.write('<hr class="light">')
 
         elif analysing and analysing_header:
             if routine_extra_data_html and re_empty_line_in_header.match(line) and i < len(source) - 1 and (re_comment.match(source[i + 1]) or re_comment2.match(source[i + 1])):
@@ -7035,7 +7035,7 @@ def output_compare_version_page(source, page_file, include, filename, name, cate
 
         elif re_comment2.match(line):
             output_buffered_compare_line(page_file)
-            page_file.write('<hr class="light" />')
+            page_file.write('<hr class="light">')
 
         else:
             output_compare_line(inside_version_if, input_file, page_file, line, multi_versions_buffer, current_if_block, analysing, analysing_header, analysing_body, all_includes[include]["type"])
@@ -7407,14 +7407,14 @@ def output_compares_indexes(multi_varies_page_file, multi_same_page_file, mono_p
                 difference_count += "s"
         else:
             difference_count = ""
-        row = '<tr><td><a href="{}">{}</a><br /><span class="codeSummaryCategory">{}<br />{}</span><br />{}</td>'.format(
+        row = '<tr><td><a href="{}">{}</a><br><span class="codeSummaryCategory">{}<br>{}</span><br>{}</td>'.format(
             "/" + content_folder + all_includes[include]["stage"] + "/" + all_includes[include]["type"] + "/" + all_includes[include]["filename"] + ".html",
             all_includes[include]["name"],
             all_includes[include]["type"].capitalize(),
             all_includes[include]["category"],
             difference_count
         )
-        row_no_link = '<tr><td>{}<br /><span class="codeSummaryCategory">{}<br />{}</span></td>'.format(
+        row_no_link = '<tr><td>{}<br><span class="codeSummaryCategory">{}<br>{}</span></td>'.format(
             all_includes[include]["name"],
             all_includes[include]["type"].capitalize(),
             all_includes[include]["category"]
@@ -7461,7 +7461,7 @@ def output_compare_other_categories_index(page_file):
                 count_tags += all_includes[include]["tag_count"][category]
 
         if count_tags:
-            row = '\t\t\t\t\t\t\t<tr><td><a href="{}">{}</a><br /><span class="codeSummaryCategory">{}</span></td>'.format(
+            row = '\t\t\t\t\t\t\t<tr><td><a href="{}">{}</a><br><span class="codeSummaryCategory">{}</span></td>'.format(
                 "/" + content_folder + all_includes[include]["stage"] + "/" + all_includes[include]["type"] + "/" + all_includes[include]["filename"] + ".html",
                 all_includes[include]["name"],
                 all_includes[include]["category"]
@@ -7501,7 +7501,7 @@ def output_compare_category_index(page_file, category):
     for include in sorted(includes_with_category, key=lambda k: re.sub("part (.) of", "part 0$1 of", k["name"].lower())):
         if len(include["versions"]) > 1:
             url = "/" + content_folder + include["stage"] + "/" + include["type"] + "/" + include["filename"] + ".html"
-            row = '\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td><a href="{}">{}</a><br /><span class="codeSummaryCategory">{}</span></td>\n\t\t\t\t\t\t\t\t<td>{}\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n'.format(
+            row = '\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td><a href="{}">{}</a><br><span class="codeSummaryCategory">{}</span></td>\n\t\t\t\t\t\t\t\t<td>{}\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n'.format(
                 url,
                 include["name"],
                 include["category"],
@@ -7512,7 +7512,7 @@ def output_compare_category_index(page_file, category):
             version = include["versions"][0]
             urls = get_url_for_code_page(include["include_name"])
             url = urls[version]
-            row = '\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td><a href="{}">{}</a><br /><span class="codeSummaryCategory">{}</span></td>\n\t\t\t\t\t\t\t\t<td>{}\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n'.format(
+            row = '\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td><a href="{}">{}</a><br><span class="codeSummaryCategory">{}</span></td>\n\t\t\t\t\t\t\t\t<td>{}\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n'.format(
                 url,
                 include["name"],
                 include["category"],
