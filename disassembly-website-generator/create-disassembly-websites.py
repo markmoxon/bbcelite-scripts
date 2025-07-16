@@ -818,7 +818,7 @@ menu_item_open = '''\t\t\t\t\t<li id="{}{}"><span class="menuTitle">{}</span> <s
 menu_item_close = '''\t\t\t\t\t\t</ul>
 \t\t\t\t\t</li>
 '''
-html_anchor = '<a id="{0}" name="{0}" class="anchor"></a>'
+html_anchor = '<a id="{0}" class="anchor"></a>'
 html_summary_heading = '<h2 class="articleSubheader">{}{}<br>{}</h2>'
 html_summary_item = '''<li><a href="/{}">{}</a> - {}</li>
 
