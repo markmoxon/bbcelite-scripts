@@ -4222,8 +4222,7 @@ def routine_extra_data(name, type, mentions, compare_url, context_text, context_
 
 def tidy_source_header_line(line, context_link, context_link_length):
     global analysing_arguments, analysing_summary, analysing_deep_dive_header
-    line = line.replace("<", "&lt;")
-    line = line.replace(">", "&gt;")
+    line = escape_html(line)
     cr = ""
     if "\n" in line:
         cr = "\n"
@@ -4289,6 +4288,12 @@ def tidy_source_header_line(line, context_link, context_link_length):
         for file_url in elite_source_urls:
             if file_url in line:
                 line = line.replace(file_url, '<a href="{}">{}</a>'.format(elite_source_urls[file_url], file_url))
+    return line
+
+
+def escape_html(line):
+    line = line.replace("<", "&lt;")
+    line = line.replace(">", "&gt;")
     return line
 
 
@@ -4891,7 +4896,7 @@ def fetch_header_summary(source, i, regex):
             break
         else:
             n = regex.match(line)
-    return {"summary": summary, "index": i}
+    return {"summary": escape_html(summary), "index": i}
 
 
 def start_html(handle, section, url_name, seo_title, title, description):
@@ -4977,9 +4982,9 @@ def end_code_html(handle):
 
 def add_article(array, description, section, url_name, filename, name, summary, category, stage):
     if section in array:
-        array[section].append({"description": description, "url_name": url_name, "filename": filename, "name": name, "summary": summary, "category": category, "stage": stage.lower()})
+        array[section].append({"description": description, "url_name": url_name, "filename": filename, "name": name, "summary": escape_html(summary), "category": category, "stage": stage.lower()})
     else:
-        array[section] = [{"description": description, "url_name": url_name, "filename": filename, "name": name, "summary": summary, "category": category, "stage": stage.lower()}]
+        array[section] = [{"description": description, "url_name": url_name, "filename": filename, "name": name, "summary": escape_html(summary), "category": category, "stage": stage.lower()}]
 
 
 def output_next_prev(next_prev, page_file):
@@ -6882,7 +6887,7 @@ def fetch_summary(input_file):
                 summary += m.group(2)
 
     input_file.seek(0)
-    return summary
+    return escape_html(summary)
 
 
 def process_compare_line(input_file, line, source_file, workspace):
