@@ -3903,8 +3903,50 @@ omit_includes_from_compare = [
     "elite-build-options.asm"
 ]
 
-# Routines from other sources
+# Routines from other sources - add routines that live in different files to their references
 exported_routines = {
+    "apple": {
+        "XX21": "Game data",
+        "E%": "Game data",
+        "KWH%": "Game data",
+        "KWL%": "Game data",
+        "SHIP_CORIOLIS": "Game data",
+        "QQ18": "Game data",
+        "SNE": "Game data",
+        "ACT": "Game data",
+        "FONT": "Game data",
+        "TKN1": "Game data",
+        "RUPLA": "Game data",
+        "RUGAL": "Game data",
+        "RUTOK": "Game data"
+    },
+    "c64": {
+        "XX21": "Game data",
+        "E%": "Game data",
+        "KWH%": "Game data",
+        "KWL%": "Game data",
+        "QQ18": "Game data",
+        "SNE": "Game data",
+        "ACT": "Game data",
+        "FONT": "Game data",
+        "TKN1": "Game data",
+        "RUPLA": "Game data",
+        "RUGAL": "Game data",
+        "RUTOK": "Game data"
+    },
+    "master": {
+        "XX21": "Game data",
+        "E%": "Game data",
+        "KWH%": "Game data",
+        "KWL%": "Game data",
+        "QQ18": "Game data",
+        "SNE": "Game data",
+        "ACT": "Game data",
+        "TKN1": "Game data",
+        "RUPLA": "Game data",
+        "RUGAL": "Game data",
+        "RUTOK": "Game data"
+    },
     "nes": {
         "UpdateView": "Bank 0",
         "DrawScreenInNMI": "Bank 0",
