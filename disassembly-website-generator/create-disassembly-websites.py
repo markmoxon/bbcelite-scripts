@@ -3934,6 +3934,17 @@ exported_routines = {
         "RUGAL": "Game data",
         "RUTOK": "Game data"
     },
+    "disc": {
+        "QQ18": "Loader 3",
+        "SNE": "Loader 3",
+        "CATD": "Loader 3",
+        "IRQ1": "Loader 3",
+        "BRBR1": "Loader 3",
+        "NA%": "Loader 3",
+        "CHK2": "Loader 3",
+        "CHK": "Loader 3",
+        "SHIP_MISSILE": "Missile ship blueprint"
+    },
     "master": {
         "XX21": "Game data",
         "E%": "Game data",
