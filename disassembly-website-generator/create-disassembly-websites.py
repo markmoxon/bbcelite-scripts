@@ -4082,7 +4082,11 @@ exported_routines = {
         "TT24": "Bank 6",
         "ClearDashEdge": "Bank 6",
         "ChangeCmdrName_b6": "Bank 7"
-    }
+    },
+    "revs": {
+        "trackLoad": "Silverstone",
+        "trackChecksum": "Silverstone"
+    },
 }
 
 # Global variables
