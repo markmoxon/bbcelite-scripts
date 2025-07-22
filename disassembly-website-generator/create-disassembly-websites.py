@@ -839,6 +839,11 @@ if args.platform == "lander":
                                     \\ that don't use this label, and these will
                                     \\ not be mentioned above
 </div>'''
+    html_exported_routine_reference_start = '''{0}                        \\
+                                    \\ This configuration variable points to this
+                                    \\ code:
+                                    \\
+'''
 else:
     html_workspace_reference_start = '''{0}                        \\
 {0}                        \\ <span class="routineLink">[<a class="extraDataLink" href="#">Show more</a>]</span>
@@ -853,10 +858,15 @@ else:
                         \\ this memory location that don't use this label, and
                         \\ these will not be mentioned above
 </div>'''
+    html_exported_routine_reference_start = '''{0}                        \\
+                        \\ This configuration variable points to this code:
+                        \\
+'''
 if not comment_delimiter == '\\':
     html_workspace_reference_start = html_workspace_reference_start.replace('\\', comment_delimiter)
     html_workspace_reference_link = html_workspace_reference_link.replace('\\', comment_delimiter)
     html_workspace_reference_end = html_workspace_reference_end.replace('\\', comment_delimiter)
+    html_exported_routine_reference_start = html_exported_routine_reference_start.replace('\\', comment_delimiter)
 
 if args.platform == "aviator" or args.platform == "revs" or args.platform == "lander":
     html_indexes = '''
@@ -5729,6 +5739,7 @@ def large_source_code_page_contents(source, stage, name, source_file_name, start
     in_if_to_remove = False
     in_else_to_remove = False
     configuration_variable_extra_data_html = ""
+    configuration_variable_exported_routine_html = ""
 
     if start_line:
         while i < len(source):
@@ -5842,6 +5853,14 @@ def large_source_code_page_contents(source, stage, name, source_file_name, start
             mention_list = fetch_cross_references(add_stage(c.group(2), stage), html_workspace_reference_link, include_stage=False)[0]
             if mention_list:
                 configuration_variable_extra_data_html = mention_list
+            if args.platform in exported_routines and c.group(2) in exported_routines[args.platform]:
+                original_name_no_stage = c.group(2)
+                original_stage = exported_routines[args.platform][original_name_no_stage]
+                original_name = add_stage(original_name_no_stage, original_stage)
+                if original_name in references_library:
+                    original_filename = references_library[original_name]["filename"]
+                    if original_filename:
+                        configuration_variable_exported_routine_html = html_workspace_reference_link.format(original_filename, original_name)
 
         elif re.match(r"^ *(ALIGN|ASSERT|CPU|IF|ELIF|ELSE|ENDIF|PRINT|SAVE|INCLUDE|INCBIN|GUARD|ORG|COPYBLOCK|FOR|NEXT|CLEAR|DIM|OPT|OSCLI)", line):
             # Separate trailing comment
@@ -5875,6 +5894,11 @@ def large_source_code_page_contents(source, stage, name, source_file_name, start
                 debug_file.write(line)
 
             all_file.write(line)
+
+        if configuration_variable_exported_routine_html and re_line_with_comment.search(line) and (i == len(source) - 1 or (i < len(source) - 1 and re_empty_line.match(source[i + 1]))):
+            extra_indent = ' ' * (line.find(comment_delimiter) - html_workspace_reference_link.find(comment_delimiter))
+            all_file.write(html_exported_routine_reference_start.format(extra_indent) + configuration_variable_exported_routine_html)
+            configuration_variable_exported_routine_html = ""
 
         if configuration_variable_extra_data_html and re_line_with_comment.search(line) and (i == len(source) - 1 or (i < len(source) - 1 and re_empty_line.match(source[i + 1]))):
             extra_indent = ' ' * (line.find(comment_delimiter) - html_workspace_reference_link.find(comment_delimiter))
