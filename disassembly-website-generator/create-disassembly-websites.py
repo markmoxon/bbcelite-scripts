@@ -3320,6 +3320,10 @@ else:
             "name": "Advanced tactics with the NEWB flags"
         },
         {
+            "filename": "deep_dives/aggression_and_hostility_in_ship_tactics.html",
+            "name": "Aggression and hostility in ship tactics"
+        },
+        {
             "filename": "deep_dives/auto-playing_the_combat_demo.html",
             "name": "Auto-playing the combat demo"
         },
