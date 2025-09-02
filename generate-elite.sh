@@ -17,6 +17,18 @@ if [ $retVal -ne 0 ]; then
     exit $?
 fi
 
+# Remove any submodules that might be left over from other branches
+
+git -C $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-cassette/ clean -ffd
+git -C $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-disc/ clean -ffd
+git -C $ELITE_CODE_REPOSITORIES/elite-source-code-6502-second-processor/ clean -ffd
+git -C $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-master/ clean -ffd
+git -C $ELITE_CODE_REPOSITORIES/elite-source-code-acorn-electron/ clean -ffd
+git -C $ELITE_CODE_REPOSITORIES/elite-a-source-code-bbc-micro/ clean -ffd
+git -C $ELITE_CODE_REPOSITORIES/elite-source-code-commodore-64/ clean -ffd
+git -C $ELITE_CODE_REPOSITORIES/elite-source-code-apple-ii/ clean -ffd
+git -C $ELITE_CODE_REPOSITORIES/elite-source-code-nes/ clean -ffd
+
 if [[ "$platform" == "cassette" || "$platform" == "stop" || -z "$platform" ]]; then
     echo "Syncing to cassette repository"
     rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/cassette/ $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-cassette/
