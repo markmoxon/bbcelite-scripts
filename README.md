@@ -204,6 +204,14 @@ This script does two things:
 
 * It generates the code pages for the Elite source code website from the contents of those newly generated source code repositories.
 
+Incidentally, if you only want to generate the code repositories and don't want to generate the websites, you can add a `stop` parameter like this:
+
+```
+./generate-elite.sh stop
+```
+
+This will stop the process after the repositories are generated but before the websites are generated. The rest of this documentation assumes you have generated both.
+
 The script copies the generated content into both the `staging.elite.bbcelite.com` folder (where it can be tracked), and into the `elite.bbcelite.com` folder in the `bbcelite-websites` repository. Because the latter already contains the static content for the website, the end result is a complete copy of the Elite source code website, here:
 
 `/path/to/websites/bbcelite-websites/elite.bbcelite.com`
