@@ -12,4 +12,6 @@ find $REVS_CODE_REPOSITORY/1-source-files/main-sources -maxdepth 1 -name '*.asm'
 
 find $AVIATOR_CODE_REPOSITORY/1-source-files/main-sources -maxdepth 1 -name '*.asm' -type f -exec perl strip_code.pl {} \; > aviator.txt
 
+find $THE_SENTINEL_CODE_REPOSITORY/1-source-files/main-sources -maxdepth 1 -name '*.asm' -type f -exec perl strip_code.pl {} \; > the-sentinel.txt
+
 find $LANDER_CODE_REPOSITORY/1-source-files/main-sources -maxdepth 1 -name '*.arm' -type f -exec perl strip_code.pl {} \; > lander.txt

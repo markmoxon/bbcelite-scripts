@@ -8,6 +8,7 @@ elite_repositories = os.environ['ELITE_CODE_REPOSITORIES']
 library_repository = os.environ['ELITE_LIBRARY_REPOSITORY']
 aviator_repository = os.environ['AVIATOR_CODE_REPOSITORY']
 revs_repository = os.environ['REVS_CODE_REPOSITORY']
+the_sentinel_repository = os.environ['THE_SENTINEL_CODE_REPOSITORY']
 lander_repository = os.environ['LANDER_CODE_REPOSITORY']
 
 
@@ -150,6 +151,12 @@ source_files = [
 ]
 generate_image(source_files, image_name)
 
+image_name = "aviator.png"
+source_files = [
+    aviator_repository + "/3-assembled-output/AVIA.bin"
+]
+generate_image(source_files, image_name)
+
 image_name = "revs.png"
 source_files = [
     revs_repository + "/3-assembled-output/Revs2.bin",
@@ -161,9 +168,9 @@ source_files = [
 ]
 generate_image(source_files, image_name)
 
-image_name = "aviator.png"
+image_name = "the-sentinel.png"
 source_files = [
-    aviator_repository + "/3-assembled-output/AVIA.bin"
+    the_sentinel_repository + "/3-assembled-output/TheSentinel.bin"
 ]
 generate_image(source_files, image_name)
 
