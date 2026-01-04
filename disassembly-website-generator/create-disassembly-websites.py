@@ -16,6 +16,7 @@ elite_repositories = os.environ['ELITE_CODE_REPOSITORIES']
 library_repository = os.environ['ELITE_LIBRARY_REPOSITORY']
 aviator_repository = os.environ['AVIATOR_CODE_REPOSITORY']
 revs_repository = os.environ['REVS_CODE_REPOSITORY']
+the_sentinel_repository = os.environ['THE_SENTINEL_CODE_REPOSITORY']
 lander_repository = os.environ['LANDER_CODE_REPOSITORY']
 
 # Config
@@ -271,6 +272,21 @@ elif args.platform == "revs":
     re_comment_delimiter = r'\\'
     re_hex_prefix = r'&'
 
+elif args.platform == "the_sentinel":
+    source_folder = the_sentinel_repository + "/1-source-files/main-sources/"
+    the_sentinel_source = source_folder + "the-sentinel-source.asm"
+    dest_folder = "websites/the_sentinel/"
+    content_folder = "source/"
+    explore_folder = "explore/"
+    platform_name = "The Sentinel"
+    platform_name_capitalised = "The Sentinel"
+    platform_short_name = ""
+    platform_id = "source_"
+    platform_key = "the_sentinel"
+    comment_delimiter = "\\"
+    re_comment_delimiter = r'\\'
+    re_hex_prefix = r'&'
+
 elif args.platform == "lander":
     source_folder = lander_repository + "/1-source-files/main-sources/"
     lander_source = source_folder + "Lander.arm"
@@ -303,6 +319,9 @@ if args.platform == "aviator":
 elif args.platform == "revs":
     game_id = "revs"
     game_name = "Revs"
+elif args.platform == "the_sentinel":
+    game_id = "the_sentinel"
+    game_name = "The Sentinel"
 elif args.platform == "lander":
     game_id = "lander"
     game_name = "Lander"
@@ -398,8 +417,8 @@ elif args.platform == "revs":
     category_summary["Extra tracks"] = "Data and routines from the extra track files in Revs 4 Tracks and Revs+"
     category_summary["Keyboard"] = "Control keys, joysticks, menu choices and fetching various types of input"
     category_summary["Main loop"] = "The main game loop and the main driving loop that together run Revs"
-    category_summary["Maths (Arithmetic)"] = "Signs, scaling, multiplication, division"
-    category_summary["Maths (Geometry)"] = "Vectors, coordinates matrices"
+    category_summary["Maths (Arithmetic)"] = "Signs, scaling, multiplication and division"
+    category_summary["Maths (Geometry)"] = "Vectors, coordinates and matrices"
     category_summary["Screen buffer"] = "The convoluted block-based screen buffer that powers the game's graphics"
     category_summary["Screen mode"] = "The interrupt handler and configuration behind the custom Revs screen mode"
     category_summary["Setup"] = "Loading the game, running the checksums, unpacking the code and starting it up"
@@ -408,6 +427,28 @@ elif args.platform == "revs":
     category_summary["Text"] = "How Revs packs all the game text into a small memory footprint"
     category_summary["Track data"] = "Details of the different racing tracks that Revs supports"
     category_summary["Track geometry"] = "The complex world of track sections, segments, verges and markers"
+    category_summary["Workspaces"] = "Collections of important variables into blocks"
+elif args.platform == "the_sentinel":
+    category_summary["3D objects"] = "Spawning, deleting and manipulating 3D objects in the landscape"
+    category_summary["Cracker protection"] = "Various routines and obfuscations to throw crackers off the scent"
+    category_summary["Drawing objects"] = "Drawing the Sentinel, tower, sentry, robot, tree, boulder and Meanie"
+    category_summary["Drawing polygons"] = "The core routines that draw filled polygons for tiles and objects"
+    category_summary["Drawing the landscape"] = "The complex process of drawing the game's 3D tile-based landscape"
+    category_summary["Gameplay"] = "Applying tactics to the various enemies: the Sentinel, sentries and Meanies"
+    category_summary["Graphics"] = "Clearing the screen, hardware scrolling, dithering the background and more"
+    category_summary["Keyboard"] = "The key logger and keyboard scanner that implement action keys in-game"
+    category_summary["Landscape"] = "Generating the tile-based landscape using pseudo-random numbers"
+    category_summary["Main game loop"] = "The main game loop that manages the gameplay in the 3D landscape"
+    category_summary["Main title loop"] = "The title and landscape preview screens at the start and end of each game"
+    category_summary["Maths (Arithmetic)"] = "Multiplication, division and pseudo-random numbers"
+    category_summary["Maths (Geometry)"] = "Vectors, angles, coordinates and a lot of trigonometry"
+    category_summary["Scanner/energy row"] = "The top row of the screen showing the scanner and energy icons"
+    category_summary["Screen buffer"] = "The complex and jigsaw-like screen buffer that allows for such smooth scrolling"
+    category_summary["Setup"] = "Loading the game, unpacking the code, setting up the handlers and starting it up"
+    category_summary["Sights"] = "Support for the crosshair sights that represent the player's gaze vector"
+    category_summary["Sound"] = "Sparse sound effects and moody music help create a uniquely tense atmosphere"
+    category_summary["Text"] = "Printing characters and landscape codes using recursive text tokens"
+    category_summary["Title screen"] = "Drawing the various title screens with their distinctive large 3D text"
     category_summary["Workspaces"] = "Collections of important variables into blocks"
 elif args.platform == "lander":
     category_summary["3D objects"] = "3D objects such as trees, buildings and ships"
@@ -561,7 +602,8 @@ elite_source_urls = {
     "revs-doningtonpark.asm": "/{}all/donington_park.html".format(content_folder),
     "revs-oultonpark.asm": "/{}all/oulton_park.html".format(content_folder),
     "revs-snetterton.asm": "/{}all/snetterton.html".format(content_folder),
-    "revs-nurburgring.asm": "/{}all/nurburgring.html".format(content_folder)
+    "revs-nurburgring.asm": "/{}all/nurburgring.html".format(content_folder),
+    "the-sentinel-source.asm": "/{}all/workspaces.html".format(content_folder)
 }
 
 # Do not link to these variables or try to expand them as configuration variables
@@ -681,6 +723,32 @@ elif args.platform == "revs":
         "xTrackSegmentI (Silverstone)",
         "yTrackSegmentI (Silverstone)",
         "zTrackSegmentI (Silverstone)"
+    ]
+elif args.platform == "the_sentinel":
+    important_routines = [
+        "ApplyTactics (Part 1 of 8)",
+        "DitherScreenBuffer",
+        "DrawLandscapeView (Part 1 of 3)",
+        "DrawObject",
+        "DrawPolygon",
+        "DrawSights",
+        "FollowGazeVector (Part 1 of 5)",
+        "GetNextSeedNumber",
+        "GetTileViewAngles (Part 1 of 4)",
+        "IRQHandler",
+        "MainGameLoop",
+        "MainTitleLoop",
+        "MakeSound",
+        "PanLandscapeView",
+        "PlaceObjectOnTile",
+        "ProcessActionKeys (Part 1 of 2)",
+        "ProcessMusic",
+        "ResetVariables",
+        "ScrollPlayerView",
+        "ShowScreenBuffer",
+        "SmoothTileCorners (Part 1 of 4)",
+        "SpawnCharacter3D (Part 1 of 2)",
+        "UpdateScannerNow"
     ]
 elif args.platform == "lander":
     important_routines = [
@@ -868,7 +936,7 @@ if not comment_delimiter == '\\':
     html_workspace_reference_end = html_workspace_reference_end.replace('\\', comment_delimiter)
     html_exported_routine_reference_start = html_exported_routine_reference_start.replace('\\', comment_delimiter)
 
-if args.platform == "aviator" or args.platform == "revs" or args.platform == "lander":
+if args.platform == "aviator" or args.platform == "revs" or args.platform == "the_sentinel" or args.platform == "lander":
     html_indexes = '''
 \t\t\t\t\t<li class="menuItemHeader showForMobile">{2} source code by file</li>
 \t\t\t\t\t<li><a id="{3}sources_map_of_the_source_code" href="/{1}articles/map_of_the_source_code.html"><span class="menuTitle">Map of the source code</span> <span class="menuSummary">An overview of how the source code for {2} is structured</span></a></li>
@@ -1178,6 +1246,21 @@ if args.platform == "aviator":
 \t\t\t\t\t\t\t<li><a id="{3}all_source_aviator_f" href="/{1}all/aviator_f.html"><span class="menuTitle">Aviator F source</span> <span class="menuSummary">Part 6 of the main game code</span></a></li>
 '''
 
+if args.platform == "the_sentinel":
+    html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li class="menuItemHeader">The Sentinel source files</li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_workspaces" href="/{1}all/workspaces.html"><span class="menuTitle">Workspaces and configuration</span> <span class="menuSummary">The main variable workspaces used in The Sentinel</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_the_sentinel_a" href="/{1}all/the_sentinel_a.html"><span class="menuTitle">The Sentinel A source</span> <span class="menuSummary">Part 1 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_the_sentinel_b" href="/{1}all/the_sentinel_b.html"><span class="menuTitle">The Sentinel B source</span> <span class="menuSummary">Part 2 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_the_sentinel_c" href="/{1}all/the_sentinel_c.html"><span class="menuTitle">The Sentinel C source</span> <span class="menuSummary">Part 3 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_the_sentinel_d" href="/{1}all/the_sentinel_d.html"><span class="menuTitle">The Sentinel D source</span> <span class="menuSummary">Part 4 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_the_sentinel_e" href="/{1}all/the_sentinel_e.html"><span class="menuTitle">The Sentinel E source</span> <span class="menuSummary">Part 5 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_the_sentinel_f" href="/{1}all/the_sentinel_f.html"><span class="menuTitle">The Sentinel F source</span> <span class="menuSummary">Part 6 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_the_sentinel_g" href="/{1}all/the_sentinel_g.html"><span class="menuTitle">The Sentinel G source</span> <span class="menuSummary">Part 7 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_the_sentinel_h" href="/{1}all/the_sentinel_h.html"><span class="menuTitle">The Sentinel H source</span> <span class="menuSummary">Part 8 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_the_sentinel_i" href="/{1}all/the_sentinel_i.html"><span class="menuTitle">The Sentinel I source</span> <span class="menuSummary">Part 9 of the main game code</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_the_sentinel_j" href="/{1}all/the_sentinel_j.html"><span class="menuTitle">The Sentinel J source</span> <span class="menuSummary">Part 10 of the main game code</span></a></li>
+'''
+
 if args.platform == "revs":
     html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li class="menuItemHeader">Revs source files</li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_workspaces" href="/{1}all/workspaces.html"><span class="menuTitle">Workspaces and configuration</span> <span class="menuSummary">The main variable workspaces used in Revs</span></a></li>
@@ -1385,6 +1468,16 @@ elif args.platform == "revs":
 \t\t\t\t\t\t<p>You can click on the links above to jump to the relevant part of the map.</p>
 
 '''
+elif args.platform == "the_sentinel":
+    html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines and variables in the original version of The Sentinel, in the order in which they appear in the original source. The source files are structured like this:</p>
+
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-the-sentinel-a">The Sentinel A</a>, <a href="#header-the-sentinel-b">The Sentinel B</a>, <a href="#header-the-sentinel-c">The Sentinel C</a>, <a href="#header-the-sentinel-d">The Sentinel D</a>, <a href="#header-the-sentinel-e">The Sentinel E</a>, <a href="#header-the-sentinel-f">The Sentinel F</a>, <a href="#header-the-sentinel-g">The Sentinel G</a>, <a href="#header-the-sentinel-h">The Sentinel H</a>, <a href="#header-the-sentinel-i">The Sentinel I</a> and <a href="#header-the-sentinel-j">The Sentinel J</a></li>
+\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t<p>You can click on the links above to jump to the relevant part of the map.</p>
+
+'''
 elif args.platform == "lander":
     html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines and variables in the original version of Lander, in the order in which they appear in the original source. The source files are structured like this:</p>
 
@@ -1397,7 +1490,7 @@ elif args.platform == "lander":
 
 '''
 
-if args.platform == "aviator" or args.platform == "lander":
+if args.platform == "aviator" or args.platform == "the_sentinel" or args.platform == "lander":
     html_source_code_stats_intro = '''\t\t\t\t\t\t<p>Here's a statistical breakdown of the source code for {}. Click on the table headers to sort by that statistic. For more information, see the notes after the table.</p>
 '''
     html_source_code_stats_footer = '''\t\t\t\t\t\t<p>Some notes on the above:</p>
@@ -1503,7 +1596,7 @@ html_az_links = '''\n\t\t\t\t\t\t<ul class="indexLinks">
 html_source_code_cross_references_intro = '''\t\t\t\t\t\t<p>Here's a list of every label and variable in the source code for {}, with details of where each of them is used.</p>
 ''' + html_az_links
 
-if args.platform == "aviator":
+if args.platform == "aviator" or args.platform == "the_sentinel":
     html_az_index_intro = '''\t\t\t\t\t\t<p>This index contains every subroutine, entry point, variable and workspace that appears in the source code for {}, sorted alphabetically.</p>
 ''' + html_az_links
 elif args.platform == "lander":
@@ -2654,6 +2747,57 @@ elif args.platform == "revs":
             "next": None
         }
     }
+elif args.platform == "the_sentinel":
+    next_prev_all = {
+        "map_of_the_source_code": {
+            "prev": {"filename": content_folder + "index.html", "name": "About the version of The Sentinel on this site"},
+            "next": {"filename": content_folder + "all/workspaces.html", "name": "Workspaces and configuration"}
+        },
+        "workspaces": {
+            "prev": {"filename": content_folder + "articles/map_of_the_source_code.html", "name": "Map of the source code"},
+            "next": {"filename": content_folder + "all/the_sentinel_a.html", "name": "The Sentinel A source"}
+        },
+        "the_sentinel_a": {
+            "prev": {"filename": content_folder + "all/workspaces.html", "name": "Workspaces and configuration"},
+            "next": {"filename": content_folder + "all/the_sentinel_b.html", "name": "The Sentinel B source"}
+        },
+        "the_sentinel_b": {
+            "prev": {"filename": content_folder + "all/the_sentinel_a.html", "name": "The Sentinel A source"},
+            "next": {"filename": content_folder + "all/the_sentinel_c.html", "name": "The Sentinel C source"}
+        },
+        "the_sentinel_c": {
+            "prev": {"filename": content_folder + "all/the_sentinel_b.html", "name": "The Sentinel B source"},
+            "next": {"filename": content_folder + "all/the_sentinel_d.html", "name": "The Sentinel D source"}
+        },
+        "the_sentinel_d": {
+            "prev": {"filename": content_folder + "all/the_sentinel_c.html", "name": "The Sentinel C source"},
+            "next": {"filename": content_folder + "all/the_sentinel_e.html", "name": "The Sentinel E source"}
+        },
+        "the_sentinel_e": {
+            "prev": {"filename": content_folder + "all/the_sentinel_d.html", "name": "The Sentinel D source"},
+            "next": {"filename": content_folder + "all/the_sentinel_f.html", "name": "The Sentinel F source"}
+        },
+        "the_sentinel_f": {
+            "prev": {"filename": content_folder + "all/the_sentinel_e.html", "name": "The Sentinel E source"},
+            "next": {"filename": content_folder + "all/the_sentinel_g.html", "name": "The Sentinel G source"}
+        },
+        "the_sentinel_g": {
+            "prev": {"filename": content_folder + "all/the_sentinel_f.html", "name": "The Sentinel F source"},
+            "next": {"filename": content_folder + "all/the_sentinel_h.html", "name": "The Sentinel H source"}
+        },
+        "the_sentinel_h": {
+            "prev": {"filename": content_folder + "all/the_sentinel_g.html", "name": "The Sentinel G source"},
+            "next": {"filename": content_folder + "all/the_sentinel_i.html", "name": "The Sentinel I source"}
+        },
+        "the_sentinel_i": {
+            "prev": {"filename": content_folder + "all/the_sentinel_h.html", "name": "The Sentinel H source"},
+            "next": {"filename": content_folder + "all/the_sentinel_j.html", "name": "The Sentinel J source"}
+        },
+        "the_sentinel_j": {
+            "prev": {"filename": content_folder + "all/the_sentinel_i.html", "name": "The Sentinel I source"},
+            "next": None
+        }
+    }
 elif args.platform == "lander":
     next_prev_all = {
         "map_of_the_source_code": {
@@ -2739,7 +2883,7 @@ next_prev_compare_indexes = {
         "next": None
     }
 }
-if args.platform == "aviator":
+if args.platform == "aviator" or args.platform == "the_sentinel":
     next_prev_indexes = {
         "a-z": {
             "prev": None,
@@ -2878,6 +3022,10 @@ next_prev_statistics = {
         "next": None
     },
     "revs": {
+        "prev": None,
+        "next": None
+    },
+    "the_sentinel": {
         "prev": None,
         "next": None
     },
@@ -3209,6 +3357,9 @@ elif args.platform == "revs":
             "filename": "deep_dives/wing_mirrors.html",
             "name": "Wing mirrors"
         }
+    ]
+elif args.platform == "the_sentinel":
+    deep_dive_headers = [
     ]
 elif args.platform == "lander":
     deep_dive_headers = [
@@ -5126,7 +5277,7 @@ def output_source_code_stats():
     max_macros = 0
 
     with open(dest_folder + filename, "w") as page_file:
-        if args.platform == "aviator" or args.platform == "revs" or args.platform == "lander":
+        if args.platform == "aviator" or args.platform == "revs" or args.platform == "the_sentinel" or args.platform == "lander":
             index_section = "source_statistics"
             start_html_index(page_file, index_section, "home", "Source code statistics", "Source code statistics", versionise("A statistical breakdown of the source code for {}", platform_name))
         else:
@@ -5407,6 +5558,38 @@ def extract_popup_data(source, stage, source_file, source_name):
             elif line.endswith("REVS NÜRBURGRING TRACK SOURCE\n"):
                 source_file = "revs_nurburgring"
                 source_name = "Nürburgring track data file"
+
+        elif args.platform == "the_sentinel":
+            if line.endswith("THE SENTINEL MAIN GAME CODE\n"):
+                source_file = "the_sentinel_a"
+                source_name = "The Sentinel A"
+            elif line.endswith("Name: PanLandscapeView\n"):
+                source_file = "the_sentinel_b"
+                source_name = "The Sentinel B"
+            elif line.endswith("Name: CheckEnemyGaze (Part 1 of 2)\n"):
+                source_file = "the_sentinel_c"
+                source_name = "The Sentinel C"
+            elif line.endswith("Name: CheckForTileCentre\n"):
+                source_file = "the_sentinel_d"
+                source_name = "The Sentinel D"
+            elif line.endswith("Name: GetTileAltitudes\n"):
+                source_file = "the_sentinel_e"
+                source_name = "The Sentinel E"
+            elif line.endswith("Name: SmoothTileCorners (Part 1 of 4)\n"):
+                source_file = "the_sentinel_f"
+                source_name = "The Sentinel F"
+            elif line.endswith("Name: StringToNumber\n"):
+                source_file = "the_sentinel_g"
+                source_name = "The Sentinel G"
+            elif line.endswith("Name: MoveSights\n"):
+                source_file = "the_sentinel_h"
+                source_name = "The Sentinel H"
+            elif line.endswith("Name: screenBufferRow13\n"):
+                source_file = "the_sentinel_i"
+                source_name = "The Sentinel I"
+            elif line.endswith("Name: GetObjectAngles\n"):
+                source_file = "the_sentinel_j"
+                source_name = "The Sentinel J"
 
         elif args.platform == "lander":
             if line.endswith("LANDER MAIN GAME CODE\n"):
@@ -5712,7 +5895,7 @@ def output_large_source_code_page(source, stage, name, source_file_name, start_l
 
     all_file.write('\n\n\t\t\t\t<div class="codeBlockWrapper">\n<pre class="codeBlock sourceCode initial">')
 
-    if (args.platform == "aviator" or args.platform == "revs" or args.platform == "lander" or args.platform == "nes") and start_line.startswith("Name:"):
+    if (args.platform == "aviator" or args.platform == "revs" or args.platform == "the_sentinel" or args.platform == "lander" or args.platform == "nes") and start_line.startswith("Name:"):
         # There are no A/B/C headers in Aviator, Revs, Lander or NES Elite, so we don't need to open a header block
         all_file.write('<div><div>')
     else:
@@ -6140,7 +6323,7 @@ def build_individual_code_page(source, name, type, category, summary, stage):
 
 
 def get_compare_url(platform_name, stage_name, routine_name):
-    if platform_name == "elite-a" or args.platform == "c64" or args.platform == "apple" or args.platform == "nes" or args.platform == "aviator" or args.platform == "lander" or args.platform == "revs":
+    if platform_name == "elite-a" or args.platform == "c64" or args.platform == "apple" or args.platform == "nes" or args.platform == "aviator" or args.platform == "the_sentinel" or args.platform == "lander" or args.platform == "revs":
         return ""
 
     if platform_name == "disc":
@@ -7801,14 +7984,14 @@ def strip_elite_a(input_file):
 
 
 def versionise(content, platform_name):
-    if args.platform == "elite-a" or args.platform == "aviator" or args.platform == "revs" or args.platform == "lander":
+    if args.platform == "elite-a" or args.platform == "aviator" or args.platform == "revs" or args.platform == "the_sentinel" or args.platform == "lander":
         return content.format(platform_name)
     else:
         return content.format("the " + platform_name + " version of Elite")
 
 
 def version(platform_name):
-    if args.platform == "elite-a" or args.platform == "aviator" or args.platform == "revs" or args.platform == "lander":
+    if args.platform == "elite-a" or args.platform == "aviator" or args.platform == "revs" or args.platform == "the_sentinel" or args.platform == "lander":
         return platform_name
     else:
         return platform_name + " version"
@@ -7834,7 +8017,7 @@ if args.platform != "compare":
     create_folder(content_folder + "articles")
     create_folder(content_folder + "indexes")
 
-    if args.platform != "aviator" and args.platform != "revs" and args.platform != "lander":
+    if args.platform != "aviator" and args.platform != "revs" and args.platform != "the_sentinel" and args.platform != "lander":
         print("\nAnalysing files for comparison: ", end="", flush=True)
         analyse_files_for_compare()
 
@@ -8061,6 +8244,11 @@ if args.platform != "compare":
             source_nurburgring = file.readlines()
         source = source1
 
+    elif args.platform == "the_sentinel":
+        with open(the_sentinel_source, "r") as file:
+            source1 = file.readlines()
+        source = source1
+
     elif args.platform == "lander":
         with open(lander_source, "r") as file:
             source1 = file.readlines()
@@ -8188,6 +8376,9 @@ if args.platform != "compare":
         extract_popup_data(source_oulton_park, "Oulton Park", "revs_oulton_park", "Oulton Park")
         extract_popup_data(source_snetterton, "Snetterton", "revs_snetterton", "Snetterton")
         extract_popup_data(source_nurburgring, "Nürburgring", "revs_nurburgring", "Nürburgring")
+
+    elif args.platform == "the_sentinel":
+        extract_popup_data(source1, "", "workspaces", "Workspaces")
 
     elif args.platform == "lander":
         extract_popup_data(source1, "", "workspaces", "Workspaces")
@@ -8319,6 +8510,9 @@ if args.platform != "compare":
         output_individual_code_pages(source_oulton_park, "Oulton Park")
         output_individual_code_pages(source_snetterton, "Snetterton")
         output_individual_code_pages(source_nurburgring, "Nürburgring")
+
+    elif args.platform == "the_sentinel":
+        output_individual_code_pages(source1, "")
 
     elif args.platform == "lander":
         output_individual_code_pages(source1, "")
@@ -8758,6 +8952,30 @@ if args.platform != "compare":
             with open(dest_folder + content_folder + "all/revs_nurburgring.html", "w") as all_file:
                 output_large_source_code_page(source_nurburgring, "Nürburgring", "Nürburgring track data file", "revs_nurburgring", "REVS NÜRBURGRING TRACK SOURCE", "")
 
+        if args.platform == "the_sentinel":
+            with open(dest_folder + content_folder + "all/workspaces.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "Workspaces and configuration", "workspaces", "", "THE SENTINEL MAIN GAME CODE")
+            with open(dest_folder + content_folder + "all/the_sentinel_a.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "The Sentinel A source", "the_sentinel_a", "THE SENTINEL MAIN GAME CODE", "Name: PanLandscapeView")
+            with open(dest_folder + content_folder + "all/the_sentinel_b.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "The Sentinel B source", "the_sentinel_b", "Name: PanLandscapeView", "Name: CheckEnemyGaze (Part 1 of 2)")
+            with open(dest_folder + content_folder + "all/the_sentinel_c.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "The Sentinel C source", "the_sentinel_c", "Name: CheckEnemyGaze (Part 1 of 2)", "Name: CheckForTileCentre")
+            with open(dest_folder + content_folder + "all/the_sentinel_d.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "The Sentinel D source", "the_sentinel_d", "Name: CheckForTileCentre", "Name: GetTileAltitudes")
+            with open(dest_folder + content_folder + "all/the_sentinel_e.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "The Sentinel E source", "the_sentinel_e", "Name: GetTileAltitudes", "Name: SmoothTileCorners (Part 1 of 4)")
+            with open(dest_folder + content_folder + "all/the_sentinel_f.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "The Sentinel F source", "the_sentinel_f", "Name: SmoothTileCorners (Part 1 of 4)", "Name: StringToNumber")
+            with open(dest_folder + content_folder + "all/the_sentinel_g.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "The Sentinel G source", "the_sentinel_g", "Name: StringToNumber", "Name: MoveSights")
+            with open(dest_folder + content_folder + "all/the_sentinel_h.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "The Sentinel H source", "the_sentinel_h", "Name: MoveSights", "Name: screenBufferRow13")
+            with open(dest_folder + content_folder + "all/the_sentinel_i.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "The Sentinel I source", "the_sentinel_i", "Name: screenBufferRow13", "Name: GetObjectAngles")
+            with open(dest_folder + content_folder + "all/the_sentinel_j.html", "w") as all_file:
+                output_large_source_code_page(source1, "", "The Sentinel J source", "the_sentinel_j", "Name: GetObjectAngles", "")
+
         if args.platform == "lander":
             with open(dest_folder + content_folder + "all/workspaces.html", "w") as all_file:
                 output_large_source_code_page(source1, "", "Workspaces and configuration", "workspaces", "", "LANDER MAIN GAME CODE")
@@ -8794,7 +9012,7 @@ if args.platform != "compare":
     with open(dest_folder + content_folder + "indexes/variables.html", "w") as file:
         output_indexes(file, variables, versionise(html_variable_index_intro, platform_name), "indexes", "variables", "List of all variables", "List of all variables", "List of all variables in " + versionise("{}", platform_name), True)
 
-    if args.platform != "aviator" and args.platform != "lander":
+    if args.platform != "aviator" and args.platform != "the_sentinel" and args.platform != "lander":
         with open(dest_folder + content_folder + "indexes/macros.html", "w") as file:
             output_indexes(file, macros, versionise(html_macro_index_intro, platform_name), "indexes", "macros", "List of all macros", "List of all macros", "List of all macros in " + versionise("{}", platform_name), False)
 
