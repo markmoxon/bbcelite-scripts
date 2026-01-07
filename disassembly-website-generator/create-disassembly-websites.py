@@ -4563,7 +4563,7 @@ def tidy_code(line, stage, name, refs_only, statistics):
         else:
             code = m.group(1)
         if m:
-            if "-->" in m.group(3):
+            if m.group(3).startswith("\\ --- ") and m.group(3).endswith("-->"):
                 comment = m.group(2) + '<span class="comment diff">' + m.group(3) + '</span>'
             else:
                 comment = m.group(2) + '<span class="comment">' + escape_comment(m.group(3)) + '</span>'
@@ -6053,7 +6053,7 @@ def large_source_code_page_contents(source, stage, name, source_file_name, start
             # Separate trailing comment
             m = re.match(r"^([^" + re_comment_delimiter + r"]*)( *)(" + re_comment_delimiter + r".*)$", line)
             if m:
-                if "-->" in m.group(3):
+                if m.group(3).startswith("\\ --- ") and m.group(3).endswith("-->"):
                     all_file.write('<span class="directive">' + m.group(1) + '</span>' + m.group(2) + '<span class="comment diff">' + m.group(3) + '</span>\n')
                 else:
                     all_file.write('<span class="directive">' + m.group(1) + '</span>' + m.group(2) + '<span class="comment">' + escape_comment(m.group(3)) + '</span>\n')
