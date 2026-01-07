@@ -7,6 +7,7 @@ This repository contains scripts that use the following hand-crafted repositorie
 * [Elite source code library](https://github.com/markmoxon/elite-source-code-library)
 * [Aviator source code](https://github.com/markmoxon/aviator-source-code-bbc-micro)
 * [Revs source code](https://github.com/markmoxon/revs-source-code-bbc-micro)
+* [The Sentinel source code](https://github.com/markmoxon/the-sentinel-source-code-bbc-micro)
 * [Lander source code](https://github.com/markmoxon/archimedes-lander)
 * [Static content for bbcelite.com](https://github.com/markmoxon/bbcelite-websites)
 
@@ -28,6 +29,7 @@ and the following websites:
 * [Elite on the 6502](https://elite.bbcelite.com)
 * [Aviator on the BBC Micro](https://aviator.bbcelite.com)
 * [Revs on the BBC Micro](https://revs.bbcelite.com)
+* [The Sentinel on the BBC Micro](https://thesentinel.bbcelite.com)
 * [Lander on the Acorn Archimedes](https://lander.bbcelite.com)
 
 For details of how the site and source code repositories are built, see the [bbcelite.com website](https://www.bbcelite.com/disassembly_websites/).
@@ -87,6 +89,7 @@ git clone https://github.com/markmoxon/bbcelite-scripts
 git clone https://github.com/markmoxon/elite-source-code-library
 git clone https://github.com/markmoxon/aviator-source-code-bbc-micro
 git clone https://github.com/markmoxon/revs-source-code-bbc-micro
+git clone https://github.com/markmoxon/the-sentinel-source-code-bbc-micro
 git clone https://github.com/markmoxon/archimedes-lander
 ```
 
@@ -118,6 +121,7 @@ cd ../generated-websites
 mkdir staging.elite.bbcelite.com
 mkdir staging.aviator.bbcelite.com
 mkdir staging.revs.bbcelite.com
+mkdir staging.thesentinel.bbcelite.com
 mkdir staging.lander.bbcelite.com
 ```
 
@@ -143,19 +147,23 @@ export BBCELITE_WEBSITE=/path/to/websites/bbcelite-websites/bbcelite.com
 export ELITE_LIBRARY_REPOSITORY=/path/to/websites/source-repositories/elite-source-code-library
 export ELITE_CODE_REPOSITORIES=/path/to/websites/generated-repositories
 export ELITE_WEBSITE=/path/to/websites/bbcelite-websites/elite.bbcelite.com
-export ELITE_WEBSITE_REPOSITORY=/path/to/websites/generated-websites/staging.elite.bbcelite.com
+export ELITE_WEBSITE_REPOSITORY=/path/to/websites/generated-websites/staging.elite.bbcelite.com/website
 
 export AVIATOR_CODE_REPOSITORY=/path/to/websites/source-repositories/aviator-source-code-bbc-micro
 export AVIATOR_WEBSITE=/path/to/websites/bbcelite-websites/aviator.bbcelite.com
-export AVIATOR_WEBSITE_REPOSITORY=/path/to/websites/generated-websites/staging.aviator.bbcelite.com
+export AVIATOR_WEBSITE_REPOSITORY=/path/to/websites/generated-websites/staging.aviator.bbcelite.com/website
 
 export REVS_CODE_REPOSITORY=/path/to/websites/source-repositories/revs-source-code-bbc-micro
 export REVS_WEBSITE=/path/to/websites/bbcelite-websites/revs.bbcelite.com
-export REVS_WEBSITE_REPOSITORY=/path/to/websites/generated-websites/staging.revs.bbcelite.com
+export REVS_WEBSITE_REPOSITORY=/path/to/websites/generated-websites/staging.revs.bbcelite.com/website
+
+export THE_SENTINEL_CODE_REPOSITORY=/path/to/websites/source-repositories/the-sentinel-source-code-bbc-micro
+export THE_SENTINEL_WEBSITE=/path/to/websites/bbcelite-websites/thesentinel.bbcelite.com
+export THE_SENTINEL_WEBSITE_REPOSITORY=/path/to/websites/generated-websites/staging.thesentinel.bbcelite.com/website
 
 export LANDER_CODE_REPOSITORY=/path/to/websites/source-repositories/archimedes-lander
 export LANDER_WEBSITE=/path/to/websites/bbcelite-websites/lander.bbcelite.com
-export LANDER_WEBSITE_REPOSITORY=/path/to/websites/generated-websites/staging.lander.bbcelite.com
+export LANDER_WEBSITE_REPOSITORY=/path/to/websites/generated-websites/staging.lander.bbcelite.com/website
 ```
 
 Now we can execute this script with the following command, to export the environment variables to the current shell:
@@ -245,6 +253,16 @@ will generate the [revs.bbcelite.com](https://revs.bbcelite.com) site and the co
 and this command:
 
 ```
+./generate-the-sentinel.sh
+```
+
+will generate the [thesentinel.bbcelite.com](https://thesentinel.bbcelite.com) site and the corresponding staging repository, taking the source code from the [the-sentinel-source-code-bbc-micro](https://github.com/markmoxon/the-sentinel-source-code-bbc-micro) source code repository and creating a complete site here:
+
+`/path/to/websites/bbcelite-websites/thesentinel.bbcelite.com`
+
+and this command:
+
+```
 ./generate-lander.sh
 ```
 
@@ -265,6 +283,7 @@ We now have all our websites fully generated, so they are ready to serve from a 
 /path/to/websites/bbcelite-websites/elite.bbcelite.com
 /path/to/websites/bbcelite-websites/aviator.bbcelite.com
 /path/to/websites/bbcelite-websites/revs.bbcelite.com
+/path/to/websites/bbcelite-websites/thesentinel.bbcelite.com
 /path/to/websites/bbcelite-websites/lander.bbcelite.com
 ```
 
@@ -300,6 +319,11 @@ ln -s ../bbcelite.com/javascript javascript
 ln -s ../bbcelite.com/templates templates
 
 cd $REVS_WEBSITE
+ln -s ../bbcelite.com/css css
+ln -s ../bbcelite.com/javascript javascript
+ln -s ../bbcelite.com/templates templates
+
+cd $THE_SENTINEL_WEBSITE
 ln -s ../bbcelite.com/css css
 ln -s ../bbcelite.com/javascript javascript
 ln -s ../bbcelite.com/templates templates
@@ -354,6 +378,14 @@ The following environment variables need to be set up for the scripts to work. T
 `$REVS_WEBSITE` = the root folder of the Revs website we want to generate
 
 `$REVS_WEBSITE_REPOSITORY` = a staging repository for tracking changes to the generated website content
+
+### The Sentinel
+
+`$THE_SENTINEL_CODE_REPOSITORY` = the path of the `the-sentinel-source-code-bbc-micro` repository that we cloned above
+
+`$THE_SENTINEL_WEBSITE` = the root folder of The Sentinel website we want to generate
+
+`$THE_SENTINEL_WEBSITE_REPOSITORY` = a staging repository for tracking changes to the generated website content
 
 ### Lander
 
