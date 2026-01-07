@@ -253,7 +253,7 @@ will generate the [revs.bbcelite.com](https://revs.bbcelite.com) site and the co
 and this command:
 
 ```
-./generate-the-sentinel.sh
+./generate-sentinel.sh
 ```
 
 will generate the [thesentinel.bbcelite.com](https://thesentinel.bbcelite.com) site and the corresponding staging repository, taking the source code from the [the-sentinel-source-code-bbc-micro](https://github.com/markmoxon/the-sentinel-source-code-bbc-micro) source code repository and creating a complete site here:
