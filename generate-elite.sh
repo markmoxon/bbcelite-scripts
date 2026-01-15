@@ -35,7 +35,7 @@ if [[ "$platform" == "cassette" || "$platform" == "stop" || -z "$platform" ]]; t
     cp -R repos/cassette/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-cassette/1-source-files/main-sources
     cp -R repos/cassette/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-cassette/2-build-files
     cp repos/cassette/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-cassette/Makefile
-    sed -i "" "s/Saving file 'versions\/cassette\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-cassette/3-assembled-output/compile.txt
+    sed -i "" "s/versions\/cassette\///g" $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-cassette/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "disc" || "$platform" == "stop" || -z "$platform" ]]; then
@@ -44,7 +44,7 @@ if [[ "$platform" == "disc" || "$platform" == "stop" || -z "$platform" ]]; then
     cp -R repos/disc/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-disc/1-source-files/main-sources
     cp -R repos/disc/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-disc/2-build-files
     cp repos/disc/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-disc/Makefile
-    sed -i "" "s/Saving file 'versions\/disc\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-disc/3-assembled-output/compile.txt
+    sed -i "" "s/versions\/disc\///g" $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-micro-disc/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "6502sp" || "$platform" == "stop" || -z "$platform" ]]; then
@@ -53,7 +53,7 @@ if [[ "$platform" == "6502sp" || "$platform" == "stop" || -z "$platform" ]]; the
     cp -R repos/6502sp/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-6502-second-processor/1-source-files/main-sources
     cp -R repos/6502sp/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-6502-second-processor/2-build-files
     cp repos/6502sp/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-6502-second-processor/Makefile
-    sed -i "" "s/Saving file 'versions\/6502sp\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-6502-second-processor/3-assembled-output/compile.txt
+    sed -i "" "s/versions\/6502sp\///g" $ELITE_CODE_REPOSITORIES/elite-source-code-6502-second-processor/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "master" || "$platform" == "stop" || -z "$platform" ]]; then
@@ -62,7 +62,7 @@ if [[ "$platform" == "master" || "$platform" == "stop" || -z "$platform" ]]; the
     cp -R repos/master/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-master/1-source-files/main-sources
     cp -R repos/master/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-master/2-build-files
     cp repos/master/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-master/Makefile
-    sed -i "" "s/Saving file 'versions\/master\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-master/3-assembled-output/compile.txt
+    sed -i "" "s/versions\/master\///g" $ELITE_CODE_REPOSITORIES/elite-source-code-bbc-master/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "electron" || "$platform" == "stop" || -z "$platform" ]]; then
@@ -71,7 +71,7 @@ if [[ "$platform" == "electron" || "$platform" == "stop" || -z "$platform" ]]; t
     cp -R repos/electron/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-acorn-electron/1-source-files/main-sources
     cp -R repos/electron/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-acorn-electron/2-build-files
     cp repos/electron/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-acorn-electron/Makefile
-    sed -i "" "s/Saving file 'versions\/electron\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-acorn-electron/3-assembled-output/compile.txt
+    sed -i "" "s/versions\/electron\///g" $ELITE_CODE_REPOSITORIES/elite-source-code-acorn-electron/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "elite-a" || "$platform" == "stop" || -z "$platform" ]]; then
@@ -80,7 +80,7 @@ if [[ "$platform" == "elite-a" || "$platform" == "stop" || -z "$platform" ]]; th
     cp -R repos/elite-a/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-a-source-code-bbc-micro/1-source-files/main-sources
     cp -R repos/elite-a/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-a-source-code-bbc-micro/2-build-files
     cp repos/elite-a/Makefile $ELITE_CODE_REPOSITORIES/elite-a-source-code-bbc-micro/Makefile
-    sed -i "" "s/Saving file 'versions\/elite-a\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-a-source-code-bbc-micro/3-assembled-output/compile.txt
+    sed -i "" "s/versions\/elite-a\///g" $ELITE_CODE_REPOSITORIES/elite-a-source-code-bbc-micro/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "c64" || "$platform" == "stop" || -z "$platform" ]]; then
@@ -89,7 +89,7 @@ if [[ "$platform" == "c64" || "$platform" == "stop" || -z "$platform" ]]; then
     cp -R repos/c64/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-commodore-64/1-source-files/main-sources
     cp -R repos/c64/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-commodore-64/2-build-files
     cp repos/c64/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-commodore-64/Makefile
-    sed -i "" "s/Saving file 'versions\/c64\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-commodore-64/3-assembled-output/compile.txt
+    sed -i "" "s/versions\/c64\///g" $ELITE_CODE_REPOSITORIES/elite-source-code-commodore-64/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "apple" || "$platform" == "stop" || -z "$platform" ]]; then
@@ -98,7 +98,7 @@ if [[ "$platform" == "apple" || "$platform" == "stop" || -z "$platform" ]]; then
     cp -R repos/apple/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-apple-ii/1-source-files/main-sources
     cp -R repos/apple/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-apple-ii/2-build-files
     cp repos/apple/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-apple-ii/Makefile
-    sed -i "" "s/Saving file 'versions\/apple\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-apple-ii/3-assembled-output/compile.txt
+    sed -i "" "s/versions\/apple\///g" $ELITE_CODE_REPOSITORIES/elite-source-code-apple-ii/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "nes" || "$platform" == "stop" || -z "$platform" ]]; then
@@ -107,7 +107,7 @@ if [[ "$platform" == "nes" || "$platform" == "stop" || -z "$platform" ]]; then
     cp -R repos/nes/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-nes/1-source-files/main-sources
     cp -R repos/nes/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-nes/2-build-files
     cp repos/nes/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-nes/Makefile
-    sed -i "" "s/Saving file 'versions\/nes\//Saving file '/g" $ELITE_CODE_REPOSITORIES/elite-source-code-nes/3-assembled-output/compile.txt
+    sed -i "" "s/versions\/nes\///g" $ELITE_CODE_REPOSITORIES/elite-source-code-nes/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "stop" ]]; then
