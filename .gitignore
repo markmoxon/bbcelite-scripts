@@ -4,5 +4,6 @@ __pycache__
 repos/
 websites/
 debug/
+output/
 code-analysis/**/*.txt
 create-deep-dive-links/*.html
