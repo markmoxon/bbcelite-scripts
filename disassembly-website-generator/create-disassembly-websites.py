@@ -3360,6 +3360,202 @@ elif args.platform == "revs":
     ]
 elif args.platform == "the_sentinel":
     deep_dive_headers = [
+        {
+            "filename": "deep_dives/3d_object_definitions.html",
+            "name": "3D object definitions"
+        },
+        {
+            "filename": "deep_dives/3d_text_using_blocks.html",
+            "name": "3D text using blocks"
+        },
+        {
+            "filename": "deep_dives/adding_enemies_and_trees_to_the_landscape.html",
+            "name": "Adding enemies and trees to the landscape"
+        },
+        {
+            "filename": "deep_dives/anti-cracker_checks.html",
+            "name": "Anti-cracker checks"
+        },
+        {
+            "filename": "deep_dives/calculating_angles_for_the_landscape_view.html",
+            "name": "Calculating angles for the landscape view"
+        },
+        {
+            "filename": "deep_dives/calculating_gaze.html",
+            "name": "Calculating gaze"
+        },
+        {
+            "filename": "deep_dives/cartesian_coordinates.html",
+            "name": "Cartesian coordinates"
+        },
+        {
+            "filename": "deep_dives/colours_and_palettes.html",
+            "name": "Colours and palettes"
+        },
+        {
+            "filename": "deep_dives/coordinate_conversion.html",
+            "name": "Coordinate conversion"
+        },
+        {
+            "filename": "deep_dives/the_crosshair_sights.html",
+            "name": "The crosshair sights"
+        },
+        {
+            "filename": "deep_dives/the_custom_screen_mode.html",
+            "name": "The custom screen mode"
+        },
+        {
+            "filename": "deep_dives/dithering_to_the_screen.html",
+            "name": "Dithering to the screen"
+        },
+        {
+            "filename": "deep_dives/drawing_filled_polygons.html",
+            "name": "Drawing filled polygons"
+        },
+        {
+            "filename": "deep_dives/drawing_objects.html",
+            "name": "Drawing objects"
+        },
+        {
+            "filename": "deep_dives/the_drawing_tables.html",
+            "name": "The drawing tables"
+        },
+        {
+            "filename": "deep_dives/drawing_the_landscape_preview.html",
+            "name": "Drawing the landscape preview"
+        },
+        {
+            "filename": "deep_dives/drawing_the_landscape_view.html",
+            "name": "Drawing the landscape view"
+        },
+        {
+            "filename": "deep_dives/drawing_the_title_screens.html",
+            "name": "Drawing the title screens"
+        },
+        {
+            "filename": "deep_dives/enemy_tactics.html",
+            "name": "Enemy tactics"
+        },
+        {
+            "filename": "deep_dives/the_energy_icons.html",
+            "name": "The energy icons"
+        },
+        {
+            "filename": "deep_dives/entry_and_setup_code.html",
+            "name": "Entry and setup code"
+        },
+        {
+            "filename": "deep_dives/game_timings.html",
+            "name": "Game timings"
+        },
+        {
+            "filename": "deep_dives/generating_the_landscape.html",
+            "name": "Generating the landscape"
+        },
+        {
+            "filename": "deep_dives//deep_dives/",
+            "name": "Index of deep dives"
+        },
+        {
+            "filename": "deep_dives/the_interrupt_handler.html",
+            "name": "The interrupt handler"
+        },
+        {
+            "filename": "deep_dives/the_key_logger.html",
+            "name": "The key logger"
+        },
+        {
+            "filename": "deep_dives/the_landscape_secret_code.html",
+            "name": "The landscape secret code"
+        },
+        {
+            "filename": "deep_dives/memory_map.html",
+            "name": "Memory map"
+        },
+        {
+            "filename": "deep_dives/music.html",
+            "name": "Music"
+        },
+        {
+            "filename": "deep_dives/object_spawning.html",
+            "name": "Object spawning"
+        },
+        {
+            "filename": "deep_dives/panning_and_hardware_scrolling.html",
+            "name": "Panning and hardware scrolling"
+        },
+        {
+            "filename": "deep_dives/pitch_and_yaw_angles.html",
+            "name": "Pitch and yaw angles"
+        },
+        {
+            "filename": "deep_dives/program_flow_of_the_gameplay_loop.html",
+            "name": "Program flow of the gameplay loop"
+        },
+        {
+            "filename": "deep_dives/program_flow_of_the_main_game_loop.html",
+            "name": "Program flow of the main game loop"
+        },
+        {
+            "filename": "deep_dives/program_flow_of_the_main_title_loop.html",
+            "name": "Program flow of the main title loop"
+        },
+        {
+            "filename": "deep_dives/the_projection_system.html",
+            "name": "The projection system"
+        },
+        {
+            "filename": "deep_dives/random_number_generation.html",
+            "name": "Random number generation"
+        },
+        {
+            "filename": "deep_dives/reusing_the_geometry_routines_from_revs.html",
+            "name": "Reusing the geometry routines from Revs"
+        },
+        {
+            "filename": "deep_dives/the_scanner.html",
+            "name": "The scanner"
+        },
+        {
+            "filename": "deep_dives/screen_buffers.html",
+            "name": "Screen buffers"
+        },
+        {
+            "filename": "deep_dives/Seed_number_generation.html",
+            "name": "Seed number generation"
+        },
+        {
+            "filename": "deep_dives/sound_effects.html",
+            "name": "Sound effects"
+        },
+        {
+            "filename": "deep_dives/source_code_clues_hidden_in_the_game_binary.html",
+            "name": "Source code clues hidden in the game binary"
+        },
+        {
+            "filename": "deep_dives/stacking_objects.html",
+            "name": "Stacking objects"
+        },
+        {
+            "filename": "deep_dives/text_tokens.html",
+            "name": "Text tokens"
+        },
+        {
+            "filename": "deep_dives/tile_data.html",
+            "name": "Tile data"
+        },
+        {
+            "filename": "deep_dives/tile_shapes.html",
+            "name": "Tile shapes"
+        },
+        {
+            "filename": "deep_dives/trigonometry.html",
+            "name": "Trigonometry"
+        },
+        {
+            "filename": "deep_dives/the_visibility_table.html",
+            "name": "The visibility table"
+        }
     ]
 elif args.platform == "lander":
     deep_dive_headers = [
