@@ -97,7 +97,8 @@ script_html = '''        {0}
 
 # Categories
 category_summary = {}
-category_summary["Code structure and game loops"] = "Memory maps and the main game loops"
+category_summary["Memory maps"] = "Memory maps and the loading process"
+category_summary["Main loops"] = "The main game loops and the interrupt handler"
 category_summary["3D geometry"] = "Pitch angles, yaw angles and coordinates"
 category_summary["Generating the landscape"] = "Creating the 10,000 tile-based landscapes"
 category_summary["3D objects"] = "Trees, boulders, robots and various 3D enemies"

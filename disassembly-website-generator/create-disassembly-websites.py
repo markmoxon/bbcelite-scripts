@@ -3469,10 +3469,6 @@ elif args.platform == "the_sentinel":
             "name": "The landscape secret code"
         },
         {
-            "filename": "deep_dives/memory_map.html",
-            "name": "Memory map"
-        },
-        {
             "filename": "deep_dives/music.html",
             "name": "Music"
         },
@@ -3523,6 +3519,10 @@ elif args.platform == "the_sentinel":
         {
             "filename": "deep_dives/Seed_number_generation.html",
             "name": "Seed number generation"
+        },
+        {
+            "filename": "deep_dives/the_sentinel_memory_map.html",
+            "name": "The Sentinel memory map"
         },
         {
             "filename": "deep_dives/sound_effects.html",
