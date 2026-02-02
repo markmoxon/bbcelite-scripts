@@ -597,12 +597,12 @@ elite_source_urls = {
     "elite-z.asm": "/{}all/i_o_processor.html".format(content_folder),
     "aviator-source.asm": "/{}all/workspaces.html".format(content_folder),
     "revs-source.asm": "/{}all/workspaces.html".format(content_folder),
-    "revs-silverstone.asm": "/{}all/silverstone.html".format(content_folder),
-    "revs-brandshatch.asm": "/{}all/brands_hatch.html".format(content_folder),
-    "revs-doningtonpark.asm": "/{}all/donington_park.html".format(content_folder),
-    "revs-oultonpark.asm": "/{}all/oulton_park.html".format(content_folder),
-    "revs-snetterton.asm": "/{}all/snetterton.html".format(content_folder),
-    "revs-nurburgring.asm": "/{}all/nurburgring.html".format(content_folder),
+    "revs-silverstone.asm": "/{}all/revs_silverstone.html".format(content_folder),
+    "revs-brandshatch.asm": "/{}all/revs_brands_hatch.html".format(content_folder),
+    "revs-doningtonpark.asm": "/{}all/revs_donington_park.html".format(content_folder),
+    "revs-oultonpark.asm": "/{}all/revs_oulton_park.html".format(content_folder),
+    "revs-snetterton.asm": "/{}all/revs_snetterton.html".format(content_folder),
+    "revs-nurburgring.asm": "/{}all/revs_nurburgring.html".format(content_folder),
     "the-sentinel-source.asm": "/{}all/workspaces.html".format(content_folder)
 }
 
