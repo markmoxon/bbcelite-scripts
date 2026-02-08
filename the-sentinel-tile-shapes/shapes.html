@@ -1,0 +1,537 @@
+<!-- Licensed under a BSD license. See license.html for license -->
+<!-- Based on examples at https://threejs.org/manual/#en/custom-buffergeometry -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Sentinel shapes</title>
+    <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+    #c {
+        width: 200px;
+        height: 200px;
+        display: block;
+		margin-bottom: 2ch;
+    }
+    </style>
+  </head>
+  <body>
+    <canvas id="c"></canvas>
+	<button id="button">Generate GIF</button>
+	<progress id="progress" value="0" max="1">
+  </body>
+		<script src="omggif.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://threejs.org/build/three.module.js"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+
+function main() {
+
+	let paramString = new URL(window.location.toLocaleString());
+    let shape = paramString.searchParams.get('shape');
+
+	const canvas = document.querySelector( '#c' );
+	const renderer = new THREE.WebGLRenderer( { antialias: true, canvas } );
+
+    const yBottom = 0;			// -0.5
+    const vscale = 2;			// 1
+	const baseHeight = 0;		// 1
+
+	const fov = 50;
+	const aspect = 2; // the canvas default
+	const near = 0.1;
+	const far = 100;
+	const camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
+	camera.position.y = 11.5;
+	camera.position.z = 30;
+    camera.setViewOffset( 100, 100, 40, 78, 20, 20 );
+
+	const scene = new THREE.Scene();
+
+	{
+
+		const color = 0xFFFFFF;
+		const intensity = 3;
+		const light = new THREE.DirectionalLight( color, intensity );
+		light.position.set( - 1, 2, 4 );
+		scene.add( light );
+	}
+
+
+    const shapes = [
+//   0       S == V      S == T      S == U                              1 1
+//                                                                       1 1
+		{ yBackLeft: 0, yBackRight: 0, yFrontLeft: 0, yFrontRight: 0},
+//   1       S == V      S <> T                  U <  V      U == T      0 0
+//                                                                       1 1
+		{ yBackLeft: 0, yBackRight: 0, yFrontLeft: 1, yFrontRight: 1},
+
+//   2       S <> V      S <> T      S <= U      U == V      U == T      1 1
+//                                                                       0 1
+		{ yBackLeft: 1, yBackRight: 1, yFrontLeft: 0, yFrontRight: 1},
+//   3       S == V      S == T      S >  U                              1 0
+//                                                                       1 1
+		{ yBackLeft: 1, yBackRight: 0, yFrontLeft: 1, yFrontRight: 1},
+//   4a      S <> V      S <> T                  U == V      U <> T      a 1
+//                                                                       b 1
+		{ yBackLeft: 0, yBackRight: 1, yFrontLeft: 1.5, yFrontRight: 1},
+//   4b      S <> V      S == T                  U <> V      U <> T      1 a
+//                                                                       1 b
+		{ yBackLeft: 1, yBackRight: 0, yFrontLeft: 1, yFrontRight: 1.5},
+//   5       S <> V      S == T                  U == V      U <  T      1 0
+//                                                                       1 0
+		{ yBackLeft: 1, yBackRight: 0, yFrontLeft: 1, yFrontRight: 0},
+//   6       S == V      S <> T                  U == V      U <  T      1 0
+//                                                                       0 0
+		{ yBackLeft: 1, yBackRight: 0, yFrontLeft: 0, yFrontRight: 0},
+//   7       S <> V      S == T                  U >= V      U == T      1 1
+//                                                                       1 0
+		{ yBackLeft: 1, yBackRight: 1, yFrontLeft: 1, yFrontRight: 0},
+//   9       S == V      S <> T                  U >= V      U == T      1 1
+//                                                                       0 0
+		{ yBackLeft: 1, yBackRight: 1, yFrontLeft: 0, yFrontRight: 0},
+//   10      S == V      S == T      S <  U                              0 1
+//                                                                       0 0
+		{ yBackLeft: 0, yBackRight: 1, yFrontLeft: 0, yFrontRight: 0},
+//   11      S <> V      S <> T      S >  U      U == V      U == T      0 0
+//                                                                       1 0
+		{ yBackLeft: 0, yBackRight: 0, yFrontLeft: 1, yFrontRight: 0},
+//   12a     S <> V      S <> T                  U <> V                  1 c
+//                                                                       a b
+		{ yBackLeft: 1, yBackRight: 1, yFrontLeft: 0, yFrontRight: 1.5},
+//   12b     S == V      S <> T                  U <> V      U <> T      a b
+//                                                                       1 1
+		{ yBackLeft: 0, yBackRight: 1.5, yFrontLeft: 1, yFrontRight: 1},
+//   13      S <> V      S == T                  U == V      U >= T      0 1
+//                                                                       0 1
+		{ yBackLeft: 0, yBackRight: 1, yFrontLeft: 0, yFrontRight: 1},
+//   14      S <> V      S == T                  U <  V      U == T      0 0
+//                                                                       0 1
+		{ yBackLeft: 0, yBackRight: 0, yFrontLeft: 0, yFrontRight: 1},
+//   15      S == V      S <> T                  U == V      U >= T      0 1
+//                                                                       1 1
+		{ yBackLeft: 0, yBackRight: 1, yFrontLeft: 1, yFrontRight: 1},
+	];
+
+	let shapeIndex;
+
+	switch (shape) {
+		case "0":
+		case "1":
+		case "2":
+		case "3":
+		case "9":
+		case "10":
+		case "11":
+			shapeIndex = Number(shape);
+			break;
+		case "4a":
+			shapeIndex = 4;
+			break;
+		case "4b":
+			shapeIndex = 5;
+			break;
+		case "5":
+		case "6":
+		case "7":
+		case "13":
+		case "14":
+		case "15":
+			shapeIndex = Number(shape) + 1;
+			break;
+		case "12a":
+			shapeIndex = 12;
+			break;
+		case "12b":
+			shapeIndex = 13;
+			break;
+	}
+
+    const yBackLeft = shapes[shapeIndex].yBackLeft * vscale + baseHeight;
+    const yBackRight = shapes[shapeIndex].yBackRight * vscale + baseHeight;
+    const yFrontLeft = shapes[shapeIndex].yFrontLeft * vscale + baseHeight;
+    const yFrontRight = shapes[shapeIndex].yFrontRight * vscale + baseHeight;
+
+	// Mesh 1: left, right and bottom
+
+	const vertices = [
+		// right
+		{ pos: [ 1, yBottom, 1 ], norm: [ 1, 0, 0 ], uv: [ 0, 0 ], }, // 4
+		{ pos: [ 1, yBottom, - 1 ], norm: [ 1, 0, 0 ], uv: [ 1, 0 ], }, // 5
+		{ pos: [ 1, yFrontRight, 1 ], norm: [ 1, 0, 0 ], uv: [ 0, 1 ], }, // 6					// front
+		{ pos: [ 1, yBackRight, - 1 ], norm: [ 1, 0, 0 ], uv: [ 1, 1 ], }, // 7					// back
+		// left
+		{ pos: [ - 1, yBottom, - 1 ], norm: [ - 1, 0, 0 ], uv: [ 0, 0 ], }, // 12
+		{ pos: [ - 1, yBottom, 1 ], norm: [ - 1, 0, 0 ], uv: [ 1, 0 ], }, // 13
+		{ pos: [ - 1, yBackLeft, - 1 ], norm: [ - 1, 0, 0 ], uv: [ 0, 1 ], }, // 14				// back
+		{ pos: [ - 1, yFrontLeft, 1 ], norm: [ - 1, 0, 0 ], uv: [ 1, 1 ], }, // 15				// front
+		// bottom
+		{ pos: [ 1, yBottom, 1 ], norm: [ 0, - 1, 0 ], uv: [ 0, 0 ], }, // 20
+		{ pos: [ - 1, yBottom, 1 ], norm: [ 0, - 1, 0 ], uv: [ 1, 0 ], }, // 21
+		{ pos: [ 1, yBottom, - 1 ], norm: [ 0, - 1, 0 ], uv: [ 0, 1 ], }, // 22
+		{ pos: [ - 1, yBottom, - 1 ], norm: [ 0, - 1, 0 ], uv: [ 1, 1 ], }, // 23
+	];
+	const positions = [];
+	const normals = [];
+	const uvs = [];
+	for ( const vertex of vertices ) {
+
+		positions.push( ...vertex.pos );
+		normals.push( ...vertex.norm );
+		uvs.push( ...vertex.uv );
+
+	}
+
+	const geometry = new THREE.BufferGeometry();
+	const positionNumComponents = 3;
+	const normalNumComponents = 3;
+	const uvNumComponents = 2;
+	geometry.setAttribute(
+		'position',
+		new THREE.BufferAttribute( new Float32Array( positions ), positionNumComponents ) );
+	geometry.setAttribute(
+		'normal',
+		new THREE.BufferAttribute( new Float32Array( normals ), normalNumComponents ) );
+	geometry.setAttribute(
+		'uv',
+		new THREE.BufferAttribute( new Float32Array( uvs ), uvNumComponents ) );
+
+	geometry.setIndex( [
+		0, 1, 2, 2, 1, 3,
+		4, 5, 6, 6, 5, 7,
+		8, 9, 10, 10, 9, 11
+	] );
+
+	// Mesh 2: top (i.e. the tile shape)
+
+	const vertices_top = [
+		// top
+		{ pos: [ 1, yBackRight, - 1 ], norm: [ 0, 1, 0 ], uv: [ 0, 0 ], }, // 16					// back right
+		{ pos: [ - 1, yBackLeft, - 1 ], norm: [ 0, 1, 0 ], uv: [ 1, 0 ], }, // 17				// back left
+		{ pos: [ 1, yFrontRight, 1 ], norm: [ 0, 1, 0 ], uv: [ 0, 1 ], }, // 18					// front right
+		{ pos: [ - 1, yFrontLeft, 1 ], norm: [ 0, 1, 0 ], uv: [ 1, 1 ], }, // 19					// front left
+	];
+	const positions_top = [];
+	const normals_top = [];
+	const uvs_top = [];
+	for ( const vertex of vertices_top ) {
+
+		positions_top.push( ...vertex.pos );
+		normals_top.push( ...vertex.norm );
+		uvs_top.push( ...vertex.uv );
+
+	}
+
+	const geometry_top = new THREE.BufferGeometry();
+	geometry_top.setAttribute(
+		'position',
+		new THREE.BufferAttribute( new Float32Array( positions_top ), positionNumComponents ) );
+	geometry_top.setAttribute(
+		'normal',
+		new THREE.BufferAttribute( new Float32Array( normals_top ), normalNumComponents ) );
+	geometry_top.setAttribute(
+		'uv',
+		new THREE.BufferAttribute( new Float32Array( uvs_top ), uvNumComponents ) );
+
+	switch (shape) {
+		case "0":
+		case "1":
+		case "2":
+		case "3":
+		case "9":
+		case "10":
+		case "11":
+		case "4b":
+		case "12a":
+			geometry_top.setIndex( [
+        		0, 1, 3, 0, 3, 2				// 2, 3, 10, 11
+			] );
+			break;
+		case "5":
+		case "6":
+		case "7":
+		case "13":
+		case "14":
+		case "15":
+		case "4a":
+		case "12b":
+			geometry_top.setIndex( [
+				0, 1, 2, 2, 1, 3				// 6, 7, 14, 15
+			] );
+			break;
+	}
+
+	// Mesh 3: front
+
+	const vertices_front = [
+		// front
+		{ pos: [ - 1, yBottom, 1 ], norm: [ 0, 0, 1 ], uv: [ 0, 0 ], }, // 0
+		{ pos: [ 1, yBottom, 1 ], norm: [ 0, 0, 1 ], uv: [ 1, 0 ], }, // 1
+		{ pos: [ - 1, yFrontLeft, 1 ], norm: [ 0, 0, 1 ], uv: [ 0, 1 ], }, // 2					// left
+		{ pos: [ 1, yFrontRight, 1 ], norm: [ 0, 0, 1 ], uv: [ 1, 1 ], }, // 3					// right
+	];
+	const positions_front = [];
+	const normals_front = [];
+	const uvs_front = [];
+	for ( const vertex of vertices_front ) {
+
+		positions_front.push( ...vertex.pos );
+		normals_front.push( ...vertex.norm );
+		uvs_front.push( ...vertex.uv );
+
+	}
+
+	const geometry_front = new THREE.BufferGeometry();
+	geometry_front.setAttribute(
+		'position',
+		new THREE.BufferAttribute( new Float32Array( positions_front ), positionNumComponents ) );
+	geometry_front.setAttribute(
+		'normal',
+		new THREE.BufferAttribute( new Float32Array( normals_front ), normalNumComponents ) );
+	geometry_front.setAttribute(
+		'uv',
+		new THREE.BufferAttribute( new Float32Array( uvs_front ), uvNumComponents ) );
+
+	geometry_front.setIndex( [
+		0, 1, 2, 2, 1, 3
+	] );
+
+	// Mesh 4: rear
+
+	const vertices_rear = [
+		// rear
+		{ pos: [ 1, yBottom, - 1 ], norm: [ 0, 0, - 1 ], uv: [ 0, 0 ], }, // 8
+		{ pos: [ - 1, yBottom, - 1 ], norm: [ 0, 0, - 1 ], uv: [ 1, 0 ], }, // 9
+		{ pos: [ 1, yBackRight, - 1 ], norm: [ 0, 0, - 1 ], uv: [ 0, 1 ], }, // 10				// right
+		{ pos: [ - 1, yBackLeft, - 1 ], norm: [ 0, 0, - 1 ], uv: [ 1, 1 ], }, // 11				// left
+	];
+	const positions_rear = [];
+	const normals_rear = [];
+	const uvs_rear = [];
+	for ( const vertex of vertices_rear ) {
+
+		positions_rear.push( ...vertex.pos );
+		normals_rear.push( ...vertex.norm );
+		uvs_rear.push( ...vertex.uv );
+
+	}
+
+	const geometry_rear = new THREE.BufferGeometry();
+	geometry_rear.setAttribute(
+		'position',
+		new THREE.BufferAttribute( new Float32Array( positions_rear ), positionNumComponents ) );
+	geometry_rear.setAttribute(
+		'normal',
+		new THREE.BufferAttribute( new Float32Array( normals_rear ), normalNumComponents ) );
+	geometry_rear.setAttribute(
+		'uv',
+		new THREE.BufferAttribute( new Float32Array( uvs_rear ), uvNumComponents ) );
+
+	geometry_rear.setIndex( [
+		0, 1, 2, 2, 1, 3
+	] );
+
+
+
+	const loader = new THREE.TextureLoader();
+	const texture = loader.load( 'https://threejs.org/manual/examples/resources/images/star.png' );
+	texture.colorSpace = THREE.SRGBColorSpace;
+
+	function makeInstance( geometry, color, x, rotY ) {
+
+		const material = new THREE.MeshPhongMaterial({
+			color: color,    // red (can also use a CSS color string here)
+			flatShading: true,
+		});
+
+		const cube = new THREE.Mesh( geometry, material );
+		scene.add( cube );
+
+		cube.position.x = x;
+		//cube.rotation.y = rotY;
+		return cube;
+
+	}
+
+    const rot = -0.5;
+
+	const cubes = [
+		makeInstance( geometry, 0x88FF88, 0, 0 ),			// Green  (sides)
+		makeInstance( geometry_top, 0x8888FF, 0, 0 ),		// Blue   (top)
+		makeInstance( geometry_front, 0xFF8888, 0, 0 ),		// Red    (front)
+		makeInstance( geometry_rear, 0xBBBB00, 0, 0 ),		// Yellow (rear)
+	];
+
+	function resizeRendererToDisplaySize( renderer ) {
+
+		const canvas = renderer.domElement;
+		const width = canvas.clientWidth;
+		const height = canvas.clientHeight;
+		const needResize = canvas.width !== width || canvas.height !== height;
+		if ( needResize ) {
+
+			renderer.setSize( width, height, false );
+
+		}
+
+		return needResize;
+
+	}
+
+	function render( time ) {
+
+		time *= 0.001;
+
+		if ( resizeRendererToDisplaySize( renderer ) ) {
+
+			const canvas = renderer.domElement;
+			camera.aspect = canvas.clientWidth / canvas.clientHeight;
+			camera.updateProjectionMatrix();
+
+		}
+
+		cubes.forEach( ( cube, ndx ) => {
+
+			const speed = 5;
+			const rot = time * speed;
+			if (rot > 1) {
+				// No idea why this if is required
+				cube.rotation.y = rot;
+			}
+		} );
+
+		renderer.render( scene, camera );
+
+		requestAnimationFrame( render );
+
+	}
+
+	requestAnimationFrame( render );
+
+	function generateGIF( element, renderFunction, duration = 1, fps = 30 ) {
+
+			const frames = duration * fps;
+
+			const canvas = document.createElement( 'canvas' );
+			canvas.width = element.width;
+			canvas.height = element.height;
+
+			const context = canvas.getContext( '2d' );
+
+			const buffer = new Uint8Array( canvas.width * canvas.height * frames * 5 );
+			const pixels = new Uint8Array( canvas.width * canvas.height );
+			const writer = new GifWriter( buffer, canvas.width, canvas.height, { loop: 0 } );
+
+			let current = 0;
+
+            // Only save one full rotation, starting from a rotation of 0
+			let startAt = 2*Math.PI * (1 + Math.floor(cubes[0].rotation.y / (2*Math.PI)));
+			let endAt = 2*Math.PI + startAt;
+
+			return new Promise( async function addFrame( resolve ) {
+
+				renderFunction( current / frames );
+
+				context.drawImage( element, 0, 0 );
+
+				const data = context.getImageData( 0, 0, canvas.width, canvas.height ).data;
+
+				const palette = [];
+
+				for ( var j = 0, k = 0, jl = data.length; j < jl; j += 4, k ++ ) {
+
+					const r = Math.floor( data[ j + 0 ] * 0.1 ) * 10;
+					const g = Math.floor( data[ j + 1 ] * 0.1 ) * 10;
+					const b = Math.floor( data[ j + 2 ] * 0.1 ) * 10;
+					const color = r << 16 | g << 8 | b << 0;
+
+					const index = palette.indexOf( color );
+
+					if ( index === -1 ) {
+
+						pixels[ k ] = palette.length;
+						palette.push( color );
+
+					} else {
+
+						pixels[ k ] = index;
+
+					}
+
+				}
+
+				// Force palette to be power of 2
+
+				let powof2 = 1;
+				while ( powof2 < palette.length ) powof2 <<= 1;
+				palette.length = powof2;
+
+
+				const delay = 100 / fps; // Delay in hundredths of a sec (100 = 1s)
+				const options = { palette: new Uint32Array( palette ), delay: delay };
+
+				if (cubes[0].rotation.y >= startAt && cubes[0].rotation.y <= endAt) {
+					writer.addFrame( 0, 0, canvas.width, canvas.height, pixels, options );
+				}
+
+				current ++;
+
+				progress.value = current / frames;
+
+				if ( current < frames ) {
+
+					await setTimeout( addFrame, 0, resolve );
+
+				} else {
+
+					resolve( buffer.subarray( 0, writer.end() ) );
+
+				}
+
+			} );
+
+		}
+
+
+			const button = document.getElementById( 'button' );
+			const progress = document.getElementById( 'progress' );
+
+			button.addEventListener( 'click', async function () {
+
+				button.style.display = 'none';
+				progress.style.display = '';
+
+				// Generate
+
+				const buffer = await generateGIF( canvas, render, 10, 30 );
+
+				button.style.display = '';
+				progress.style.display = 'none';
+
+				// Download
+
+				const blob = new Blob( [ buffer ], { type: 'image/gif' } );
+
+				const link = document.createElement( 'a' );
+				link.href = URL.createObjectURL( blob );
+				link.download = 'shape' + shape + '.gif';
+				link.dispatchEvent( new MouseEvent( 'click' ) );
+
+			} );
+
+}
+
+main();
+</script>
+</html>
