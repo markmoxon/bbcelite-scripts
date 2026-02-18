@@ -3385,6 +3385,10 @@ elif args.platform == "the_sentinel":
             "name": "Calculating gaze"
         },
         {
+            "filename": "deep_dives/calculating_the_hypotenuse.html",
+            "name": "Calculating the hypotenuse"
+        },
+        {
             "filename": "deep_dives/cartesian_coordinates.html",
             "name": "Cartesian coordinates"
         },
@@ -3393,8 +3397,12 @@ elif args.platform == "the_sentinel":
             "name": "Colours and palettes"
         },
         {
-            "filename": "deep_dives/coordinate_conversion.html",
-            "name": "Coordinate conversion"
+            "filename": "deep_dives/converting_angles_to_coordinates.html",
+            "name": "Converting angles to coordinates"
+        },
+        {
+            "filename": "deep_dives/converting_coordinates_to_angles.html",
+            "name": "Converting coordinates to angles"
         },
         {
             "filename": "deep_dives/the_crosshair_sights.html",
@@ -3517,7 +3525,7 @@ elif args.platform == "the_sentinel":
             "name": "Screen buffers"
         },
         {
-            "filename": "deep_dives/Seed_number_generation.html",
+            "filename": "deep_dives/seed_number_generation.html",
             "name": "Seed number generation"
         },
         {
@@ -3549,8 +3557,8 @@ elif args.platform == "the_sentinel":
             "name": "Tile shapes"
         },
         {
-            "filename": "deep_dives/trigonometry.html",
-            "name": "Trigonometry"
+            "filename": "deep_dives/trigonometry_in_8-bit_assembly.html",
+            "name": "Trigonometry in 8-bit assembly"
         },
         {
             "filename": "deep_dives/the_visibility_table.html",
