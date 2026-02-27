@@ -3365,10 +3365,6 @@ elif args.platform == "the_sentinel":
             "name": "3D object definitions"
         },
         {
-            "filename": "deep_dives/3d_text_using_blocks.html",
-            "name": "3D text using blocks"
-        },
-        {
             "filename": "deep_dives/adding_enemies_and_trees_to_the_landscape.html",
             "name": "Adding enemies and trees to the landscape"
         },
@@ -3415,6 +3411,10 @@ elif args.platform == "the_sentinel":
         {
             "filename": "deep_dives/dithering_to_the_screen.html",
             "name": "Dithering to the screen"
+        },
+        {
+            "filename": "deep_dives/drawing_3d_text_using_blocks.html",
+            "name": "Drawing 3D text using blocks"
         },
         {
             "filename": "deep_dives/drawing_filled_polygons.html",
@@ -3481,8 +3481,8 @@ elif args.platform == "the_sentinel":
             "name": "Music"
         },
         {
-            "filename": "deep_dives/object_spawning.html",
-            "name": "Object spawning"
+            "filename": "deep_dives/object_management.html",
+            "name": "Object management"
         },
         {
             "filename": "deep_dives/panning_and_hardware_scrolling.html",
