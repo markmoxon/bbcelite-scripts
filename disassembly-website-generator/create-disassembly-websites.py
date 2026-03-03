@@ -3373,6 +3373,10 @@ elif args.platform == "the_sentinel":
             "name": "Anti-cracker checks"
         },
         {
+            "filename": "deep_dives/calculating_angles_for_drawing_objects.html",
+            "name": "Calculating angles for drawing objects"
+        },
+        {
             "filename": "deep_dives/calculating_angles_for_the_landscape_view.html",
             "name": "Calculating angles for the landscape view"
         },
