@@ -431,7 +431,7 @@ elif args.platform == "revs":
 elif args.platform == "the_sentinel":
     category_summary["3D objects"] = "Spawning, deleting and manipulating 3D objects in the landscape"
     category_summary["Cracker protection"] = "Various routines and obfuscations to throw crackers off the scent"
-    category_summary["Drawing objects"] = "Drawing the Sentinel, tower, sentry, robot, tree, boulder and Meanie"
+    category_summary["Drawing 3D objects"] = "Drawing the Sentinel, tower, sentry, robot, tree, boulder and Meanie"
     category_summary["Drawing polygons"] = "The core routines that draw filled polygons for tiles and objects"
     category_summary["Drawing the landscape"] = "The complex process of drawing the game's 3D tile-based landscape"
     category_summary["Gameplay"] = "Applying tactics to the various enemies: the Sentinel, sentries and Meanies"
@@ -3373,8 +3373,8 @@ elif args.platform == "the_sentinel":
             "name": "Anti-cracker checks"
         },
         {
-            "filename": "deep_dives/calculating_angles_for_drawing_objects.html",
-            "name": "Calculating angles for drawing objects"
+            "filename": "deep_dives/calculating_angles_for_drawing_3d_objects.html",
+            "name": "Calculating angles for drawing 3D objects"
         },
         {
             "filename": "deep_dives/calculating_angles_for_the_landscape_view.html",
@@ -3425,8 +3425,8 @@ elif args.platform == "the_sentinel":
             "name": "Drawing filled polygons"
         },
         {
-            "filename": "deep_dives/drawing_objects.html",
-            "name": "Drawing objects"
+            "filename": "deep_dives/drawing_3d_objects.html",
+            "name": "Drawing 3D objects"
         },
         {
             "filename": "deep_dives/the_drawing_tables.html",
