@@ -3561,12 +3561,12 @@ elif args.platform == "the_sentinel":
             "name": "Tile shapes"
         },
         {
-            "filename": "deep_dives/trigonometry_in_8-bit_assembly.html",
-            "name": "Trigonometry in 8-bit assembly"
+            "filename": "deep_dives/the_tile_visibility_table.html",
+            "name": "The tile visibility table"
         },
         {
-            "filename": "deep_dives/the_visibility_table.html",
-            "name": "The visibility table"
+            "filename": "deep_dives/trigonometry_in_8-bit_assembly.html",
+            "name": "Trigonometry in 8-bit assembly"
         }
     ]
 elif args.platform == "lander":
