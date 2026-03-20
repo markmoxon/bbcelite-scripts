@@ -3377,8 +3377,8 @@ elif args.platform == "the_sentinel":
             "name": "Calculating angles for drawing 3D objects"
         },
         {
-            "filename": "deep_dives/calculating_angles_for_the_landscape_view.html",
-            "name": "Calculating angles for the landscape view"
+            "filename": "deep_dives/calculating_quadrants_for_the_landscape_view.html",
+            "name": "Calculating quadrants for the landscape view"
         },
         {
             "filename": "deep_dives/calculating_gaze.html",
