@@ -3561,8 +3561,8 @@ elif args.platform == "the_sentinel":
             "name": "Tile shapes"
         },
         {
-            "filename": "deep_dives/the_tile_visibility_table.html",
-            "name": "The tile visibility table"
+            "filename": "deep_dives/ray-casting_for_the_tile_visibility_table.html",
+            "name": "Ray-casting for the tile visibility table"
         },
         {
             "filename": "deep_dives/trigonometry_in_8-bit_assembly.html",
