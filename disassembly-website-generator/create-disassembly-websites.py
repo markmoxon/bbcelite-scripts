@@ -3381,8 +3381,8 @@ elif args.platform == "the_sentinel":
             "name": "Calculating quadrants for the landscape view"
         },
         {
-            "filename": "deep_dives/calculating_gaze.html",
-            "name": "Calculating gaze"
+            "filename": "deep_dives/following_the_gaze_vector.html",
+            "name": "Following the gaze vector"
         },
         {
             "filename": "deep_dives/calculating_the_hypotenuse.html",
