@@ -3457,8 +3457,8 @@ elif args.platform == "the_sentinel":
             "name": "Entry and setup code"
         },
         {
-            "filename": "deep_dives/gameplay_timers.html",
-            "name": "Gameplay timers"
+            "filename": "deep_dives/enemy_timers_and_state_variables.html",
+            "name": "Enemy timers and state variables"
         },
         {
             "filename": "deep_dives/generating_the_landscape.html",
