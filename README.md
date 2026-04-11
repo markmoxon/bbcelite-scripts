@@ -43,6 +43,7 @@ This repository contains a number of scripts that are used to manage my source c
 * [code-analysis](code-analysis) includes a number of scripts for analysing the content in my source code projects
 * [create-deep-dive-links](create-deep-dive-links) automatically generates deep-dive next/previous HTML from the index
 * [create-deep-dive-section](create-deep-dive-section) automatically generates an entire deep dive section from the index
+* [the-sentinel-tile-shapes](the-sentinel-tile-shapes) generates tile-shape images for The Sentinel's deep dives
 
 ## Running the site generation scripts
 
