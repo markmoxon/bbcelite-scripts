@@ -16,6 +16,7 @@ while (my $line = <$file>) {
         $line =~ s#&amp;#&#g;
         $line =~ s#<br/># #g;
         $line =~ s#<br /># #g;
+        $line =~ s#<br># #g;
         $line =~ s#</td><td#</td> <td#g;
         $line =~ s#</th><th#</th> <th#g;
         $line =~ s#<[^>]+>##g;
