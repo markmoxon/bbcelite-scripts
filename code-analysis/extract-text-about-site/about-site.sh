@@ -12,5 +12,8 @@ find $REVS_WEBSITE/alias -maxdepth 1 -name '*.html' -type f -exec perl strip_htm
 find $AVIATOR_WEBSITE/about_site -maxdepth 1 -name '*.html' -type f -exec perl strip_html.pl {} \; > aviator.txt
 find $AVIATOR_WEBSITE/alias -maxdepth 1 -name '*.html' -type f -exec perl strip_html.pl {} \; >> aviator.txt
 
+find $THE_SENTINEL_WEBSITE/about_site -maxdepth 1 -name '*.html' -type f -exec perl strip_html.pl {} \; > the-sentinel.txt
+find $THE_SENTINEL_WEBSITE/alias -maxdepth 1 -name '*.html' -type f -exec perl strip_html.pl {} \; >> the-sentinel.txt
+
 find $LANDER_WEBSITE/about_site -maxdepth 1 -name '*.html' -type f -exec perl strip_html.pl {} \; > lander.txt
 find $LANDER_WEBSITE/alias -maxdepth 1 -name '*.html' -type f -exec perl strip_html.pl {} \; >> lander.txt
