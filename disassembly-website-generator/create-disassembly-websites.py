@@ -364,6 +364,7 @@ re_empty_line = re.compile(r'^\s*$')
 re_empty_comment = re.compile(r'^\s*' + re_comment_delimiter + r'\s*$')
 re_empty_line_in_header = re.compile(r'^' + re_comment_delimiter + r'\s*$')
 re_line_with_comment = re.compile(r'^([^' + re_comment_delimiter + r']*)( *)' + re_comment_delimiter + r'(.*)$')
+re_line_with_no_comment = re.compile(r'^([^' + re_comment_delimiter + r']*)$')
 re_header_comment = re.compile(r'^' + re_comment_delimiter + r' *(.*?)$')
 
 re_configuration_variable = re.compile(r'^( *)([A-Za-z_][A-Za-z0-9_]*%?)(  *)= ([^' + re_comment_delimiter + r']+?)( *)(' + re_comment_delimiter + r'.*)?$')
@@ -6511,7 +6512,7 @@ def build_individual_code_page(source, name, type, category, summary, stage):
 
             elif analysing and analysing_body:
                 page_file.write(tidy_code(line, stage, name, refs_only=False, statistics=True))
-                if workspace_variable_extra_data_html and re_line_with_comment.search(line) and (i == len(source) - 1 or (i < len(source) - 1 and re_empty_line.match(source[i + 1]))):
+                if workspace_variable_extra_data_html and re_line_with_comment.search(line) and (i == len(source) - 1 or (i < len(source) - 1 and re_line_with_no_comment.match(source[i + 1]))):
                     extra_indent = ' ' * (line.find('\\') - html_workspace_reference_link.find('\\'))
                     page_file.write(html_workspace_reference_start.format(extra_indent) + workspace_variable_extra_data_html + html_workspace_reference_end)
                     workspace_variable_extra_data_html = ""
@@ -6859,7 +6860,7 @@ def build_large_source_code_page(source, name, type, category, summary, stage):
 
         elif analysing and analysing_body:
             all_file.write(tidy_code(line, stage, name, refs_only=False, statistics=True))
-            if workspace_variable_extra_data_html and re_line_with_comment.search(line) and (i == len(source) - 1 or (i < len(source) - 1 and re_empty_line.match(source[i + 1]))):
+            if workspace_variable_extra_data_html and re_line_with_comment.search(line) and (i == len(source) - 1 or (i < len(source) - 1 and re_line_with_no_comment.match(source[i + 1]))):
                 extra_indent = ' ' * (line.find('\\') - html_workspace_reference_link.find('\\'))
                 all_file.write(html_workspace_reference_start.format(extra_indent) + workspace_variable_extra_data_html + html_workspace_reference_end)
                 workspace_variable_extra_data_html = ""
