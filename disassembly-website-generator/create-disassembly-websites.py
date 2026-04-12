@@ -365,6 +365,7 @@ re_empty_comment = re.compile(r'^\s*' + re_comment_delimiter + r'\s*$')
 re_empty_line_in_header = re.compile(r'^' + re_comment_delimiter + r'\s*$')
 re_line_with_comment = re.compile(r'^([^' + re_comment_delimiter + r']*)( *)' + re_comment_delimiter + r'(.*)$')
 re_line_with_no_comment = re.compile(r'^([^' + re_comment_delimiter + r']*)$')
+re_line_with_empty_comment = re.compile(r'^([^' + re_comment_delimiter + r']*)( *)' + re_comment_delimiter + r'\s*$')
 re_header_comment = re.compile(r'^' + re_comment_delimiter + r' *(.*?)$')
 
 re_configuration_variable = re.compile(r'^( *)([A-Za-z_][A-Za-z0-9_]*%?)(  *)= ([^' + re_comment_delimiter + r']+?)( *)(' + re_comment_delimiter + r'.*)?$')
@@ -5291,7 +5292,7 @@ def fetch_comments(source, i, regex, skip):
                 i += 1
                 line = source[i]
                 if re_empty_comment.match(line) or re_empty_line.match(line) \
-                   or re_instruction_line.search(line) or re_configuration_variable.match(line):
+                   or re_line_with_empty_comment.match(line) or re_configuration_variable.match(line):
                     break
                 else:
                     n = re_line_with_comment.match(line)
