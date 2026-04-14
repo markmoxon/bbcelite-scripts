@@ -6103,7 +6103,7 @@ def output_large_source_code_page(source, stage, name, source_file_name, start_l
     next_prev = next_prev_all[source_file_name]
     output_next_prev(next_prev, all_file)
 
-    all_file.write('\n\n\t\t\t\t<div class="codeBlockWrapper">\n<pre class="codeBlock sourceCode initial">')
+    all_file.write('\n\n\t\t\t\t<div class="codeBlockWrapper">\n<pre class="codeBlock sourceCode initial">\n')
 
     if (args.platform == "aviator" or args.platform == "revs" or args.platform == "the_sentinel" or args.platform == "lander" or args.platform == "nes") and start_line.startswith("Name:"):
         # There are no A/B/C headers in Aviator, Revs, Lander or NES Elite, so we don't need to open a header block
@@ -6454,7 +6454,7 @@ def build_individual_code_page(source, name, type, category, summary, stage):
         analysing_body = False
         analysing_header = True
         analysing_arguments = False
-        page_file.write('\n\n\t\t\t\t<div class="codeBlockWrapper">\n<pre class="codeBlock sourceCode initial"><div class="headerBlockWrapper"><div class="headerBlock">')
+        page_file.write('\n\n\t\t\t\t<div class="codeBlockWrapper">\n<pre class="codeBlock sourceCode initial">\n<div class="headerBlockWrapper"><div class="headerBlock">')
 
         context_text = "Show more"
         context_link_length = len(context_text) + 3
@@ -7427,12 +7427,12 @@ def output_compare_version_page(source, page_file, include, filename, name, cate
         analysing_header = True
         analysing_body = False
         i = 2
-        page_file.write('\t\t\t\t<div class="codeBlockWrapper compare">\n<pre class="codeBlock sourceCode initial">')
+        page_file.write('\t\t\t\t<div class="codeBlockWrapper compare">\n<pre class="codeBlock sourceCode initial">\n')
         page_file.write('<div class="headerBlockWrapper"><div class="headerBlock">')
     else:
         analysing_header = False
         i = 0
-        page_file.write('\t\t\t\t<div class="codeBlockWrapper compare">\n<pre class="codeBlock sourceCode">')
+        page_file.write('\t\t\t\t<div class="codeBlockWrapper compare">\n<pre class="codeBlock sourceCode">\n')
 
     while i < len(source) and analysing:
         line = source[i]
@@ -7660,9 +7660,9 @@ def output_multi_version_section(multi_versions_buffer, page_file, analysing_hea
     page_file.write('</div>')
 
     if analysing_header or multi_versions_buffer_is_header:
-        page_file.write('\n<pre class="codeBlock sourceCode initial compare compareHeader">')
+        page_file.write('\n<pre class="codeBlock sourceCode initial compare compareHeader">\n')
     else:
-        page_file.write('\n<pre class="codeBlock sourceCode initial compare">')
+        page_file.write('\n<pre class="codeBlock sourceCode initial compare">\n')
 
     if len(multi_versions_buffer) > 1:
         expandClass = ' expand'
@@ -7696,9 +7696,9 @@ def output_multi_version_section(multi_versions_buffer, page_file, analysing_hea
     page_file.write('\t\t\t\t</div>\n')
 
     if analysing_header:
-        compare_buffer = ('\n<pre class="codeBlock sourceCode initial"><div class="headerBlockWrapper"><div class="headerBlock">')
+        compare_buffer = ('\n<pre class="codeBlock sourceCode initial">\n<div class="headerBlockWrapper"><div class="headerBlock">')
     else:
-        compare_buffer = ('\n<pre class="codeBlock sourceCode">')
+        compare_buffer = ('\n<pre class="codeBlock sourceCode">\n')
 
 
 def strip_blank_lines(lines):
