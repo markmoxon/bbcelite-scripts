@@ -330,7 +330,7 @@ else:
     game_name = "BBC Micro Elite"
 
 # Regexes
-omit_from_compare = "ELITE_A|NES|C64|APPLE"
+omit_from_compare = "DEMO|ELITE_A|NES|C64|APPLE"
 
 re_name = re.compile(r'^' + re_comment_delimiter + r'(       Name): (.+)$')
 re_type = re.compile(r'^' + re_comment_delimiter + r'(       Type): (.+)$')

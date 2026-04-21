@@ -28,6 +28,7 @@ git -C $ELITE_CODE_REPOSITORIES/elite-a-source-code-bbc-micro/ clean -ffd
 git -C $ELITE_CODE_REPOSITORIES/elite-source-code-commodore-64/ clean -ffd
 git -C $ELITE_CODE_REPOSITORIES/elite-source-code-apple-ii/ clean -ffd
 git -C $ELITE_CODE_REPOSITORIES/elite-source-code-nes/ clean -ffd
+git -C $ELITE_CODE_REPOSITORIES/elite-demo-source-code-bbc-micro/ clean -ffd
 
 if [[ "$platform" == "cassette" || "$platform" == "stop" || -z "$platform" ]]; then
     echo "Syncing to cassette repository"
@@ -108,6 +109,15 @@ if [[ "$platform" == "nes" || "$platform" == "stop" || -z "$platform" ]]; then
     cp -R repos/nes/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-source-code-nes/2-build-files
     cp repos/nes/Makefile $ELITE_CODE_REPOSITORIES/elite-source-code-nes/Makefile
     sed -i "" "s/versions\/nes\///g" $ELITE_CODE_REPOSITORIES/elite-source-code-nes/3-assembled-output/compile.txt
+fi
+
+if [[ "$platform" == "demo" || "$platform" == "stop" || -z "$platform" ]]; then
+    echo "Syncing to demo repository"
+    rsync -a --exclude ".git*" --exclude "Makefile" --delete $ELITE_LIBRARY_REPOSITORY/versions/demo/ $ELITE_CODE_REPOSITORIES/elite-demo-source-code-bbc-micro/
+    cp -R repos/demo/1-source-files/* $ELITE_CODE_REPOSITORIES/elite-demo-source-code-bbc-micro/1-source-files/main-sources
+    cp -R repos/demo/2-build-files/* $ELITE_CODE_REPOSITORIES/elite-demo-source-code-bbc-micro/2-build-files
+    cp repos/demo/Makefile $ELITE_CODE_REPOSITORIES/elite-demo-source-code-bbc-micro/Makefile
+    sed -i "" "s/versions\/demo\///g" $ELITE_CODE_REPOSITORIES/elite-demo-source-code-bbc-micro/3-assembled-output/compile.txt
 fi
 
 if [[ "$platform" == "stop" ]]; then

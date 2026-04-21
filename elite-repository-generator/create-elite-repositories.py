@@ -276,13 +276,14 @@ sites = [
             "_ELITE_A_VERSION",
             "_ELITE_A_FLIGHT"
         ],
+        "mod_name": "Elite-A",
         "replacements": [
             ('SAVE "versions/elite-a/', 'SAVE "'),
             ('INCBIN "versions/elite-a/', 'INCBIN "'),
             ('INCLUDE "versions/elite-a/1-source-files/main-sources/elite-build-options.asm"', 'INCLUDE "1-source-files/main-sources/elite-build-options.asm"'),
             ('PUTFILE "versions/elite-a/', 'PUTFILE "')
         ],
-        "that_version": [
+        "parent_version": [
             "_DISC_VERSION",
             "_DISC_FLIGHT"
         ],
@@ -301,10 +302,11 @@ sites = [
             "_ELITE_A_VERSION",
             "_ELITE_A_FLIGHT"
         ],
+        "mod_name": "Elite-A",
         "replacements": [
             ('open("versions/elite-a/', 'open("')
         ],
-        "that_version": [
+        "parent_version": [
             "_DISC_VERSION",
             "_DISC_FLIGHT"
         ],
@@ -324,13 +326,14 @@ sites = [
             "_ELITE_A_FLIGHT",
             "_ELITE_A_SHIPS_R"
         ],
+        "mod_name": "Elite-A",
         "replacements": [
             ('SAVE "versions/elite-a/', 'SAVE "'),
             ('INCBIN "versions/elite-a/', 'INCBIN "'),
             ('INCLUDE "versions/elite-a/1-source-files/main-sources/elite-build-options.asm"', 'INCLUDE "1-source-files/main-sources/elite-build-options.asm"'),
             ('PUTFILE "versions/elite-a/', 'PUTFILE "')
         ],
-        "that_version": [
+        "parent_version": [
             "_DISC_VERSION",
             "_DISC_FLIGHT"
         ]
@@ -346,13 +349,14 @@ sites = [
             "_ELITE_A_FLIGHT",
             "_ELITE_A_SHIPS_S"
         ],
+        "mod_name": "Elite-A",
         "replacements": [
             ('SAVE "versions/elite-a/', 'SAVE "'),
             ('INCBIN "versions/elite-a/', 'INCBIN "'),
             ('INCLUDE "versions/elite-a/1-source-files/main-sources/elite-build-options.asm"', 'INCLUDE "1-source-files/main-sources/elite-build-options.asm"'),
             ('PUTFILE "versions/elite-a/', 'PUTFILE "')
         ],
-        "that_version": [
+        "parent_version": [
             "_DISC_VERSION",
             "_DISC_FLIGHT"
         ]
@@ -368,13 +372,14 @@ sites = [
             "_ELITE_A_FLIGHT",
             "_ELITE_A_SHIPS_T"
         ],
+        "mod_name": "Elite-A",
         "replacements": [
             ('SAVE "versions/elite-a/', 'SAVE "'),
             ('INCBIN "versions/elite-a/', 'INCBIN "'),
             ('INCLUDE "versions/elite-a/1-source-files/main-sources/elite-build-options.asm"', 'INCLUDE "1-source-files/main-sources/elite-build-options.asm"'),
             ('PUTFILE "versions/elite-a/', 'PUTFILE "')
         ],
-        "that_version": [
+        "parent_version": [
             "_DISC_VERSION",
             "_DISC_FLIGHT"
         ]
@@ -390,13 +395,14 @@ sites = [
             "_ELITE_A_FLIGHT",
             "_ELITE_A_SHIPS_U"
         ],
+        "mod_name": "Elite-A",
         "replacements": [
             ('SAVE "versions/elite-a/', 'SAVE "'),
             ('INCBIN "versions/elite-a/', 'INCBIN "'),
             ('INCLUDE "versions/elite-a/1-source-files/main-sources/elite-build-options.asm"', 'INCLUDE "1-source-files/main-sources/elite-build-options.asm"'),
             ('PUTFILE "versions/elite-a/', 'PUTFILE "')
         ],
-        "that_version": [
+        "parent_version": [
             "_DISC_VERSION",
             "_DISC_FLIGHT"
         ]
@@ -412,13 +418,14 @@ sites = [
             "_ELITE_A_FLIGHT",
             "_ELITE_A_SHIPS_V"
         ],
+        "mod_name": "Elite-A",
         "replacements": [
             ('SAVE "versions/elite-a/', 'SAVE "'),
             ('INCBIN "versions/elite-a/', 'INCBIN "'),
             ('INCLUDE "versions/elite-a/1-source-files/main-sources/elite-build-options.asm"', 'INCLUDE "1-source-files/main-sources/elite-build-options.asm"'),
             ('PUTFILE "versions/elite-a/', 'PUTFILE "')
         ],
-        "that_version": [
+        "parent_version": [
             "_DISC_VERSION",
             "_DISC_FLIGHT"
         ]
@@ -434,13 +441,14 @@ sites = [
             "_ELITE_A_FLIGHT",
             "_ELITE_A_SHIPS_W"
         ],
+        "mod_name": "Elite-A",
         "replacements": [
             ('SAVE "versions/elite-a/', 'SAVE "'),
             ('INCBIN "versions/elite-a/', 'INCBIN "'),
             ('INCLUDE "versions/elite-a/1-source-files/main-sources/elite-build-options.asm"', 'INCLUDE "1-source-files/main-sources/elite-build-options.asm"'),
             ('PUTFILE "versions/elite-a/', 'PUTFILE "')
         ],
-        "that_version": [
+        "parent_version": [
             "_DISC_VERSION",
             "_DISC_FLIGHT"
         ]
@@ -455,13 +463,14 @@ sites = [
             "_ELITE_A_VERSION",
             "_ELITE_A_DOCKED"
         ],
+        "mod_name": "Elite-A",
         "replacements": [
             ('SAVE "versions/elite-a/', 'SAVE "'),
             ('INCBIN "versions/elite-a/', 'INCBIN "'),
             ('INCLUDE "versions/elite-a/1-source-files/main-sources/elite-build-options.asm"', 'INCLUDE "1-source-files/main-sources/elite-build-options.asm"'),
             ('PUTFILE "versions/elite-a/', 'PUTFILE "')
         ],
-        "that_version": [
+        "parent_version": [
             "_DISC_VERSION",
             "_DISC_DOCKED"
         ]
@@ -476,13 +485,14 @@ sites = [
             "_ELITE_A_VERSION",
             "_ELITE_A_ENCYCLOPEDIA"
         ],
+        "mod_name": "Elite-A",
         "replacements": [
             ('SAVE "versions/elite-a/', 'SAVE "'),
             ('INCBIN "versions/elite-a/', 'INCBIN "'),
             ('INCLUDE "versions/elite-a/1-source-files/main-sources/elite-build-options.asm"', 'INCLUDE "1-source-files/main-sources/elite-build-options.asm"'),
             ('PUTFILE "versions/elite-a/', 'PUTFILE "')
         ],
-        "that_version": [
+        "parent_version": [
             "_DISC_VERSION",
             "_DISC_DOCKED"
         ],
@@ -693,10 +703,75 @@ sites = [
             ('nes:', 'all:'),
             (':nes', ':all')
         ]
+    },
+    {
+        "source_folder": library_repository + "/",
+        "section_folder": "versions/demo/1-source-files/main-sources/",
+        "source_files": ["elite-loader.asm", "elite-source.asm", "elite-bcfs.asm", "elite-disc.asm", "elite-readme.asm"],
+        "do_not_expand_includes": ["elite-build-options.asm"],
+        "dest_folder": "repos/demo/1-source-files/",
+        "this_version": [
+            "_DEMO_VERSION"
+        ],
+        "mod_name": "Demonstration Disc",
+        "replacements": [
+            ('SAVE "versions/demo/', 'SAVE "'),
+            ('INCBIN "versions/demo/', 'INCBIN "'),
+            ('INCLUDE "versions/demo/1-source-files/main-sources/elite-build-options.asm"', 'INCLUDE "1-source-files/main-sources/elite-build-options.asm"'),
+            ('PUTFILE "versions/demo/', 'PUTFILE "')
+        ],
+        "parent_version": [
+            "_CASSETTE_VERSION"
+        ],
+        "disable_diffs_for_whole_routine": [
+            "library/cassette/loader/subroutine/elite_loader_part_1_of_6.asm"
+        ]
+    },
+    {
+        "source_folder": library_repository + "/",
+        "section_folder": "versions/demo/2-build-files/",
+        "source_files": ["elite-checksum.py", "crc32.py"],
+        "do_not_expand_includes": ["elite-build-options.asm"],
+        "dest_folder": "repos/demo/2-build-files/",
+        "this_version": [
+            "_DEMO_VERSION"
+        ],
+        "mod_name": "Demonstration Disc",
+        "replacements": [
+            ('open("versions/demo/', 'open("')
+        ],
+        "parent_version": [
+            "_CASSETTE_VERSION"
+        ]
+    },
+    {
+        "source_folder": library_repository + "/",
+        "section_folder": "versions/demo/",
+        "source_files": ["Makefile"],
+        "do_not_expand_includes": [],
+        "dest_folder": "repos/demo/",
+        "this_version": [
+            "_DEMO_VERSION"
+        ],
+        "mod_name": "Demonstration Disc",
+        "replacements": [
+            ('versions/demo/', ''),
+            ('_demo', ''),
+            ('b2-demo', 'b2'),
+            ('PHONY:uef-demo', 'PHONY:uef'),
+            ('uef-demo: demo', 'uef: all'),
+            ('variant-demo', 'variant'),
+            ('demo:', 'all:'),
+            (':demo', ':all')
+        ],
+        "parent_version": [
+            "_CASSETTE_VERSION"
+        ]
     }
 ]
 
 remove_lines = [
+    "_DEMO_VERSION          = (_VERSION = 0)",
     "_CASSETTE_VERSION      = (_VERSION = 1)",
     "_DISC_VERSION          = (_VERSION = 2)",
     "_6502SP_VERSION        = (_VERSION = 3)",
@@ -735,7 +810,7 @@ remove_lines = [
 ]
 
 re_include = re.compile(r'^ *INCLUDE "(.+)"$')
-re_if = re.compile(r'(IF|OR) (NOT\()?_(CASSETTE_VERSION|6502SP_VERSION|DISC_VERSION|DISC_FLIGHT|DISC_DOCKED|MASTER_VERSION|ELECTRON_VERSION|NES_VERSION|C64_VERSION|APPLE_VERSION|ELITE_A_VERSION|ELITE_A_DOCKED|ELITE_A_FLIGHT|ELITE_A_ENCYCLOPEDIA|ELITE_A_6502SP_PARA|ELITE_A_6502SP_IO|ELITE_A_SHIPS_R|ELITE_A_SHIPS_S|ELITE_A_SHIPS_T|ELITE_A_SHIPS_U|ELITE_A_SHIPS_V|ELITE_A_SHIPS_W)')
+re_if = re.compile(r'(IF|OR) (NOT\()?_(DEMO_VERSION|CASSETTE_VERSION|6502SP_VERSION|DISC_VERSION|DISC_FLIGHT|DISC_DOCKED|MASTER_VERSION|ELECTRON_VERSION|NES_VERSION|C64_VERSION|APPLE_VERSION|ELITE_A_VERSION|ELITE_A_DOCKED|ELITE_A_FLIGHT|ELITE_A_ENCYCLOPEDIA|ELITE_A_6502SP_PARA|ELITE_A_6502SP_IO|ELITE_A_SHIPS_R|ELITE_A_SHIPS_S|ELITE_A_SHIPS_T|ELITE_A_SHIPS_U|ELITE_A_SHIPS_V|ELITE_A_SHIPS_W)')
 re_endif = re.compile(r'^ENDIF.*$')
 re_comment = re.compile(r'^\\ \*{78}$')
 re_deleted_include = re.compile(r'^\\INCLUDE "(.+)"$')
@@ -743,28 +818,16 @@ re_moved_include = re.compile(r'^\\\\INCLUDE "(.+)"$')
 re_name = re.compile(r'^\\(       Name): (.+)$')
 
 previous_line_was_blank = False
-that_version = []
+parent_version = []
 this_version = []
-
-added_code_start = "                        \\ --- Mod: Code added for Elite-A: -------------------->\n"
 added_code_end = "                        \\ --- End of added code ------------------------------->\n"
-
-deleted_code_start = "                        \\ --- Mod: Code removed for Elite-A: ------------------>\n"
 deleted_code_end = "                        \\ --- End of removed code ----------------------------->\n"
-
-amended_code_start = "                        \\ --- Mod: Code removed for Elite-A: ------------------>\n"
 amended_code_middle = "                        \\ --- And replaced by: -------------------------------->\n"
 amended_code_end = "                        \\ --- End of replacement ------------------------------>\n"
-
-added_routine_start = "                        \\ --- Mod: Code added for Elite-A: -------------------->\n"
 added_routine_end = "                        \\ --- End of added code ------------------------------->\n"
-
-deleted_routine_start = "                        \\ --- Mod: Code removed for Elite-A: ------------------>\n"
 deleted_routine_end = "                        \\ --- End of removed code ----------------------------->\n"
-deleted_subtitle = ", Removed\n"
-
-moved_routine_start = "                        \\ --- Mod: Code moved for Elite-A: -------------------->\n"
 moved_routine_end = "                        \\ --- End of moved code ------------------------------->\n"
+deleted_subtitle = ", Removed\n"
 moved_subtitle = ", Moved\n"
 
 
@@ -818,13 +881,13 @@ def end_header(header, input_file, i, comment_this, comment_all):
 
 
 def process_file(input_file, source_file, parent_file, comment_all, wrap_whole_include, deleted_include, moved_include, disable_wrapping):
-    global this_version, that_version
+    global this_version, parent_version
     if_stack = []
     include_this = True
     include_that = False
     in_header = False
     this_version_condition_already_met = False
-    that_version_condition_already_met = False
+    parent_version_condition_already_met = False
     whole_include_start_header_added = False
     comment_this = comment_all
     input_file = input_file.readlines()
@@ -837,7 +900,7 @@ def process_file(input_file, source_file, parent_file, comment_all, wrap_whole_i
         m = re_if.search(line)
         if m:
             # Version IF or ELIF statement
-            if that_version and not in_header and not wrap_whole_include:
+            if parent_version and not in_header and not wrap_whole_include:
                 if line.startswith("ELIF "):
                     if_type = if_stack[0]
                     if if_type == 0:
@@ -848,14 +911,14 @@ def process_file(input_file, source_file, parent_file, comment_all, wrap_whole_i
 
             include_this = should_we_show_this(line, this_version)
 
-            if that_version and not in_header and not wrap_whole_include:
-                if that_version_condition_already_met:
+            if parent_version and not in_header and not wrap_whole_include:
+                if parent_version_condition_already_met:
                     # We already output something for this IF block, so skip all the ELIFs
                     include_that = False
                 else:
-                    include_that = should_we_show_this(line, that_version)
+                    include_that = should_we_show_this(line, parent_version)
                 if include_that and (include_this != include_that):
-                    that_version_condition_already_met = True
+                    parent_version_condition_already_met = True
                     if not comment_this:
                         comment_this = True
                     start_header(deleted_code_start, input_file, i, comment_this, comment_all)
@@ -864,7 +927,7 @@ def process_file(input_file, source_file, parent_file, comment_all, wrap_whole_i
                 include_this = False
             if include_this:
                 this_version_condition_already_met = True
-                if that_version and (not in_header) and (include_this != include_that) and not wrap_whole_include:
+                if parent_version and (not in_header) and (include_this != include_that) and not wrap_whole_include:
                     comment_this = False
                     start_header(added_code_start, input_file, i, comment_this, comment_all)
             # Version IF statement, type 0 on stack
@@ -884,7 +947,7 @@ def process_file(input_file, source_file, parent_file, comment_all, wrap_whole_i
                 if include_this or include_that:
                     process_line(output_file, input_file, parent_file, line, source_file, comment_this, comment_all)
             if if_type == 0:
-                if that_version and not in_header and not wrap_whole_include:
+                if parent_version and not in_header and not wrap_whole_include:
                     if include_this and (include_this != include_that):
                         end_header(added_code_end, input_file, i, comment_this, comment_all)
                     if include_that and (include_this != include_that):
@@ -893,7 +956,7 @@ def process_file(input_file, source_file, parent_file, comment_all, wrap_whole_i
                     include_that = False
                 include_this = True
                 this_version_condition_already_met = False
-                that_version_condition_already_met = False
+                parent_version_condition_already_met = False
         elif include_this or include_that:
             # Normal line
             if deleted_include and re_name.match(line):
@@ -908,11 +971,11 @@ def process_file(input_file, source_file, parent_file, comment_all, wrap_whole_i
             if deleted_include:
                 start_header(deleted_routine_start, input_file, i, comment_this, comment_all)
                 comment_all = True
-                this_version, that_version = that_version, this_version
+                this_version, parent_version = parent_version, this_version
             elif moved_include:
                 start_header(moved_routine_start, input_file, i, comment_this, comment_all)
                 comment_all = True
-                this_version, that_version = that_version, this_version
+                this_version, parent_version = parent_version, this_version
             else:
                 start_header(added_routine_start, input_file, i, comment_this, comment_all)
 
@@ -920,11 +983,11 @@ def process_file(input_file, source_file, parent_file, comment_all, wrap_whole_i
         # Add wrapper to end of whole routine
         if deleted_include:
             comment_all = False
-            this_version, that_version = that_version, this_version
+            this_version, parent_version = parent_version, this_version
             end_header(deleted_routine_end, input_file, i, comment_this, comment_all)
         elif moved_include:
             comment_all = False
-            this_version, that_version = that_version, this_version
+            this_version, parent_version = parent_version, this_version
             end_header(moved_routine_end, input_file, i, comment_this, comment_all)
         else:
             end_header(added_routine_end, input_file, i, comment_this, comment_all)
@@ -940,25 +1003,25 @@ def process_line(output_file, input_file, parent_file, line, source_file, commen
         if path_leaf(include_filename) not in do_not_expand_includes:
             # print("Including file: {}".format(include_filename))
             with open(source_folder + include_filename, "r") as include_file:
-                if that_version:
+                if parent_version:
                     if include_filename in disable_diffs_for_whole_routine:
                         process_file(include_file, source_file, include_filename, comment_this, wrap_whole_include=True, deleted_include=False, moved_include=False, disable_wrapping=True)
                     else:
-                        wrap_subroutine = ("elite-a/" in include_filename) and ("workspace/" not in include_filename) and ("workspace/" not in parent_file or ("workspace/" in parent_file and "variable/" not in include_filename)) and ("subroutine/" in include_filename or "variable/" in include_filename)
+                        wrap_subroutine = ("elite-a/" in include_filename or "demo/" in include_filename) and ("workspace/" not in include_filename) and ("workspace/" not in parent_file or ("workspace/" in parent_file and "variable/" not in include_filename)) and ("subroutine/" in include_filename or "variable/" in include_filename)
                         process_file(include_file, source_file, include_filename, comment_this, wrap_whole_include=wrap_subroutine, deleted_include=False, moved_include=False, disable_wrapping=False)
                 else:
                     process_file(include_file, source_file, include_filename, comment_this, wrap_whole_include=False, deleted_include=False, moved_include=False, disable_wrapping=False)
         else:
             write_line(output_file, line, source_file, comment_this, comment_all)
     elif n:
-        if that_version:
+        if parent_version:
             include_filename = n.group(1)
             if path_leaf(include_filename) not in do_not_expand_includes:
                 # print("Including deleted include: {}".format(include_filename))
                 with open(source_folder + include_filename, "r") as include_file:
                     process_file(include_file, source_file, include_filename, comment_all=False, wrap_whole_include=True, deleted_include=True, moved_include=False, disable_wrapping=False)
     elif o:
-        if that_version:
+        if parent_version:
             include_filename = o.group(1)
             if path_leaf(include_filename) not in do_not_expand_includes:
                 # print("Including moved include: {}".format(include_filename))
@@ -1237,6 +1300,7 @@ create_folder("repos/elite-a")
 create_folder("repos/c64")
 create_folder("repos/apple")
 create_folder("repos/nes")
+create_folder("repos/demo")
 
 create_folder("repos/cassette/1-source-files")
 create_folder("repos/disc/1-source-files")
@@ -1247,6 +1311,7 @@ create_folder("repos/elite-a/1-source-files")
 create_folder("repos/c64/1-source-files")
 create_folder("repos/apple/1-source-files")
 create_folder("repos/nes/1-source-files")
+create_folder("repos/demo/1-source-files")
 
 create_folder("repos/cassette/2-build-files")
 create_folder("repos/disc/2-build-files")
@@ -1257,6 +1322,7 @@ create_folder("repos/elite-a/2-build-files")
 create_folder("repos/c64/2-build-files")
 create_folder("repos/apple/2-build-files")
 create_folder("repos/nes/2-build-files")
+create_folder("repos/demo/2-build-files")
 
 print("Generating source files: ", end="", flush=True)
 
@@ -1268,10 +1334,21 @@ for site in sites:
     dest_folder = site["dest_folder"]
     this_version = site["this_version"]
     replacements = site["replacements"]
-    if "that_version" in site:
-        that_version = site["that_version"]
+    if "parent_version" in site:
+        parent_version = site["parent_version"]
     else:
-        that_version = []
+        parent_version = []
+    if "mod_name" in site:
+        mod_start = "                        \\ --- Mod: Code "
+        hyphens = '-' * (25 - len(site["mod_name"]))
+        mod_end = " for " + site["mod_name"] + ": " + hyphens
+        added_code_start = mod_start + "added" + mod_end + "-->\n"
+        deleted_code_start = mod_start + "removed" + mod_end + ">\n"
+        amended_code_start = mod_start + "removed" + mod_end + ">\n"
+        added_routine_start = mod_start + "added" + mod_end + "-->\n"
+        deleted_routine_start = mod_start + "removed" + mod_end + ">\n"
+        moved_routine_start = mod_start + "moved" + mod_end + "-->\n"
+
     if "disable_diffs_for_whole_routine" in site:
         disable_diffs_for_whole_routine = site["disable_diffs_for_whole_routine"]
     else:
@@ -1290,7 +1367,7 @@ for site in sites:
 
             output_file = []
             process_file(input_file, source_file, parent_file="", comment_all=False, wrap_whole_include=False, deleted_include=False, moved_include=False, disable_wrapping=False)
-            if that_version and source_file.endswith(".asm"):
+            if parent_version and source_file.endswith(".asm"):
                 output_file = tidy_diff_blocks(output_file)
             with open(output, "w") as file_to_write:
                 for line in output_file:
