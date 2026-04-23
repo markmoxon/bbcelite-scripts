@@ -290,6 +290,9 @@ sites = [
         "disable_diffs_for_whole_routine": [
             "library/disc/loader3/subroutine/elite_loader_part_2_of_3.asm",
             "library/disc/loader3/subroutine/elite_loader_part_3_of_3.asm"
+        ],
+        "includes_containing_new_code": [
+            "elite-a/"
         ]
     },
     {
@@ -313,6 +316,9 @@ sites = [
         "disable_diffs_for_whole_routine": [
             "library/disc/loader3/subroutine/elite_loader_part_2_of_3.asm",
             "library/disc/loader3/subroutine/elite_loader_part_3_of_3.asm"
+        ],
+        "includes_containing_new_code": [
+            "elite-a/"
         ]
     },
     {
@@ -336,6 +342,9 @@ sites = [
         "parent_version": [
             "_DISC_VERSION",
             "_DISC_FLIGHT"
+        ],
+        "includes_containing_new_code": [
+            "elite-a/"
         ]
     },
     {
@@ -359,6 +368,9 @@ sites = [
         "parent_version": [
             "_DISC_VERSION",
             "_DISC_FLIGHT"
+        ],
+        "includes_containing_new_code": [
+            "elite-a/"
         ]
     },
     {
@@ -382,6 +394,9 @@ sites = [
         "parent_version": [
             "_DISC_VERSION",
             "_DISC_FLIGHT"
+        ],
+        "includes_containing_new_code": [
+            "elite-a/"
         ]
     },
     {
@@ -405,6 +420,9 @@ sites = [
         "parent_version": [
             "_DISC_VERSION",
             "_DISC_FLIGHT"
+        ],
+        "includes_containing_new_code": [
+            "elite-a/"
         ]
     },
     {
@@ -428,6 +446,9 @@ sites = [
         "parent_version": [
             "_DISC_VERSION",
             "_DISC_FLIGHT"
+        ],
+        "includes_containing_new_code": [
+            "elite-a/"
         ]
     },
     {
@@ -451,6 +472,9 @@ sites = [
         "parent_version": [
             "_DISC_VERSION",
             "_DISC_FLIGHT"
+        ],
+        "includes_containing_new_code": [
+            "elite-a/"
         ]
     },
     {
@@ -473,6 +497,9 @@ sites = [
         "parent_version": [
             "_DISC_VERSION",
             "_DISC_DOCKED"
+        ],
+        "includes_containing_new_code": [
+            "elite-a/"
         ]
     },
     {
@@ -498,6 +525,9 @@ sites = [
         ],
         "disable_diffs_for_whole_routine": [
             "library/enhanced/main/variable/tkn1.asm"
+        ],
+        "includes_containing_new_code": [
+            "elite-a/"
         ]
     },
     {
@@ -515,6 +545,9 @@ sites = [
             ('INCBIN "versions/elite-a/', 'INCBIN "'),
             ('INCLUDE "versions/elite-a/1-source-files/main-sources/elite-build-options.asm"', 'INCLUDE "1-source-files/main-sources/elite-build-options.asm"'),
             ('PUTFILE "versions/elite-a/', 'PUTFILE "')
+        ],
+        "includes_containing_new_code": [
+            "elite-a/"
         ]
     },
     {
@@ -532,6 +565,9 @@ sites = [
             ('INCBIN "versions/elite-a/', 'INCBIN "'),
             ('INCLUDE "versions/elite-a/1-source-files/main-sources/elite-build-options.asm"', 'INCLUDE "1-source-files/main-sources/elite-build-options.asm"'),
             ('PUTFILE "versions/elite-a/', 'PUTFILE "')
+        ],
+        "includes_containing_new_code": [
+            "elite-a/"
         ]
     },
     {
@@ -550,6 +586,9 @@ sites = [
             ('variant-elite-a', 'variant'),
             ('elite-a:', 'all:'),
             (':elite-a', ':all')
+        ],
+        "includes_containing_new_code": [
+            "elite-a/"
         ]
     },
     {
@@ -725,6 +764,10 @@ sites = [
         ],
         "disable_diffs_for_whole_routine": [
             "library/cassette/loader/subroutine/elite_loader_part_1_of_6.asm"
+        ],
+        "includes_containing_new_code": [
+            "demo/",
+            "enhanced/"
         ]
     },
     {
@@ -742,6 +785,10 @@ sites = [
         ],
         "parent_version": [
             "_CASSETTE_VERSION"
+        ],
+        "includes_containing_new_code": [
+            "demo/",
+            "enhanced/"
         ]
     },
     {
@@ -766,6 +813,10 @@ sites = [
         ],
         "parent_version": [
             "_CASSETTE_VERSION"
+        ],
+        "includes_containing_new_code": [
+            "demo/",
+            "enhanced/"
         ]
     }
 ]
@@ -1007,7 +1058,7 @@ def process_line(output_file, input_file, parent_file, line, source_file, commen
                     if include_filename in disable_diffs_for_whole_routine:
                         process_file(include_file, source_file, include_filename, comment_this, wrap_whole_include=True, deleted_include=False, moved_include=False, disable_wrapping=True)
                     else:
-                        wrap_subroutine = ("elite-a/" in include_filename or "demo/" in include_filename) and ("workspace/" not in include_filename) and ("workspace/" not in parent_file or ("workspace/" in parent_file and "variable/" not in include_filename)) and ("subroutine/" in include_filename or "variable/" in include_filename)
+                        wrap_subroutine = include_is_new_code(include_filename) and ("workspace/" not in include_filename) and ("workspace/" not in parent_file or ("workspace/" in parent_file and "variable/" not in include_filename)) and ("subroutine/" in include_filename or "variable/" in include_filename)
                         process_file(include_file, source_file, include_filename, comment_this, wrap_whole_include=wrap_subroutine, deleted_include=False, moved_include=False, disable_wrapping=False)
                 else:
                     process_file(include_file, source_file, include_filename, comment_this, wrap_whole_include=False, deleted_include=False, moved_include=False, disable_wrapping=False)
@@ -1029,6 +1080,15 @@ def process_line(output_file, input_file, parent_file, line, source_file, commen
                     process_file(include_file, source_file, include_filename, comment_all=False, wrap_whole_include=True, deleted_include=False, moved_include=True, disable_wrapping=False)
     else:
         write_line(output_file, line, source_file, comment_this, comment_all)
+
+
+def include_is_new_code(include_filename):
+    result = False
+    for include in includes_containing_new_code:
+        # e.g. "elite-a/" in include_filename or "demo/" in include_filename
+        if include in include_filename:
+            result = True
+    return result
 
 
 def write_line(output_file, line, source_file, comment_this, comment_all):
@@ -1357,6 +1417,10 @@ for site in sites:
         code_style = site["code_style"]
     else:
         code_style = "bbc"
+    if "includes_containing_new_code" in site:
+        includes_containing_new_code = site["includes_containing_new_code"]
+    else:
+        includes_containing_new_code = []
 
     for source_file in source_files:
         input = source_folder + section_folder + source_file
