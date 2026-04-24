@@ -147,6 +147,11 @@ if [[ "$platform" == "disc" || -z "$platform" ]]; then
     python3 create-disassembly-websites.py disc
 fi
 
+if [[ "$platform" == "demo" || -z "$platform" ]]; then
+    echo "Generating demo website"
+    python3 create-disassembly-websites.py demo
+fi
+
 if [[ "$platform" == "6502sp" || -z "$platform" ]]; then
     echo "Generating 6502sp website"
     python3 create-disassembly-websites.py 6502sp
@@ -205,6 +210,13 @@ if [[ "$platform" == "disc" || -z "$platform" ]]; then
     rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/elite/disc/ $ELITE_WEBSITE_REPOSITORY/disc/
     echo "Syncing disc to website"
     rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/elite/disc/ $ELITE_WEBSITE/disc/
+fi
+
+if [[ "$platform" == "demo" || -z "$platform" ]]; then
+    echo "Syncing demo to website repository"
+    rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/elite/demo/ $ELITE_WEBSITE_REPOSITORY/demo/
+    echo "Syncing demo to website"
+    rsync -a --delete $BBCELITE_SCRIPTS/disassembly-website-generator/websites/elite/demo/ $ELITE_WEBSITE/demo/
 fi
 
 if [[ "$platform" == "6502sp" || -z "$platform" ]]; then

@@ -75,6 +75,23 @@ elif args.platform == "disc":
     re_comment_delimiter = r'\\'
     re_hex_prefix = r'&'
 
+elif args.platform == "demo":
+    source_folder = elite_repositories + "/elite-demo-source-code-bbc-micro/1-source-files/main-sources/"
+    elite_loader = source_folder + "elite-loader.asm"
+    elite_source = source_folder + "elite-source.asm"
+    elite_bcfs = source_folder + "elite-bcfs.asm"
+    dest_folder = "websites/elite/"
+    content_folder = "demo/"
+    explore_folder = "explore/"
+    platform_name = "Elite Demonstration Disc"
+    platform_name_capitalised = "Elite Demonstration Disc"
+    platform_short_name = "Demonstration Disc"
+    platform_id = "demo_"
+    platform_key = "demo"
+    comment_delimiter = "\\"
+    re_comment_delimiter = r'\\'
+    re_hex_prefix = r'&'
+
 elif args.platform == "6502sp":
     source_folder = elite_repositories + "/elite-source-code-6502-second-processor/1-source-files/main-sources/"
     elite_loader = source_folder + "elite-loader1.asm"
@@ -473,7 +490,10 @@ else:
     category_summary["Charts"] = "Long-range and short-range galactic charts"
     category_summary["Copy protection"] = "Hiding the Elite code from prying eyes"
     category_summary["Dashboard"] = "The dials, 3D scanner and compass"
-    category_summary["Demo"] = "Star Wars scroll texts and a huge Elite logo"
+    if args.platform == "demo":
+        category_summary["Demo"] = "Added routines for the self-playing demonstration"
+    else:
+        category_summary["Demo"] = "Star Wars scroll texts and a huge Elite logo"
     if args.platform == "nes":
         category_summary["Drawing circles"] = "Planet ellipses and navigation chart circles"
     else:
@@ -974,7 +994,7 @@ else:
 \t\t\t\t\t\t\t<li class="menuItemHeader">Game loader</li>
 '''
 
-if args.platform == "cassette" or args.platform == "electron":
+if args.platform == "cassette" or args.platform == "demo" or args.platform == "electron":
     html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loader" href="/{1}all/loader.html"><span class="menuTitle">Loader source</span> <span class="menuSummary">The loading screen, copy protection and setup for the main game</span></a></li>
 '''
 
@@ -1012,7 +1032,7 @@ elif args.platform == "elite-a":
 \t\t\t\t\t\t\t<li><a id="{3}all_source_ship_missile" href="/{1}all/ship_missile.html"><span class="menuTitle">Missile ship blueprint</span> <span class="menuSummary">The ship blueprint for the missile</span></a></li>
 '''
 
-if args.platform == "cassette" or args.platform == "electron" or args.platform == "6502sp":
+if args.platform == "cassette" or args.platform == "demo" or args.platform == "electron" or args.platform == "6502sp":
     html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li class="menuItemHeader">Main game</li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_workspaces" href="/{1}all/workspaces.html"><span class="menuTitle">Workspaces and configuration</span> <span class="menuSummary">The main variable workspaces used in Elite</span></a></li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_text_tokens" href="/{1}all/text_tokens.html"><span class="menuTitle">Text tokens</span> <span class="menuSummary">Elite's tokenised game text</span></a></li>
@@ -1166,7 +1186,7 @@ elif args.platform == "elite-a":
 \t\t\t\t\t\t\t<li><a id="{3}all_source_elite_ships_w" href="/{1}all/elite_ships_w.html"><span class="menuTitle">Ship blueprints W source</span> <span class="menuSummary">The S.W ship blueprints file</span></a></li>
 '''
 
-if args.platform == "cassette":
+if args.platform == "cassette" or args.platform == "demo":
     html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_elite_ships" href="/{1}all/elite_ships.html"><span class="menuTitle">Ship blueprints</span> <span class="menuSummary">Data for the 13 different ship designs</span></a></li>
 \t\t\t\t\t\t\t<li class="menuItemHeader">Big Code File</li>
 \t\t\t\t\t\t\t<li><a id="{3}all_source_bcfs" href="/{1}all/bcfs.html"><span class="menuTitle">Big Code File source</span> <span class="menuSummary">Concatenates the individual source code parts into one big game file</span></a></li>
@@ -1331,6 +1351,18 @@ html_next = '''\t\t\t\t<div class="codeBlockWrapper nav">
 
 if args.platform == "cassette":
     html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines, variables and macros in the original source files for the BBC Micro cassette version of Elite, in the order in which they appear in the original source. The source files are structured like this:</p>
+
+\t\t\t\t\t\t<ul>
+\t\t\t\t\t\t\t<li>The <a href="#header-loader">Loader</a>, which displays the loading screen, implements the copy protection and sets things up for the main game</li>
+\t\t\t\t\t\t\t<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-text-tokens">Text tokens</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a> and <a href="#header-ship-blueprints">Ship blueprints</a></li>
+\t\t\t\t\t\t\t<li>The <a href="#header-big-code-file">Big Code File</a>, which concatenates the files produced by the above and adds a bit more copy protection</li>
+\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t<p>You can click on the links above to jump to the relevant part of the map.</p>
+
+'''
+elif args.platform == "demo":
+    html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines, variables and macros in the original source files for the Elite Demonstration Disc, in the order in which they appear in the original source. The source files are structured like this:</p>
 
 \t\t\t\t\t\t<ul>
 \t\t\t\t\t\t\t<li>The <a href="#header-loader">Loader</a>, which displays the loading screen, implements the copy protection and sets things up for the main game</li>
@@ -1676,6 +1708,61 @@ if args.platform == "cassette":
     next_prev_all = {
         "map_of_the_source_code": {
             "prev": {"filename": content_folder + "releases.html", "name": "Different variants of the BBC Micro cassette version"},
+            "next": {"filename": content_folder + "all/loader.html", "name": "Loader source"}
+        },
+        "loader": {
+            "prev": {"filename": content_folder + "articles/map_of_the_source_code.html", "name": "Map of the source code"},
+            "next": {"filename": content_folder + "all/workspaces.html", "name": "Workspaces and configuration"}
+        },
+        "workspaces": {
+            "prev": {"filename": content_folder + "all/loader.html", "name": "Loader source"},
+            "next": {"filename": content_folder + "all/text_tokens.html", "name": "Text tokens"}
+        },
+        "text_tokens": {
+            "prev": {"filename": content_folder + "all/workspaces.html", "name": "Workspaces and configuration"},
+            "next": {"filename": content_folder + "all/elite_a.html", "name": "Elite A source"}
+        },
+        "elite_a": {
+            "prev": {"filename": content_folder + "all/text_tokens.html", "name": "Text tokens"},
+            "next": {"filename": content_folder + "all/elite_b.html", "name": "Elite B source"}
+        },
+        "elite_b": {
+            "prev": {"filename": content_folder + "all/elite_a.html", "name": "Elite A source"},
+            "next": {"filename": content_folder + "all/elite_c.html", "name": "Elite C source"}
+        },
+        "elite_c": {
+            "prev": {"filename": content_folder + "all/elite_b.html", "name": "Elite B source"},
+            "next": {"filename": content_folder + "all/elite_d.html", "name": "Elite D source"}
+        },
+        "elite_d": {
+            "prev": {"filename": content_folder + "all/elite_c.html", "name": "Elite C source"},
+            "next": {"filename": content_folder + "all/elite_e.html", "name": "Elite E source"}
+        },
+        "elite_e": {
+            "prev": {"filename": content_folder + "all/elite_d.html", "name": "Elite D source"},
+            "next": {"filename": content_folder + "all/elite_f.html", "name": "Elite F source"}
+        },
+        "elite_f": {
+            "prev": {"filename": content_folder + "all/elite_e.html", "name": "Elite E source"},
+            "next": {"filename": content_folder + "all/elite_g.html", "name": "Elite G source"}
+        },
+        "elite_g": {
+            "prev": {"filename": content_folder + "all/elite_f.html", "name": "Elite F source"},
+            "next": {"filename": content_folder + "all/elite_ships.html", "name": "Ship blueprints"}
+        },
+        "elite_ships": {
+            "prev": {"filename": content_folder + "all/elite_g.html", "name": "Elite G source"},
+            "next": {"filename": content_folder + "all/bcfs.html", "name": "Big Code File source"}
+        },
+        "bcfs": {
+            "prev": {"filename": content_folder + "all/elite_ships.html", "name": "Ship blueprints"},
+            "next": None
+        }
+    }
+elif args.platform == "demo":
+    next_prev_all = {
+        "map_of_the_source_code": {
+            "prev": {"filename": content_folder, "name": "About the Elite Demonstration Disc"},
             "next": {"filename": content_folder + "all/loader.html", "name": "Loader source"}
         },
         "loader": {
@@ -2989,10 +3076,14 @@ next_prev_statistics = {
     },
     "disc": {
         "prev": {"filename": "cassette/articles/source_code_statistics.html", "name": "Statistics for the cassette version"},
+        "next": {"filename": "demo/articles/source_code_statistics.html", "name": "Statistics for the Demonstration Disc"}
+    },
+    "demo": {
+        "prev": {"filename": "disc/articles/source_code_statistics.html", "name": "Statistics for the disc version"},
         "next": {"filename": "electron/articles/source_code_statistics.html", "name": "Statistics for the Electron version"}
     },
     "electron": {
-        "prev": {"filename": "disc/articles/source_code_statistics.html", "name": "Statistics for the disc version"},
+        "prev": {"filename": "demo/articles/source_code_statistics.html", "name": "Statistics for the Demonstration Disc"},
         "next": {"filename": "6502sp/articles/source_code_statistics.html", "name": "Statistics for the 6502SP version"}
     },
     "6502sp": {
@@ -5254,7 +5345,7 @@ def extract_labels(source, j, references_library, parent_name, stage, parent_nam
 
     # Include commented-out labels in removed routines in Elite-A only
     elite_a_removed_label = False
-    if parent_name_no_stage.endswith(", Removed") and args.platform == "elite-a":
+    if parent_name_no_stage.endswith(", Removed") and (args.platform == "elite-a" or args.platform == "demo"):
         code = re.sub(r"^" + re_comment_delimiter + r"\.", ".", code)
         elite_a_removed_label = True
 
@@ -6533,7 +6624,7 @@ def build_individual_code_page(source, name, type, category, summary, stage):
 
 
 def get_compare_url(platform_name, stage_name, routine_name):
-    if platform_name == "elite-a" or args.platform == "c64" or args.platform == "apple" or args.platform == "nes" or args.platform == "aviator" or args.platform == "the_sentinel" or args.platform == "lander" or args.platform == "revs":
+    if platform_name == "elite-a" or platform_name == "demo" or args.platform == "c64" or args.platform == "apple" or args.platform == "nes" or args.platform == "aviator" or args.platform == "the_sentinel" or args.platform == "lander" or args.platform == "revs":
         return ""
 
     if platform_name == "disc":
@@ -8194,14 +8285,14 @@ def strip_elite_a(input_file):
 
 
 def versionise(content, platform_name):
-    if args.platform == "elite-a" or args.platform == "aviator" or args.platform == "revs" or args.platform == "the_sentinel" or args.platform == "lander":
+    if args.platform == "elite-a" or args.platform == "demo" or args.platform == "aviator" or args.platform == "revs" or args.platform == "the_sentinel" or args.platform == "lander":
         return content.format(platform_name)
     else:
         return content.format("the " + platform_name + " version of Elite")
 
 
 def version(platform_name):
-    if args.platform == "elite-a" or args.platform == "aviator" or args.platform == "revs" or args.platform == "the_sentinel" or args.platform == "lander":
+    if args.platform == "elite-a" or args.platform == "demo" or args.platform == "aviator" or args.platform == "revs" or args.platform == "the_sentinel" or args.platform == "lander":
         return platform_name
     else:
         return platform_name + " version"
@@ -8234,7 +8325,7 @@ if args.platform != "compare":
     categories = {}
 
     # Read source files
-    if args.platform == "cassette" or args.platform == "electron":
+    if args.platform == "cassette" or args.platform == "demo" or args.platform == "electron":
         with open(elite_loader, "r") as file:
             source1 = file.readlines()
         with open(elite_source, "r") as file:
@@ -8471,7 +8562,7 @@ if args.platform != "compare":
     #   all_headers: one entry per header, for the map of the source code
     print("\nExtracting popup data: ", end="", flush=True)
 
-    if args.platform == "cassette" or args.platform == "electron":
+    if args.platform == "cassette" or args.platform == "demo" or args.platform == "electron":
         extract_popup_data(source1, "Loader", "loader", "Loader")
         extract_popup_data(source2, "", "workspaces", "Workspaces")
         extract_popup_data(source3, "Big Code file", "bcfs", "Big Code file")
@@ -8606,7 +8697,7 @@ if args.platform != "compare":
     # Output individual code pages by category and extract mentions
     print("\nWriting articles: ", end="", flush=True)
 
-    if args.platform == "cassette" or args.platform == "electron":
+    if args.platform == "cassette" or args.platform == "demo" or args.platform == "electron":
         output_individual_code_pages(source1, "Loader")
         output_individual_code_pages(source2, "")
         output_individual_code_pages(source3, "Big Code file")
@@ -8745,7 +8836,7 @@ if args.platform != "compare":
 
     with open("debug/output_all.txt", "w") as debug_file:
 
-        if args.platform == "cassette" or args.platform == "electron" or args.platform == "apple" or args.platform == "master":
+        if args.platform == "cassette" or args.platform == "demo" or args.platform == "electron" or args.platform == "apple" or args.platform == "master":
             with open(dest_folder + content_folder + "all/loader.html", "w") as all_file:
                 output_large_source_code_page(source1, "Loader", "Loader source", "loader", "", "")
         elif args.platform == "disc":
@@ -8781,7 +8872,7 @@ if args.platform != "compare":
             with open(dest_folder + content_folder + "all/ship_missile.html", "w") as all_file:
                 output_large_source_code_page(source_ship_missile, "Missile ship blueprint", "Missile ship blueprint", "ship_missile", "", "")
 
-        if args.platform == "cassette" or args.platform == "electron" or args.platform == "6502sp":
+        if args.platform == "cassette" or args.platform == "demo" or args.platform == "electron" or args.platform == "6502sp":
             with open(dest_folder + content_folder + "all/workspaces.html", "w") as all_file:
                 output_large_source_code_page(source2, "", "Workspaces and configuration", "workspaces", ["", "Name: K%"], ["ELITE RECURSIVE TEXT TOKEN FILE", "ELITE A FILE"])
             with open(dest_folder + content_folder + "all/text_tokens.html", "w") as all_file:
@@ -8907,7 +8998,7 @@ if args.platform != "compare":
             with open(dest_folder + content_folder + "all/elite_ships_w.html", "w") as all_file:
                 output_large_source_code_page(source_ships_w, "Ship blueprints W", "Ship blueprints W", "elite_ships_w", "", "")
 
-        if args.platform == "cassette" or args.platform == "electron":
+        if args.platform == "cassette" or args.platform == "demo" or args.platform == "electron":
             with open(dest_folder + content_folder + "all/elite_g.html", "w") as all_file:
                 output_large_source_code_page(source2, "", "Elite G source", "elite_g", "ELITE G FILE", "ELITE SHIP BLUEPRINTS FILE")
         elif args.platform == "6502sp":
@@ -8920,7 +9011,7 @@ if args.platform != "compare":
             with open(dest_folder + content_folder + "all/elite_j.html", "w") as all_file:
                 output_large_source_code_page(source2, "", "Elite J source", "elite_j", "ELITE J FILE", "ELITE SHIP BLUEPRINTS FILE")
 
-        if args.platform == "cassette" or args.platform == "electron" or args.platform == "6502sp":
+        if args.platform == "cassette" or args.platform == "demo" or args.platform == "electron" or args.platform == "6502sp":
             with open(dest_folder + content_folder + "all/elite_ships.html", "w") as all_file:
                 output_large_source_code_page(source2, "", "Ship blueprints", "elite_ships", "ELITE SHIP BLUEPRINTS FILE", "")
             with open(dest_folder + content_folder + "all/bcfs.html", "w") as all_file:
