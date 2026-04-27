@@ -3777,7 +3777,7 @@ else:
         },
         {
             "filename": "deep_dives/auto-playing_the_combat_demo.html",
-            "name": "Auto-playing the combat demo"
+            "name": "Auto-playing the NES combat demo"
         },
         {
             "filename": "deep_dives/back-face_culling.html",
