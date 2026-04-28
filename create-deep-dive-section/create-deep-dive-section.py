@@ -29,7 +29,7 @@ def sort_by_name(k):
 
 
 # Environment variables
-source_website = os.environ['THE_SENTINEL_WEBSITE']
+source_website = os.environ['ELITE_WEBSITE']
 
 if not os.path.isdir("output"):
     os.mkdir("output")
@@ -59,7 +59,7 @@ html_next = '''
 '''
 deep_dive_html = '''<?php
 include_once("../templates/template_functions.php");
-page_header("deep_dives", "{0}", "{1}", "{1}", "A deep dive into {2} in The Sentinel on the BBC Micro", "the_sentinel", "deep_dives_{3}", "{4}");
+page_header("deep_dives", "{0}", "{1}", "{1}", "A deep dive into {2} in Elite on the BBC Micro", "elite", "deep_dives_{3}", "{4}");
 ?>
 {5}
 \t\t\t\t<div class="codeBlockWrapper">
@@ -97,19 +97,49 @@ script_html = '''        {0}
 
 # Categories
 category_summary = {}
-category_summary["Memory maps"] = "Memory maps and the loading process"
-category_summary["Main loops"] = "The main game loops and the interrupt handler"
-category_summary["3D geometry"] = "Pitch angles, yaw angles and coordinates"
-category_summary["Generating the landscape"] = "Creating the 10,000 tile-based landscapes"
-category_summary["3D objects"] = "Trees, boulders, robots and various 3D enemies"
-category_summary["Drawing the screen"] = "Screen projection, filled polygons and more"
-category_summary["Screen buffers"] = "Smooth graphics with buffers and hardware scrolling"
-category_summary["Drawing the landscape"] = "How the undulating tile landscape is drawn"
-category_summary["The title screens"] = "The title, secret code and game over screens"
-category_summary["Tactics and gameplay"] = "Secrets of the Sentinel, sentries and meanies"
-category_summary["The energy icon and scanner row"] = "Displaying energy levels and exposure information"
-category_summary["Sound and music"] = "The eerie, minimalist and atmospheric soundscape"
-category_summary["Miscellaneous"] = "Anti-cracker code, text tokens, the key logger and more"
+category_summary["Buying ships"] = "Elite-A allows you to fly different ships"
+category_summary["Charts"] = "Long-range and short-range galactic charts"
+category_summary["Copy protection"] = "Hiding the Elite code from prying eyes"
+category_summary["Dashboard"] = "The dials, 3D scanner and compass"
+category_summary["Demo"] = "Self-playing demos, Star Wars scroll text and more"
+category_summary["Drawing circles"] = "Hyperspace tunnels, launch rings and planets"
+category_summary["Drawing lines"] = "The core line-drawing routines"
+category_summary["Drawing pixels"] = "How to plot pixels in various colours"
+category_summary["Drawing planets"] = "Planets with meridians and craters"
+category_summary["Drawing ships"] = "The celebrated 3D ship plotting process"
+category_summary["Drawing suns"] = "The epic, shimmering Elite sun"
+category_summary["Encyclopedia"] = "Elite-A contains the Encyclopedia Galactica"
+category_summary["Equipment"] = "Buying and selling weapons and ship upgrades"
+category_summary["Flight"] = "Docking, hyperspace, views, shields and more"
+category_summary["Keyboard"] = "Processing key presses and joysticks"
+category_summary["Loader"] = "The loading screen and system setup"
+category_summary["Main loop"] = "The core loop that runs Elite"
+category_summary["The main game loop"] = "The core loop that runs Elite"
+category_summary["Market"] = "Market prices, selling, buying and inventory"
+category_summary["Maths (Arithmetic)"] = "Addition, subtraction, multiplication, division"
+category_summary["Maths (Geometry)"] = "Vectors, coordinates, dot products and matrices"
+category_summary["Missions"] = "Hunting stolen ships and evading Thargoids"
+category_summary["Moving"] = "Moving and rotating ships and planets in space"
+category_summary["Save and load"] = "Commander files and competition codes"
+category_summary["Ship hangar"] = "The ship hangar that's displayed on docking"
+category_summary["Sound"] = "Explosions, laser fire, hyperspace and more"
+category_summary["Stardust"] = "Stardust generation and movement"
+category_summary["Start and end"] = "The title screen... and the Game Over screen"
+category_summary["Status"] = "Showing the commander's status and rank"
+category_summary["Tactics"] = "AI tactics for enemy ships and missiles"
+category_summary["Text"] = "The game's recursive text tokenisation system"
+category_summary["Tube"] = "Communicating with the Second Processor in Elite"
+category_summary["Universe"] = "Ship spawning, local bubble, system/market data"
+category_summary["Utility routines"] = "Memory/screen clearing, delay routines"
+category_summary["Workspaces"] = "Collections of important variables into blocks"
+category_summary["Combat demo"] = "Scroll text and training for first-time players"
+category_summary["Controllers"] = "Routines for scanning both NES controllers"
+category_summary["Drawing sprites"] = "Drawing and hiding sprites"
+category_summary["Sprites"] = "Sprites for Trumbles, laser sights and explosions"
+category_summary["Drawing the screen"] = "The split-screen mode and different screen views"
+category_summary["Icon bar"] = "Processing the NES version's unique icon bar"
+category_summary["PPU"] = "Sending data to the Picture Processing Unit (PPU)"
+category_summary["Software archaeology"] = "Digging for clues in the original source code"
 
 # Global variables
 dive_list = [{"url": "/deep_dives/", "name": "Index of deep dives", "description": ""}]
@@ -145,11 +175,18 @@ with open("output/next_prev.html", "w") as next_prev_file:
                     if previous_category != "":
                         nav_file.write(category_html_before)
                     previous_category = dive["category"]
-                    nav_file.write(category_html.format(
-                        dive["category"],
-                        category_summary[dive["category"]],
-                        make_id(dive["category"])
-                    ))
+                    if dive["category"] in category_summary:                        
+                        nav_file.write(category_html.format(
+                            dive["category"],
+                            category_summary[dive["category"]],
+                            make_id(dive["category"])
+                        ))
+                    else:
+                        nav_file.write(category_html.format(
+                            dive["category"],
+                            "xxx",
+                            make_id(dive["category"])
+                        ))
 
                 nav_file.write(nav_html.format(
                     make_id(dive["category"]),
