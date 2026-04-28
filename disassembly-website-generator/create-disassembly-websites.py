@@ -3820,6 +3820,10 @@ else:
             "name": "Calculating vertex coordinates"
         },
         {
+            "filename": "deep_dives/code_changes_in_the_demonstration_disc.html",
+            "name": "Code changes in the Demonstration Disc"
+        },
+        {
             "filename": "deep_dives/colouring_the_commodore_64_bitmap_screen.html",
             "name": "Colouring the Commodore 64 bitmap screen"
         },
@@ -3946,6 +3950,10 @@ else:
         {
             "filename": "deep_dives/drawing_vector_graphics_using_nes_tiles.html",
             "name": "Drawing vector graphics using NES tiles"
+        },
+        {
+            "filename": "deep_dives/the_elite_demonstration_disc.html",
+            "name": "The Elite Demonstration Disc"
         },
         {
             "filename": "deep_dives/the_elite_source_code_family_tree.html",
