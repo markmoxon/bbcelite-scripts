@@ -175,7 +175,7 @@ with open("output/next_prev.html", "w") as next_prev_file:
                     if previous_category != "":
                         nav_file.write(category_html_before)
                     previous_category = dive["category"]
-                    if dive["category"] in category_summary:                        
+                    if dive["category"] in category_summary:
                         nav_file.write(category_html.format(
                             dive["category"],
                             category_summary[dive["category"]],
