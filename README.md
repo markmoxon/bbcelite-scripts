@@ -184,6 +184,7 @@ Now let's generate the Elite source repositories in `generated-repositories`:
 
 * [elite-source-code-bbc-micro-cassette](https://github.com/markmoxon/elite-source-code-bbc-micro-cassette)
 * [elite-source-code-bbc-micro-disc](https://github.com/markmoxon/elite-source-code-bbc-micro-disc)
+* [elite-demo-source-code-bbc-micro](https://github.com/markmoxon/elite-demo-source-code-bbc-micro)
 * [elite-source-code-acorn-electron](https://github.com/markmoxon/elite-source-code-acorn-electron)
 * [elite-source-code-6502-second-processor](https://github.com/markmoxon/elite-source-code-6502-second-processor)
 * [elite-source-code-commodore-64](https://github.com/markmoxon/elite-source-code-commodore-64)
