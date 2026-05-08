@@ -15,6 +15,7 @@ to generate the following source code repositories:
 
 * [BBC Micro (cassette) Elite source code](https://github.com/markmoxon/elite-source-code-bbc-micro-cassette)
 * [BBC Micro (disc) Elite source code](https://github.com/markmoxon/elite-source-code-bbc-micro-disc)
+* [Elite Demonstration Disc source code](https://github.com/markmoxon/elite-demo-source-code-bbc-micro)
 * [Acorn Electron Elite source code](https://github.com/markmoxon/elite-source-code-acorn-electron)
 * [6502 Second Processor Elite source code](https://github.com/markmoxon/elite-source-code-6502-second-processor)
 * [Commodore 64 Elite source code](https://github.com/markmoxon/elite-source-code-commodore-64)
@@ -106,6 +107,7 @@ cd ../generated-repositories
 
 mkdir elite-source-code-bbc-micro-cassette
 mkdir elite-source-code-bbc-micro-disc
+mkdir elite-demo-source-code-bbc-micro
 mkdir elite-source-code-acorn-electron
 mkdir elite-source-code-6502-second-processor
 mkdir elite-source-code-commodore-64
