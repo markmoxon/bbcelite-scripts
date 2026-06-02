@@ -3796,8 +3796,8 @@ else:
             "name": "Bolting NES controllers onto the key logger"
         },
         {
-            "filename": "deep_dives/bresenhams_line_algorithm.html",
-            "name": "Bresenham's line algorithm"
+            "filename": "deep_dives/elites_line-drawing_algorithm.html",
+            "name": "Elite's line-drawing algorithm"
         },
         {
             "filename": "deep_dives/building_apple_ii_elite_from_the_source_disk.html",
