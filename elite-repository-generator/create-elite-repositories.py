@@ -127,7 +127,7 @@ sites = [
     {
         "source_folder": library_repository + "/",
         "section_folder": "versions/6502sp/1-source-files/main-sources/",
-        "source_files": ["elite-loader1.asm", "elite-loader2.asm", "elite-source.asm", "elite-bcfs.asm", "elite-z.asm", "elite-disc.asm", "elite-readme.asm", "elite-checksum.asm"],
+        "source_files": ["elite-boot.asm", "elite-loader1.asm", "elite-loader2.asm", "elite-source.asm", "elite-bcfs.asm", "elite-z.asm", "elite-disc.asm", "elite-readme.asm", "elite-checksum.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
         "dest_folder": "repos/6502sp/1-source-files/",
         "this_version": [
