@@ -60,7 +60,7 @@ sites = [
     {
         "source_folder": library_repository + "/",
         "section_folder": "versions/disc/1-source-files/main-sources/",
-        "source_files": ["elite-text-tokens.asm", "elite-missile.asm", "elite-loader1.asm", "elite-loader2.asm", "elite-loader3.asm", "elite-loader-sideways-ram.asm", "elite-source-flight.asm", "elite-ships-a.asm", "elite-ships-b.asm", "elite-ships-c.asm", "elite-ships-d.asm", "elite-ships-e.asm", "elite-ships-f.asm", "elite-ships-g.asm", "elite-ships-h.asm", "elite-ships-i.asm", "elite-ships-j.asm", "elite-ships-k.asm", "elite-ships-l.asm", "elite-ships-m.asm", "elite-ships-n.asm", "elite-ships-o.asm", "elite-ships-p.asm", "elite-disc.asm", "elite-readme.asm"],
+        "source_files": ["elite-text-tokens.asm", "elite-missile.asm", "elite-loader1.asm", "elite-loader2.asm", "elite-loader3.asm", "elite-loader-screen.asm", "elite-loader-sideways-ram.asm", "elite-source-flight.asm", "elite-ships-a.asm", "elite-ships-b.asm", "elite-ships-c.asm", "elite-ships-d.asm", "elite-ships-e.asm", "elite-ships-f.asm", "elite-ships-g.asm", "elite-ships-h.asm", "elite-ships-i.asm", "elite-ships-j.asm", "elite-ships-k.asm", "elite-ships-l.asm", "elite-ships-m.asm", "elite-ships-n.asm", "elite-ships-o.asm", "elite-ships-p.asm", "elite-disc.asm", "elite-readme.asm"],
         "do_not_expand_includes": ["elite-build-options.asm"],
         "dest_folder": "repos/disc/1-source-files/",
         "this_version": [
