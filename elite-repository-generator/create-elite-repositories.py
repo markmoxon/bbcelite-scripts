@@ -736,6 +736,7 @@ sites = [
             "_NES_VERSION"
         ],
         "replacements": [
+            ('versions\\nes\\', ''),
             ('versions/nes/', ''),
             ('_nes', ''),
             ('variant-nes', 'variant'),
