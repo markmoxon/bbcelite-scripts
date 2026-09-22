@@ -4,7 +4,7 @@ This folder contains a number of scripts that I use to manage the content in my 
 
 For these scripts to work, you need to have set up the environment variables described in the [bbcelite-scripts README](../README.md).
 
-Note that I have only tested these scripts on a Mac. In theory they should also work in Linux, and they might also work on Windows using Git Bash or Windows Subsystem for Linux, but I haven't tried anything other than a Mac-based build.
+Note that I have only tested these scripts on a Mac. In theory they should also work in Linux, and they might also work on Windows Subsystem for Linux or coreutils for Windows, but I haven't tried anything other than a Mac-based build.
 
 ## Code images
 

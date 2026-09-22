@@ -66,7 +66,7 @@ This repository contains a number of scripts that are used to manage my source c
 
 If you want to see this automatic generation working, then the following steps will enable you to set up the process on your own machine. You can then generate all the source code repositories and websites listed above, using the exact same process that I use to maintain my sites.
 
-Note that I have only tested this build process on a Mac. In theory these scripts should also work in Linux, and they might also work on Windows using Git Bash or Windows Subsystem for Linux, but I haven't tried anything other than a Mac-based build.
+Note that I have only tested this build process on a Mac. In theory these scripts should also work in Linux, and they might also work on Windows Subsystem for Linux or coreutils for Windows, but I haven't tried anything other than a Mac-based build.
 
 Python 3 is required.
 
