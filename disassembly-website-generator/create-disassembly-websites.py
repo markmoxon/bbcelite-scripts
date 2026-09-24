@@ -170,6 +170,7 @@ elif args.platform == "master":
 elif args.platform == "electron":
     source_folder = elite_repositories + "/elite-source-code-acorn-electron/1-source-files/main-sources/"
     elite_loader = source_folder + "elite-loader.asm"
+    elite_loading_screen = source_folder + "elite-loading-screen.asm"
     elite_source = source_folder + "elite-source.asm"
     elite_bcfs = source_folder + "elite-bcfs.asm"
     dest_folder = "websites/elite/"
@@ -994,9 +995,13 @@ else:
 \t\t\t\t\t\t\t<li class="menuItemHeader">Game loader</li>
 '''
 
-if args.platform == "cassette" or args.platform == "demo" or args.platform == "electron":
+if args.platform == "cassette" or args.platform == "demo":
     html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loader" href="/{1}all/loader.html"><span class="menuTitle">Loader source</span> <span class="menuSummary">The loading screen, copy protection and setup for the main game</span></a></li>
 '''
+
+elif args.platform == "electron":
+    html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loading_screen" href="/{1}all/loading_screen.html"><span class="menuTitle">Loading screen source</span> <span class="menuSummary">The Acornsoft loading screen</span></a></li>
+\t\t\t\t\t\t\t<li><a id="{3}all_source_loader" href="/{1}all/loader.html"><span class="menuTitle">Loader source</span> <span class="menuSummary">The loading screen, copy protection and setup for the main game</span></a></li>'''
 
 elif args.platform == "disc":
     html_indexes = html_indexes + '''\t\t\t\t\t\t\t<li><a id="{3}all_source_loader1" href="/{1}all/loader1.html"><span class="menuTitle">Loader 1 source</span> <span class="menuSummary">Initial setup and disc copy protection</span></a></li>
@@ -1377,7 +1382,8 @@ elif args.platform == "electron":
     html_large_source_code_page_links = '''\t\t\t\t\t\t<p>This page contains a map of all the routines, variables and macros in the original source files for the Electron version of Elite, in the order in which they appear in the original source. The source files are structured like this:</p>
 
 \t\t\t\t\t\t<ul>
-\t\t\t\t\t\t\t<li>The <a href="#header-loader">Loader</a>, which displays the loading screen, implements the copy protection and sets things up for the main game</li>
+\t\t\t\t\t\t\t<li>The <a href="#header-loading-screen">Loading screen</a>, which displays the Acornsoft loading screen</li>
+\t\t\t\t\t\t\t<li>The <a href="#header-loader">Loader</a>, which displays the Saturn loading screen, implements the copy protection and sets things up for the main game</li>
 \t\t\t\t\t\t\t<li>The main game source, which consists of <a href="#header-workspaces">Workspaces</a>, <a href="#header-text-tokens">Text tokens</a>, <a href="#header-elite-a">Elite A</a>, <a href="#header-elite-b">Elite B</a>, <a href="#header-elite-c">Elite C</a>, <a href="#header-elite-d">Elite D</a>, <a href="#header-elite-e">Elite E</a>, <a href="#header-elite-f">Elite F</a>, <a href="#header-elite-g">Elite G</a> and <a href="#header-ship-blueprints">Ship blueprints</a></li>
 \t\t\t\t\t\t\t<li>The Big Code File, which concatenates the files produced by the above (but which doesn't contain any code, so there is no entry below)</li>
 \t\t\t\t\t\t</ul>
@@ -1818,10 +1824,14 @@ elif args.platform == "electron":
     next_prev_all = {
         "map_of_the_source_code": {
             "prev": {"filename": content_folder + "releases.html", "name": "Different variants of the Acorn Electron version"},
+            "next": {"filename": content_folder + "all/loading_screen.html", "name": "Loading screen source"}
+        },
+        "loading_screen": {
+            "prev": {"filename": content_folder + "articles/map_of_the_source_code.html", "name": "Map of the source code"},
             "next": {"filename": content_folder + "all/loader.html", "name": "Loader source"}
         },
         "loader": {
-            "prev": {"filename": content_folder + "articles/map_of_the_source_code.html", "name": "Map of the source code"},
+            "prev": {"filename": content_folder + "all/loading_screen.html", "name": "Loading screen source"},
             "next": {"filename": content_folder + "all/workspaces.html", "name": "Workspaces and configuration"}
         },
         "workspaces": {
@@ -4361,7 +4371,7 @@ sites_to_compare = [
     {
         "source_folder": library_repository + "/",
         "section_folder": "versions/electron/1-source-files/main-sources/",
-        "source_files": ["elite-loader.asm", "elite-source.asm", "elite-bcfs.asm"],
+        "source_files": ["elite-loader.asm", "elite-loading-screen.asm", "elite-source.asm", "elite-bcfs.asm"],
         "do_not_expand_all_includes": ["elite-header.h.asm"],
         "dest_folder": content_folder + "electron/",
         "this_version": [
@@ -8333,7 +8343,7 @@ if args.platform != "compare":
     categories = {}
 
     # Read source files
-    if args.platform == "cassette" or args.platform == "demo" or args.platform == "electron":
+    if args.platform == "cassette" or args.platform == "demo":
         with open(elite_loader, "r") as file:
             source1 = file.readlines()
         with open(elite_source, "r") as file:
@@ -8341,6 +8351,17 @@ if args.platform != "compare":
         with open(elite_bcfs, "r") as file:
             source3 = file.readlines()
         source = source1 + source2 + source3
+
+    elif args.platform == "electron":
+        with open(elite_loading_screen, "r") as file:
+            source1a = file.readlines()
+        with open(elite_loader, "r") as file:
+            source1b = file.readlines()
+        with open(elite_source, "r") as file:
+            source2 = file.readlines()
+        with open(elite_bcfs, "r") as file:
+            source3 = file.readlines()
+        source = source1a + source1b + source2 + source3
 
     elif args.platform == "disc":
         with open(elite_loader1, "r") as file:
@@ -8570,8 +8591,14 @@ if args.platform != "compare":
     #   all_headers: one entry per header, for the map of the source code
     print("\nExtracting popup data: ", end="", flush=True)
 
-    if args.platform == "cassette" or args.platform == "demo" or args.platform == "electron":
+    if args.platform == "cassette" or args.platform == "demo":
         extract_popup_data(source1, "Loader", "loader", "Loader")
+        extract_popup_data(source2, "", "workspaces", "Workspaces")
+        extract_popup_data(source3, "Big Code file", "bcfs", "Big Code file")
+
+    elif args.platform == "electron":
+        extract_popup_data(source1a, "Loading screen", "loading_screen", "Loading screen")
+        extract_popup_data(source1b, "Loader", "loader", "Loader")
         extract_popup_data(source2, "", "workspaces", "Workspaces")
         extract_popup_data(source3, "Big Code file", "bcfs", "Big Code file")
 
@@ -8705,8 +8732,14 @@ if args.platform != "compare":
     # Output individual code pages by category and extract mentions
     print("\nWriting articles: ", end="", flush=True)
 
-    if args.platform == "cassette" or args.platform == "demo" or args.platform == "electron":
+    if args.platform == "cassette" or args.platform == "demo":
         output_individual_code_pages(source1, "Loader")
+        output_individual_code_pages(source2, "")
+        output_individual_code_pages(source3, "Big Code file")
+
+    elif args.platform == "electron":
+        output_individual_code_pages(source1a, "Loading screen")
+        output_individual_code_pages(source1b, "Loader")
         output_individual_code_pages(source2, "")
         output_individual_code_pages(source3, "Big Code file")
 
@@ -8844,9 +8877,14 @@ if args.platform != "compare":
 
     with open("debug/output_all.txt", "w") as debug_file:
 
-        if args.platform == "cassette" or args.platform == "demo" or args.platform == "electron" or args.platform == "apple" or args.platform == "master":
+        if args.platform == "cassette" or args.platform == "demo" or args.platform == "apple" or args.platform == "master":
             with open(dest_folder + content_folder + "all/loader.html", "w") as all_file:
                 output_large_source_code_page(source1, "Loader", "Loader source", "loader", "", "")
+        elif args.platform == "electron":
+            with open(dest_folder + content_folder + "all/loading_screen.html", "w") as all_file:
+                output_large_source_code_page(source1a, "Loading screen", "Loading screen source", "loading_screen", "", "")
+            with open(dest_folder + content_folder + "all/loader.html", "w") as all_file:
+                output_large_source_code_page(source1b, "Loader", "Loader source", "loader", "", "")
         elif args.platform == "disc":
             with open(dest_folder + content_folder + "all/loader1.html", "w") as all_file:
                 output_large_source_code_page(source1a, "Loader 1", "Loader 1 source", "loader1", "", "")
