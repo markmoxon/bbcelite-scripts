@@ -48,6 +48,7 @@ sites = [
         ],
         "replacements": [
             ('versions/cassette/', ''),
+            ('versions\\cassette\\', ''),
             ('_cassette', ''),
             ('b2-cassette', 'b2'),
             ('PHONY:uef-cassette', 'PHONY:uef'),
@@ -117,6 +118,7 @@ sites = [
         ],
         "replacements": [
             ('versions/disc/', ''),
+            ('versions\\disc\\', ''),
             ('_disc', ''),
             ('b2-disc', 'b2'),
             ('variant-disc', 'variant'),
@@ -164,6 +166,7 @@ sites = [
         ],
         "replacements": [
             ('versions/6502sp/', ''),
+            ('versions\\6502sp\\', ''),
             ('_6502sp', ''),
             ('b2-6502sp', 'b2'),
             ('variant-6502sp', 'variant'),
@@ -211,6 +214,7 @@ sites = [
         ],
         "replacements": [
             ('versions/master/', ''),
+            ('versions\\master\\', ''),
             ('_master', ''),
             ('b2-master', 'b2'),
             ('variant-master', 'variant'),
@@ -258,6 +262,7 @@ sites = [
         ],
         "replacements": [
             ('versions/electron/', ''),
+            ('versions\\electron\\', ''),
             ('_electron', ''),
             ('PHONY:uef-cassette', 'PHONY:uef'),
             ('uef-electron: electron', 'uef: all'),
@@ -581,6 +586,7 @@ sites = [
         ],
         "replacements": [
             ('versions/elite-a/', ''),
+            ('versions\\elite-a\\', ''),
             ('_elite-a', ''),
             ('b2-elite-a', 'b2'),
             ('variant-elite-a', 'variant'),
@@ -632,6 +638,7 @@ sites = [
         ],
         "replacements": [
             ('versions/c64/', ''),
+            ('versions\\c64\\', ''),
             ('_c64', ''),
             ('variant-c64', 'variant'),
             ('c64:', 'all:'),
@@ -736,8 +743,8 @@ sites = [
             "_NES_VERSION"
         ],
         "replacements": [
-            ('versions\\nes\\', ''),
             ('versions/nes/', ''),
+            ('versions\\nes\\', ''),
             ('_nes', ''),
             ('variant-nes', 'variant'),
             ('nes:', 'all:'),
@@ -804,6 +811,7 @@ sites = [
         "mod_name": "Demonstration Disc",
         "replacements": [
             ('versions/demo/', ''),
+            ('versions\\demo\\', ''),
             ('_demo', ''),
             ('b2-demo', 'b2'),
             ('PHONY:uef-demo', 'PHONY:uef'),
