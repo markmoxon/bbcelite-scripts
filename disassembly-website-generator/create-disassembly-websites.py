@@ -3810,8 +3810,16 @@ else:
             "name": "Elite's line-drawing algorithm"
         },
         {
+            "filename": "deep_dives/building_6502_second_processor_elite_from_the_source_disc.html",
+            "name": "Building 6502 Second Processor Elite from the source disc"
+        },
+        {
             "filename": "deep_dives/building_apple_ii_elite_from_the_source_disk.html",
             "name": "Building Apple II Elite from the source disk"
+        },
+        {
+            "filename": "deep_dives/building_bbc_micro_cassette_elite_from_the_source_disc.html",
+            "name": "Building BBC Micro cassette Elite from the source disc"
         },
         {
             "filename": "deep_dives/building_commodore_64_elite_from_the_source_disk.html",
